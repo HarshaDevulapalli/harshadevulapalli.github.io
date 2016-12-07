@@ -128,13 +128,27 @@
                 var cscale;
                 var domain;
 
+                data.forEach(function (d) {
+                    d.population = +d.population;
+                    d.illiteracy = +d.illiteracy;
+                    d.literacybelowprimary = +d.literacybelowprimary;
+                    d.primary = +d.primary;
+                    d.middle = +d.middle;
+                    d.secondary = +d.secondary;
+                    d.highersecondary = +d.highersecondary;
+                    d.graduate = +d.graduate;
+                    d.other = +d.other;
+
+                });
+
 
                 if (choro == "ratebyPopulation") {
                     choro = ratebyPopulation2011;
                     cscale = colorbrewer.PuBu[9]
                     domain = 'Population '
                     column_selector='secc_popul'
-
+                    max = d3.max(data, function(d) { return d.population; });
+                    min = d3.min(data, function(d) { return d.population; });
                     document.getElementById("legend").innerHTML="<span class = legendTitle>" + domain + "Data</span>";
                 }
                 if (choro == "ratebyIlliteracy") {
@@ -142,6 +156,9 @@
                     cscale = colorbrewer.Oranges[9]
                     domain = 'Illiteracy '
                     column_selector='secc_col2'
+                    max = d3.max(data, function(d) { return d.illiteracy; });
+                    min = d3.min(data, function(d) { return d.illiteracy; });
+                    //console.log(data)
 
                     document.getElementById("legend").innerHTML="<span class = legendTitle>" + domain + "Data</span>";
                 }
@@ -150,8 +167,9 @@
                     cscale = colorbrewer.Reds[9]
                     domain = 'LiteracyBelowPrimary '
                     column_selector='secc_col4'
-                    max = d3.max(data, function(d) { return d.secc_col4; });
-                    min = d3.min(data, function(d) { return d.secc_col4; });
+                    console.log(data)
+                    max = d3.max(data, function(d) { return d.literatesbelowprimary; });
+                    min = d3.min(data, function(d) { return d.literatesbelowprimary; });
                     document.getElementById("legend").innerHTML="<span class = legendTitle>" + domain + "Data</span>";
                 }
                 if (choro == "ratebyPrimary") {
@@ -159,8 +177,8 @@
                     cscale = colorbrewer.Greens[9]
                     domain = 'Primary '
                     column_selector='secc_col6'
-                    max = d3.max(data, function(d) { return d.secc_col6; });
-                    min = d3.min(data, function(d) { return d.secc_col6; });
+                    max = d3.max(data, function(d) { return d.primary; });
+                    min = d3.min(data, function(d) { return d.primary; });
                     document.getElementById("legend").innerHTML="<span class = legendTitle>" + domain + "Data</span>";
                 }
                 if (choro == "ratebyMiddle") {
@@ -168,8 +186,8 @@
                     cscale = colorbrewer.Purples[9]
                     domain = 'Middle '
                     column_selector='secc_col8'
-                    max = d3.max(data, function(d) { return d.secc_col8; });
-                    min = d3.min(data, function(d) { return d.secc_col8; });
+                    max = d3.max(data, function(d) { return d.middle; });
+                    min = d3.min(data, function(d) { return d.middle; });
                     document.getElementById("legend").innerHTML="<span class = legendTitle>" + domain + "Data</span>";
                 }
                 if (choro == "ratebySecondary") {
@@ -177,8 +195,8 @@
                     cscale = colorbrewer.Oranges[9]
                     domain = 'Secondary '
                     column_selector='secc_col10'
-                    max = d3.max(data, function(d) { return d.secc_col10; });
-                    min = d3.min(data, function(d) { return d.secc_col10; });
+                    max = d3.max(data, function(d) { return d.secondary; });
+                    min = d3.min(data, function(d) { return d.secondary; });
                     document.getElementById("legend").innerHTML="<span class = legendTitle>" + domain + "Data</span>";
                 }
                 if (choro == "ratebyHigherSecondary") {
@@ -186,8 +204,8 @@
                     cscale = colorbrewer.Reds[9]
                     domain = 'Higher Secondary '
                     column_selector='secc_col12'
-                    max = d3.max(data, function(d) { return d.secc_col12; });
-                    min = d3.min(data, function(d) { return d.secc_col12; });
+                    max = d3.max(data, function(d) { return d.highersecondary; });
+                    min = d3.min(data, function(d) { return d.highersecondary; });
                     document.getElementById("legend").innerHTML="<span class = legendTitle>" + domain + "Data</span>";
                 }
                 if (choro == "ratebyGraduate") {
@@ -195,21 +213,21 @@
                     cscale = colorbrewer.Greens[9]
                     domain = 'Graduate '
                     column_selector='secc_col14'
-                    max = d3.max(data, function(d) { return d.secc_col14; });
-                    min = d3.min(data, function(d) { return d.secc_col14; });
+                    max = d3.max(data, function(d) { return d.graduate; });
+                    min = d3.min(data, function(d) { return d.graduate });
                     document.getElementById("legend").innerHTML="<span class = legendTitle>" + domain + "Data</span>";
                 }
-                if (choro == "ratebyMiddle") {
-                    choro = ratebyMiddle2011;
+                if (choro == "ratebyOther") {
+                    choro = ratebyOther2011;
                     cscale = colorbrewer.Purples[9]
-                    domain = 'Middle '
+                    domain = 'Other '
                     column_selector='secc_col16'
-                    max = d3.max(data, function(d) { return d.secc_col16; });
-                    min = d3.min(data, function(d) { return d.secc_col16; });
+                    max = d3.max(data, function(d) { return d.other; });
+                    min = d3.min(data, function(d) { return d.other; });
                     document.getElementById("legend").innerHTML="<span class = legendTitle>" + domain + "Data</span>";
                 }
 
-                var color = d3.scale.quantize()
+                var color = d3.scale.quantile()
                     .domain([min,max])
                     .range(cscale);
 
@@ -269,8 +287,7 @@
 
 
 
-                    var color = d3.scale.linear()
-                              .range(cscale);
+
 
                     svg.call(tip);
 
@@ -299,18 +316,18 @@
                         // rollover functionality to display tool tips
                         .on("mouseover", function (d) {
                             tip.show(d)
-                            /*d3.select(this)
-                              7  .transition().duration(200)
-                                .style("fill", "white"); */
+                            d3.select(this)
+                                .transition().duration(200)
+                                .style("stroke","black")
                         })
                         .on("mouseout", function () {
                             tip.hide()
                             d3.select(this)
                                 .transition().duration(200)
-                                /*style("fill",
-                                function (d) {
-                                    return color(d.properties[column_selector]);
-                                })*/;
+                                d3.select(this)
+                                    .transition().duration(200)
+                                    .style("stroke","white")
+                            })
                         })
 
                     d3.select('#legend')
@@ -334,7 +351,7 @@
                             return legend_items[i];
                         });
                 })
-            })
+
         }
 
         // zoom functionality written by the awesome Mike Bostock
