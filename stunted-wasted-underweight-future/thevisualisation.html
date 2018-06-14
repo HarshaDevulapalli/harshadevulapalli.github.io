@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Our Stunted, Wasted and Underweight Future</title>
-	<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <title>Stunted, Wasted and Underweight.</title>
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
     <script src="https://harshadevulapalli.github.io/stunted-wasted-underweight-future/indianstatestopojson.json" <meta charset="UTF8"></script>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
     <script src="https://d3js.org/topojson.v1.min.js"></script>
@@ -12,13 +12,9 @@
     body {
         font-family:  "Fira Sans Extra Condensed", sans-serif;
     }
-    h1,h2,h3,h6{
+    h3,h6{
 
         text-align: center;
-    }
-    h1{
-        font-size: 2em;
-        font-weight: 900;
     }
     p,ul{
         font-weight: 400;
@@ -30,7 +26,7 @@
         font-weight: 600;
     }
 
-    h4,h5,.label{
+    h4,.label{
         font-size: 0.8em;
         font-weight: 400;
         text-align:left;
@@ -75,27 +71,41 @@ button {
  margin:0 auto; /* auto centers the div in standards complaint browsers */
 }
 
+.toolTip {
+  position: absolute;
+  display: none;
+  min-width: 40px;
+  height: auto;
+  background: none repeat scroll 0 0 #ffffff;
+  border: 3px solid #000000;
+  padding: 10px;
+  text-align: center;
+  font-family:  "Fira Sans Extra Condensed", sans-serif;
+  font-weight: 400;
+  font-size: 0.8em;
+}
+
 </style>
 </head>
 <body>
-        <div id ="controls" align="center"></div>
-        <h3> Hover on a state to see how it fares. </h3>
-        <div id ="canvas" align="center"></div>
-        <div id="centered">
-            <h6>Source: National Family Health Survey 2015-2016</h6>
-            <p>Notes</p>
-            <h4><ul style="list-style-type:disc">
-                <li> Children whose index (height-for-age, weight for height, weight for age) is below minus two standard deviations (-2 SD) from the median of the reference population are considered stunted, wasted or underweight as per this definition.</li>
-                <li> Children whose indices were below minus three standard deviations (-3 SD) are considered severely stunted, wasted or undernourished. </li>
-                <li> For weighing very young children, the weight of the mother or caretaker was measured and they were weighed again holding the child. The deduction was counted as their weight.</li>
-                <li> Children younger than 24 months were measured lying down and standing height was used for older children</li></h4>
-            </div>
-            <script>
-            var width = 600;
-            var height = 600;
+    <div id ="controls" align="center"></div>
+    <h3> Hover on a state to see how it fares. </h3>
+    <div id ="canvas" align="center"></div>
+    <div id="centered">
+        <h6>Source: National Family Health Survey 2015-2016</h6>
+        <p>Notes</p>
+        <h4><ul style="list-style-type:disc">
+            <li> Children whose index (height-for-age, weight for height, weight for age) is below minus two standard deviations (-2 SD) from the median of the reference population are considered stunted, wasted or underweight as per this definition.</li>
+            <li> Children whose indices were below minus three standard deviations (-3 SD) are considered severely stunted, wasted or undernourished. </li>
+            <li> For weighing very young children, the weight of the mother or caretaker was measured and they were weighed again holding the child. The deduction was counted as their weight.</li>
+            <li> Children younger than 24 months were measured lying down and standing height was used for older children</li></h4>
+        </div>
+        <script>
+        var width = 600;
+        var height = 600;
 
-	// Create SVG
-	var svg = d3.select( "#canvas" )
+    // Create SVG
+    var svg = d3.select( "#canvas" )
     .append( "svg" )
     .attr( "width", width )
     .attr( "height", height)
@@ -113,6 +123,8 @@ button {
     .defer(d3.json,"indianstatestopojson.json")
     .defer(d3.csv,"stunting-wasting-underweight-nfhs.csv")
     .await(ready);
+
+    var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
 
     function ready(error,india,nutritionData) {
@@ -182,16 +194,16 @@ button {
                 var backgroundColour=stuntingColors[1];
                 var displayText="stunted";
             }
-                if(datapoint=="Wasting Percentage Below -2SD"){
-                    var chosenColor=wastingColors;
-                    var backgroundColour=wastingColors[2];
-                    var displayText="wasted";
-                }
-                    if(datapoint=="Underweight Percentage Below -2SD"){
-                        var chosenColor=underweightColors;
-                        var backgroundColour=underweightColors[2];
-                        var displayText="underweight";
-                    }
+            if(datapoint=="Wasting Percentage Below -2SD"){
+                var chosenColor=wastingColors;
+                var backgroundColour=wastingColors[2];
+                var displayText="wasted";
+            }
+            if(datapoint=="Underweight Percentage Below -2SD"){
+                var chosenColor=underweightColors;
+                var backgroundColour=underweightColors[2];
+                var displayText="underweight";
+            }
             //Code for creating the choropleth
             d3.select(this).style("background", backgroundColour)
             var maxValue = d3.max(nutritionData, d => parseFloat(d[datapoint]))
@@ -221,12 +233,19 @@ button {
             //tooltip
             allStates.on("mouseover", function(d){
                 d3.select(this).classed("hover",true).style("stroke","black").raise();
-                d3.select("h3").text(stateData[d.properties.state] +" percent of "+d.properties.state+'\'s children are '+ displayText+".")
+           })
+
+            allStates.on("mousemove", function(d){
+                tooltip
+                .style("left", d3.event.pageX - 50 + "px")
+                .style("top", d3.event.pageY - 70 + "px")
+                .style("display", "inline-block")
+                .html(d.properties.state+"<br>"+stateData[d.properties.state]+"%");
             })
 
             allStates.on("mouseout", function(d){
                 d3.select(this).classed("hover",false).style("stroke","white").lower();
-                d3.select("h3").text(" Hover on a state to see how it fares. ")
+                tooltip.style("display", "none");
 
             })
 

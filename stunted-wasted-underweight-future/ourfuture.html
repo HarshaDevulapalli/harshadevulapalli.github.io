@@ -75,6 +75,20 @@ button {
    margin:0 auto; /* auto centers the div in standards complaint browsers */
 }
 
+.toolTip {
+  position: absolute;
+  display: none;
+  min-width: 40px;
+  height: auto;
+  background: none repeat scroll 0 0 #ffffff;
+  border: 3px solid #000000;
+  padding: 10px;
+  text-align: center;
+  font-family:  "Fira Sans Extra Condensed", sans-serif;
+  font-weight: 400;
+  font-size: 0.8em;
+}
+
 </style>
 </head>
 <body>
@@ -127,6 +141,8 @@ button {
     .defer(d3.json,"indianstatestopojson.json")
     .defer(d3.csv,"stunting-wasting-underweight-nfhs.csv")
     .await(ready);
+
+    var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
 
     function ready(error,india,nutritionData) {
@@ -235,12 +251,22 @@ button {
             //tooltip
             allStates.on("mouseover", function(d){
                 d3.select(this).classed("hover",true).style("stroke","black").raise();
-                d3.select("h3").text(stateData[d.properties.state] +" percent of "+d.properties.state+'\'s children are '+ displayText+".")
+               // return tooltip.text(stateData[d.properties.state] +" percent of "+d.properties.state+'\'s children are '+ displayText+".").style("visibility", "visible");
+            })
+
+            allStates.on("mousemove", function(d){
+                tooltip
+                .style("left", d3.event.pageX - 50 + "px")
+                .style("top", d3.event.pageY - 70 + "px")
+                .style("display", "inline-block")
+                .html(d.properties.state+"<br>"+stateData[d.properties.state]+"%");
             })
 
             allStates.on("mouseout", function(d){
                 d3.select(this).classed("hover",false).style("stroke","white").lower();
-                d3.select("h3").text(" Hover on a state to see how it fares. ")
+                tooltip.style("display", "none");
+                d3.select("h3").text(" Hover on a state to see how it fares. ");
+
 
             })
 
