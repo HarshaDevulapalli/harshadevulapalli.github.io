@@ -3,10 +3,10 @@
 
 <head>
     <title>How India Works</title>
-    <script src="http://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-    <script src="india_district_2.json" <meta charset="UTF8"></script>
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <script src="india_districts.json" <meta charset="UTF8"></script>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
-    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="https://d3js.org/d3-queue.v2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
     <style>
@@ -147,7 +147,7 @@
         .projection(geoProjection);
 
     d3.queue()
-        .defer(d3.json, "india_district_2.json")
+        .defer(d3.json, "india_districts.json")
         .defer(d3.csv, "mergedTotal_B1.csv")
         .await(ready);
 
