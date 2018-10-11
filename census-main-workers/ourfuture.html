@@ -108,6 +108,7 @@
     <h3> Hover on a district to see how it fares. </h3>
     <div id="controls" align="center"></div>
     <div id="workerkeys" align="center"></div>
+    <div id="categoryparameters" align="center"></div>
     <div id="dataparameters" align="center"></div>
     <div id="canvas" align="center"></div>
     <script>
@@ -342,6 +343,79 @@
 
         }
 
+
+
+        function Calculator3(Data) {
+            variable1 = "Total_Main_Workers"
+            variable2 = "Total_Population"
+
+            console.log(Data);
+
+            var districtDatabyDistrict = d3.nest()
+                .key(function(d) { return +d.District_Code; })
+                .rollup(function(d) {
+                    return {
+                        total: d[0].Total_Main_Workers,
+                        variable1: d3.sum(d, function(e) { return e[variable1]; }),
+                        district: d[0].District_Code,
+                        variable2: d3.sum(d, function(e) { return e[variable2]; })
+                    };
+                })
+                .entries(newData);
+
+            // console.log(districtDatabyDistrict);
+
+            maxValue = d3.max(districtDatabyDistrict, d => ((d.value['variable1'] / d.value['variable2']) * 100))
+            minValue = d3.min(districtDatabyDistrict, d => ((d.value['variable1'] / d.value['variable2']) * 100))
+
+            var colourScale = d3.scaleQuantile().domain([minValue, maxValue]).range(['#ffffe0', '#ffd59b', '#f47461', '#db4551', '#8b0000']);
+
+
+            var districtData = {}
+            districtDatabyDistrict.forEach(function(d) {
+
+                district_variable_count = parseInt(d.value['district'])
+                percentage = ((d.value['variable1'] / d.value['variable2']) * 100).toFixed(2);
+                districtData[district_variable_count] = percentage;
+
+                var colourState = colourScale(percentage);
+                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
+            })
+
+            // console.log(districtData);
+
+            svg.append("g")
+                .attr("class", "legendQuant")
+                .attr("transform", "translate(500,50)");
+
+            var legend = d3.legendColor()
+                .labelFormat(d3.format(".2f"))
+                .title("Legend (in %)")
+                .scale(colourScale)
+
+            svg.select(".legendQuant")
+                .call(legend);
+
+            allDistricts.on("mouseover", function(d) {
+                d3.select(this).classed("hover", true).style("stroke", "black").raise();
+            })
+
+            allDistricts.on("mousemove", function(d) {
+                tooltip
+                    .style("left", d3.event.pageX - 50 + "px")
+                    .style("top", d3.event.pageY - 70 + "px")
+                    .style("display", "inline-block")
+                    .html(d.properties.DISTRICT + "<br>" + districtData[d.properties.censuscode]);
+            })
+
+            allDistricts.on("mouseout", function(d) {
+                d3.select(this).classed("hover", false).style("stroke", "white").lower();
+                tooltip.style("display", "none");
+
+            })
+        }
+
+
          function Calculator4(Data,variable,total) {
             variable1 = variable
             variable2 = total;
@@ -410,7 +484,7 @@
        
 
         function Main_Workers() {
-            worker_keys = ["Population", "Literacy Rates", "Industry", "Education across Industries"];
+            worker_keys = ["Population", "Literacy Rates", "Industry"];
             d3.select('#workerkeys')
                 .selectAll("path")
                 .data(worker_keys)
@@ -498,9 +572,9 @@
                                 return (d.Rural_or_Urban == "Total")
                             });
 
+                            
 
-
-                            worker_keys = ["Illiterate", "Literate below Matric", "Matric or Secondary", "Technical Diploma","Graduate and Above","Post Graduate"];
+                            worker_keys = ["Illiterate", "Literate below Matric", "Matric or Secondary", "Technical Diploma","Graduate and Above (Non-Technical)","Graduate Degree (Technical) or Post Graduate"];
                             d3.select('#dataparameters')
                                 .selectAll("path")
                                 .data(worker_keys)
@@ -519,7 +593,10 @@
                                     });
 
 
-                                    Calculator(newData);
+                                    Calculator3(newData);
+
+
+
 
                                 }
 
@@ -551,7 +628,7 @@
                                 }
 
 
-                                 if (datapoint == "Graduate and Above") {
+                                 if (datapoint == "Graduate and Above (Non-Technical)") {
                                     newData = Data.filter(function(d) {
                                         return ((d.Literacy == "Graduate and above other than technical degree"  && d.Rural_or_Urban == "Total"));
                                     });
@@ -560,7 +637,7 @@
 
                                 }
 
-                                if (datapoint == "Post Graduate") {
+                                if (datapoint == "Graduate Degree (Technical) or Post Graduate") {
                                     newData = Data.filter(function(d) {
                                         return ((d.Literacy == "Technical degree or diploma equal to degree or post-graduate degree"  && d.Rural_or_Urban == "Total"));
                                     });
@@ -577,6 +654,7 @@
                     if (datapoint == "Industry") {
 
                     d3.csv("mergedTotal_B4.csv", function(error, Data) {
+
 
                             worker_keys = ["Cultivators", "Agricultural Labourers", "Plantation, Livestock, Forestry", "Mining and Quarrying","Manufacturing (Household)","Manufacturing (Non Household)","Electricity and Water Supply","Construction","Wholesale and Retail Trade (Household)","Wholesale and Retail Trade (Non Household)","Transportation","Accomodation and Food Service","Information and Communication (Household)","Information and Communication (Non Household)","Financial and Insurance Activities, Real Estate, Professional Scientific Activities","Administrative and Support Services, Public Administration and Defense","Education, Human Health and Social Service Activities","Arts, Entertainment, Other Service Activities (Household)","Arts, Entertainment, Other Service Activities (Non Household)"];
 
