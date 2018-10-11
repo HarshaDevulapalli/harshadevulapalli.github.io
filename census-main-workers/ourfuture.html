@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>How India Works</title>
+    <script src="http://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <script src="india_district_2.json" <meta charset="UTF8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://d3js.org/d3-queue.v2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
+    <style>
+    body {
+        font-family: "Fira Sans Extra Condensed", sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h6 {
+
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2em;
+        font-weight: 900;
+    }
+
+    p,
+    ul {
+        font-weight: 400;
+        font-size: 1.25em;
+    }
+
+    h3 {
+        font-size: 1em;
+        font-weight: 600;
+    }
+
+    h4,
+    h5,
+    .label {
+        font-size: 0.8em;
+        font-weight: 400;
+        text-align: left;
+    }
+
+    .stateLabel {
+        font-size: 0.7em;
+        font-weight: 400;
+
+    }
+
+    }
+
+    h6 {
+        color: #f49416;
+        font-size: 0.8em;
+        font-weight: 300;
+    }
+
+    path.hover {
+        stroke-width: 1.25px;
+        opacity: 1;
+    }
+
+    path {
+        stroke-width: 0.75px;
+        opacity: 0.9;
+    }
+
+    button {
+        font-family: "Fira Sans Extra Condensed", sans-serif;
+        font-weight: 600;
+        font-size: 1em;
+        border: 0px;
+        background: transparent;
+        text-decoration: underline;
+    }
+
+    #centered {
+        width: 500px;
+        /* this is the width of the center column (px, em or %) */
+        text-align: left;
+        /*resets the text alignment back to left */
+        margin: 0 auto;
+        /* auto centers the div in standards complaint browsers */
+    }
+
+    .toolTip {
+        position: absolute;
+        display: none;
+        min-width: 40px;
+        height: auto;
+        background: none repeat scroll 0 0 #ffffff;
+        border: 1.5px solid #000000;
+        padding: 10px;
+        text-align: center;
+        font-family: "Fira Sans Extra Condensed", sans-serif;
+        font-weight: 400;
+        font-size: 0.8em;
+    }
+    </style>
+</head>
+
+<body>
+    <h3> Hover on a district to see how it fares. </h3>
+    <div id="controls" align="center"></div>
+    <div id="workerkeys" align="center"></div>
+    <div id="dataparameters" align="center"></div>
+    <div id="canvas" align="center"></div>
+    <script>
+    var width = 800;
+    var height = 800;
+
+    const zoom = d3.zoom()
+        .scaleExtent([1, 3])
+        .translateExtent([
+            [0, 0],
+            [width, height]
+        ])
+        .extent([
+            [0, 0],
+            [width, height]
+        ])
+        .on("zoom", zoomed);
+
+    // Create SVG
+    var svg = d3.select("#canvas")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("align", "center");
+    // .call(zoom);
+
+    function zoomed() {
+        svg.attr("transform", d3.event.transform);
+    }
+
+    var geoProjection = d3.geoMercator()
+        .scale(1200)
+        .center([83, 23])
+        .translate([width / 2, height / 2]);
+
+    var geoPath = d3.geoPath()
+        .projection(geoProjection);
+
+    d3.queue()
+        .defer(d3.json, "india_district_2.json")
+        .defer(d3.csv, "mergedTotal_B1.csv")
+        .await(ready);
+
+    var tooltip = d3.select("body").append("div").attr("class", "toolTip");
+
+
+    function ready(error, india, Data) {
+        if (error) throw error;
+
+        var allDistricts = svg.append("g")
+            .attr("id", "allDistricts")
+            .selectAll("path")
+            .data(topojson.feature(india, india.objects.india_district).features)
+            .enter()
+            .append("path")
+            .attr("d", geoPath)
+            .attr("class", "district")
+            .attr("id", function(d) {
+                return ("b" + d.properties.censuscode)
+            })
+            .style("fill", "#f0f0f0")
+            .style("stroke", "#fff")
+
+        const filterKeys = ["Main Workers", "Marginal Workers", "Non Workers"]
+
+        d3.select('#controls')
+            .selectAll("path")
+            .data(filterKeys)
+            .enter()
+            .append("button")
+            .on("click", buttonClick)
+            .attr("id", d => d)
+            .attr("class", "workerButtons")
+            .html(function(d) {
+                return d;
+            })
+
+
+        backgroundColour = "#fde8e8"
+
+        function buttonClick(datapoint) {
+            d3.selectAll(".workerButtons").style("background", "transparent")
+            d3.select(this).style("background", backgroundColour)
+            // d3.selectAll(".parameterButtons").remove()
+
+            if (datapoint == "Main Workers") {
+                Main_Workers()
+            }
+
+            if (datapoint == "Marginal Workers") {
+                Marginal_Workers()
+            }
+
+            if (datapoint == "Non Workers") {
+                console.log("Non Workers")
+            }
+        }
+
+
+
+        function Calculator(Data) {
+            variable1 = "Total_Main_Workers"
+            variable2 = "Total_Population"
+
+            var districtDatabyDistrict = d3.nest()
+                .key(function(d) { return +d.District_Code; })
+                .rollup(function(d) {
+                    return {
+                        variable1: d3.sum(d, function(e) { return e[variable1]; }),
+                        district: d[0].District_Code,
+                        variable2: d3.sum(d, function(e) { return e[variable2]; })
+                    };
+                })
+                .entries(newData);
+
+            maxValue = d3.max(districtDatabyDistrict, d => ((d.value['variable1'] / d.value['variable2']) * 100))
+            minValue = d3.min(districtDatabyDistrict, d => ((d.value['variable1'] / d.value['variable2']) * 100))
+
+            var colourScale = d3.scaleQuantile().domain([minValue, maxValue]).range(['#ffffe0', '#ffd59b', '#f47461', '#db4551', '#8b0000']);
+
+
+            var districtData = {}
+            districtDatabyDistrict.forEach(function(d) {
+
+                district_variable_count = parseInt(d.value['district'])
+                percentage = ((d.value['variable1'] / d.value['variable2']) * 100).toFixed(2);
+                districtData[district_variable_count] = percentage;
+
+                var colourState = colourScale(percentage);
+                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
+            })
+
+            // console.log(districtData);
+
+            svg.append("g")
+                .attr("class", "legendQuant")
+                .attr("transform", "translate(500,50)");
+
+            var legend = d3.legendColor()
+                .labelFormat(d3.format(".2f"))
+                .title("Legend (in %)")
+                .scale(colourScale)
+
+            svg.select(".legendQuant")
+                .call(legend);
+
+            allDistricts.on("mouseover", function(d) {
+                d3.select(this).classed("hover", true).style("stroke", "black").raise();
+            })
+
+            allDistricts.on("mousemove", function(d) {
+                tooltip
+                    .style("left", d3.event.pageX - 50 + "px")
+                    .style("top", d3.event.pageY - 70 + "px")
+                    .style("display", "inline-block")
+                    .html(d.properties.DISTRICT + "<br>" + districtData[d.properties.censuscode]);
+            })
+
+            allDistricts.on("mouseout", function(d) {
+                d3.select(this).classed("hover", false).style("stroke", "white").lower();
+                tooltip.style("display", "none");
+
+            })
+        }
+
+        function Calculator2(Data) {
+
+            function SUM(variable1, variable2) {
+                return parseInt(variable1) + parseInt(variable2);
+            }
+
+            variable1 = "Total_Marginal_Workers_3months"
+            variable2 = "Total_Marginal_Workers_6months"
+            variable3 = "Total_Population"
+
+            var districtDatabyDistrict = d3.nest()
+                .key(function(d) { return +d.District_Code; })
+                .rollup(function(d) {
+                    return {
+                        variable1: d3.sum(d, function(e) { return e[variable1]; }),
+                        district: d[0].District_Code,
+                        variable2: d3.sum(d, function(e) { return e[variable2]; }),
+                        variable3: d3.sum(d, function(e) { return e[variable3]; })
+                    };
+                })
+                .entries(newData);
+
+
+            maxValue = d3.max(districtDatabyDistrict, d => ((SUM(d.value['variable1'], d.value['variable2']) / d.value['variable3']) * 100))
+            minValue = d3.min(districtDatabyDistrict, d => ((SUM(d.value['variable1'], d.value['variable2']) / d.value['variable3']) * 100))
+
+            var colourScale = d3.scaleQuantile().domain([minValue, maxValue]).range(['#ffffe0', '#ffd59b', '#f47461', '#db4551', '#8b0000']);
+
+            var districtData = {}
+            districtDatabyDistrict.forEach(function(d) {
+                district_variable_count = parseInt(d.value['district'])
+                percentage = ((SUM(d.value['variable1'], d.value['variable2']) / d.value['variable3']) * 100).toFixed(2);
+                districtData[district_variable_count] = percentage;
+                var colourState = colourScale(percentage);
+                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
+            })
+
+            svg.append("g")
+                .attr("class", "legendQuant")
+                .attr("transform", "translate(400,20)");
+
+            var legend = d3.legendColor()
+                .labelFormat(d3.format(".2f"))
+                .title("Legend (in %)")
+                .scale(colourScale)
+
+            svg.select(".legendQuant")
+                .call(legend);
+
+            allDistricts.on("mouseover", function(d) {
+                d3.select(this).classed("hover", true).style("stroke", "black").raise();
+            })
+
+            allDistricts.on("mousemove", function(d) {
+                tooltip
+                    .style("left", d3.event.pageX - 50 + "px")
+                    .style("top", d3.event.pageY - 70 + "px")
+                    .style("display", "inline-block")
+                    .html(d.properties.DISTRICT + "<br>" + districtData[d.properties.censuscode]);
+            })
+
+            allDistricts.on("mouseout", function(d) {
+                d3.select(this).classed("hover", false).style("stroke", "white").lower();
+                tooltip.style("display", "none");
+
+            })
+
+        }
+
+         function Calculator4(Data,variable,total) {
+            variable1 = variable
+            variable2 = total;
+
+            var districtDatabyDistrict = d3.nest()
+                .key(function(d) { return +d.District_Code; })
+                .rollup(function(d) {
+                    return {
+                        variable1: d3.sum(d, function(e) { return e[variable1]; }),
+                        district: d[0].District_Code
+                    };
+                })
+                .entries(newData);
+
+            // console.log(districtDatabyDistrict);
+            maxValue = d3.max(districtDatabyDistrict, d => ((d.value['variable1'] / variable2) * 100))
+            minValue = d3.min(districtDatabyDistrict, d => ((d.value['variable1'] / variable2) * 100))
+
+
+            var colourScale = d3.scaleQuantile().domain([minValue, maxValue]).range(['#ffffe0', '#ffd59b', '#f47461', '#db4551', '#8b0000']);
+
+
+            var districtData = {}
+            districtDatabyDistrict.forEach(function(d) {
+
+                district_variable_count = parseInt(d.value['district'])
+                percentage = ((d.value['variable1'] / variable2) * 100).toFixed(2);
+                districtData[district_variable_count] = percentage;
+                var colourState = colourScale(percentage);
+                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
+            })
+
+            // console.log(districtData);
+
+            svg.append("g")
+                .attr("class", "legendQuant")
+                .attr("transform", "translate(500,50)");
+
+            var legend = d3.legendColor()
+                .labelFormat(d3.format(".2f"))
+                .title("Legend (in %)")
+                .scale(colourScale)
+
+            svg.select(".legendQuant")
+                .call(legend);
+
+            allDistricts.on("mouseover", function(d) {
+                d3.select(this).classed("hover", true).style("stroke", "black").raise();
+            })
+
+            allDistricts.on("mousemove", function(d) {
+                tooltip
+                    .style("left", d3.event.pageX - 50 + "px")
+                    .style("top", d3.event.pageY - 70 + "px")
+                    .style("display", "inline-block")
+                    .html(d.properties.DISTRICT + "<br>" + districtData[d.properties.censuscode]);
+            })
+
+            allDistricts.on("mouseout", function(d) {
+                d3.select(this).classed("hover", false).style("stroke", "white").lower();
+                tooltip.style("display", "none");
+
+            })
+        }
+
+       
+
+        function Main_Workers() {
+            worker_keys = ["Population", "Literacy Rates", "Industry", "Education across Industries"];
+            d3.select('#workerkeys')
+                .selectAll("path")
+                .data(worker_keys)
+                .enter()
+                .append("button")
+                .on("click", workerKeyClick)
+                .attr("id", d => d)
+                .attr("class", "parameterButtons")
+                .html(function(d) {
+                    return d;
+                })
+
+
+            function workerKeyClick(datapoint) {
+                d3.selectAll(".parameterButtons").style("background", "transparent")
+                d3.select(this).style("background", backgroundColour)
+
+                if (datapoint == "Population") {
+
+                    newData = Data.filter(function(d) {
+                        return (d.Age_Group == "Total" && d.Rural_or_Urban == "Total")
+                    });
+
+                    Calculator(newData);
+
+
+                    worker_keys = ["5-14 years", "15-34 years", "35-59 years", "Above 60 years"];
+                    d3.select('#dataparameters')
+                        .selectAll("path")
+                        .data(worker_keys)
+                        .enter()
+                        .append("button")
+                        .on("click", parameterClick)
+                        .attr("id", d => d)
+                        .html(function(d) {
+                            return d;
+                        })
+
+                    function parameterClick(datapoint) {
+                        if (datapoint == "5-14 years") {
+                            newData = Data.filter(function(d) {
+                                return ((d.Age_Group == "5-9" || d.Age_Group == "10-14") && d.Rural_or_Urban == "Total")
+                            });
+
+
+                            Calculator(newData);
+
+                        }
+
+                        if (datapoint == "15-34 years") {
+                            newData = Data.filter(function(d) {
+                                return ((d.Age_Group == "15-19" || d.Age_Group == "20-24" || d.Age_Group == "25-29" || d.Age_Group == "30-34") && d.Rural_or_Urban == "Total")
+                            });
+
+                            Calculator(newData);
+
+                        }
+
+                        if (datapoint == "35-59 years") {
+                            newData = Data.filter(function(d) {
+                                return ((d.Age_Group == "35-39" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
+                            });
+
+                            Calculator(newData);
+
+                        }
+
+                        if (datapoint == "Above 60 years") {
+                            newData = Data.filter(function(d) {
+                                return ((d.Age_Group == "60-69" || d.Age_Group == "70-79" || d.Age_Group == "80+") && d.Rural_or_Urban == "Total")
+                            });
+
+                            Calculator(newData);
+
+                        }
+                    }
+
+                }
+
+                if (datapoint == "Literacy Rates") {
+
+                    d3.csv("mergedTotal_B3.csv", function(error, Data) {
+
+                            newData = Data.filter(function(d) {
+                                return (d.Rural_or_Urban == "Total")
+                            });
+
+
+
+                            worker_keys = ["Illiterate", "Literate below Matric", "Matric or Secondary", "Technical Diploma","Graduate and Above","Post Graduate"];
+                            d3.select('#dataparameters')
+                                .selectAll("path")
+                                .data(worker_keys)
+                                .enter()
+                                .append("button")
+                                .on("click", parameterClick)
+                                .attr("id", d => d)
+                                .html(function(d) {
+                                    return d;
+                                })
+
+                            function parameterClick(datapoint) {
+                                if (datapoint == "Illiterate") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Literacy == "Illiterate"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+
+                                    Calculator(newData);
+
+                                }
+
+                                if (datapoint == "Literate below Matric") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Literacy == "Literate but below matric/secondary"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    Calculator(newData);
+
+                                }
+
+                               if (datapoint == "Matric or Secondary") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Literacy == "Matric/secondary but below graduate"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    Calculator(newData);
+
+                                }
+
+                                if (datapoint == "Technical Diploma") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Literacy == "Technical diploma or certificate not equal to degree"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    Calculator(newData);
+
+                                }
+
+
+                                 if (datapoint == "Graduate and Above") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Literacy == "Graduate and above other than technical degree"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    Calculator(newData);
+
+                                }
+
+                                if (datapoint == "Post Graduate") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Literacy == "Technical degree or diploma equal to degree or post-graduate degree"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    Calculator(newData);
+
+                                }
+                            }
+
+                        })
+                    
+                    }
+
+                    if (datapoint == "Industry") {
+
+                    d3.csv("mergedTotal_B4.csv", function(error, Data) {
+
+                            worker_keys = ["Cultivators", "Agricultural Labourers", "Plantation, Livestock, Forestry", "Mining and Quarrying","Manufacturing (Household)","Manufacturing (Non Household)","Electricity and Water Supply","Construction","Wholesale and Retail Trade (Household)","Wholesale and Retail Trade (Non Household)","Transportation","Accomodation and Food Service","Information and Communication (Household)","Information and Communication (Non Household)","Financial and Insurance Activities, Real Estate, Professional Scientific Activities","Administrative and Support Services, Public Administration and Defense","Education, Human Health and Social Service Activities","Arts, Entertainment, Other Service Activities (Household)","Arts, Entertainment, Other Service Activities (Non Household)"];
+
+                            d3.select('#dataparameters')
+                                .selectAll("path")
+                                .data(worker_keys)
+                                .enter()
+                                .append("button")
+                                .on("click", parameterClick)
+                                .attr("id", d => d)
+                                .html(function(d) {
+                                    return d;
+                                })
+
+                            function parameterClick(datapoint) {
+
+                                
+                                if (datapoint == "Cultivators") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_Cultivators"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Agricultural Labourers") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_Labourers"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Plantation, Livestock, Forestry") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_Forestry"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Mining and Quarrying") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_B"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Manufacturing (Household)") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_C_HHI"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Manufacturing (Non Household)") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_C_NonHHI"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Electricity and Water Supply") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_DE"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Construction") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_F"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Wholesale and Retail Trade (Household)") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_G_HHI"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Wholesale and Retail Trade (Non Household)") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_G_NonHHI"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Transportation") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_H"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Accomodation and Food Service") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_I"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Information and Communication (Household)") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_J_HHI"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Information and Communication (Non Household)") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_J_NonHHI"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Financial and Insurance Activities, Real Estate, Professional Scientific Activities") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_KM"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Administrative and Support Services, Public Administration and Defense") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_NO"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                 if (datapoint == "Education, Human Health and Social Service Activities") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_PQ"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                 if (datapoint == "Arts, Entertainment, Other Service Activities (Household)") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_RU_HHI"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+                                if (datapoint == "Arts, Entertainment, Other Service Activities (Non Household)") {
+                                    newData = Data.filter(function(d) {
+                                        return ((d.Age == "Total"  && d.Rural_or_Urban == "Total"));
+                                    });
+
+                                    variable="Total_RU_NonHHI"
+                                    total= Data[26880][variable]
+
+                                    Calculator4(newData,variable,total);
+
+                                }
+
+
+                                
+                            }
+
+                        })
+                    
+                    }
+
+                }
+
+
+            }
+
+            function Marginal_Workers() {
+                worker_keys = ["Population", "Literacy Rates", "Industry", "Education across Industries"];
+                d3.select('#workerkeys')
+                    .selectAll("path")
+                    .data(worker_keys)
+                    .enter()
+                    .append("button")
+                    .on("click", workerKeyClick)
+                    .attr("id", d => d)
+                    .attr("class", "parameterButtons")
+                    .html(function(d) {
+                        return d;
+                    })
+
+
+                function workerKeyClick(datapoint) {
+                    if (datapoint == "Population") {
+
+                        newData = Data.filter(function(d) {
+                            return (d.Age_Group == "Total" && d.Rural_or_Urban == "Total")
+                        });
+
+                        worker_keys = ["5-14 years", "15-34 years", "35-59 years", "Above 60 years"];
+                        d3.select('#dataparameters')
+                            .selectAll("path")
+                            .data(worker_keys)
+                            .enter()
+                            .append("button")
+                            .on("click", parameterClick)
+                            .attr("id", d => d)
+                            .html(function(d) {
+                                return d;
+                            })
+
+                        function parameterClick(datapoint) {
+                            if (datapoint == "5-14 years") {
+                                newData = Data.filter(function(d) {
+                                    return ((d.Age_Group == "5-9" || d.Age_Group == "10-14") && d.Rural_or_Urban == "Total")
+                                });
+
+                                Calculator2(newData);
+
+                            }
+
+                            if (datapoint == "15-34 years") {
+                                newData = Data.filter(function(d) {
+                                    return ((d.Age_Group == "15-19" || d.Age_Group == "20-24" || d.Age_Group == "25-29" || d.Age_Group == "30-34") && d.Rural_or_Urban == "Total")
+                                });
+
+                                Calculator2(newData);
+
+                            }
+
+                            if (datapoint == "35-59 years") {
+                                newData = Data.filter(function(d) {
+                                    return ((d.Age_Group == "35-39" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
+                                });
+
+                                Calculator2(newData);
+
+                            }
+
+                            if (datapoint == "Above 60 years") {
+                                newData = Data.filter(function(d) {
+                                    return ((d.Age_Group == "60-69" || d.Age_Group == "70-79" || d.Age_Group == "80+") && d.Rural_or_Urban == "Total")
+                                });
+
+                                Calculator2(newData);
+
+                            }
+                        }
+
+                    }
+
+
+                }
+
+
+
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>
