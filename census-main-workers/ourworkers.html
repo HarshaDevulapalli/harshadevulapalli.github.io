@@ -463,10 +463,73 @@
             })
         }
 
+        function Calculator5(Data, variable) {
+
+
+            if(variable=="PPChangeinNonAgriculturalWork")
+            {
+                variable="PPChangeAgriculture"
+
+            maxValue = d3.max(Data, d => (100-(+d[variable])))
+            minValue = d3.min(Data, d => (100-(+d[variable])))
+
+            var colourScale = d3.scaleQuantile().domain([minValue, maxValue]).range(['#ffffe0', '#ffd59b', '#f47461', '#db4551', '#8b0000']);
+            var districtData = {}
+            Data.forEach(function(d) {
+                district_variable_count = d.DistrictCode
+                districtData[district_variable_count] = (100-(+d[variable]))
+                var colourState = colourScale((100-(+d[variable])))
+                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
+            })
+            }
+
+            maxValue = d3.max(Data, d => (+d[variable]))
+            minValue = d3.min(Data, d => (+d[variable]))
+
+            var colourScale = d3.scaleQuantile().domain([minValue, maxValue]).range(['#ffffe0', '#ffd59b', '#f47461', '#db4551', '#8b0000']);
+            var districtData = {}
+            Data.forEach(function(d) {
+                district_variable_count = d.DistrictCode
+                districtData[district_variable_count] = +d[variable];
+                var colourState = colourScale(+d[variable]);
+                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
+            })
+
+            svg.append("g")
+                .attr("class", "legendQuant")
+                .attr("transform", "translate(500,50)");
+
+            var legend = d3.legendColor()
+                .labelFormat(d3.format(".2f"))
+                .title("Legend (in %)")
+                .scale(colourScale)
+
+            svg.select(".legendQuant")
+                .call(legend);
+
+            allDistricts.on("mouseover", function(d) {
+                d3.select(this).classed("hover", true).style("stroke", "black").raise();
+            })
+
+            allDistricts.on("mousemove", function(d) {
+                tooltip
+                    .style("left", d3.event.pageX - 50 + "px")
+                    .style("top", d3.event.pageY - 70 + "px")
+                    .style("display", "inline-block")
+                    .html(d.properties.DISTRICT + "<br>" + districtData[d.properties.censuscode]);
+            })
+
+            allDistricts.on("mouseout", function(d) {
+                d3.select(this).classed("hover", false).style("stroke", "white").lower();
+                tooltip.style("display", "none");
+
+            })
+        }
+
 
 
         function Main_Workers() {
-            worker_keys = ["Population", "Industry"];
+            worker_keys = ["Population", "Industry","Comparision with 2001"];
             d3.select('#workerkeys')
                 .selectAll("path")
                 .data(worker_keys)
@@ -551,6 +614,89 @@
                     }
 
                 }
+
+                if (datapoint == "Comparision with 2001") {
+
+                      d3.csv("B4_complete_aggregate.csv", function(error, Data) {
+
+
+                    worker_keys = ["Percentage Points Change in Main Workers", "Percentage Points Change in Main Workers - Male", "Percentage Points Change in Main Workers - Female", "Percentage change in Female participation","Percentage Point change in Agriculture","Percentage Points Change in Manufacturing","Percentage Point Change in Construction","Percentage Points Change in Wholesale","Percentage Point Change in Services","Percentage Point Change in Non Agricultural Work"];
+                    d3.select('#dataparameters')
+                        .selectAll("path")
+                        .data(worker_keys)
+                        .enter()
+                        .append("button")
+                        .on("click", parameterClick)
+                        .attr("id", d => d)
+                        .attr("class", "dataButtons")
+                        .html(function(d) {
+                            return d;
+                        })
+
+
+                        function parameterClick(datapoint) {
+                        if (datapoint == "Percentage Points Change in Main Workers") {
+
+                            Calculator5(Data,"PPChangeinMain");
+
+                        }
+
+                        if (datapoint == "Percentage Points Change in Main Workers - Male") {
+
+                            Calculator5(Data,"PPChangeinMainMale");
+
+                        }
+                        if (datapoint == "Percentage Points Change in Main Workers - Female") {
+
+                            Calculator5(Data,"PPChangeinMainFemale");
+
+                        }
+                        if (datapoint == "Percentage change in Female participation") {
+
+                            Calculator5(Data,"PPChangeinFemaleParticipation");
+
+                        }
+                        if (datapoint == "Percentage Point change in Agriculture") {
+
+                            Calculator5(Data,"PPChangeAgriculture");
+
+                        }
+                        if (datapoint == "Percentage Points Change in Manufacturing") {
+
+                            Calculator5(Data,"PPChangeinManufacturing");
+
+                        }
+                        if (datapoint == "Percentage Points Change in Wholesale") {
+
+                            Calculator5(Data,"PPChangeinWholesale");
+
+                        }
+                        if (datapoint == "Percentage Point Change in Services") {
+
+                            Calculator5(Data,"PPChangeinServices");
+
+                        }
+                        if (datapoint == "Percentage Point Change in Construction") {
+
+                            Calculator5(Data,"PPChangeinConstruction");
+
+                        }
+
+                        if (datapoint == "Percentage Point Change in Non Agricultural Work") {
+
+                            Calculator5(Data,"PPChangeinNonAgriculturalWork");
+
+                        }
+
+
+
+                    }
+
+
+                      })
+
+                }
+
 
                 if (datapoint == "Literacy Rates") {
 
