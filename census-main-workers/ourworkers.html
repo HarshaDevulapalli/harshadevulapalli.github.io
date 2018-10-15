@@ -209,22 +209,43 @@
             variable2 = "Total_Population"
 
             var districtDatabyDistrict = d3.nest()
-                .key(function(d) { return +d.District_Code; })
-                .rollup(function(d) {
-                    return {
-                        variable1: d3.sum(d, function(e) { return e[variable1]; }),
-                        district: d[0].District_Code,
-                        variable2: d3.sum(d, function(e) { return e[variable2]; }),
-                    }
-                })
-                .entries(Data);
+            .key(function(d) { return +d.District_Code;})
+            .rollup(function(d){
+                return {
+                    variable1: d3.sum(d, function(e) { return e[variable1];}),
+                    district : d[0].District_Code,
+                    variable2: d3.sum(d,function(e) { return e[variable2];}),
+                }
+            })
+            .entries(Data);
 
 
             districtDatabyDistrict.forEach(function(d) {
-                d.value['percentage'] = ((d.value['variable1']) * 100 / d.value['variable2'])
+                d.value['percentage']=  ((d.value['variable1'])*100/d.value['variable2'])
             })
 
-            var items = newData.map(post => +post.value['percentage']);
+
+
+            newData=districtDatabyDistrict
+
+
+            newData.sort(function(a, b){
+            return a.value['percentage']-b.value['percentage']
+            })
+
+
+
+            // var firstquartile=d3.quantile(newData,0.25,function(d){  return (d.value['percentage'])});
+            // var median=d3.quantile(newData,0.50,function(d){ return (d.value['percentage'])});
+            // var thirdquartile=d3.quantile(newData,0.75,function(d){ return (d.value['percentage'])});
+
+            // maxValue = d3.max(newData, d => (d.value['percentage']))
+            // minValue = d3.min(newData, d => (d.value['percentage']))
+
+            // console.log(minValue,firstquartile,median,thirdquartile,maxValue)
+
+            var items= newData.map(post => +post.value['percentage']);
+            console.log(items);
             var colourScale = d3.scaleQuantile().domain(items).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
 
 
@@ -274,21 +295,21 @@
 
             newData = Data
 
-            newData.sort(function(a, b) {
-                return a[variable] - b[variable]
+            newData.sort(function(a, b){
+            return a[variable]-b[variable]
             })
 
 
-            var firstquartile = d3.quantile(newData, 0.25, function(d) { return (+d[variable]) });
-            var median = d3.quantile(newData, 0.50, function(d) { return (+d[variable]) });
-            var thirdquartile = d3.quantile(newData, 0.75, function(d) { return (+d[variable]) });
+            var firstquartile=d3.quantile(newData,0.25,function(d){  return (+d[variable])});
+            var median=d3.quantile(newData,0.50,function(d){ return (+d[variable])});
+            var thirdquartile=d3.quantile(newData,0.75,function(d){ return (+d[variable])});
 
             maxValue = d3.max(newData, d => (+d[variable]))
             minValue = d3.min(newData, d => (+d[variable]))
 
-            var colourScale = d3.scaleQuantile().domain([minValue, firstquartile, median, thirdquartile, maxValue]).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
+            var colourScale = d3.scaleQuantile().domain([minValue, firstquartile,median,thirdquartile,maxValue]).range(['#ffffe0','#f47461', '#db4551', '#8b0000']);
 
-            console.log(minValue, firstquartile, median, thirdquartile, maxValue);
+            console.log(minValue,firstquartile,median,thirdquartile,maxValue);
 
             var districtData = {}
             Data.forEach(function(d) {
@@ -402,19 +423,19 @@
 
             newData = Data
 
-            newData.sort(function(a, b) {
-                return a[variable] - b[variable]
+            newData.sort(function(a, b){
+            return a[variable]-b[variable]
             })
 
 
-            var firstquartile = d3.quantile(newData, 0.25, function(d) { return (+d[variable]) });
-            var median = d3.quantile(newData, 0.50, function(d) { return (+d[variable]) });
-            var thirdquartile = d3.quantile(newData, 0.75, function(d) { return (+d[variable]) });
+            var firstquartile=d3.quantile(newData,0.25,function(d){  return (+d[variable])});
+            var median=d3.quantile(newData,0.50,function(d){ return (+d[variable])});
+            var thirdquartile=d3.quantile(newData,0.75,function(d){ return (+d[variable])});
 
             maxValue = d3.max(newData, d => (+d[variable]))
             minValue = d3.min(newData, d => (+d[variable]))
 
-            console.log(minValue, firstquartile, median, thirdquartile, maxValue)
+            console.log(minValue,firstquartile,median,thirdquartile,maxValue)
 
 
             // if (variable == "PPChangeinNonAgriculturalWork") {
@@ -439,7 +460,7 @@
             //     })
             // }
 
-            var colourScale = d3.scaleQuantile().domain([minValue, firstquartile, median, thirdquartile, maxValue]).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
+            var colourScale = d3.scaleQuantile().domain([minValue, firstquartile,median,thirdquartile,maxValue]).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
             var districtData = {}
             Data.forEach(function(d) {
                 district_variable_count = d.DistrictCode
