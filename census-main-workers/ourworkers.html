@@ -194,19 +194,12 @@
             d3.select(this).style("background", backgroundColour)
             d3.selectAll(".dataButtons").remove()
             d3.selectAll(".parameterButtons").remove()
-             d3.selectAll(".categoryButtons").remove()
+            d3.selectAll(".categoryButtons").remove()
 
             if (datapoint == "Main Workers") {
                 Main_Workers()
             }
 
-            if (datapoint == "Marginal Workers") {
-                Marginal_Workers()
-            }
-
-            if (datapoint == "Non Workers") {
-                console.log("Non Workers")
-            }
         }
 
 
@@ -221,29 +214,28 @@
                     return {
                         variable1: d3.sum(d, function(e) { return e[variable1]; }),
                         district: d[0].District_Code,
-                        variable2: d3.sum(d, function(e) { return e[variable2]; })
-                    };
+                        variable2: d3.sum(d, function(e) { return e[variable2]; }),
+                    }
                 })
-                .entries(newData);
+                .entries(Data);
 
-            maxValue = d3.max(districtDatabyDistrict, d => ((d.value['variable1'] / d.value['variable2']) * 100))
-            minValue = d3.min(districtDatabyDistrict, d => ((d.value['variable1'] / d.value['variable2']) * 100))
 
-            var colourScale = d3.scaleQuantile().domain([minValue, maxValue]).range(['#ffffe0', '#ffd59b', '#f47461', '#db4551', '#8b0000']);
+            districtDatabyDistrict.forEach(function(d) {
+                d.value['percentage'] = ((d.value['variable1']) * 100 / d.value['variable2'])
+            })
+
+            var items = newData.map(post => +post.value['percentage']);
+            var colourScale = d3.scaleQuantile().domain(items).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
 
 
             var districtData = {}
             districtDatabyDistrict.forEach(function(d) {
 
                 district_variable_count = parseInt(d.value['district'])
-                percentage = ((d.value['variable1'] / d.value['variable2']) * 100).toFixed(2);
-                districtData[district_variable_count] = percentage;
-
-                var colourState = colourScale(percentage);
+                districtData[district_variable_count] = d.value['percentage']
+                var colourState = colourScale(d.value['percentage']);
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
-
-            // console.log(districtData);
 
             svg.append("g")
                 .attr("class", "legendQuant")
@@ -276,83 +268,27 @@
             })
         }
 
-        function Calculator2(Data) {
-
-            function SUM(variable1, variable2) {
-                return parseInt(variable1) + parseInt(variable2);
-            }
-
-            variable1 = "Total_Marginal_Workers_3months"
-            variable2 = "Total_Marginal_Workers_6months"
-            variable3 = "Total_Population"
-
-            var districtDatabyDistrict = d3.nest()
-                .key(function(d) { return +d.District_Code; })
-                .rollup(function(d) {
-                    return {
-                        variable1: d3.sum(d, function(e) { return e[variable1]; }),
-                        district: d[0].District_Code,
-                        variable2: d3.sum(d, function(e) { return e[variable2]; }),
-                        variable3: d3.sum(d, function(e) { return e[variable3]; })
-                    };
-                })
-                .entries(newData);
-
-
-            maxValue = d3.max(districtDatabyDistrict, d => ((SUM(d.value['variable1'], d.value['variable2']) / d.value['variable3']) * 100))
-            minValue = d3.min(districtDatabyDistrict, d => ((SUM(d.value['variable1'], d.value['variable2']) / d.value['variable3']) * 100))
-
-            var colourScale = d3.scaleQuantile().domain([minValue, maxValue]).range(['#ffffe0', '#ffd59b', '#f47461', '#db4551', '#8b0000']);
-
-            var districtData = {}
-            districtDatabyDistrict.forEach(function(d) {
-                district_variable_count = parseInt(d.value['district'])
-                percentage = ((SUM(d.value['variable1'], d.value['variable2']) / d.value['variable3']) * 100).toFixed(2);
-                districtData[district_variable_count] = percentage;
-                var colourState = colourScale(percentage);
-                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
-            })
-
-            svg.append("g")
-                .attr("class", "legendQuant")
-                .attr("transform", "translate(400,20)");
-
-            var legend = d3.legendColor()
-                .labelFormat(d3.format(".2f"))
-                .title("Legend (in %)")
-                .scale(colourScale)
-
-            svg.select(".legendQuant")
-                .call(legend);
-
-            allDistricts.on("mouseover", function(d) {
-                d3.select(this).classed("hover", true).style("stroke", "black").raise();
-            })
-
-            allDistricts.on("mousemove", function(d) {
-                tooltip
-                    .style("left", d3.event.pageX - 50 + "px")
-                    .style("top", d3.event.pageY - 70 + "px")
-                    .style("display", "inline-block")
-                    .html(d.properties.DISTRICT + "<br>" + districtData[d.properties.censuscode]);
-            })
-
-            allDistricts.on("mouseout", function(d) {
-                d3.select(this).classed("hover", false).style("stroke", "white").lower();
-                tooltip.style("display", "none");
-
-            })
-
-        }
-
 
 
         function Calculator3(Data, variable) {
 
-            maxValue = d3.max(Data, d => parseInt(d[variable]))
-            minValue = d3.min(Data, d => parseInt(d[variable]))
-            console.log(minValue, maxValue);
-            var colourScale = d3.scaleQuantile().domain([minValue, maxValue]).range(['#ffffe0', '#ffd59b', '#f47461', '#db4551', '#8b0000']);
+            newData = Data
+
+            newData.sort(function(a, b) {
+                return a[variable] - b[variable]
+            })
+
+
+            var firstquartile = d3.quantile(newData, 0.25, function(d) { return (+d[variable]) });
+            var median = d3.quantile(newData, 0.50, function(d) { return (+d[variable]) });
+            var thirdquartile = d3.quantile(newData, 0.75, function(d) { return (+d[variable]) });
+
+            maxValue = d3.max(newData, d => (+d[variable]))
+            minValue = d3.min(newData, d => (+d[variable]))
+
+            var colourScale = d3.scaleQuantile().domain([minValue, firstquartile, median, thirdquartile, maxValue]).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
+
+            console.log(minValue, firstquartile, median, thirdquartile, maxValue);
 
             var districtData = {}
             Data.forEach(function(d) {
@@ -364,7 +300,6 @@
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
-            console.log(districtData);
 
             svg.append("g")
                 .attr("class", "legendQuant")
@@ -465,28 +400,46 @@
 
         function Calculator5(Data, variable) {
 
+            newData = Data
 
-            if(variable=="PPChangeinNonAgriculturalWork")
-            {
-                variable="PPChangeAgriculture"
-
-            maxValue = d3.max(Data, d => (100-(+d[variable])))
-            minValue = d3.min(Data, d => (100-(+d[variable])))
-
-            var colourScale = d3.scaleQuantile().domain([minValue, maxValue]).range(['#ffffe0', '#ffd59b', '#f47461', '#db4551', '#8b0000']);
-            var districtData = {}
-            Data.forEach(function(d) {
-                district_variable_count = d.DistrictCode
-                districtData[district_variable_count] = (100-(+d[variable]))
-                var colourState = colourScale((100-(+d[variable])))
-                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
+            newData.sort(function(a, b) {
+                return a[variable] - b[variable]
             })
-            }
 
-            maxValue = d3.max(Data, d => (+d[variable]))
-            minValue = d3.min(Data, d => (+d[variable]))
 
-            var colourScale = d3.scaleQuantile().domain([minValue, maxValue]).range(['#ffffe0', '#ffd59b', '#f47461', '#db4551', '#8b0000']);
+            var firstquartile = d3.quantile(newData, 0.25, function(d) { return (+d[variable]) });
+            var median = d3.quantile(newData, 0.50, function(d) { return (+d[variable]) });
+            var thirdquartile = d3.quantile(newData, 0.75, function(d) { return (+d[variable]) });
+
+            maxValue = d3.max(newData, d => (+d[variable]))
+            minValue = d3.min(newData, d => (+d[variable]))
+
+            console.log(minValue, firstquartile, median, thirdquartile, maxValue)
+
+
+            // if (variable == "PPChangeinNonAgriculturalWork") {
+            //     variable = "PPChangeAgriculture"
+
+
+            // var firstquartile=d3.quantile(Data,0.25,function(d){ return (100 - (+d[variable]))});
+            // var median=d3.quantile(Data,0.50,function(d){ return (100 - (+d[variable]))});
+            // var secondquartile=d3.quantile(Data,0.75,function(d){ return (100 - (+d[variable]))});
+            // console.log(firstquartile,median,secondquartile)
+
+            //     maxValue = d3.max(Data, d => (100 - (+d[variable])))
+            //     minValue = d3.min(Data, d => (100 - (+d[variable])))
+
+            //     var colourScale = d3.scaleQuantile().domain([minValue, firstquartile,median,secondquartile,maxValue]).range(['#ffffe0', '#ffd59b', '#f47461', '#db4551', '#8b0000']);
+            //     var districtData = {}
+            //     Data.forEach(function(d) {
+            //         district_variable_count = d.DistrictCode
+            //         districtData[district_variable_count] = (100 - (+d[variable]))
+            //         var colourState = colourScale((100 - (+d[variable])))
+            //         d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
+            //     })
+            // }
+
+            var colourScale = d3.scaleQuantile().domain([minValue, firstquartile, median, thirdquartile, maxValue]).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
             var districtData = {}
             Data.forEach(function(d) {
                 district_variable_count = d.DistrictCode
@@ -529,7 +482,7 @@
 
 
         function Main_Workers() {
-            worker_keys = ["Population", "Industry","Comparision with 2001"];
+            worker_keys = ["Population", "Industry", "Comparision with 2001"];
             d3.select('#workerkeys')
                 .selectAll("path")
                 .data(worker_keys)
@@ -553,6 +506,7 @@
 
 
                 if (datapoint == "Population") {
+
 
                     newData = Data.filter(function(d) {
                         return (d.Age_Group == "Total" && d.Rural_or_Urban == "Total")
@@ -608,6 +562,8 @@
                                 return ((d.Age_Group == "60-69" || d.Age_Group == "70-79" || d.Age_Group == "80+") && d.Rural_or_Urban == "Total")
                             });
 
+
+
                             Calculator(newData);
 
                         }
@@ -617,83 +573,83 @@
 
                 if (datapoint == "Comparision with 2001") {
 
-                      d3.csv("B4_complete_aggregate.csv", function(error, Data) {
+                    d3.csv("B4_complete_aggregate.csv", function(error, Data) {
 
 
-                    worker_keys = ["Percentage Points Change in Main Workers", "Percentage Points Change in Main Workers - Male", "Percentage Points Change in Main Workers - Female", "Percentage change in Female participation","Percentage Point change in Agriculture","Percentage Points Change in Manufacturing","Percentage Point Change in Construction","Percentage Points Change in Wholesale","Percentage Point Change in Services","Percentage Point Change in Non Agricultural Work"];
-                    d3.select('#dataparameters')
-                        .selectAll("path")
-                        .data(worker_keys)
-                        .enter()
-                        .append("button")
-                        .on("click", parameterClick)
-                        .attr("id", d => d)
-                        .attr("class", "dataButtons")
-                        .html(function(d) {
-                            return d;
-                        })
+                        worker_keys = ["Percentage Points Change in Main Workers", "Percentage Points Change in Main Workers - Male", "Percentage Points Change in Main Workers - Female", "Percentage change in Female participation", "Percentage Point change in Agriculture", "Percentage Points Change in Manufacturing", "Percentage Point Change in Construction", "Percentage Points Change in Wholesale", "Percentage Point Change in Services"];
+                        d3.select('#dataparameters')
+                            .selectAll("path")
+                            .data(worker_keys)
+                            .enter()
+                            .append("button")
+                            .on("click", parameterClick)
+                            .attr("id", d => d)
+                            .attr("class", "dataButtons")
+                            .html(function(d) {
+                                return d;
+                            })
 
 
                         function parameterClick(datapoint) {
-                        if (datapoint == "Percentage Points Change in Main Workers") {
+                            if (datapoint == "Percentage Points Change in Main Workers") {
 
-                            Calculator5(Data,"PPChangeinMain");
+                                Calculator5(Data, "PPChangeinMain");
+
+                            }
+
+                            if (datapoint == "Percentage Points Change in Main Workers - Male") {
+
+                                Calculator5(Data, "PPChangeinMainMale");
+
+                            }
+                            if (datapoint == "Percentage Points Change in Main Workers - Female") {
+
+                                Calculator5(Data, "PPChangeinMainFemale");
+
+                            }
+                            if (datapoint == "Percentage change in Female participation") {
+
+                                Calculator5(Data, "PPChangeinFemaleParticipation");
+
+                            }
+                            if (datapoint == "Percentage Point change in Agriculture") {
+
+                                Calculator5(Data, "PPChangeAgriculture");
+
+                            }
+                            if (datapoint == "Percentage Points Change in Manufacturing") {
+
+                                Calculator5(Data, "PPChangeinManufacturing");
+
+                            }
+                            if (datapoint == "Percentage Points Change in Wholesale") {
+
+                                Calculator5(Data, "PPChangeinWholesale");
+
+                            }
+                            if (datapoint == "Percentage Point Change in Services") {
+
+                                Calculator5(Data, "PPChangeinServices");
+
+                            }
+                            if (datapoint == "Percentage Point Change in Construction") {
+
+                                Calculator5(Data, "PPChangeinConstruction");
+
+                            }
+
+                            if (datapoint == "Percentage Point Change in Non Agricultural Work") {
+
+                                Calculator5(Data, "PPChangeinNonAgriculturalWork");
+
+                            }
+
+
 
                         }
 
-                        if (datapoint == "Percentage Points Change in Main Workers - Male") {
 
-                            Calculator5(Data,"PPChangeinMainMale");
-
-                        }
-                        if (datapoint == "Percentage Points Change in Main Workers - Female") {
-
-                            Calculator5(Data,"PPChangeinMainFemale");
-
-                        }
-                        if (datapoint == "Percentage change in Female participation") {
-
-                            Calculator5(Data,"PPChangeinFemaleParticipation");
-
-                        }
-                        if (datapoint == "Percentage Point change in Agriculture") {
-
-                            Calculator5(Data,"PPChangeAgriculture");
-
-                        }
-                        if (datapoint == "Percentage Points Change in Manufacturing") {
-
-                            Calculator5(Data,"PPChangeinManufacturing");
-
-                        }
-                        if (datapoint == "Percentage Points Change in Wholesale") {
-
-                            Calculator5(Data,"PPChangeinWholesale");
-
-                        }
-                        if (datapoint == "Percentage Point Change in Services") {
-
-                            Calculator5(Data,"PPChangeinServices");
-
-                        }
-                        if (datapoint == "Percentage Point Change in Construction") {
-
-                            Calculator5(Data,"PPChangeinConstruction");
-
-                        }
-
-                        if (datapoint == "Percentage Point Change in Non Agricultural Work") {
-
-                            Calculator5(Data,"PPChangeinNonAgriculturalWork");
-
-                        }
-
-
-
-                    }
-
-
-                      })
+                    })
 
                 }
 
@@ -804,13 +760,13 @@
 
 
                     function categoryClick(datapoint) {
-                          d3.selectAll(".dataButtons").remove()
+                        d3.selectAll(".dataButtons").remove()
 
                         if (datapoint == "Aggregate") {
 
-                            d3.csv("B4_Aggregate.csv", function(error, Data) {
+                            d3.csv("B4_complete_aggregate.csv", function(error, Data) {
 
-                                 worker_keys = ["Agriculture","Manufacturing","Wholesale and Retail Trade","Construction","Services"];
+                                worker_keys = ["Agriculture", "Manufacturing", "Wholesale and Retail Trade", "Construction", "Services"];
 
                                 d3.select('#dataparameters')
                                     .selectAll("path")
@@ -824,32 +780,31 @@
                                         return d;
                                     })
 
-                                    function parameterClick(datapoint)
-                                    {
+                                function parameterClick(datapoint) {
 
-                                        if (datapoint=="Agriculture"){
-                                            Calculator3(Data,"Agriculture");
-
-                                        }
-                                        if (datapoint=="Manufacturing"){
-                                            Calculator3(Data,datapoint);
-
-                                        }
-                                         if (datapoint=="Wholesale and Retail Trade"){
-                                            Calculator3(Data,"WholesaleRetail");
-
-                                        }
-                                         if (datapoint=="Construction"){
-                                            Calculator3(Data,datapoint);
-
-                                        }
-                                         if (datapoint=="Services"){
-                                            Calculator3(Data,datapoint);
-
-                                        }
-                                    
+                                    if (datapoint == "Agriculture") {
+                                        Calculator3(Data, "Agriculture2011");
 
                                     }
+                                    if (datapoint == "Manufacturing") {
+                                        Calculator3(Data, "Manufacturing2011");
+
+                                    }
+                                    if (datapoint == "Wholesale and Retail Trade") {
+                                        Calculator3(Data, "WholesaleRetail2011");
+
+                                    }
+                                    if (datapoint == "Construction") {
+                                        Calculator3(Data, "Construction2011");
+
+                                    }
+                                    if (datapoint == "Services") {
+                                        Calculator3(Data, "Services2011");
+
+                                    }
+
+
+                                }
 
                             })
                         }
