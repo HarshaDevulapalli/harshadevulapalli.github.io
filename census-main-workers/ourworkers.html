@@ -120,6 +120,7 @@ div{
 </head>
 
 <body>
+
     <div id="controls" align="center"></div>
     <div id="workerkeys" align="center"></div>
     <div id="categoryparameters" align="center"></div>
@@ -604,7 +605,7 @@ div{
         }
 
         function Main_Workers() {
-            worker_keys = ["Population", "Industry", "Comparison with 2001"];
+            worker_keys = ["Percentage of Total Workforce", "Main Workers by Industry", "Changes since 2001"];
             d3.select('#workerkeys')
                 .selectAll("path")
                 .data(worker_keys)
@@ -628,7 +629,7 @@ div{
 
 
 
-                if (datapoint == "Population") {
+                if (datapoint == "Percentage of Total Workforce") {
 
 
 
@@ -697,7 +698,7 @@ div{
 
                 }
 
-                if (datapoint == "Comparison with 2001") {
+                if (datapoint == "Changes since 2001") {
 
                     d3.csv("B4_complete_aggregate.csv", function(error, Data) {
 
@@ -790,7 +791,7 @@ div{
 
                 }
 
-                if (datapoint == "Industry") {
+                if (datapoint == "Main Workers by Industry") {
 
                     d3.csv("B4_complete_aggregate.csv", function(error, Data) {
 
