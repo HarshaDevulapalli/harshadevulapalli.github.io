@@ -150,13 +150,28 @@
     d3.queue()
         .defer(d3.json, "india_districts.json")
         .defer(d3.csv, "mergedTotal_B1.csv")
+        .defer(d3.json, "india.json")
         .await(ready);
 
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
 
-    function ready(error, india, Data) {
+    function ready(error, india, Data, indiaState) {
+
         if (error) throw error;
+
+
+
+
+        var allStates = svg.append("g")
+            .selectAll("path")
+            .data(topojson.feature(indiaState, indiaState.objects.india).features)
+            .enter()
+            .append("path")
+            .attr("d", geoPath)
+            .style("stroke", "#000000")
+            .style("fill", "transparent")
+            .style("stroke-width", "1.5px")
 
         var allDistricts = svg.append("g")
             .attr("id", "allDistricts")
@@ -170,7 +185,9 @@
                 return ("b" + d.properties.censuscode)
             })
             .style("fill", "#f0f0f0")
-            .style("stroke", "#fff")
+            .style("stroke", "transparent")
+            .style("stroke-width", '2px')
+            .style("opacity", 0.85)
 
         const filterKeys = ["Main Workers"]
 
@@ -202,6 +219,40 @@
 
         }
 
+        function drawLegendandTooltip(colourScale,districtData){
+
+            svg.append("g")
+                .attr("class", "legendQuant")
+                .attr("transform", "translate(500,50)");
+
+            var legend = d3.legendColor()
+                .labelFormat(d3.format(".2f"))
+                .title("Legend (in %)")
+                .scale(colourScale)
+
+            svg.select(".legendQuant")
+                .call(legend);
+
+            allDistricts.on("mouseover", function(d) {
+                d3.select(this).classed("hover", true).style("stroke", "black").raise();
+            })
+
+            allDistricts.on("mousemove", function(d) {
+                tooltip
+                    .style("left", d3.event.pageX - 50 + "px")
+                    .style("top", d3.event.pageY - 70 + "px")
+                    .style("display", "inline-block")
+                    .html(d.properties.DISTRICT + "<br>" + districtData[d.properties.censuscode]);
+            })
+
+            allDistricts.on("mouseout", function(d) {
+                d3.select(this).classed("hover", false).style("stroke", "transparent").lower();
+                tooltip.style("display", "none");
+
+            })
+
+        }
+
 
 
         function Calculator(Data) {
@@ -209,43 +260,22 @@
             variable2 = "Total_Population"
 
             var districtDatabyDistrict = d3.nest()
-            .key(function(d) { return +d.District_Code;})
-            .rollup(function(d){
-                return {
-                    variable1: d3.sum(d, function(e) { return e[variable1];}),
-                    district : d[0].District_Code,
-                    variable2: d3.sum(d,function(e) { return e[variable2];}),
-                }
-            })
-            .entries(Data);
+                .key(function(d) { return +d.District_Code; })
+                .rollup(function(d) {
+                    return {
+                        variable1: d3.sum(d, function(e) { return e[variable1]; }),
+                        district: d[0].District_Code,
+                        variable2: d3.sum(d, function(e) { return e[variable2]; }),
+                    }
+                })
+                .entries(Data);
 
 
             districtDatabyDistrict.forEach(function(d) {
-                d.value['percentage']=  ((d.value['variable1'])*100/d.value['variable2'])
+                d.value['percentage'] = ((d.value['variable1']) * 100 / d.value['variable2'])
             })
 
-
-
-            newData=districtDatabyDistrict
-
-
-            newData.sort(function(a, b){
-            return a.value['percentage']-b.value['percentage']
-            })
-
-
-
-            // var firstquartile=d3.quantile(newData,0.25,function(d){  return (d.value['percentage'])});
-            // var median=d3.quantile(newData,0.50,function(d){ return (d.value['percentage'])});
-            // var thirdquartile=d3.quantile(newData,0.75,function(d){ return (d.value['percentage'])});
-
-            // maxValue = d3.max(newData, d => (d.value['percentage']))
-            // minValue = d3.min(newData, d => (d.value['percentage']))
-
-            // console.log(minValue,firstquartile,median,thirdquartile,maxValue)
-
-            var items= newData.map(post => +post.value['percentage']);
-            console.log(items);
+            var items = districtDatabyDistrict.map(post => +post.value['percentage']);
             var colourScale = d3.scaleQuantile().domain(items).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
 
 
@@ -258,99 +288,31 @@
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
-            svg.append("g")
-                .attr("class", "legendQuant")
-                .attr("transform", "translate(500,50)");
 
-            var legend = d3.legendColor()
-                .labelFormat(d3.format(".2f"))
-                .title("Legend (in %)")
-                .scale(colourScale)
+            
 
-            svg.select(".legendQuant")
-                .call(legend);
+        drawLegendandTooltip(colourScale,districtData);
 
-            allDistricts.on("mouseover", function(d) {
-                d3.select(this).classed("hover", true).style("stroke", "black").raise();
-            })
-
-            allDistricts.on("mousemove", function(d) {
-                tooltip
-                    .style("left", d3.event.pageX - 50 + "px")
-                    .style("top", d3.event.pageY - 70 + "px")
-                    .style("display", "inline-block")
-                    .html(d.properties.DISTRICT + "<br>" + districtData[d.properties.censuscode]);
-            })
-
-            allDistricts.on("mouseout", function(d) {
-                d3.select(this).classed("hover", false).style("stroke", "white").lower();
-                tooltip.style("display", "none");
-
-            })
         }
 
 
 
         function Calculator3(Data, variable) {
 
-            newData = Data
+            var items = Data.map(post => +post[variable]);
 
-            newData.sort(function(a, b){
-            return a[variable]-b[variable]
-            })
-
-
-            var firstquartile=d3.quantile(newData,0.25,function(d){  return (+d[variable])});
-            var median=d3.quantile(newData,0.50,function(d){ return (+d[variable])});
-            var thirdquartile=d3.quantile(newData,0.75,function(d){ return (+d[variable])});
-
-            maxValue = d3.max(newData, d => (+d[variable]))
-            minValue = d3.min(newData, d => (+d[variable]))
-
-            var colourScale = d3.scaleQuantile().domain([minValue, firstquartile,median,thirdquartile,maxValue]).range(['#ffffe0','#f47461', '#db4551', '#8b0000']);
-
-            console.log(minValue,firstquartile,median,thirdquartile,maxValue);
+            var colourScale = d3.scaleQuantile().domain(items).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
 
             var districtData = {}
             Data.forEach(function(d) {
                 district_variable_count = parseInt(d['DistrictCode'])
-                percentage = parseFloat(d[variable])
-                districtData[district_variable_count] = percentage;
-
-                var colourState = colourScale(percentage);
+                districtData[district_variable_count] = +d[variable];
+                var colourState = colourScale(+d[variable]);
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
-
-            svg.append("g")
-                .attr("class", "legendQuant")
-                .attr("transform", "translate(500,50)");
-
-            var legend = d3.legendColor()
-                .labelFormat(d3.format(".2f"))
-                .title("Legend (in %)")
-                .scale(colourScale)
-
-            svg.select(".legendQuant")
-                .call(legend);
-
-            allDistricts.on("mouseover", function(d) {
-                d3.select(this).classed("hover", true).style("stroke", "black").raise();
-            })
-
-            allDistricts.on("mousemove", function(d) {
-                tooltip
-                    .style("left", d3.event.pageX - 50 + "px")
-                    .style("top", d3.event.pageY - 70 + "px")
-                    .style("display", "inline-block")
-                    .html(d.properties.DISTRICT + "<br>" + districtData[d.properties.censuscode]);
-            })
-
-            allDistricts.on("mouseout", function(d) {
-                d3.select(this).classed("hover", false).style("stroke", "white").lower();
-                tooltip.style("display", "none");
-
-            })
+             drawLegendandTooltip(colourScale,districtData);
+            
         }
 
 
@@ -368,99 +330,34 @@
                 })
                 .entries(newData);
 
-            // console.log(districtDatabyDistrict);
-            maxValue = d3.max(districtDatabyDistrict, d => ((d.value['variable1'] / variable2) * 100))
-            minValue = d3.min(districtDatabyDistrict, d => ((d.value['variable1'] / variable2) * 100))
+            districtDatabyDistrict.forEach(function(d) {
+                d.value['percentage'] = ((d.value['variable1']) * 100 / variable2)
+            })
 
+            var items = districtDatabyDistrict.map(post => +post.value['percentage']);
 
-            var colourScale = d3.scaleQuantile().domain([minValue, maxValue]).range(['#ffffe0', '#ffd59b', '#f47461', '#db4551', '#8b0000']);
+            var colourScale = d3.scaleQuantile().domain(items).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
 
 
             var districtData = {}
             districtDatabyDistrict.forEach(function(d) {
-
                 district_variable_count = parseInt(d.value['district'])
-                percentage = ((d.value['variable1'] / variable2) * 100).toFixed(2);
-                districtData[district_variable_count] = percentage;
-                var colourState = colourScale(percentage);
+                districtData[district_variable_count] = d.value['percentage'];
+                var colourState = colourScale( d.value['percentage']);
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
-            // console.log(districtData);
+            drawLegendandTooltip(colourScale,districtData);
 
-            svg.append("g")
-                .attr("class", "legendQuant")
-                .attr("transform", "translate(500,50)");
-
-            var legend = d3.legendColor()
-                .labelFormat(d3.format(".2f"))
-                .title("Legend (in %)")
-                .scale(colourScale)
-
-            svg.select(".legendQuant")
-                .call(legend);
-
-            allDistricts.on("mouseover", function(d) {
-                d3.select(this).classed("hover", true).style("stroke", "black").raise();
-            })
-
-            allDistricts.on("mousemove", function(d) {
-                tooltip
-                    .style("left", d3.event.pageX - 50 + "px")
-                    .style("top", d3.event.pageY - 70 + "px")
-                    .style("display", "inline-block")
-                    .html(d.properties.DISTRICT + "<br>" + districtData[d.properties.censuscode]);
-            })
-
-            allDistricts.on("mouseout", function(d) {
-                d3.select(this).classed("hover", false).style("stroke", "white").lower();
-                tooltip.style("display", "none");
-
-            })
+        
         }
 
         function Calculator5(Data, variable) {
 
-            newData = Data
+            var items = Data.map(post => +post[variable]);
 
-            newData.sort(function(a, b){
-            return a[variable]-b[variable]
-            })
+            var colourScale = d3.scaleQuantile().domain(items).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
 
-
-            var firstquartile=d3.quantile(newData,0.25,function(d){  return (+d[variable])});
-            var median=d3.quantile(newData,0.50,function(d){ return (+d[variable])});
-            var thirdquartile=d3.quantile(newData,0.75,function(d){ return (+d[variable])});
-
-            maxValue = d3.max(newData, d => (+d[variable]))
-            minValue = d3.min(newData, d => (+d[variable]))
-
-            console.log(minValue,firstquartile,median,thirdquartile,maxValue)
-
-
-            // if (variable == "PPChangeinNonAgriculturalWork") {
-            //     variable = "PPChangeAgriculture"
-
-
-            // var firstquartile=d3.quantile(Data,0.25,function(d){ return (100 - (+d[variable]))});
-            // var median=d3.quantile(Data,0.50,function(d){ return (100 - (+d[variable]))});
-            // var secondquartile=d3.quantile(Data,0.75,function(d){ return (100 - (+d[variable]))});
-            // console.log(firstquartile,median,secondquartile)
-
-            //     maxValue = d3.max(Data, d => (100 - (+d[variable])))
-            //     minValue = d3.min(Data, d => (100 - (+d[variable])))
-
-            //     var colourScale = d3.scaleQuantile().domain([minValue, firstquartile,median,secondquartile,maxValue]).range(['#ffffe0', '#ffd59b', '#f47461', '#db4551', '#8b0000']);
-            //     var districtData = {}
-            //     Data.forEach(function(d) {
-            //         district_variable_count = d.DistrictCode
-            //         districtData[district_variable_count] = (100 - (+d[variable]))
-            //         var colourState = colourScale((100 - (+d[variable])))
-            //         d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
-            //     })
-            // }
-
-            var colourScale = d3.scaleQuantile().domain([minValue, firstquartile,median,thirdquartile,maxValue]).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
             var districtData = {}
             Data.forEach(function(d) {
                 district_variable_count = d.DistrictCode
@@ -469,38 +366,9 @@
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
-            svg.append("g")
-                .attr("class", "legendQuant")
-                .attr("transform", "translate(500,50)");
+          drawLegendandTooltip(colourScale,districtData);
 
-            var legend = d3.legendColor()
-                .labelFormat(d3.format(".2f"))
-                .title("Legend (in %)")
-                .scale(colourScale)
-
-            svg.select(".legendQuant")
-                .call(legend);
-
-            allDistricts.on("mouseover", function(d) {
-                d3.select(this).classed("hover", true).style("stroke", "black").raise();
-            })
-
-            allDistricts.on("mousemove", function(d) {
-                tooltip
-                    .style("left", d3.event.pageX - 50 + "px")
-                    .style("top", d3.event.pageY - 70 + "px")
-                    .style("display", "inline-block")
-                    .html(d.properties.DISTRICT + "<br>" + districtData[d.properties.censuscode]);
-            })
-
-            allDistricts.on("mouseout", function(d) {
-                d3.select(this).classed("hover", false).style("stroke", "white").lower();
-                tooltip.style("display", "none");
-
-            })
         }
-
-
 
         function Main_Workers() {
             worker_keys = ["Population", "Industry", "Comparision with 2001"];
