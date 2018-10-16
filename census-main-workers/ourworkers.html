@@ -514,7 +514,7 @@
         }
 
         function Main_Workers() {
-            worker_keys = ["Population", "Industry", "Comparision with 2001"];
+            worker_keys = ["Population", "Industry", "Comparison with 2001"];
             d3.select('#workerkeys')
                 .selectAll("path")
                 .data(worker_keys)
@@ -604,6 +604,7 @@
                 }
 
                 if (datapoint == "Comparison with 2001") {
+                    console.log("Do I even come in here")
 
                     d3.csv("B4_complete_aggregate.csv", function(error, Data) {
 
