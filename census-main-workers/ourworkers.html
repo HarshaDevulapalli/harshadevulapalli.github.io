@@ -112,17 +112,20 @@
       .annotation-group{
     pointer-events:none
 }
+div{
+    margin: 5px;
+}
     </style>
 
 </head>
 
 <body>
-    <h3> Hover on a district to see how it fares. </h3>
     <div id="controls" align="center"></div>
     <div id="workerkeys" align="center"></div>
     <div id="categoryparameters" align="center"></div>
     <div id="industryparameters" align="center"></div>
     <div id="dataparameters" align="center"></div>
+    <h3> Hover on a district to see how it fares. </h3>
     <div id="canvas" align="center"></div>
     <script>
     var width = 800;
@@ -168,6 +171,13 @@
 
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
+    var Hyderabad = [535,536]
+    var Bangalore = [572,583,584]
+    var Chennai = [602,603,604]
+    var Kolkata = [337,341,342,343]
+    var Mumbai =[517,518,519,520,521]
+    var Delhi =[74,75,77,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,104,105,133,138,139,140,141,142]
+
 
     function Annotate(numbers) {
         d3.selectAll(".annotation-group").remove();
@@ -177,7 +187,7 @@
                 //you can add this type value below to override that default
                 type: d3.annotationCalloutCircle,
                 note: {
-                    label: "A different annotation type",
+                    label: numbers[5].toFixed(2) + " percent",
                     title: "Delhi UA Region",
                     wrap: 300
                 },
@@ -195,7 +205,7 @@
             {
                 type: d3.annotationCalloutCircle,
                 note: {
-                    label: "A different annotation type",
+                    label: numbers[4].toFixed(2) + " percent",
                     title: "Mumbai UA Region",
                     wrap: 100
                 },
@@ -204,16 +214,33 @@
                     radius: 20
 
                 },
-                x: 200,
-                y: 475,
+                x: 195,
+                y: 480,
                 dy: 75,
                 dx: -75
             },
             {
                 type: d3.annotationCalloutCircle,
                 note: {
-                    label: numbers.toFixed(2) + " percent",
+                    label: numbers[0].toFixed(2) + " percent",
                     title: "Hyderabad UA Region",
+                    wrap: 100
+                },
+
+                subject: {
+                    radius: 15
+
+                },
+                x: 300,
+                y: 525,
+                dy: 0,
+                dx: 100
+            },
+            {
+                type: d3.annotationCalloutCircle,
+                note: {
+                    label: numbers[3].toFixed(2) + " percent",
+                    title: "Kolkata UA Region",
                     wrap: 100
                 },
 
@@ -221,10 +248,44 @@
                     radius: 20
 
                 },
-                x: 300,
-                y: 525,
+                x: 515,
+                y: 415,
+                dy: 70,
+                dx: 70
+            },
+            {
+                type: d3.annotationCalloutCircle,
+                note: {
+                    label: numbers[2].toFixed(2) + " percent",
+                    title: "Chennai UA Region",
+                    wrap: 100
+                },
+
+                subject: {
+                    radius: 15
+
+                },
+                x: 330,
+                y: 630,
+                dy: 50,
+                dx: 50
+            },
+            {
+                type: d3.annotationCalloutCircle,
+                note: {
+                    label: numbers[1].toFixed(2) + " percent",
+                    title: "Bangalore UA Region",
+                    wrap: 100
+                },
+
+                subject: {
+                    radius: 15
+
+                },
+                x: 290,
+                y: 620,
                 dy: 100,
-                dx: 100
+                dx: -100
             }
         ].map(function(d) { d.color = "#000000"; return d })
 
@@ -291,6 +352,8 @@
             d3.selectAll(".dataButtons").remove()
             d3.selectAll(".parameterButtons").remove()
             d3.selectAll(".categoryButtons").remove()
+            d3.selectAll(".industryButtons").remove()
+
 
             if (datapoint == "Main Workers") {
                 Main_Workers()
@@ -371,27 +434,32 @@
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
-            function CityCalculator(){
 
 
-           variable1=districtDatabyDistrict[535].value['variable1']+districtDatabyDistrict[536].value['variable1'];
-            variable2=districtDatabyDistrict[535].value[
-                'variable2']+districtDatabyDistrict[536].value[
-                'variable2']
-            variable3=districtDatabyDistrict[535].value[
-                'variable3']+districtDatabyDistrict[536].value[
-                'variable3']
-            console.log(variable1,variable2,variable3)
-            percentage = (variable1*100)/(variable1+variable2+variable3);
+            function CityCalculator(city){
+                lengthofids=city.length
+                var variablen1=0
+                var variablen2=0
+                var variablen3=0
+            for (item=0; item <(lengthofids); item++){
+                id_no=city[item]
 
-            return percentage
+                variablen1= variablen1+(districtDatabyDistrict[id_no].value['variable1'])
+                variablen2= variablen2+(districtDatabyDistrict[id_no].value['variable2'])
+                variablen3= variablen3+(districtDatabyDistrict[id_no].value['variable3'])
+            }
+
+            percentage_n=(variablen1*100)/(variablen1+variablen2+variablen3).toFixed(2);
+            return percentage_n;
 
         }
 
-        numbers = CityCalculator()
+
+            city_array=[CityCalculator(Hyderabad),CityCalculator(Bangalore),CityCalculator(Chennai),CityCalculator(Kolkata),CityCalculator(Mumbai),CityCalculator(Delhi)]
+
         
             drawLegendandTooltip(colourScale, districtData);
-            Annotate(numbers);
+            Annotate(city_array);
 
         }
 
@@ -411,7 +479,29 @@
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
+            console.log(districtData[100])
+
+            function CityCalculator(city){
+                lengthofids=city.length
+                var variablen1=0
+            
+            for (item=0; item <(lengthofids); item++){
+                id_no=city[item]
+                variablen1= variablen1+(Data[id_no])
+            }
+
+            percentage_n=variablen1
+            return percentage_n;
+
+        }
+
+
+            city_array=[CityCalculator(Hyderabad),CityCalculator(Bangalore),CityCalculator(Chennai),CityCalculator(Kolkata),CityCalculator(Mumbai),CityCalculator(Delhi)]
+
+        
             drawLegendandTooltip(colourScale, districtData);
+            Annotate(city_array);
+
 
         }
 
@@ -533,6 +623,8 @@
                 d3.select(this).style("background", backgroundColour)
                 d3.selectAll(".dataButtons").remove()
                 d3.selectAll(".categoryButtons").remove()
+                d3.selectAll(".industryButtons").remove()
+
 
 
 
@@ -561,6 +653,8 @@
                         })
 
                     function parameterClick(datapoint) {
+                        d3.selectAll(".dataButtons").style("background", "transparent")
+            d3.select(this).style("background", backgroundColour)
                         if (datapoint == "5-14 years") {
                             newData = Data.filter(function(d) {
                                 return ((d.Age_Group == "5-9" || d.Age_Group == "10-14") && d.Rural_or_Urban == "Total")
@@ -604,7 +698,6 @@
                 }
 
                 if (datapoint == "Comparison with 2001") {
-                    console.log("Do I even come in here")
 
                     d3.csv("B4_complete_aggregate.csv", function(error, Data) {
 
@@ -633,6 +726,8 @@
 
 
                         function parameterClick(datapoint) {
+                            d3.selectAll(".dataButtons").style("background", "transparent")
+                d3.select(this).style("background", backgroundColour)
                             if (datapoint == "Percentage Points Change in Main Workers") {
 
                                 Calculator5(Data, "PPChangeinMain");
@@ -719,6 +814,8 @@
                             })
 
                         function categoryClick(datapoint) {
+                            d3.selectAll(".categoryButtons").style("background", "transparent")
+            d3.select(this).style("background", backgroundColour)
 
                             if (datapoint == "Agriculture") {
                                 Calculator3(Data, "Agriculture2011");
@@ -752,6 +849,7 @@
 
                                 industry_keys = ["Workers by Industry at a District Level", "Workers by Industry at a Total Level"];
 
+
                                 d3.select('#industryparameters')
                                     .selectAll("path")
                                     .data(industry_keys)
@@ -765,6 +863,10 @@
                                     })
 
                                 function industryClick(functiondatapoint) {
+                                    d3.selectAll(".industryButtons").style("background", "transparent")
+            d3.select(this).style("background", backgroundColour)
+
+                                    d3.selectAll(".dataButtons").remove()
 
                                     d3.csv("mergedTotal_B4.csv", function(error, Data) {
 
@@ -802,8 +904,7 @@
                                             });
 
                                         function parameterClick() {
-                                            d3.selectAll(".dataButtons").remove()
-
+                                            
                                             datapoint = d3.select(this).property('value');
 
                                             if (datapoint == "Cultivators") {
