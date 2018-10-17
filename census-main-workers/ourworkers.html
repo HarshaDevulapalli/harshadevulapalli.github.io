@@ -583,7 +583,80 @@ div{
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
+            var var2011;
+            var var2001;
+            console.log(variable)
+            if(variable=="PPChangeAgriculture")
+            {
+                console.log("choosing temp variables")
+                var2001='Agriculture2001'
+                var2011='Agriculture2011'
+            }
+
+            if(variable=="PPChangeinManufacturing")
+            {
+                var2001='Manufacturing2001'
+                var2011='Manufacturing2011'
+            }
+
+               if(variable=="PPChangeinConstruction")
+            {
+                var2001='Construction2001'
+                var2011='Construction2011'
+            }
+
+            if(variable=="PPChangeinWholesale")
+            {
+                var2001='WholesaleRetail2001'
+                var2011='WholesaleRetail2011'
+            }
+
+            if(variable=="PPChangeinServices")
+            {
+                var2001='ServicesTotal2001'
+                var2011='ServicesTotal2011'
+            }
+
+
+            console.log(var2001)
+
+            function CityCalculator(city){
+                lengthofids=city.length
+                var variable2011=0
+                var variable2001=0
+                var total2001=0
+                var total2011=0
+                var variable1=0
+                var variable2=0
+            for (item=0; item <(lengthofids); item++){
+                id_no=city[item]
+                variable2011=+(Data[id_no-1]['MainWorkers2011']*Data[id_no-1][var2011])
+                total2011=total2011+(+Data[id_no-1]['MainWorkers2011'])
+                variable1=variable1+variable2011
+                variable2001=(Data[id_no-1]['MainWorkersTotal2001']*Data[id_no-1][var2001])
+                variable2=variable2+variable2001
+                total2001=total2001+(+Data[id_no-1]['MainWorkersTotal2001'])
+
+            }
+
+            percentage1=(variable1/total2011)
+            percentage2=(variable2/total2001)
+
+
+            percentage_n=percentage2-percentage1
+            return percentage_n;
+
+        }
+
+
+            city_array=[CityCalculator(Hyderabad),CityCalculator(Bangalore),CityCalculator(Chennai),CityCalculator(Kolkata),CityCalculator(Mumbai),CityCalculator(Delhi)]
+
+            console.log(city_array)
+
+        
             drawLegendandTooltip(colourScale, districtData);
+            Annotate(city_array);
+
 
         }
 
@@ -620,7 +693,6 @@ div{
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
-             console.log(districtDatabyDistrict);
 
               function CityCalculator(city){
                 lengthofids=city.length
