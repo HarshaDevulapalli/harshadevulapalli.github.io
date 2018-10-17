@@ -121,13 +121,15 @@ div{
 
 <body>
 
-    <div id="controls" align="center"></div>
-    <div id="workerkeys" align="center"></div>
+    <div id="controls" title="As defined in the Census" align="center" style="font-size : 1.5em"></div>
+    <div id="workerkeys" align="center" style="font-size : 1.2em"></div>
     <div id="categoryparameters" align="center"></div>
     <div id="industryparameters" align="center"></div>
     <div id="dataparameters" align="center"></div>
     <h3> Hover on a district to see how it fares. </h3>
     <div id="canvas" align="center"></div>
+    <h3> Notes </h3>
+    <div id="notes" align ="center"></div>
     <script>
     var width = 800;
     var height = 800;
@@ -400,6 +402,9 @@ div{
 
 
         function Calculator(Data) {
+
+            d3.select("#notes").text("Total Workforce is defined as the sum of all Main and Marginal workers.")
+
             variable1 = "Total_Main_Workers"
             variable2 = "Total_Marginal_Workers_3months"
             variable3 = "Total_Marginal_Workers_6months"
@@ -424,7 +429,7 @@ div{
             })
 
             var items = districtDatabyDistrict.map(post => +post.value['percentage']);
-            var colourScale = d3.scaleQuantile().domain(items).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
+            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc","#c2e699","#78c679","#238443"]);
 
 
             var districtData = {}
@@ -472,7 +477,7 @@ div{
 
             var items = Data.map(post => +post[variable]);
 
-            var colourScale = d3.scaleQuantile().domain(items).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
+            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc","#a1dab4","#41b6c4","#225ea8"]);
 
             var districtData = {}
             Data.forEach(function(d) {
@@ -531,7 +536,7 @@ div{
 
             var items = districtDatabyDistrict.map(post => +post.value['percentage']);
 
-            var colourScale = d3.scaleQuantile().domain(items).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
+            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc","#a1dab4","#41b6c4","#225ea8"]);
 
             var districtData = {}
             districtDatabyDistrict.forEach(function(d) {
@@ -568,7 +573,7 @@ div{
 
             var items = Data.map(post => +post[variable]);
 
-            var colourScale = d3.scaleQuantile().domain(items).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
+            var colourScale = d3.scaleQuantile().domain(items).range(["#d7191c","#fdae61","#a6d96a","#1a9641"]);
 
             var districtData = {}
             Data.forEach(function(d) {
@@ -605,7 +610,7 @@ div{
 
             var items = districtDatabyDistrict.map(post => +post.value['percentage']);
 
-            var colourScale = d3.scaleQuantile().domain(items).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
+            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc","#a1dab4","#41b6c4","#225ea8"]);
 
             var districtData = {}
             districtDatabyDistrict.forEach(function(d) {
@@ -744,6 +749,8 @@ div{
 
                 if (datapoint == "Changes since 2001") {
 
+                      d3.select("#notes").text("For districts whose boundaries have been changed since 2001, we have made the following assumptions. For districts with one parent, the comparisons are made for both the old and new district against the 2001 district. For districts with multiple parents, the smallest cohesive common boundary was considered.")
+
                     d3.csv("B4_complete_aggregate.csv", function(error, Data) {
 
 
@@ -836,6 +843,7 @@ div{
                 }
 
                 if (datapoint == "Main Workers by Industry") {
+                    d3.select("#notes").text("Agriculture includes Agriculture, Forestry and Fishing workers. Manufacturing includes Mining and Quarrying workers. While Wholesale and Retail Trade are also displayed separately, their numbers are included in the Services category too. Detailed Breakdown provides a granular look at these industries. Workers by Industry at a District Level is defined as Percentage of Workers in the industry to the Total number of workers in that district. Workers by Industry at a Total Level is defined as percentage of workers in that district to the total number of workers across the country. ")
 
                     d3.csv("B4_complete_aggregate.csv", function(error, Data) {
 
