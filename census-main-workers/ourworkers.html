@@ -172,7 +172,7 @@ div{
 
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
-    var Hyderabad = [535,536]
+    var Hyderabad = [536,537]
     var Bangalore = [572,583,584]
     var Chennai = [602,603,604]
     var Kolkata = [337,341,342,343]
@@ -195,11 +195,11 @@ div{
 
                 //settings for the subject, in this case the circle radius
                 subject: {
-                    radius: 20
+                    radius: 25
 
                 },
                 x: 275,
-                y: 275,
+                y: 270,
                 dy: -75,
                 dx: -75
             },
@@ -216,7 +216,7 @@ div{
 
                 },
                 x: 195,
-                y: 480,
+                y: 490,
                 dy: 75,
                 dx: -75
             },
@@ -233,7 +233,7 @@ div{
 
                 },
                 x: 300,
-                y: 525,
+                y: 527,
                 dy: 0,
                 dx: 100
             },
@@ -250,7 +250,7 @@ div{
 
                 },
                 x: 515,
-                y: 415,
+                y: 410,
                 dy: 70,
                 dx: 70
             },
@@ -266,8 +266,8 @@ div{
                     radius: 15
 
                 },
-                x: 330,
-                y: 630,
+                x: 335,
+                y: 625,
                 dy: 50,
                 dx: 50
             },
@@ -283,7 +283,7 @@ div{
                     radius: 15
 
                 },
-                x: 290,
+                x: 285,
                 y: 620,
                 dy: 100,
                 dx: -100
@@ -354,6 +354,7 @@ div{
             d3.selectAll(".parameterButtons").remove()
             d3.selectAll(".categoryButtons").remove()
             d3.selectAll(".industryButtons").remove()
+            d3.selectAll(".annotation-group").remove();
 
 
             if (datapoint == "Main Workers") {
@@ -445,9 +446,9 @@ div{
             for (item=0; item <(lengthofids); item++){
                 id_no=city[item]
 
-                variablen1= variablen1+(districtDatabyDistrict[id_no].value['variable1'])
-                variablen2= variablen2+(districtDatabyDistrict[id_no].value['variable2'])
-                variablen3= variablen3+(districtDatabyDistrict[id_no].value['variable3'])
+                variablen1= variablen1+(districtDatabyDistrict[id_no-1].value['variable1'])
+                variablen2= variablen2+(districtDatabyDistrict[id_no-1].value['variable2'])
+                variablen3= variablen3+(districtDatabyDistrict[id_no-1].value['variable3'])
             }
 
             percentage_n=(variablen1*100)/(variablen1+variablen2+variablen3).toFixed(2);
@@ -468,6 +469,7 @@ div{
 
         function Calculator3(Data, variable) {
 
+
             var items = Data.map(post => +post[variable]);
 
             var colourScale = d3.scaleQuantile().domain(items).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
@@ -480,22 +482,22 @@ div{
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
-            console.log(districtData[100])
-
             function CityCalculator(city){
                 lengthofids=city.length
-                var variablen1=0
+                var variablevalue=0
+                var total_population=0
             
             for (item=0; item <(lengthofids); item++){
                 id_no=city[item]
-                variablen1= variablen1+(Data[id_no])
+                percentage = +Data[id_no-1][variable]
+                population = +Data[id_no-1]['MainWorkers2011']
+                variablevalue= variablevalue+((percentage)*population)
+                total_population = total_population+(+Data[id_no-1]['MainWorkers2011'])
             }
-
-            percentage_n=variablen1
+            percentage_n=variablevalue/total_population
             return percentage_n;
 
         }
-
 
             city_array=[CityCalculator(Hyderabad),CityCalculator(Bangalore),CityCalculator(Chennai),CityCalculator(Kolkata),CityCalculator(Mumbai),CityCalculator(Delhi)]
 
@@ -509,7 +511,6 @@ div{
 
         function Calculator4(Data, variable, total) {
 
-            console.log("We come to Calc4")
             variable1 = variable
             variable2 = total;
 
@@ -518,7 +519,8 @@ div{
                 .rollup(function(d) {
                     return {
                         variable1: d3.sum(d, function(e) { return e[variable1]; }),
-                        district: d[0].District_Code
+                        district: d[0].District_Code,
+                        total: +total
                     };
                 })
                 .entries(newData);
@@ -531,7 +533,6 @@ div{
 
             var colourScale = d3.scaleQuantile().domain(items).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
 
-
             var districtData = {}
             districtDatabyDistrict.forEach(function(d) {
                 district_variable_count = parseInt(d.value['district'])
@@ -540,7 +541,25 @@ div{
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
+    
+           function CityCalculator(city){
+                lengthofids=city.length
+                var variablevalue=0
+            
+            for (item=0; item <(lengthofids); item++){
+                id_no=city[item]
+                variablevalue = variablevalue+districtDatabyDistrict[id_no-1].value['variable1']
+            }
+            percentage_n=(variablevalue*100)/total
+            return percentage_n;
+
+        }
+
+            city_array=[CityCalculator(Hyderabad),CityCalculator(Bangalore),CityCalculator(Chennai),CityCalculator(Kolkata),CityCalculator(Mumbai),CityCalculator(Delhi)]
+
+        
             drawLegendandTooltip(colourScale, districtData);
+            Annotate(city_array);
 
 
         }
@@ -564,7 +583,6 @@ div{
         }
 
         function Calculator6(Data, variable) {
-            console.log("We come to Calc6")
             variable1 = variable
             variable2 = "Total_Workers"
             var districtDatabyDistrict = d3.nest()
@@ -583,14 +601,12 @@ div{
                 d.value['percentage'] = ((d.value['variable1']) * 100 / (d.value['variable2']))
             })
 
-            console.log(districtDatabyDistrict);
 
 
             var items = districtDatabyDistrict.map(post => +post.value['percentage']);
 
             var colourScale = d3.scaleQuantile().domain(items).range(['#ffffe0', '#f47461', '#db4551', '#8b0000']);
 
-            console.log(items);
             var districtData = {}
             districtDatabyDistrict.forEach(function(d) {
                 district_variable_count = parseInt(d.value['district'])
@@ -599,7 +615,33 @@ div{
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
+             console.log(districtDatabyDistrict);
+
+              function CityCalculator(city){
+                lengthofids=city.length
+                var variablen1=0
+                var variablen2=0
+            for (item=0; item <(lengthofids); item++){
+                id_no=city[item]
+                variablen1= variablen1+(districtDatabyDistrict[id_no-1].value['variable1'])
+                variablen2= variablen2+(districtDatabyDistrict[id_no-1].value['variable2'])
+            }
+
+            console.log(variablen1,variablen2)
+            percentage_n=(variablen1*100)/(variablen2).toFixed(2);
+            return percentage_n;
+
+        }
+
+        console.log(CityCalculator(Hyderabad))
+
+
+            city_array=[CityCalculator(Hyderabad),CityCalculator(Bangalore),CityCalculator(Chennai),CityCalculator(Kolkata),CityCalculator(Mumbai),CityCalculator(Delhi)]
+
+        
             drawLegendandTooltip(colourScale, districtData);
+            Annotate(city_array);
+
 
 
         }
@@ -625,6 +667,8 @@ div{
                 d3.selectAll(".dataButtons").remove()
                 d3.selectAll(".categoryButtons").remove()
                 d3.selectAll(".industryButtons").remove()
+                d3.selectAll(".annotation-group").remove();
+
 
 
 
@@ -835,7 +879,7 @@ div{
 
                             }
                             if (datapoint == "Services") {
-                                Calculator3(Data, "Services2011");
+                                Calculator3(Data, "ServicesTotal2011");
 
                             }
 
@@ -847,6 +891,8 @@ div{
                             if (datapoint == "Detailed Breakdown (Industry wise)") {
 
                                 d3.selectAll(".dataButtons").remove()
+                                d3.selectAll(".annotation-group").remove();
+
 
                                 industry_keys = ["Workers by Industry at a District Level", "Workers by Industry at a Total Level"];
 
@@ -868,10 +914,12 @@ div{
             d3.select(this).style("background", backgroundColour)
 
                                     d3.selectAll(".dataButtons").remove()
+                                    d3.selectAll(".annotation-group").remove();
+
 
                                     d3.csv("mergedTotal_B4.csv", function(error, Data) {
 
-                                        worker_keys = ["Cultivators",
+                                        worker_keys = ["Select an Industry","Cultivators",
                                             "Agricultural Labourers",
                                             "Plantation, Livestock, Forestry",
                                             "Mining and Quarrying",
@@ -916,7 +964,7 @@ div{
                                                 variable = "Total_Cultivators"
                                                 total = Data[26880][variable]
 
-                                                console.log(functiondatapoint)
+                                        
 
                                                 if (functiondatapoint == "Workers by Industry at a Total Level") {
                                                     Calculator4(newData, variable, total);
@@ -934,7 +982,7 @@ div{
                                                     return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
                                                 });
 
-                                                console.log(functiondatapoint)
+                                                
 
 
                                                 variable = "Total_Labourers"
