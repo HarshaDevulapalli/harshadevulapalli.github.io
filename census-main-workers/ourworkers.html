@@ -583,7 +583,6 @@
                 district_variable_count = d.DistrictCode
                 districtData[district_variable_count] = +d[variable];
                 var colourState = colourScale(+d[variable]);
-                console.log(colourState);
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
@@ -765,8 +764,6 @@
                 d.value['percentage'] = ((((d.value['variable2'] + (d.value['variable3'])) * 100) / d.value['total_workforce']))
             })
 
-            console.log(districtDatabyDistrict);
-
             var items = districtDatabyDistrict.map(post => +post.value['percentage']);
             var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc", "#c2e699", "#78c679", "#238443"]);
 
@@ -813,7 +810,6 @@
 
 
             var items = Data.map(post => +post[variable]);
-            console.log(variable)
 
             var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc", "#a1dab4", "#41b6c4", "#225ea8"]);
 
@@ -862,7 +858,7 @@
                 district_variable_count = d.DistrictCode
                 districtData[district_variable_count] = +d[variable];
                 var colourState = colourScale(+d[variable]);
-                console.log(colourState);
+
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
@@ -896,16 +892,16 @@
             }
 
             if (variable == "PPChangeinMarginal") {
-                var2001 = 'PerMainWorkers2001'
-                var2011 = 'PerMainWorkers2011'
+                var2001 = 'PerMarginalWorkers2001'
+                var2011 = 'PerMarginalWorkers2011'
             }
             if (variable == "PPChangeinMarginalMale") {
-                var2001 = 'PerMainMale2001'
-                var2011 = 'PerMainMale2011'
+                var2001 = 'PerMarginalMale2001'
+                var2011 = 'PerMarginalMale2011'
             }
             if (variable == "PPChangeinMarginalFemale") {
-                var2001 = 'PerMainFemale2001'
-                var2011 = 'PerMainFemale2011'
+                var2001 = 'PerMarginalFemale2001'
+                var2011 = 'PerMarginalFemale2011'
             }
 
 
@@ -921,8 +917,8 @@
                 var variable2 = 0
                 for (item = 0; item < (lengthofids); item++) {
                     id_no = city[item]
-
                     variable2011 = +(Data[id_no - 1]['MarginalWorkers2011'] * Data[id_no - 1][var2011])
+
                     total2011 = total2011 + (+Data[id_no - 1]['MarginalWorkers2011'])
                     variable1 = variable1 + variable2011
                     if (id_no == 87 || id_no == 89) {
@@ -946,8 +942,8 @@
 
             }
 
-            city_array = [CityCalculator(Hyderabad), CityCalculator(Bangalore), CityCalculator(Chennai), CityCalculator(Kolkata), CityCalculator(Mumbai), CityCalculator(Delhi)]
 
+            city_array = [CityCalculator(Hyderabad), CityCalculator(Bangalore), CityCalculator(Chennai), CityCalculator(Kolkata), CityCalculator(Mumbai), CityCalculator(Delhi)]
 
             drawLegendandTooltip(colourScale, districtData);
             Annotate(city_array);
@@ -1954,7 +1950,6 @@
                                                 newData = Data.filter(function(d) {
                                                     return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
                                                 });
-                                                console.log(Data)
 
                                                 variable = "Total_Cultivators"
                                                 total = Data[26880][variable]
