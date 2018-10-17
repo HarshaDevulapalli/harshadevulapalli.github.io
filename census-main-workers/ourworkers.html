@@ -109,18 +109,18 @@
         font-weight: 400;
         font-size: 0.8em;
     }
-      .annotation-group{
-    pointer-events:none
-}
-div{
-    margin: 5px;
-}
-    </style>
 
+    .annotation-group {
+        pointer-events: none
+    }
+
+    div {
+        margin: 5px;
+    }
+    </style>
 </head>
 
 <body>
-
     <div id="controls" title="As defined in the Census" align="center" style="font-size : 1.5em"></div>
     <div id="workerkeys" align="center" style="font-size : 1.2em"></div>
     <div id="categoryparameters" align="center"></div>
@@ -129,7 +129,7 @@ div{
     <h3> Hover on a district to see how it fares. </h3>
     <div id="canvas" align="center"></div>
     <h3> Notes </h3>
-    <div id="notes" align ="center"></div>
+    <div id="notes" align="center"></div>
     <script>
     var width = 800;
     var height = 800;
@@ -174,12 +174,12 @@ div{
 
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
-    var Hyderabad = [536,537]
-    var Bangalore = [572,583,584]
-    var Chennai = [602,603,604]
-    var Kolkata = [337,341,342,343]
-    var Mumbai =[517,518,519,520,521]
-    var Delhi =[74,75,77,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,104,105,133,138,139,140,141,142]
+    var Hyderabad = [536, 537]
+    var Bangalore = [572, 583, 584]
+    var Chennai = [602, 603, 604]
+    var Kolkata = [337, 341, 342, 343]
+    var Mumbai = [517, 518, 519, 520, 521]
+    var Delhi = [74, 75, 77, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 104, 105, 133, 138, 139, 140, 141, 142]
 
 
     function Annotate(numbers) {
@@ -429,7 +429,7 @@ div{
             })
 
             var items = districtDatabyDistrict.map(post => +post.value['percentage']);
-            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc","#c2e699","#78c679","#238443"]);
+            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc", "#c2e699", "#78c679", "#238443"]);
 
 
             var districtData = {}
@@ -443,28 +443,28 @@ div{
 
 
 
-            function CityCalculator(city){
-                lengthofids=city.length
-                var variablen1=0
-                var variablen2=0
-                var variablen3=0
-            for (item=0; item <(lengthofids); item++){
-                id_no=city[item]
+            function CityCalculator(city) {
+                lengthofids = city.length
+                var variablen1 = 0
+                var variablen2 = 0
+                var variablen3 = 0
+                for (item = 0; item < (lengthofids); item++) {
+                    id_no = city[item]
 
-                variablen1= variablen1+(districtDatabyDistrict[id_no-1].value['variable1'])
-                variablen2= variablen2+(districtDatabyDistrict[id_no-1].value['variable2'])
-                variablen3= variablen3+(districtDatabyDistrict[id_no-1].value['variable3'])
+                    variablen1 = variablen1 + (districtDatabyDistrict[id_no - 1].value['variable1'])
+                    variablen2 = variablen2 + (districtDatabyDistrict[id_no - 1].value['variable2'])
+                    variablen3 = variablen3 + (districtDatabyDistrict[id_no - 1].value['variable3'])
+                }
+
+                percentage_n = (variablen1 * 100) / (variablen1 + variablen2 + variablen3).toFixed(2);
+                return percentage_n;
+
             }
 
-            percentage_n=(variablen1*100)/(variablen1+variablen2+variablen3).toFixed(2);
-            return percentage_n;
 
-        }
+            city_array = [CityCalculator(Hyderabad), CityCalculator(Bangalore), CityCalculator(Chennai), CityCalculator(Kolkata), CityCalculator(Mumbai), CityCalculator(Delhi)]
 
 
-            city_array=[CityCalculator(Hyderabad),CityCalculator(Bangalore),CityCalculator(Chennai),CityCalculator(Kolkata),CityCalculator(Mumbai),CityCalculator(Delhi)]
-
-        
             drawLegendandTooltip(colourScale, districtData);
             Annotate(city_array);
 
@@ -477,7 +477,7 @@ div{
 
             var items = Data.map(post => +post[variable]);
 
-            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc","#a1dab4","#41b6c4","#225ea8"]);
+            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc", "#a1dab4", "#41b6c4", "#225ea8"]);
 
             var districtData = {}
             Data.forEach(function(d) {
@@ -487,26 +487,26 @@ div{
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
-            function CityCalculator(city){
-                lengthofids=city.length
-                var variablevalue=0
-                var total_population=0
-            
-            for (item=0; item <(lengthofids); item++){
-                id_no=city[item]
-                percentage = +Data[id_no-1][variable]
-                population = +Data[id_no-1]['MainWorkers2011']
-                variablevalue= variablevalue+((percentage)*population)
-                total_population = total_population+(+Data[id_no-1]['MainWorkers2011'])
+            function CityCalculator(city) {
+                lengthofids = city.length
+                var variablevalue = 0
+                var total_population = 0
+
+                for (item = 0; item < (lengthofids); item++) {
+                    id_no = city[item]
+                    percentage = +Data[id_no - 1][variable]
+                    population = +Data[id_no - 1]['MainWorkers2011']
+                    variablevalue = variablevalue + ((percentage) * population)
+                    total_population = total_population + (+Data[id_no - 1]['MainWorkers2011'])
+                }
+                percentage_n = variablevalue / total_population
+                return percentage_n;
+
             }
-            percentage_n=variablevalue/total_population
-            return percentage_n;
 
-        }
+            city_array = [CityCalculator(Hyderabad), CityCalculator(Bangalore), CityCalculator(Chennai), CityCalculator(Kolkata), CityCalculator(Mumbai), CityCalculator(Delhi)]
 
-            city_array=[CityCalculator(Hyderabad),CityCalculator(Bangalore),CityCalculator(Chennai),CityCalculator(Kolkata),CityCalculator(Mumbai),CityCalculator(Delhi)]
 
-        
             drawLegendandTooltip(colourScale, districtData);
             Annotate(city_array);
 
@@ -536,7 +536,7 @@ div{
 
             var items = districtDatabyDistrict.map(post => +post.value['percentage']);
 
-            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc","#a1dab4","#41b6c4","#225ea8"]);
+            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc", "#a1dab4", "#41b6c4", "#225ea8"]);
 
             var districtData = {}
             districtDatabyDistrict.forEach(function(d) {
@@ -546,23 +546,23 @@ div{
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
-    
-           function CityCalculator(city){
-                lengthofids=city.length
-                var variablevalue=0
-            
-            for (item=0; item <(lengthofids); item++){
-                id_no=city[item]
-                variablevalue = variablevalue+districtDatabyDistrict[id_no-1].value['variable1']
+
+            function CityCalculator(city) {
+                lengthofids = city.length
+                var variablevalue = 0
+
+                for (item = 0; item < (lengthofids); item++) {
+                    id_no = city[item]
+                    variablevalue = variablevalue + districtDatabyDistrict[id_no - 1].value['variable1']
+                }
+                percentage_n = (variablevalue * 100) / total
+                return percentage_n;
+
             }
-            percentage_n=(variablevalue*100)/total
-            return percentage_n;
 
-        }
+            city_array = [CityCalculator(Hyderabad), CityCalculator(Bangalore), CityCalculator(Chennai), CityCalculator(Kolkata), CityCalculator(Mumbai), CityCalculator(Delhi)]
 
-            city_array=[CityCalculator(Hyderabad),CityCalculator(Bangalore),CityCalculator(Chennai),CityCalculator(Kolkata),CityCalculator(Mumbai),CityCalculator(Delhi)]
 
-        
             drawLegendandTooltip(colourScale, districtData);
             Annotate(city_array);
 
@@ -573,7 +573,7 @@ div{
 
             var items = Data.map(post => +post[variable]);
 
-            var colourScale = d3.scaleQuantile().domain(items).range(["#d7191c","#fdae61","#a6d96a","#1a9641"]);
+            var colourScale = d3.scaleQuantile().domain(items).range(["#d7191c", "#fdae61", "#a6d96a", "#1a9641"]);
 
             var districtData = {}
             Data.forEach(function(d) {
@@ -586,74 +586,72 @@ div{
             var var2011;
             var var2001;
             console.log(variable)
-            if(variable=="PPChangeAgriculture")
-            {
+            if (variable == "PPChangeAgriculture") {
                 console.log("choosing temp variables")
-                var2001='Agriculture2001'
-                var2011='Agriculture2011'
+                var2001 = 'Agriculture2001'
+                var2011 = 'Agriculture2011'
             }
 
-            if(variable=="PPChangeinManufacturing")
-            {
-                var2001='Manufacturing2001'
-                var2011='Manufacturing2011'
+            if (variable == "PPChangeinManufacturing") {
+                var2001 = 'Manufacturing2001'
+                var2011 = 'Manufacturing2011'
             }
 
-               if(variable=="PPChangeinConstruction")
-            {
-                var2001='Construction2001'
-                var2011='Construction2011'
+            if (variable == "PPChangeinConstruction") {
+                var2001 = 'Construction2001'
+                var2011 = 'Construction2011'
             }
 
-            if(variable=="PPChangeinWholesale")
-            {
-                var2001='WholesaleRetail2001'
-                var2011='WholesaleRetail2011'
+            if (variable == "PPChangeinWholesale") {
+                var2001 = 'WholesaleRetail2001'
+                var2011 = 'WholesaleRetail2011'
             }
 
-            if(variable=="PPChangeinServices")
-            {
-                var2001='ServicesTotal2001'
-                var2011='ServicesTotal2011'
+            if (variable == "PPChangeinServices") {
+                var2001 = 'ServicesTotal2001'
+                var2011 = 'ServicesTotal2011'
             }
 
 
             console.log(var2001)
 
-            function CityCalculator(city){
-                lengthofids=city.length
-                var variable2011=0
-                var variable2001=0
-                var total2001=0
-                var total2011=0
-                var variable1=0
-                var variable2=0
-            for (item=0; item <(lengthofids); item++){
-                id_no=city[item]
-                variable2011=+(Data[id_no-1]['MainWorkers2011']*Data[id_no-1][var2011])
-                total2011=total2011+(+Data[id_no-1]['MainWorkers2011'])
-                variable1=variable1+variable2011
-                variable2001=(Data[id_no-1]['MainWorkersTotal2001']*Data[id_no-1][var2001])
-                variable2=variable2+variable2001
-                total2001=total2001+(+Data[id_no-1]['MainWorkersTotal2001'])
+            function CityCalculator(city) {
+                lengthofids = city.length
+                var variable2011 = 0
+                var variable2001 = 0
+                var total2001 = 0
+                var total2011 = 0
+                var variable1 = 0
+                var variable2 = 0
+                for (item = 0; item < (lengthofids); item++) {
+                    id_no = city[item]
+                    if (Data[id_no - 1]['DistrictBroken'] != 'Y' && Data[id_no - 1]['DistrictBroken'] != 'YM') {
+
+                        variable2011 = +(Data[id_no - 1]['MainWorkers2011'] * Data[id_no - 1][var2011])
+                        total2011 = total2011 + (+Data[id_no - 1]['MainWorkers2011'])
+                        variable1 = variable1 + variable2011
+                        variable2001 = (Data[id_no - 1]['MainWorkersTotal2001'] * Data[id_no - 1][var2001])
+                        variable2 = variable2 + variable2001
+                        total2001 = total2001 + (+Data[id_no - 1]['MainWorkersTotal2001'])
+                    }
+
+                }
+
+                percentage1 = (variable1 / total2011)
+                percentage2 = (variable2 / total2001)
+
+
+                percentage_n = percentage2 - percentage1
+                return percentage_n;
 
             }
 
-            percentage1=(variable1/total2011)
-            percentage2=(variable2/total2001)
 
-
-            percentage_n=percentage2-percentage1
-            return percentage_n;
-
-        }
-
-
-            city_array=[CityCalculator(Hyderabad),CityCalculator(Bangalore),CityCalculator(Chennai),CityCalculator(Kolkata),CityCalculator(Mumbai),CityCalculator(Delhi)]
+            city_array = [CityCalculator(Hyderabad), CityCalculator(Bangalore), CityCalculator(Chennai), CityCalculator(Kolkata), CityCalculator(Mumbai), CityCalculator(Delhi)]
 
             console.log(city_array)
 
-        
+
             drawLegendandTooltip(colourScale, districtData);
             Annotate(city_array);
 
@@ -683,7 +681,7 @@ div{
 
             var items = districtDatabyDistrict.map(post => +post.value['percentage']);
 
-            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc","#a1dab4","#41b6c4","#225ea8"]);
+            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc", "#a1dab4", "#41b6c4", "#225ea8"]);
 
             var districtData = {}
             districtDatabyDistrict.forEach(function(d) {
@@ -694,28 +692,28 @@ div{
             })
 
 
-              function CityCalculator(city){
-                lengthofids=city.length
-                var variablen1=0
-                var variablen2=0
-            for (item=0; item <(lengthofids); item++){
-                id_no=city[item]
-                variablen1= variablen1+(districtDatabyDistrict[id_no-1].value['variable1'])
-                variablen2= variablen2+(districtDatabyDistrict[id_no-1].value['variable2'])
+            function CityCalculator(city) {
+                lengthofids = city.length
+                var variablen1 = 0
+                var variablen2 = 0
+                for (item = 0; item < (lengthofids); item++) {
+                    id_no = city[item]
+                    variablen1 = variablen1 + (districtDatabyDistrict[id_no - 1].value['variable1'])
+                    variablen2 = variablen2 + (districtDatabyDistrict[id_no - 1].value['variable2'])
+                }
+
+                console.log(variablen1, variablen2)
+                percentage_n = (variablen1 * 100) / (variablen2).toFixed(2);
+                return percentage_n;
+
             }
 
-            console.log(variablen1,variablen2)
-            percentage_n=(variablen1*100)/(variablen2).toFixed(2);
-            return percentage_n;
-
-        }
-
-        console.log(CityCalculator(Hyderabad))
+            console.log(CityCalculator(Hyderabad))
 
 
-            city_array=[CityCalculator(Hyderabad),CityCalculator(Bangalore),CityCalculator(Chennai),CityCalculator(Kolkata),CityCalculator(Mumbai),CityCalculator(Delhi)]
+            city_array = [CityCalculator(Hyderabad), CityCalculator(Bangalore), CityCalculator(Chennai), CityCalculator(Kolkata), CityCalculator(Mumbai), CityCalculator(Delhi)]
 
-        
+
             drawLegendandTooltip(colourScale, districtData);
             Annotate(city_array);
 
@@ -776,7 +774,7 @@ div{
 
                     function parameterClick(datapoint) {
                         d3.selectAll(".dataButtons").style("background", "transparent")
-            d3.select(this).style("background", backgroundColour)
+                        d3.select(this).style("background", backgroundColour)
                         if (datapoint == "5-14 years") {
                             newData = Data.filter(function(d) {
                                 return ((d.Age_Group == "5-9" || d.Age_Group == "10-14") && d.Rural_or_Urban == "Total")
@@ -821,15 +819,16 @@ div{
 
                 if (datapoint == "Changes since 2001") {
 
-                      d3.select("#notes").text("For districts whose boundaries have been changed since 2001, we have made the following assumptions. For districts with one parent, the comparisons are made for both the old and new district against the 2001 district. For districts with multiple parents, the smallest cohesive common boundary was considered.")
+                    d3.select("#notes").text("For districts whose boundaries have been changed since 2001, we have made the following assumptions. For districts with one parent, the comparisons are made for both the old and new district against the 2001 district. For districts with multiple parents, the smallest cohesive common boundary was considered.")
 
                     d3.csv("B4_complete_aggregate.csv", function(error, Data) {
 
-
-                        worker_keys = ["Percentage Points Change in Main Workers",
+                        /*"Percentage Points Change in Main Workers",
                             "Percentage Points Change in Main Workers - Male",
                             "Percentage Points Change in Main Workers - Female",
-                            "Percentage change in Female participation",
+                            "Percentage change in Female participation", */
+
+                        worker_keys = [
                             "Percentage Point change in Agriculture",
                             "Percentage Points Change in Manufacturing",
                             "Percentage Point Change in Construction",
@@ -851,7 +850,7 @@ div{
 
                         function parameterClick(datapoint) {
                             d3.selectAll(".dataButtons").style("background", "transparent")
-                d3.select(this).style("background", backgroundColour)
+                            d3.select(this).style("background", backgroundColour)
                             if (datapoint == "Percentage Points Change in Main Workers") {
 
                                 Calculator5(Data, "PPChangeinMain");
@@ -940,7 +939,7 @@ div{
 
                         function categoryClick(datapoint) {
                             d3.selectAll(".categoryButtons").style("background", "transparent")
-            d3.select(this).style("background", backgroundColour)
+                            d3.select(this).style("background", backgroundColour)
 
                             if (datapoint == "Agriculture") {
                                 Calculator3(Data, "Agriculture2011");
@@ -991,7 +990,7 @@ div{
 
                                 function industryClick(functiondatapoint) {
                                     d3.selectAll(".industryButtons").style("background", "transparent")
-            d3.select(this).style("background", backgroundColour)
+                                    d3.select(this).style("background", backgroundColour)
 
                                     d3.selectAll(".dataButtons").remove()
                                     d3.selectAll(".annotation-group").remove();
@@ -999,7 +998,7 @@ div{
 
                                     d3.csv("mergedTotal_B4.csv", function(error, Data) {
 
-                                        worker_keys = ["Select an Industry","Cultivators",
+                                        worker_keys = ["Select an Industry", "Cultivators",
                                             "Agricultural Labourers",
                                             "Plantation, Livestock, Forestry",
                                             "Mining and Quarrying",
@@ -1033,7 +1032,7 @@ div{
                                             });
 
                                         function parameterClick() {
-                                            
+
                                             datapoint = d3.select(this).property('value');
 
                                             if (datapoint == "Cultivators") {
@@ -1044,7 +1043,7 @@ div{
                                                 variable = "Total_Cultivators"
                                                 total = Data[26880][variable]
 
-                                        
+
 
                                                 if (functiondatapoint == "Workers by Industry at a Total Level") {
                                                     Calculator4(newData, variable, total);
@@ -1062,7 +1061,7 @@ div{
                                                     return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
                                                 });
 
-                                                
+
 
 
                                                 variable = "Total_Labourers"
@@ -1415,7 +1414,6 @@ div{
         }
 
     }
-    
     </script>
 </body>
 
