@@ -134,13 +134,13 @@
     var height = 800;
 
     var aspect = width / height,
-    chart = d3.select('#chart');
-d3.select(window)
-  .on("resize", function() {
-    var targetWidth = chart.node().getBoundingClientRect().width;
-    chart.attr("width", targetWidth);
-    chart.attr("height", targetWidth / aspect);
-  });
+        chart = d3.select('#chart');
+    d3.select(window)
+        .on("resize", function() {
+            var targetWidth = chart.node().getBoundingClientRect().width;
+            chart.attr("width", targetWidth);
+            chart.attr("height", targetWidth / aspect);
+        });
 
     const zoom = d3.zoom()
         .scaleExtent([1, 3])
@@ -182,8 +182,8 @@ d3.select(window)
 
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
-    var Hyderabad = [535, 536, 537, 539]
-    var Bangalore = [572, 583, 584]
+    var Hyderabad = [536, 537]
+    var Bangalore = [572, 583]
     var Chennai = [602, 603, 604]
     var Kolkata = [336, 337, 338, 341, 342, 343]
     var Mumbai = [517, 518, 519, 520, 521]
@@ -199,7 +199,7 @@ d3.select(window)
                 type: d3.annotationCalloutCircle,
                 note: {
                     label: numbers[5].toFixed(2) + " percent",
-                    title: "Delhi UA Region",
+                    title: "Delhi NCR UA Region",
                     wrap: 300
                 },
 
@@ -960,6 +960,79 @@ d3.select(window)
 
         }
 
+        function Calculator10(Data, variable) {
+
+            var items = Data.map(post => post[variable]);
+
+            console.log(Data)
+
+            var colourScale = d3.scaleOrdinal().domain(["Agricultural Labourers",
+                "Cultivators",
+                "Manufacturing (Household)",
+                "Manufacturing (Non Household)",
+                "Construction",
+                "Wholesale and Retail (Non Household)",
+                "Administration and Defence",
+                "Education, Health and Social Work",
+                "Plantation, Livestock, Forestry",
+                "Mining and Quarrying",
+                "Other Services including Arts and Entertainment"
+            ]).range(["b29f34",
+                "789b3e",
+                "637474",
+                "637474",
+                "33464d",
+                "e58a2e",
+                "23597c",
+                "6e4785",
+                "54603a",
+                "161819",
+                "bc352a"
+            ]);
+
+
+            var districtData = {}
+            Data.forEach(function(d) {
+                district_variable_count = d.DistrictCode
+                districtData[district_variable_count] = d[variable];
+                var colourState = colourScale(d[variable]);
+
+                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
+            })
+
+            svg.append("g")
+                .attr("class", "legendQuant")
+                .attr("transform", "translate(500,50)");
+
+            var legend = d3.legendColor()
+                .labelFormat(d3.format(".2f"))
+                .title("Legend (in %)")
+                .scale(colourScale)
+
+            svg.select(".legendQuant")
+                .call(legend);
+
+            allDistricts.on("mouseover", function(d) {
+                d3.select(this).classed("hover", true).style("stroke", "black").raise();
+            })
+
+            allDistricts.on("mousemove", function(d) {
+                tooltip
+                    .style("left", d3.event.pageX - 50 + "px")
+                    .style("top", d3.event.pageY - 70 + "px")
+                    .style("display", "inline-block")
+                    .html(d.properties.DISTRICT + "<br>" + districtData[d.properties.censuscode]);
+            })
+
+            allDistricts.on("mouseout", function(d) {
+                d3.select(this).classed("hover", false).style("stroke", "transparent").lower();
+                tooltip.style("display", "none");
+
+            })
+
+
+        }
+
         function Main_Workers() {
             worker_keys = ["Percentage of Total Workforce", "Main Workers by Industry", "Changes since 2001"];
 
@@ -996,8 +1069,6 @@ d3.select(window)
 
 
                 if (datapoint == "Percentage of Total Workforce") {
-
-
 
                     newData = Data.filter(function(d) {
                         return (d.Age_Group == "Total" && d.Rural_or_Urban == "Total")
@@ -1069,6 +1140,7 @@ d3.select(window)
                     d3.select("#notes").text("For districts whose boundaries have been changed since 2001, we have made the following assumptions. For districts with one parent, the comparisons are made for both the old and new district against the 2001 district. For districts with multiple parents, the smallest cohesive common boundary was considered.")
 
                     d3.csv("B4_complete_aggregate.csv", function(error, Data) {
+
 
 
                         worker_keys = ["Percentage Points change in Proportion of Main Workers", "Percentage Points change in Proportion of Main Male Workers", "Percentage Points change in Proportion of Main Female Workers",
@@ -1161,11 +1233,14 @@ d3.select(window)
 
                     d3.csv("B4_complete_aggregate.csv", function(error, Data) {
 
+
                         category_keys = ["Agriculture",
                             "Manufacturing",
                             "Wholesale and Retail Trade",
                             "Construction",
-                            "Services", "Non-Agricultural Industries", "Detailed Breakdown (Industry wise)"
+                            "Services", "Non-Agricultural Industries",
+                            "Detailed Breakdown (Industry wise)",
+                            "Biggest Employer"
                         ];
 
                         d3.select('#categoryparameters')
@@ -1207,6 +1282,37 @@ d3.select(window)
 
                             if (datapoint == "Non-Agricultural Industries") {
                                 Calculator3(Data, "NonAgriculture2011");
+
+                            }
+
+                            if (datapoint == "Biggest Employer") {
+                                Calculator10(Data, "BiggestEmployer")
+
+                                data_keys = ["Biggest Employer of Men", "Biggest Employer of Women"]
+
+                                d3.select('#dataparameters')
+                                    .selectAll("path")
+                                    .data(data_keys)
+                                    .enter()
+                                    .append("button")
+                                    .on("click", Click)
+                                    .attr("id", d => d)
+                                    .attr("class", "industryButtons")
+                                    .html(function(d) {
+                                        return d;
+                                    })
+
+                                function Click(datapoint) {
+                                    if (datapoint == "Biggest Employer of Men") {
+                                        Calculator10(Data, "BiggestEmployerByMen")
+                                    }
+
+                                    if (datapoint == "Biggest Employer of Women") {
+                                        Calculator10(Data, "BiggestEmployerbyWomen")
+                                    }
+                                }
+
+
 
                             }
 
@@ -1854,7 +1960,10 @@ d3.select(window)
                             "Manufacturing",
                             "Wholesale and Retail Trade",
                             "Construction",
-                            "Services", "Non-Agricultural Industries", "Detailed Breakdown (Industry wise)"
+                            "Services",
+                            "Non-Agricultural Industries",
+                            "Detailed Breakdown (Industry wise)",
+                            "Biggest Employer"
                         ];
 
                         d3.select('#categoryparameters')
@@ -1896,6 +2005,36 @@ d3.select(window)
 
                             if (datapoint == "Non-Agricultural Industries") {
                                 Calculator8(Data, "NonAgriculture2011");
+
+                            }
+
+                            if (datapoint == "Biggest Employer") {
+                                Calculator10(Data, "BiggestEmployer")
+
+                                data_keys = ["Biggest Employer of Men", "Biggest Employer of Women"]
+                                d3.select('#dataparameters')
+                                    .selectAll("path")
+                                    .data(data_keys)
+                                    .enter()
+                                    .append("button")
+                                    .on("click", Click)
+                                    .attr("id", d => d)
+                                    .attr("class", "industryButtons")
+                                    .html(function(d) {
+                                        return d;
+                                    })
+
+                                function Click(datapoint) {
+                                    if (datapoint == "Biggest Employer of Men") {
+                                        Calculator10(Data, "BiggestEmployerByMen")
+                                    }
+
+                                    if (datapoint == "Biggest Employer of Women") {
+                                        Calculator10(Data, "BiggestEmployerbyWomen")
+                                    }
+                                }
+
+
 
                             }
 
