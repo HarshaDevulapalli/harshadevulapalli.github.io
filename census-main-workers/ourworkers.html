@@ -953,6 +953,9 @@
 
         function Main_Workers() {
             worker_keys = ["Percentage of Total Workforce", "Main Workers by Industry", "Changes since 2001"];
+
+
+
             d3.select('#workerkeys')
                 .selectAll("path")
                 .data(worker_keys)
@@ -967,6 +970,11 @@
 
 
             function workerKeyClick(datapoint) {
+
+
+                d3.selectAll(".district")
+                    .style("fill", "#f0f0f0")
+                    .style("stroke", "transparent")
                 d3.selectAll(".parameterButtons").style("background", "transparent")
                 d3.select(this).style("background", backgroundColour)
                 d3.selectAll(".dataButtons").remove()
@@ -1655,6 +1663,10 @@
 
 
             function workerKeyClick(datapoint) {
+
+                d3.selectAll(".district")
+                    .style("fill", "#f0f0f0")
+                    .style("stroke", "transparent")
                 d3.selectAll(".parameterButtons").style("background", "transparent")
                 d3.select(this).style("background", backgroundColour)
                 d3.selectAll(".dataButtons").remove()
