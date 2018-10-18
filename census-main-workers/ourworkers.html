@@ -133,6 +133,15 @@
     var width = 800;
     var height = 800;
 
+    var aspect = width / height,
+    chart = d3.select('#chart');
+d3.select(window)
+  .on("resize", function() {
+    var targetWidth = chart.node().getBoundingClientRect().width;
+    chart.attr("width", targetWidth);
+    chart.attr("height", targetWidth / aspect);
+  });
+
     const zoom = d3.zoom()
         .scaleExtent([1, 3])
         .translateExtent([
