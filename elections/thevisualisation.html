@@ -386,7 +386,7 @@
 
             d3.select('#demographic-controls')
                 .selectAll("path")
-                .data(["% SC Population","% ST Population","% Literacy","% Main Workers","% Marginal Workers","% Agricultural Workers"])
+                .data(["% SC Population","% ST Population","% Literacy","% Main Workers","% Marginal Workers","% Agricultural Workers","% Dilapidated Households","% Households with access to filtered tap water","% Households with electric lighting","% Households with access to kerosene lighting","% Households with toilets inside premises","% Households with firewood","% Households with LPG","% Households with TV","% Households with mobile","% Households with 2 wheelers","% Households with 4 wheelers"])
                 .enter()
                 .append("button")
                 .attr("class", "democontrolButtons")
@@ -463,7 +463,94 @@
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
-
+                if (datapoint == "% Dilapidated Households") {
+                    variable = "DilapidatedHouses";
+                    variable2= "Households"
+                    var rangeofitems = d3.set(DemoData.map(function(d) {
+                        return (d[variable]*100)/d[variable2]
+                    })).values()
+                    colourScale = quantileScale.domain(rangeofitems);
+                }
+                if (datapoint == "% Households with access to filtered tap water") {
+                    variable = "HouseholdswithAccesstoTap";
+                    variable2= "Households"
+                    var rangeofitems = d3.set(DemoData.map(function(d) {
+                        return (d[variable]*100)/d[variable2]
+                    })).values()
+                    colourScale = quantileScale.domain(rangeofitems);
+                }
+                if (datapoint == "% Households with electric lighting") {
+                    variable = "HouseholdswithElectricLighting";
+                    variable2= "Households"
+                    var rangeofitems = d3.set(DemoData.map(function(d) {
+                        return (d[variable]*100)/d[variable2]
+                    })).values()
+                    colourScale = quantileScale.domain(rangeofitems);
+                }
+                if (datapoint == "% Households with access to kerosene lighting") {
+                    variable = "HouseholdswithKerosene";
+                    variable2= "Households"
+                    var rangeofitems = d3.set(DemoData.map(function(d) {
+                        return (d[variable]*100)/d[variable2]
+                    })).values()
+                    colourScale = quantileScale.domain(rangeofitems);
+                }
+                if (datapoint == "% Households with toilets inside premises") {
+                    variable = "HouseholdswithIndoorToilets";
+                    variable2= "Households"
+                    var rangeofitems = d3.set(DemoData.map(function(d) {
+                        return (d[variable]*100)/d[variable2]
+                    })).values()
+                    colourScale = quantileScale.domain(rangeofitems);
+                }
+                if (datapoint == "% Households with firewood") {
+                    variable = "HouseholdswithFirewood";
+                    variable2= "Households"
+                    var rangeofitems = d3.set(DemoData.map(function(d) {
+                        return (d[variable]*100)/d[variable2]
+                    })).values()
+                    colourScale = quantileScale.domain(rangeofitems);
+                }
+                if (datapoint == "% Households with LPG") {
+                    variable = "HouseholdswithLPG";
+                    variable2= "Households"
+                    var rangeofitems = d3.set(DemoData.map(function(d) {
+                        return (d[variable]*100)/d[variable2]
+                    })).values()
+                    colourScale = quantileScale.domain(rangeofitems);
+                }
+                if (datapoint == "% Households with TV") {
+                    variable = "HouseholdswithTV";
+                    variable2= "Households"
+                    var rangeofitems = d3.set(DemoData.map(function(d) {
+                        return (d[variable]*100)/d[variable2]
+                    })).values()
+                    colourScale = quantileScale.domain(rangeofitems);
+                }
+                if (datapoint == "% Households with mobile") {
+                    variable = "HouseholdswithMobile";
+                    variable2= "Households"
+                    var rangeofitems = d3.set(DemoData.map(function(d) {
+                        return (d[variable]*100)/d[variable2]
+                    })).values()
+                    colourScale = quantileScale.domain(rangeofitems);
+                }
+                if (datapoint == "% Households with 2 wheelers") {
+                    variable = "Householdswith2wheelers";
+                    variable2= "Households"
+                    var rangeofitems = d3.set(DemoData.map(function(d) {
+                        return (d[variable]*100)/d[variable2]
+                    })).values()
+                    colourScale = quantileScale.domain(rangeofitems);
+                }
+                if (datapoint == "% Households with 4 wheelers") {
+                    variable = "Householdswith4wheelers";
+                    variable2= "Households"
+                    var rangeofitems = d3.set(DemoData.map(function(d) {
+                        return (d[variable]*100)/d[variable2]
+                    })).values()
+                    colourScale = quantileScale.domain(rangeofitems);
+                }
 
                 var acData = {}
                 DemoData.forEach(function(d) {
@@ -474,9 +561,6 @@
 
                 })
 
-                console.log(acData)
-
-                // Legend for the choropleth
                 svg.append("g")
                     .attr("class", "legendQuant")
                     .attr("transform", "translate(450,20)");
@@ -489,7 +573,6 @@
                 svg.select(".legendQuant")
                     .call(legend);
 
-                //tooltip
                 theState.on("mouseover", function(d) {
                     d3.select(this).classed("hover", true).style("stroke", "black").raise();
                 })
