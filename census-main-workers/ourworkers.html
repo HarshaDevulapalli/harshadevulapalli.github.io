@@ -964,7 +964,6 @@
 
             var items = Data.map(post => post[variable]);
 
-            console.log(Data)
 
             var colourScale = d3.scaleOrdinal().domain(["Agricultural Labourers",
                 "Cultivators",
@@ -972,19 +971,19 @@
                 "Manufacturing (Non Household)",
                 "Construction",
                 "Wholesale and Retail (Non Household)",
-                "Administration and Defence",
                 "Education, Health and Social Work",
+                "Administration and Defence",
                 "Plantation, Livestock, Forestry",
                 "Mining and Quarrying",
                 "Other Services including Arts and Entertainment"
             ]).range(["b29f34",
                 "789b3e",
                 "637474",
-                "637474",
+                "637473",
                 "33464d",
                 "e58a2e",
+                "734785",
                 "23597c",
-                "6e4785",
                 "54603a",
                 "161819",
                 "bc352a"
@@ -996,13 +995,12 @@
                 district_variable_count = d.DistrictCode
                 districtData[district_variable_count] = d[variable];
                 var colourState = colourScale(d[variable]);
-
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
             svg.append("g")
                 .attr("class", "legendQuant")
-                .attr("transform", "translate(500,50)");
+                .attr("transform", "translate(500,30)");
 
             var legend = d3.legendColor()
                 .labelFormat(d3.format(".2f"))
