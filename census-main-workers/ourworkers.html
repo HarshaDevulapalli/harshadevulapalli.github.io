@@ -1004,7 +1004,7 @@
 
             var legend = d3.legendColor()
                 .labelFormat(d3.format(".2f"))
-                .title("Legend (in %)")
+                .title("Legend")
                 .scale(colourScale)
 
             svg.select(".legendQuant")
@@ -1285,6 +1285,8 @@
 
                             if (datapoint == "Biggest Employer") {
                                 Calculator10(Data, "BiggestEmployer")
+                                d3.selectAll(".industryButtons").remove()
+                                d3.selectAll(".dataButtons").remove()
 
                                 data_keys = ["Biggest Employer of Men", "Biggest Employer of Women"]
 
@@ -1295,7 +1297,7 @@
                                     .append("button")
                                     .on("click", Click)
                                     .attr("id", d => d)
-                                    .attr("class", "industryButtons")
+                                    .attr("class", "dataButtons")
                                     .html(function(d) {
                                         return d;
                                     })
@@ -2008,6 +2010,8 @@
 
                             if (datapoint == "Biggest Employer") {
                                 Calculator10(Data, "BiggestEmployer")
+                                d3.selectAll(".industryButtons").remove()
+                                d3.selectAll(".dataButtons").remove()
 
                                 data_keys = ["Biggest Employer of Men", "Biggest Employer of Women"]
                                 d3.select('#dataparameters')
