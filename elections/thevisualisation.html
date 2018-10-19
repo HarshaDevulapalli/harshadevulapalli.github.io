@@ -4,9 +4,9 @@
 <head>
     <title>Election Interactive</title>
     <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-    <script src="http://localhost:8000/Projects/Elections/new/mp-assembly.json" <meta charset="UTF8">
+    <script src="mp-assembly.json" <meta charset="UTF8">
     </script>
-    <script src="http://localhost:8000/Projects/Elections/new/mp-districts.json" <meta charset="UTF8">
+    <script src="mp-districts.json" <meta charset="UTF8">
     </script>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
     <script src="https://d3js.org/topojson.v1.min.js"></script>
@@ -194,8 +194,8 @@
         function choiceClick(datapoint)
 
         {
-
             d3.selectAll(".choiceButtons").style("background", "transparent")
+            d3.select(this).style("background", backgroundColour)
             d3.selectAll(".democontrolButtons").remove()
 
             if (datapoint == "Constituency") {
@@ -282,6 +282,7 @@
                 var colourScale;
 
                 d3.selectAll(".controlButtons").style("background", "transparent")
+                d3.selectAll(".democontrolButtons").style("background", "transparent")
                 d3.select(this).style("background", backgroundColour)
                 if (datapoint == "Gender of the Winner") {
                     variable = "Sex";
@@ -399,13 +400,14 @@
             function buttonClick2(datapoint)
 
             {
+
                 var variable;
                 ordinalScale = d3.scaleOrdinal(d3["schemeCategory20"]);
                 quantileScale = d3.scaleQuantile().range(["#ffffb2", "#fecc5c", "#fd8d3c","#e31a1c"]);
                 var colourScale;
 
                 d3.selectAll(".controlButtons").style("background", "transparent")
-
+                d3.selectAll(".democontrolButtons").style("background", "transparent")
                 d3.select(this).style("background", backgroundColour)
 
                 if (datapoint == "Constituency_Type") {
