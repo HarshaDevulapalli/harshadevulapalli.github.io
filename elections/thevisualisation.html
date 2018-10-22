@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Election Interactive</title>
+    <title>Madhya Pradesh 2018</title>
     <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
     <script src="mp-assembly.json" <meta charset="UTF8">
     </script>
@@ -103,9 +103,9 @@
 <body>
     <h3> Choose an Election Year</h3>
     <div id="yearbuttons" align="center"></div>
-    <h3> Would you want to see data at a District Level or Constituency Level?<h3>
+    <h3 id="geographychoice"><h3>
     <div id ="choices" align="center"></div>
-    <h3> Now Choose a Parameter</h3>
+    <h3 id="parameterchoice"></h3>
     <div id="controls" align="center"></div>
     <h3 id="notes" align="center"></h3>
     <div id="demographic-controls" align="center"></div>
@@ -135,11 +135,12 @@
     d3.queue()
         .defer(d3.csv, "assembly_mp.csv")
         .defer(d3.csv, "mp-data.csv")
+        .defer(d3.csv, "mp-districts.csv")
         .await(ready);
 
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
-    function ready(error, AssemblyData, DemoData) {
+    function ready(error, AssemblyData, DemoData, DistrictData) {
         if (error) throw error;
 
         var years_count = d3.set(AssemblyData.map(function(d) {
@@ -166,29 +167,26 @@
             d3.select(this).style("background", backgroundColour)
             datapoint = d3.select(this).property('value');
 
-            // newData = AssemblyData.filter(function(d) {
-            //     return d.Year == datapoint && d.Position == 1
-            // });
-
             newData = AssemblyData.filter(function(d) {
                 return d.Year == datapoint
             });
 
+            d3.select("#geographychoice").text("Would you want to see data at a District Level or Constituency Level?")
 
+            d3.select('#choices')
+                .selectAll("path")
+                .data(["Constituency", "District"])
+                .enter()
+                .append("button")
+                .attr("class", "choiceButtons")
+                .on("click", choiceClick)
+                .attr("id", d => d)
+                .html(function(d) {
+                    return d;
+                })
 
         }
 
-        d3.select('#choices')
-            .selectAll("path")
-            .data(["Constituency", "District"])
-            .enter()
-            .append("button")
-            .attr("class", "choiceButtons")
-            .on("click", choiceClick)
-            .attr("id", d => d)
-            .html(function(d) {
-                return d;
-            })
 
 
         function choiceClick(datapoint)
@@ -224,6 +222,7 @@
 
         function runConstituency() {
 
+            d3.select("#parameterchoice").text("Choose a parameter")
             d3.select("#notes").text("Compare demographic data from 2011")
             d3.select('#controls')
                 .selectAll("path")
@@ -234,6 +233,7 @@
                     "Turnout",
                     "Voter Share",
                     "Victory Margin",
+                    "Party and Victory Margin",
                     "Age of the Winner"
                 ])
                 .enter()
@@ -267,7 +267,7 @@
             function buttonClick(datapoint)
 
             {
-              
+
 
                 var rangeofitems = d3.set(newData.map(function(d) {
                     return (d['Party'])
@@ -276,7 +276,7 @@
                 var maxValue;
                 var minValue;
                 var colourRange;
-                colourRange=["#ffffb2", "#fecc5c", "#fd8d3c","#e31a1c"]
+                colourRange = ["#ffffb2", "#fecc5c", "#fd8d3c", "#e31a1c"]
                 ordinalScale = d3.scaleOrdinal(d3["schemeCategory20"]);
                 quantileScale = d3.scaleQuantile().range(colourRange);
                 var colourScale;
@@ -286,17 +286,17 @@
                 d3.select(this).style("background", backgroundColour)
                 if (datapoint == "Gender of the Winner") {
                     variable = "Sex";
-                    colourRange=["#fe4a49", "#2ab7ca"]
+                    colourRange = ["#fe4a49", "#2ab7ca"]
                     colourScale = ordinalScale.range(colourRange)
                 }
                 if (datapoint == "Winning Party") {
                     variable = "Party";
-                    colourRange=["#FF8A33", "#2ab7ca", "#2B2BEE","B0B0BF","9114A2"]
+                    colourRange = ["#FF8A33", "#2ab7ca", "#2B2BEE", "B0B0BF", "9114A2"]
                     colourScale = ordinalScale.range(colourRange)
                 }
                 if (datapoint == "Constituency_Type") {
                     variable = "Constituency_Type";
-                    colourRange=["#C262C2", "#41C238", "#295141","B0B0BF","9114A2"]
+                    colourRange = ["#C262C2", "#41C238", "#295141", "B0B0BF", "9114A2"]
                     colourScale = ordinalScale.range(colourRange)
                 }
                 if (datapoint == "Number of Candidates") {
@@ -333,6 +333,13 @@
 
                     colourScale = quantileScale.domain(rangeofitems);
                 }
+
+                if (datapoint == "Party and Victory Margin") {
+                    variable = "Party";
+                    colourRange = ["#FF8A33", "#2ab7ca", "#2B2BEE", "B0B0BF", "9114A2"]
+                    colourScale = ordinalScale.range(colourRange)
+                }
+
                 if (datapoint == "Age of the Winner") {
                     variable = "Age";
                     var rangeofitems = d3.set(newData.map(function(d) {
@@ -344,10 +351,21 @@
 
 
                 var acData = {}
+                var acData2 = {}
                 newData.forEach(function(d) {
                     acData[d.Constituency_No] = d[variable]
                     var colourState = colourScale(d[variable]);
                     d3.select('#b' + d.Constituency_No).transition().duration(1000).style("fill", colourState);
+                    if (datapoint == "Party and Victory Margin") {
+                        acData2[d.Constituency_No] = +d['Margin_Percentage']
+                        var rangeofitems = d3.set(newData.map(function(d) {
+                            return (+d['Margin_Percentage'])
+                        })).values()
+                        opaqueScale = d3.scaleQuantile().domain(rangeofitems).range([0.25, 0.5, 0.75, 1])
+                        var opacityState = opaqueScale(+d['Margin_Percentage'])
+                         var colourState = colourScale(d[variable]);
+                    d3.select('#b' + d.Constituency_No).transition().duration(1000).style("fill", colourState).style("opacity", opacityState);
+                    }
 
                 })
 
@@ -387,7 +405,7 @@
 
             d3.select('#demographic-controls')
                 .selectAll("path")
-                .data(["% SC Population","% ST Population","% Literacy","% Main Workers","% Marginal Workers","% Agricultural Workers","% Dilapidated Households","% Households with access to filtered tap water","% Households with electric lighting","% Households with access to kerosene lighting","% Households with toilets inside premises","% Households with firewood","% Households with LPG","% Households with TV","% Households with mobile","% Households with 2 wheelers","% Households with 4 wheelers"])
+                .data(["% SC Population", "% ST Population", "% Literacy", "% Main Workers", "% Marginal Workers", "% Agricultural Workers", "% Dilapidated Households", "% Households with access to filtered tap water", "% Households with electric lighting", "% Households with access to kerosene lighting", "% Households with toilets inside premises", "% Households with firewood", "% Households with LPG", "% Households with TV", "% Households with mobile", "% Households with 2 wheelers", "% Households with 4 wheelers"])
                 .enter()
                 .append("button")
                 .attr("class", "democontrolButtons")
@@ -403,7 +421,7 @@
 
                 var variable;
                 ordinalScale = d3.scaleOrdinal(d3["schemeCategory20"]);
-                quantileScale = d3.scaleQuantile().range(["#ffffb2", "#fecc5c", "#fd8d3c","#e31a1c"]);
+                quantileScale = d3.scaleQuantile().range(["#ffffb2", "#fecc5c", "#fd8d3c", "#e31a1c"]);
                 var colourScale;
 
                 d3.selectAll(".controlButtons").style("background", "transparent")
@@ -417,146 +435,146 @@
 
                 if (datapoint == "% SC Population") {
                     variable = "SCPopulation";
-                    variable2= "Population"
+                    variable2 = "Population"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
 
                 if (datapoint == "% ST Population") {
                     variable = "STPopulation";
-                    variable2= "Population"
+                    variable2 = "Population"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
 
                 if (datapoint == "% Literacy") {
                     variable = "Literates";
-                    variable2= "Population"
+                    variable2 = "Population"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
                 if (datapoint == "% Main Workers") {
                     variable = "FulltimeWorkers";
-                    variable2= "TotalWorkers"
+                    variable2 = "TotalWorkers"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
                 if (datapoint == "% Marginal Workers") {
                     variable = "ParttimeWorkers";
-                    variable2= "TotalWorkers"
+                    variable2 = "TotalWorkers"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
                 if (datapoint == "% Agricultural Workers") {
                     variable = "AgriculturalWorkers";
-                    variable2= "TotalWorkers"
+                    variable2 = "TotalWorkers"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
                 if (datapoint == "% Dilapidated Households") {
                     variable = "DilapidatedHouses";
-                    variable2= "Households"
+                    variable2 = "Households"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
                 if (datapoint == "% Households with access to filtered tap water") {
                     variable = "HouseholdswithAccesstoTap";
-                    variable2= "Households"
+                    variable2 = "Households"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
                 if (datapoint == "% Households with electric lighting") {
                     variable = "HouseholdswithElectricLighting";
-                    variable2= "Households"
+                    variable2 = "Households"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
                 if (datapoint == "% Households with access to kerosene lighting") {
                     variable = "HouseholdswithKerosene";
-                    variable2= "Households"
+                    variable2 = "Households"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
                 if (datapoint == "% Households with toilets inside premises") {
                     variable = "HouseholdswithIndoorToilets";
-                    variable2= "Households"
+                    variable2 = "Households"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
                 if (datapoint == "% Households with firewood") {
                     variable = "HouseholdswithFirewood";
-                    variable2= "Households"
+                    variable2 = "Households"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
                 if (datapoint == "% Households with LPG") {
                     variable = "HouseholdswithLPG";
-                    variable2= "Households"
+                    variable2 = "Households"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
                 if (datapoint == "% Households with TV") {
                     variable = "HouseholdswithTV";
-                    variable2= "Households"
+                    variable2 = "Households"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
                 if (datapoint == "% Households with mobile") {
                     variable = "HouseholdswithMobile";
-                    variable2= "Households"
+                    variable2 = "Households"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
                 if (datapoint == "% Households with 2 wheelers") {
                     variable = "Householdswith2wheelers";
-                    variable2= "Households"
+                    variable2 = "Households"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
                 if (datapoint == "% Households with 4 wheelers") {
                     variable = "Householdswith4wheelers";
-                    variable2= "Households"
+                    variable2 = "Households"
                     var rangeofitems = d3.set(DemoData.map(function(d) {
-                        return (d[variable]*100)/d[variable2]
+                        return (d[variable] * 100) / d[variable2]
                     })).values()
                     colourScale = quantileScale.domain(rangeofitems);
                 }
 
                 var acData = {}
                 DemoData.forEach(function(d) {
-                    percentage= (d[variable]*100)/d[variable2]
+                    percentage = (d[variable] * 100) / d[variable2]
                     acData[d.ac_no] = percentage
                     var colourState = colourScale(percentage);
                     d3.select('#b' + d.ac_no).transition().duration(1000).style("fill", colourState);
@@ -597,47 +615,52 @@
         }
 
 
-            function runDistrict() {
+        function runDistrict() {
 
-                d3.select('#controls')
-                    .selectAll("path")
-                    .data(["Voter Turnout"])
-                    .enter()
-                    .append("button")
-                    .attr("class", "controlButtons")
-                    .on("click", buttonClick)
-                    .attr("id", d => d)
-                    .html(function(d) {
-                        return d;
-                    })
-
-
-                filetobeloaded = 'mp-districts.json'
-
-                d3.json(filetobeloaded, function(error, data) {
-                    theState2 = svg.append("g")
-                        .attr("id", "theState2")
-                        .selectAll("path")
-                        .data(topojson.feature(data, data.objects.mpdistricts).features)
-                        .enter()
-                        .append("path")
-                        .attr("d", geoPath)
-                        .attr("class", "constituency")
-                        .attr("id", function(d) {
-                            return ('b' + d.properties.DT_CEN_CD);
-                        })
-                        .style("fill", "#f0f0f0")
-                        .style("stroke", "#fff")
+            d3.select('#controls')
+                .selectAll("path")
+                .data(["Voter Turnout", "INC Votes", "Total Votes", "INC Vote Share", "BJP Votes", "BJP Vote Share", "Margin", "% Hindu Population", "% Poor", "% Middle Class", "% Rich", "Number of Seats", "Number of BJP Seats"])
+                .enter()
+                .append("button")
+                .attr("class", "controlButtons")
+                .on("click", buttonClick)
+                .attr("id", d => d)
+                .html(function(d) {
+                    return d;
                 })
 
-                function buttonClick(datapoint)
 
-                {
-                    var maxValue;
-                    var minValue;
-                    ordinalScale = d3.scaleOrdinal(d3["schemeCategory20"]);
-                    quantileScale = d3.scaleQuantile().range(["#fe4a49", "#2ab7ca", "#fed766"]);
-                    var colourScale;
+            filetobeloaded = 'mp-districts.json'
+
+            d3.json(filetobeloaded, function(error, data) {
+                theState2 = svg.append("g")
+                    .attr("id", "theState2")
+                    .selectAll("path")
+                    .data(topojson.feature(data, data.objects.mpdistricts).features)
+                    .enter()
+                    .append("path")
+                    .attr("d", geoPath)
+                    .attr("class", "district")
+                    .attr("id", function(d) {
+                        return ('b' + d.properties.DT_CEN_CD);
+                    })
+                    .style("fill", "#f0f0f0")
+                    .style("stroke", "#fff")
+            })
+
+            function buttonClick(datapoint)
+
+            {
+                var maxValue;
+                var minValue;
+                ordinalScale = d3.scaleOrdinal(d3["schemeCategory20"]);
+                quantileScale = d3.scaleQuantile().range(["#fe4a49", "#2ab7ca", "#fed766"]);
+                var colourScale;
+
+                if (datapoint == "Voter Turnout") {
+                    variable = "VOTER_TURNOUT";
+
+
 
                     d3.selectAll(".controlButtons").style("background", "transparent")
                     d3.select(this).style("background", backgroundColour)
@@ -705,17 +728,9 @@
 
                     })
 
-
-                    if (datapoint == "Voter Turnout") {
-                        variable = "VOTER_TURNOUT";
-                        maxValue = d3.max(districtDatabyDistrict, d => parseFloat(d[variable]))
-                        minValue = d3.min(districtDatabyDistrict, d => parseFloat(d[variable]))
-                        colourScale = quantileScale.domain([minValue, maxValue]);
-
-                    }
-
-
-
+                    maxValue = d3.max(districtDatabyDistrict, d => parseFloat(d[variable]))
+                    minValue = d3.min(districtDatabyDistrict, d => parseFloat(d[variable]))
+                    colourScale = quantileScale.domain([minValue, maxValue]);
 
                     var acData = {}
                     districtDatabyDistrict.forEach(function(d) {
@@ -760,11 +775,121 @@
                         tooltip.style("display", "none");
 
                     })
+                }
+
+                function RandomCalc(variable) {
+                    maxValue = d3.max(DistrictData, d => parseFloat(d[variable]))
+                    minValue = d3.min(DistrictData, d => parseFloat(d[variable]))
+                    colourScale = quantileScale.domain([minValue, maxValue]);
+
+                    var acData = {}
+                    DistrictData.forEach(function(d) {
+                        acData[d.DT_CEN_CD] = +d[variable] //Since we are going through the CSV 
+                        //and not the JSON, we need to link the CSV column ame
+
+                        var colourState = colourScale(+d[variable]);
+                        d3.select('#b' + d.DT_CEN_CD).transition().duration(1000).style("fill", colourState);
+
+                    })
+
+                    svg.append("g")
+                        .attr("class", "legendQuant")
+                        .attr("transform", "translate(450,20)");
+
+                    var legend = d3.legendColor()
+                        .labelFormat(d3.format(".2f"))
+                        .title("Legend")
+                        .scale(colourScale)
+
+                    svg.select(".legendQuant")
+                        .call(legend);
+
+                    //tooltip
+                    theState2.on("mouseover", function(d) {
+                        d3.select(this).classed("hover", true).style("stroke", "black").raise();
+                    })
+
+                    theState2.on("mousemove", function(d) {
+                        tooltip
+                            .style("left", d3.event.pageX - 50 + "px")
+                            .style("top", d3.event.pageY - 70 + "px")
+                            .style("display", "inline-block")
+                            .html(d.properties.DISTRICT + "<br>" + acData[d.properties.DT_CEN_CD]);
+                    })
+
+                    theState2.on("mouseout", function(d) {
+                        d3.select(this).classed("hover", false).style("stroke", "white").lower();
+                        tooltip.style("display", "none");
+
+                    })
+                }
+
+
+                if (datapoint == "INC Votes") {
+                    variable = "INC_Votes"
+                    RandomCalc(variable)
+
+                }
+                if (datapoint == "INC Vote Share") {
+                    variable = "INC_VoteShare"
+                    RandomCalc(variable)
 
                 }
 
+                if (datapoint == "BJP Votes") {
+                    variable = "BJP_Votes"
+                    RandomCalc(variable)
+
+                }
+
+                if (datapoint == "BJP Vote Share") {
+                    variable = "BJP_VoteShare"
+                    RandomCalc(variable)
+
+                }
+
+                if (datapoint == "Margin") {
+                    variable = "Margin"
+                    RandomCalc(variable)
+
+                }
+
+                if (datapoint == "% Hindu Population") {
+                    variable = "Hindu"
+                    RandomCalc(variable)
+
+                }
+
+                if (datapoint == "% Poor") {
+                    variable = "Poor"
+                    RandomCalc(variable)
+
+                }
+                if (datapoint == "% Middle Class") {
+                    variable = "Middle"
+                    RandomCalc(variable)
+
+                }
+                if (datapoint == "% Rich") {
+                    variable = "Rich"
+                    RandomCalc(variable)
+
+                }
+                if (datapoint == "Number of Seats") {
+                    variable = "NumberofSeats"
+                    RandomCalc(variable)
+
+                }
+                if (datapoint == "Number of BJP Seats") {
+                    variable = "BJPSeats"
+                    RandomCalc(variable)
+
+                }
+
+
+
             }
         }
-
+    }
     </script>
 </body </html>
