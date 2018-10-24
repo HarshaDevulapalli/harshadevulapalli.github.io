@@ -4,9 +4,9 @@
 <head>
     <title>Madhya Pradesh 2018</title>
     <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-    <script src="mp-assembly.json" <meta charset="UTF8">
+    <script src="cg-assembly.json" <meta charset="UTF8">
     </script>
-    <script src="mp-districts.json" <meta charset="UTF8">
+    <script src="cg-districts.json" <meta charset="UTF8">
     </script>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
     <script src="https://d3js.org/topojson.v1.min.js"></script>
@@ -133,9 +133,9 @@
         .projection(geoProjection);
 
     d3.queue()
-        .defer(d3.csv, "assembly_mp.csv")
-        .defer(d3.csv, "mp-data.csv")
-        .defer(d3.csv, "mp-districts.csv")
+        .defer(d3.csv, "assembly_cg.csv")
+        .defer(d3.csv, "cg-data.csv")
+        .defer(d3.csv, "cg-districts.csv")
         .await(ready);
 
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
@@ -246,13 +246,13 @@
                 })
 
 
-            filetobeloaded = 'mp-assembly.json'
+            filetobeloaded = 'cg-assembly.json'
 
             d3.json(filetobeloaded, function(error, data) {
                 theState = svg.append("g")
                     .attr("id", "theState")
                     .selectAll("path")
-                    .data(topojson.feature(data, data.objects.mpassembly).features)
+                    .data(topojson.feature(data, data.objects.cgassembly).features)
                     .enter()
                     .append("path")
                     .attr("d", geoPath)
@@ -338,6 +338,58 @@
                     variable = "Party";
                     colourRange = ["#FF8A33", "#2ab7ca", "#2B2BEE", "B0B0BF", "9114A2"]
                     colourScale = ordinalScale.range(colourRange)
+                    var acData = {}
+                    var acData2 = {}
+
+                    newData.forEach(function(d) {
+                        acData[d.Constituency_No] = d[variable]
+                        acData2[d.Constituency_No] = d['Margin_Percentage']
+                        var colourState = colourScale(d[variable]);
+                        acData2[d.Constituency_No] = +d['Margin_Percentage']
+                        var rangeofitems = d3.set(newData.map(function(d) {
+                            return (+d['Margin_Percentage'])
+                        })).values()
+                        opaqueScale = d3.scaleQuantile().domain(rangeofitems).range(["0.3","0.9"])
+                        var opacityState = opaqueScale(+d['Margin_Percentage'])
+                        var colourState = colourScale(d[variable]);
+                        d3.select('#b' + d.Constituency_No).transition().duration(1000).style("fill", colourState).style("opacity", opacityState);
+                    })
+
+                    console.log(opaqueScale)
+
+                    svg.append("g")
+                        .attr("class", "legendQuant")
+                        .attr("transform", "translate(450,20)");
+
+                    var legend = d3.legendColor()
+                        .labelFormat(d3.format(".2f"))
+                        .title("Legend")
+                        .scale(colourScale)
+
+                    svg.select(".legendQuant")
+                        .call(opaqueScale);
+
+                    //tooltip
+                    theState.on("mouseover", function(d) {
+                        d3.select(this).classed("hover", true).style("stroke", "black").raise();
+                    })
+
+                    theState.on("mousemove", function(d) {
+                        tooltip
+                            .style("left", d3.event.pageX - 50 + "px")
+                            .style("top", d3.event.pageY - 70 + "px")
+                            .style("display", "inline-block")
+                            .html(d.properties.AC_NAME + "<br>" + acData2[d.properties.AC_NO]);
+                    })
+
+                    theState.on("mouseout", function(d) {
+                        d3.select(this).classed("hover", false).style("stroke", "white").lower();
+                        tooltip.style("display", "none");
+
+                    })
+
+
+
                 }
 
                 if (datapoint == "Age of the Winner") {
@@ -352,55 +404,46 @@
 
                 var acData = {}
                 var acData2 = {}
-                newData.forEach(function(d) {
-                    acData[d.Constituency_No] = d[variable]
-                    var colourState = colourScale(d[variable]);
-                    d3.select('#b' + d.Constituency_No).transition().duration(1000).style("fill", colourState);
-                    if (datapoint == "Party and Victory Margin") {
-                        acData2[d.Constituency_No] = +d['Margin_Percentage']
-                        var rangeofitems = d3.set(newData.map(function(d) {
-                            return (+d['Margin_Percentage'])
-                        })).values()
-                        opaqueScale = d3.scaleQuantile().domain(rangeofitems).range([0.25, 0.5, 0.75, 1])
-                        var opacityState = opaqueScale(+d['Margin_Percentage'])
-                         var colourState = colourScale(d[variable]);
-                    d3.select('#b' + d.Constituency_No).transition().duration(1000).style("fill", colourState).style("opacity", opacityState);
-                    }
-
-                })
+                if (datapoint != "Party and Victory Margin") {
+                    newData.forEach(function(d) {
+                        acData[d.Constituency_No] = d[variable]
+                        var colourState = colourScale(d[variable]);
+                        d3.select('#b' + d.Constituency_No).transition().duration(1000).style("fill", colourState);
+                    })
 
 
-                // Legend for the choropleth
-                svg.append("g")
-                    .attr("class", "legendQuant")
-                    .attr("transform", "translate(450,20)");
+                    // Legend for the choropleth
+                    svg.append("g")
+                        .attr("class", "legendQuant")
+                        .attr("transform", "translate(450,20)");
 
-                var legend = d3.legendColor()
-                    .labelFormat(d3.format(".2f"))
-                    .title("Legend")
-                    .scale(colourScale)
+                    var legend = d3.legendColor()
+                        .labelFormat(d3.format(".2f"))
+                        .title("Legend")
+                        .scale(colourScale)
 
-                svg.select(".legendQuant")
-                    .call(legend);
+                    svg.select(".legendQuant")
+                        .call(legend);
 
-                //tooltip
-                theState.on("mouseover", function(d) {
-                    d3.select(this).classed("hover", true).style("stroke", "black").raise();
-                })
+                    //tooltip
+                    theState.on("mouseover", function(d) {
+                        d3.select(this).classed("hover", true).style("stroke", "black").raise();
+                    })
 
-                theState.on("mousemove", function(d) {
-                    tooltip
-                        .style("left", d3.event.pageX - 50 + "px")
-                        .style("top", d3.event.pageY - 70 + "px")
-                        .style("display", "inline-block")
-                        .html(d.properties.AC_NAME + "<br>" + acData[d.properties.AC_NO]);
-                })
+                    theState.on("mousemove", function(d) {
+                        tooltip
+                            .style("left", d3.event.pageX - 50 + "px")
+                            .style("top", d3.event.pageY - 70 + "px")
+                            .style("display", "inline-block")
+                            .html(d.properties.AC_NAME + "<br>" + acData[d.properties.AC_NO]);
+                    })
 
-                theState.on("mouseout", function(d) {
-                    d3.select(this).classed("hover", false).style("stroke", "white").lower();
-                    tooltip.style("display", "none");
+                    theState.on("mouseout", function(d) {
+                        d3.select(this).classed("hover", false).style("stroke", "white").lower();
+                        tooltip.style("display", "none");
 
-                })
+                    })
+                }
             }
 
             d3.select('#demographic-controls')
@@ -630,13 +673,13 @@
                 })
 
 
-            filetobeloaded = 'mp-districts.json'
+            filetobeloaded = 'cg-districts.json'
 
             d3.json(filetobeloaded, function(error, data) {
                 theState2 = svg.append("g")
                     .attr("id", "theState2")
                     .selectAll("path")
-                    .data(topojson.feature(data, data.objects.mpdistricts).features)
+                    .data(topojson.feature(data, data.objects.cgdistricts).features)
                     .enter()
                     .append("path")
                     .attr("d", geoPath)
@@ -892,4 +935,4 @@
         }
     }
     </script>
-</body </html>
+</body> </html>
