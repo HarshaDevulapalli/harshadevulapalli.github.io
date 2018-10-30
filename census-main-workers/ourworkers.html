@@ -113,8 +113,12 @@
         pointer-events: none
     }
 
+    .controls{
+    margin-top: 25px;
+}
+
     div {
-        margin: 5px;
+        margin: 15px;
     }
     </style>
 </head>
@@ -125,7 +129,7 @@
     <div id="categoryparameters" align="center"></div>
     <div id="industryparameters" align="center"></div>
     <div id="dataparameters" align="center"></div>
-    <h3> Hover on a district to see how it fares. </h3>
+    <h3 id="instruction"></h3>
     <div id="canvas" align="center"></div>
     <h3> Notes </h3>
     <div id="notes" align="center"></div>
@@ -151,8 +155,7 @@
         .append("svg")
         .attr("width", width)
         .attr("height", height)
-        .attr("align", "center")
-        .call(zoom)
+        .attr("align", "center");
 
     function zoomed() {
         var transform = d3.event.transform;
@@ -335,7 +338,7 @@
             .style("stroke-width", '2px')
             .style("opacity", 0.85)
 
-        const filterKeys = ["Main Workers", "Marginal Workers"]
+        const filterKeys = ["Regular Workers", "Seasonal Workers"]
 
         d3.select('#controls')
             .selectAll("path")
@@ -362,11 +365,11 @@
             d3.selectAll(".annotation-group").remove();
 
 
-            if (datapoint == "Main Workers") {
+            if (datapoint == "Regular Workers") {
                 Main_Workers()
             }
 
-            if (datapoint == "Marginal Workers") {
+            if (datapoint == "Seasonal Workers") {
                 Marginal_Workers()
             }
 
@@ -386,9 +389,6 @@
                 .labelWrap(25)
                 .shapeWidth(30)
 
-
-
-
             svg.select(".legendQuant")
                 .call(legend);
 
@@ -401,7 +401,7 @@
                     .style("left", d3.event.pageX - 50 + "px")
                     .style("top", d3.event.pageY - 70 + "px")
                     .style("display", "inline-block")
-                    .html(d.properties.DISTRICT + "<br>" + districtData[d.properties.censuscode].toFixed(2));
+                    .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>"+ districtData[d.properties.censuscode].toFixed(2));
             })
 
             allDistricts.on("mouseout", function(d) {
@@ -1157,7 +1157,7 @@
                     .style("left", d3.event.pageX - 50 + "px")
                     .style("top", d3.event.pageY - 70 + "px")
                     .style("display", "inline-block")
-                    .html(d.properties.DISTRICT + "<br>" + districtData[d.properties.censuscode]);
+                    .html(d.properties.DISTRICT +", "+ d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode]);
             })
 
             allDistricts.on("mouseout", function(d) {
@@ -1169,8 +1169,191 @@
 
         }
 
+
+        function Calculator11(Data) {
+
+            d3.select("#notes").text("Labour Force is defined as the sum of all Main workers, Marginal workers and Job seeking Non Workers")
+
+            variable1 = "Total_Main_Workers"
+            variable2 = "Total_Marginal_Workers_3months"
+            variable3 = "Total_Marginal_Workers_6months"
+            variable4="Total_Person_Nonworkers_Seeking"
+            variable5 = variable1 + variable2 + variable3 + variable4
+
+            var districtDatabyDistrict = d3.nest()
+                .key(function(d) { return +d.District_Code; })
+                .rollup(function(d) {
+                    return {
+                        variable1: d3.sum(d, function(e) { return e[variable1]; }),
+                        district: d[0].District_Code,
+                        variable2: d3.sum(d, function(e) { return e[variable2]; }),
+                        variable3: d3.sum(d, function(e) { return e[variable3]; }),
+                        variable4: d3.sum(d, function(e) { return e[variable4]; })
+                    }
+                })
+                .entries(Data);
+
+
+            districtDatabyDistrict.forEach(function(d) {
+                d.value['total_workforce'] = (d.value['variable1']) + (d.value['variable2']) + (d.value['variable3'])+(d.value['variable4'])
+                d.value['percentage'] = ((d.value['variable1']) * 100 / d.value['total_workforce'])
+            })
+
+            var items = districtDatabyDistrict.map(post => +post.value['percentage']);
+            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc", "#c2e699", "#78c679", "#238443"]);
+
+
+            var districtData = {}
+            districtDatabyDistrict.forEach(function(d) {
+
+                district_variable_count = parseInt(d.value['district'])
+                districtData[district_variable_count] = d.value['percentage']
+                var colourState = colourScale(d.value['percentage']);
+                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
+            })
+
+            var sorted = []
+
+            for (var district in districtData) {
+                sorted.push([district, districtData[district]])
+            }
+
+            sorted.sort(function(a, b) {
+                return b[1] - a[1]
+            })
+            var count = 0
+            while (count < 10) {
+                d3.select("#b" + sorted[count][0]).transition().duration(1000).style("fill", "#BD3884");
+                count = count + 1
+
+            }
+
+
+
+            function CityCalculator(city) {
+                lengthofids = city.length
+                var variablen1 = 0
+                var variablen2 = 0
+                var variablen3 = 0
+                var variablen4 = 0
+                for (item = 0; item < (lengthofids); item++) {
+                    id_no = city[item]
+
+                    variablen1 = variablen1 + (districtDatabyDistrict[id_no - 1].value['variable1'])
+                    variablen2 = variablen2 + (districtDatabyDistrict[id_no - 1].value['variable2'])
+                    variablen3 = variablen3 + (districtDatabyDistrict[id_no - 1].value['variable3'])
+                    variablen4 = variablen4 + (districtDatabyDistrict[id_no - 1].value['variable4'])
+                }
+
+                percentage_n = (variablen1 * 100) / (variablen1 + variablen2 + variablen3 + variablen4).toFixed(2);
+                return percentage_n;
+
+            }
+
+
+            city_array = [CityCalculator(Hyderabad), CityCalculator(Bangalore), CityCalculator(Chennai), CityCalculator(Kolkata), CityCalculator(Mumbai), CityCalculator(Delhi)]
+
+
+            drawLegendandTooltip(colourScale, districtData, "yes");
+            Annotate(city_array);
+
+        }
+
+        function Calculator12(Data) {
+
+            d3.select("#notes").text("Labour Force is defined as the sum of all Main workers, Marginal workers and Job seeking Non Workers")
+
+            variable1 = "Total_Main_Workers"
+            variable2 = "Total_Marginal_Workers_3months"
+            variable3 = "Total_Marginal_Workers_6months"
+            variable4="Total_Person_Nonworkers_Seeking"
+            variable5 = variable1 + variable2 + variable3 + variable4
+
+            var districtDatabyDistrict = d3.nest()
+                .key(function(d) { return +d.District_Code; })
+                .rollup(function(d) {
+                    return {
+                        variable1: d3.sum(d, function(e) { return e[variable1]; }),
+                        district: d[0].District_Code,
+                        variable2: d3.sum(d, function(e) { return e[variable2]; }),
+                        variable3: d3.sum(d, function(e) { return e[variable3]; }),
+                        variable4: d3.sum(d, function(e) { return e[variable4]; })
+                    }
+                })
+                .entries(Data);
+
+
+            districtDatabyDistrict.forEach(function(d) {
+                d.value['total_workforce'] = (d.value['variable1']) + (d.value['variable2']) + (d.value['variable3'])+(d.value['variable4'])
+                d.value['percentage'] = (((d.value['variable2'])+(d.value['variable3']) * 100 )/ d.value['total_workforce'])
+            })
+
+            console.log(districtDatabyDistrict)
+
+            var items = districtDatabyDistrict.map(post => +post.value['percentage']);
+            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc", "#c2e699", "#78c679", "#238443"]);
+
+
+            var districtData = {}
+            districtDatabyDistrict.forEach(function(d) {
+
+                district_variable_count = parseInt(d.value['district'])
+                districtData[district_variable_count] = d.value['percentage']
+                var colourState = colourScale(d.value['percentage']);
+                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
+            })
+
+            var sorted = []
+
+            for (var district in districtData) {
+                sorted.push([district, districtData[district]])
+            }
+
+            sorted.sort(function(a, b) {
+                return b[1] - a[1]
+            })
+            var count = 0
+            while (count < 10) {
+                d3.select("#b" + sorted[count][0]).transition().duration(1000).style("fill", "#BD3884");
+                count = count + 1
+
+            }
+
+
+
+            function CityCalculator(city) {
+                lengthofids = city.length
+                var variablen1 = 0
+                var variablen2 = 0
+                var variablen3 = 0
+                var variablen4 = 0
+                for (item = 0; item < (lengthofids); item++) {
+                    id_no = city[item]
+
+                    variablen1 = variablen1 + (districtDatabyDistrict[id_no - 1].value['variable1'])
+                    variablen2 = variablen2 + (districtDatabyDistrict[id_no - 1].value['variable2'])
+                    variablen3 = variablen3 + (districtDatabyDistrict[id_no - 1].value['variable3'])
+                    variablen4 = variablen4 + (districtDatabyDistrict[id_no - 1].value['variable4'])
+                }
+
+                percentage_n = ((variablen2+variablen3) * 100) / (variablen1 + variablen2 + variablen3 + variablen4).toFixed(2);
+                return percentage_n;
+
+            }
+
+
+            city_array = [CityCalculator(Hyderabad), CityCalculator(Bangalore), CityCalculator(Chennai), CityCalculator(Kolkata), CityCalculator(Mumbai), CityCalculator(Delhi)]
+
+
+            drawLegendandTooltip(colourScale, districtData, "yes");
+            Annotate(city_array);
+
+        }
+
+
+
         function Main_Workers() {
-            worker_keys = ["Percentage of Total Workforce", "Main Workers by Industry", "Changes since 2001"];
+            worker_keys = ["Percentage of Total Workforce", "Percentage of Labour Force", "Regular Workers by Industry", "Changes since 2001"];
 
 
 
@@ -1271,6 +1454,75 @@
 
                 }
 
+
+                if (datapoint == "Percentage of Labour Force") {
+
+                    newData = Data.filter(function(d) {
+                        return (d.Age_Group == "Total" && d.Rural_or_Urban == "Total")
+                    });
+
+                    Calculator11(newData);
+
+
+                    worker_keys = ["5-14 years", "15-34 years", "35-59 years", "Above 60 years"];
+                    d3.select('#dataparameters')
+                        .selectAll("path")
+                        .data(worker_keys)
+                        .enter()
+                        .append("button")
+                        .on("click", parameterClick)
+                        .attr("id", d => d)
+                        .attr("class", "dataButtons")
+                        .html(function(d) {
+                            return d;
+                        })
+
+                    function parameterClick(datapoint) {
+                        d3.selectAll(".dataButtons").style("background", "transparent")
+                        d3.select(this).style("background", backgroundColour)
+                        if (datapoint == "5-14 years") {
+                            newData = Data.filter(function(d) {
+                                return ((d.Age_Group == "5-9" || d.Age_Group == "10-14") && d.Rural_or_Urban == "Total")
+                            });
+
+
+                            Calculator11(newData);
+
+                        }
+
+                        if (datapoint == "15-34 years") {
+                            newData = Data.filter(function(d) {
+                                return ((d.Age_Group == "15-19" || d.Age_Group == "20-24" || d.Age_Group == "25-29" || d.Age_Group == "30-34") && d.Rural_or_Urban == "Total")
+                            });
+
+                            Calculator11(newData);
+
+                        }
+
+                        if (datapoint == "35-59 years") {
+                            newData = Data.filter(function(d) {
+                                return ((d.Age_Group == "35-39" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
+                            });
+
+                            Calculator11(newData);
+
+                        }
+
+                        if (datapoint == "Above 60 years") {
+                            newData = Data.filter(function(d) {
+                                return ((d.Age_Group == "60-69" || d.Age_Group == "70-79" || d.Age_Group == "80+") && d.Rural_or_Urban == "Total")
+                            });
+
+
+
+                            Calculator11(newData);
+
+                        }
+                    }
+
+                }
+
+
                 if (datapoint == "Changes since 2001") {
 
                     d3.select("#notes").text("For districts whose boundaries have been changed since 2001, we have made the following assumptions. For districts with one parent, the comparisons are made for both the old and new district against the 2001 district. For districts with multiple parents, the smallest cohesive common boundary was considered.")
@@ -1279,7 +1531,7 @@
 
 
 
-                        worker_keys = ["Percentage Points change in Proportion of Main Workers", "Percentage Points change in Proportion of Main Male Workers", "Percentage Points change in Proportion of Main Female Workers",
+                        worker_keys = ["Percentage Points change in Proportion of Regular Workers", "Percentage Points change in Proportion of Regular Male Workers", "Percentage Points change in Proportion of Regular Female Workers",
                             "Percentage Points change in Agriculture",
                             "Percentage Points change in Manufacturing",
                             "Percentage Points change in Construction",
@@ -1302,18 +1554,18 @@
                         function parameterClick(datapoint) {
                             d3.selectAll(".dataButtons").style("background", "transparent")
                             d3.select(this).style("background", backgroundColour)
-                            if (datapoint == "Percentage Points change in Proportion of Main Workers") {
+                            if (datapoint == "Percentage Points change in Proportion of Regular Workers") {
 
                                 Calculator5(Data, "PPChangeinMain");
 
                             }
 
-                            if (datapoint == "Percentage Points change in Proportion of Main Male Workers") {
+                            if (datapoint == "Percentage Points change in Proportion of Regular Male Workers") {
 
                                 Calculator5(Data, "PPChangeinMainMale");
 
                             }
-                            if (datapoint == "Percentage Points change in Proportion of Main Female Workers") {
+                            if (datapoint == "Percentage Points change in Proportion of Regular Female Workers") {
 
                                 Calculator5(Data, "PPChangeinMainFemale");
 
@@ -1364,7 +1616,7 @@
 
                 }
 
-                if (datapoint == "Main Workers by Industry") {
+                if (datapoint == "Regular Workers by Industry") {
                     d3.select("#notes").text("Agriculture includes Agriculture, Forestry and Fishing workers. Manufacturing includes Mining and Quarrying workers. While Wholesale and Retail Trade are also displayed separately, their numbers are included in the Services category too. Detailed Breakdown provides a granular look at these industries. Workers by Industry at a District Level is defined as Percentage of Workers in the industry to the Total number of workers in that district. Workers by Industry at a Total Level is defined as percentage of workers in that district to the total number of workers across the country. ")
 
                     d3.csv("B4_complete_aggregate.csv", function(error, Data) {
@@ -1901,7 +2153,7 @@
         }
 
         function Marginal_Workers() {
-            worker_keys = ["Percentage of Total Workforce", "Marginal Workers by Industry", "Changes since 2001"];
+            worker_keys = ["Percentage of Total Workforce", "Percentage of Labour Force","Seasonal Workers by Industry", "Changes since 2001"];
             d3.select('#workerkeys')
                 .selectAll("path")
                 .data(worker_keys)
@@ -1997,6 +2249,74 @@
 
                 }
 
+                 if (datapoint == "Percentage of Labour Force") {
+
+                    newData = Data.filter(function(d) {
+                        return (d.Age_Group == "Total" && d.Rural_or_Urban == "Total")
+                    });
+
+                    Calculator12(newData);
+
+
+                    worker_keys = ["5-14 years", "15-34 years", "35-59 years", "Above 60 years"];
+                    d3.select('#dataparameters')
+                        .selectAll("path")
+                        .data(worker_keys)
+                        .enter()
+                        .append("button")
+                        .on("click", parameterClick)
+                        .attr("id", d => d)
+                        .attr("class", "dataButtons")
+                        .html(function(d) {
+                            return d;
+                        })
+
+                    function parameterClick(datapoint) {
+                        d3.selectAll(".dataButtons").style("background", "transparent")
+                        d3.select(this).style("background", backgroundColour)
+                        if (datapoint == "5-14 years") {
+                            newData = Data.filter(function(d) {
+                                return ((d.Age_Group == "5-9" || d.Age_Group == "10-14") && d.Rural_or_Urban == "Total")
+                            });
+
+
+                            Calculator12(newData);
+
+                        }
+
+                        if (datapoint == "15-34 years") {
+                            newData = Data.filter(function(d) {
+                                return ((d.Age_Group == "15-19" || d.Age_Group == "20-24" || d.Age_Group == "25-29" || d.Age_Group == "30-34") && d.Rural_or_Urban == "Total")
+                            });
+
+                            Calculator12(newData);
+
+                        }
+
+                        if (datapoint == "35-59 years") {
+                            newData = Data.filter(function(d) {
+                                return ((d.Age_Group == "35-39" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
+                            });
+
+                            Calculator12(newData);
+
+                        }
+
+                        if (datapoint == "Above 60 years") {
+                            newData = Data.filter(function(d) {
+                                return ((d.Age_Group == "60-69" || d.Age_Group == "70-79" || d.Age_Group == "80+") && d.Rural_or_Urban == "Total")
+                            });
+
+
+
+                            Calculator12(newData);
+
+                        }
+                    }
+
+                }
+
+
                 if (datapoint == "Changes since 2001") {
 
                     d3.select("#notes").text("For districts whose boundaries have been changed since 2001, we have made the following assumptions. For districts with one parent, the comparisons are made for both the old and new district against the 2001 district. For districts with multiple parents, the smallest cohesive common boundary was considered.")
@@ -2004,7 +2324,7 @@
                     d3.csv("B6_complete_aggregate.csv", function(error, Data) {
 
 
-                        worker_keys = ["Percentage Points change in Proportion of Marginal Workers", "Percentage Points change in Proportion of Marginal Male Workers", "Percentage Points change in Proportion of Marginal Female Workers",
+                        worker_keys = ["Percentage Points change in Proportion of Seasonal Workers", "Percentage Points change in Proportion of Seasonal Male Workers", "Percentage Points change in Proportion of Seasonal Female Workers",
                             "Percentage Points change in Agriculture",
                             "Percentage Points change in Manufacturing",
                             "Percentage Points change in Construction",
@@ -2027,18 +2347,18 @@
                         function parameterClick(datapoint) {
                             d3.selectAll(".dataButtons").style("background", "transparent")
                             d3.select(this).style("background", backgroundColour)
-                            if (datapoint == "Percentage Points change in Proportion of Marginal Workers") {
+                            if (datapoint == "Percentage Points change in Proportion of Seasonal Workers") {
 
                                 Calculator9(Data, "PPChangeinMarginal");
 
                             }
 
-                            if (datapoint == "Percentage Points change in Proportion of Marginal Male Workers") {
+                            if (datapoint == "Percentage Points change in Proportion of Seasonal Male Workers") {
 
                                 Calculator9(Data, "PPChangeinMarginalMale");
 
                             }
-                            if (datapoint == "Percentage Points change in Proportion of Marginal Female Workers") {
+                            if (datapoint == "Percentage Points change in Proportion of Seasonal Female Workers") {
 
                                 Calculator9(Data, "PPChangeinMarginalFemale");
 
@@ -2089,7 +2409,7 @@
 
                 }
 
-                if (datapoint == "Marginal Workers by Industry") {
+                if (datapoint == "Seasonal Workers by Industry") {
                     d3.select("#notes").text("Agriculture includes Agriculture, Forestry and Fishing workers. Manufacturing includes Mining and Quarrying workers. While Wholesale and Retail Trade are also displayed separately, their numbers are included in the Services category too. Detailed Breakdown provides a granular look at these industries. Workers by Industry at a District Level is defined as Percentage of Workers in the industry to the Total number of workers in that district. Workers by Industry at a Total Level is defined as percentage of workers in that district to the total number of workers across the country. ")
 
                     d3.csv("B6_complete_aggregate.csv", function(error, Data) {
