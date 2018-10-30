@@ -133,8 +133,8 @@
         .projection(geoProjection);
 
     d3.queue()
-        .defer(d3.csv, "assembly_cg.csv")
-        .defer(d3.csv, "cg-data.csv")
+        .defer(d3.csv, "./assembly_cg.csv")
+        .defer(d3.csv, "./cg-data.csv")
         .await(ready);
 
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
@@ -353,8 +353,6 @@
                         var colourState = colourScale(d[variable]);
                         d3.select('#b' + d.Constituency_No).transition().duration(1000).style("fill", colourState).style("opacity", opacityState);
                     })
-
-                    console.log(opaqueScale)
 
                     svg.append("g")
                         .attr("class", "legendQuant")
