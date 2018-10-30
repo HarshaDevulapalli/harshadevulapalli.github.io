@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Madhya Pradesh 2018</title>
+    <title>Chhattisgarh 2018</title>
     <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
     <script src="cg-assembly.json" <meta charset="UTF8">
     </script>
@@ -125,8 +125,8 @@
         .attr("align", "center");
 
     var geoProjection = d3.geoMercator()
-        .scale(3500)
-        .center([78, 23])
+        .scale(4000)
+        .center([83, 21])
         .translate([width / 2, height / 2]);
 
     var geoPath = d3.geoPath()
@@ -135,12 +135,11 @@
     d3.queue()
         .defer(d3.csv, "assembly_cg.csv")
         .defer(d3.csv, "cg-data.csv")
-        .defer(d3.csv, "cg-districts.csv")
         .await(ready);
 
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
-    function ready(error, AssemblyData, DemoData, DistrictData) {
+    function ready(error, AssemblyData, DemoData) {
         if (error) throw error;
 
         var years_count = d3.set(AssemblyData.map(function(d) {
@@ -820,115 +819,7 @@
                     })
                 }
 
-                function RandomCalc(variable) {
-                    maxValue = d3.max(DistrictData, d => parseFloat(d[variable]))
-                    minValue = d3.min(DistrictData, d => parseFloat(d[variable]))
-                    colourScale = quantileScale.domain([minValue, maxValue]);
-
-                    var acData = {}
-                    DistrictData.forEach(function(d) {
-                        acData[d.DT_CEN_CD] = +d[variable] //Since we are going through the CSV 
-                        //and not the JSON, we need to link the CSV column ame
-
-                        var colourState = colourScale(+d[variable]);
-                        d3.select('#b' + d.DT_CEN_CD).transition().duration(1000).style("fill", colourState);
-
-                    })
-
-                    svg.append("g")
-                        .attr("class", "legendQuant")
-                        .attr("transform", "translate(450,20)");
-
-                    var legend = d3.legendColor()
-                        .labelFormat(d3.format(".2f"))
-                        .title("Legend")
-                        .scale(colourScale)
-
-                    svg.select(".legendQuant")
-                        .call(legend);
-
-                    //tooltip
-                    theState2.on("mouseover", function(d) {
-                        d3.select(this).classed("hover", true).style("stroke", "black").raise();
-                    })
-
-                    theState2.on("mousemove", function(d) {
-                        tooltip
-                            .style("left", d3.event.pageX - 50 + "px")
-                            .style("top", d3.event.pageY - 70 + "px")
-                            .style("display", "inline-block")
-                            .html(d.properties.DISTRICT + "<br>" + acData[d.properties.DT_CEN_CD]);
-                    })
-
-                    theState2.on("mouseout", function(d) {
-                        d3.select(this).classed("hover", false).style("stroke", "white").lower();
-                        tooltip.style("display", "none");
-
-                    })
-                }
-
-
-                if (datapoint == "INC Votes") {
-                    variable = "INC_Votes"
-                    RandomCalc(variable)
-
-                }
-                if (datapoint == "INC Vote Share") {
-                    variable = "INC_VoteShare"
-                    RandomCalc(variable)
-
-                }
-
-                if (datapoint == "BJP Votes") {
-                    variable = "BJP_Votes"
-                    RandomCalc(variable)
-
-                }
-
-                if (datapoint == "BJP Vote Share") {
-                    variable = "BJP_VoteShare"
-                    RandomCalc(variable)
-
-                }
-
-                if (datapoint == "Margin") {
-                    variable = "Margin"
-                    RandomCalc(variable)
-
-                }
-
-                if (datapoint == "% Hindu Population") {
-                    variable = "Hindu"
-                    RandomCalc(variable)
-
-                }
-
-                if (datapoint == "% Poor") {
-                    variable = "Poor"
-                    RandomCalc(variable)
-
-                }
-                if (datapoint == "% Middle Class") {
-                    variable = "Middle"
-                    RandomCalc(variable)
-
-                }
-                if (datapoint == "% Rich") {
-                    variable = "Rich"
-                    RandomCalc(variable)
-
-                }
-                if (datapoint == "Number of Seats") {
-                    variable = "NumberofSeats"
-                    RandomCalc(variable)
-
-                }
-                if (datapoint == "Number of BJP Seats") {
-                    variable = "BJPSeats"
-                    RandomCalc(variable)
-
-                }
-
+    
 
 
             }
