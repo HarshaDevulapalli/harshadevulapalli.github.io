@@ -126,7 +126,7 @@
 
     var geoProjection = d3.geoMercator()
         .scale(4000)
-        .center([83, 21])
+        .center([86, 25])
         .translate([width / 2, height / 2]);
 
     var geoPath = d3.geoPath()
@@ -348,7 +348,7 @@
                         var rangeofitems = d3.set(newData.map(function(d) {
                             return (+d['Margin_Percentage'])
                         })).values()
-                        opaqueScale = d3.scaleQuantile().domain(rangeofitems).range(["0.3","0.9"])
+                        opaqueScale = d3.scaleQuantile().domain(rangeofitems).range(["0.5","0.9"])
                         var opacityState = opaqueScale(+d['Margin_Percentage'])
                         var colourState = colourScale(d[variable]);
                         d3.select('#b' + d.Constituency_No).transition().duration(1000).style("fill", colourState).style("opacity", opacityState);
