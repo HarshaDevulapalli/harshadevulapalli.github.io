@@ -113,9 +113,9 @@
         pointer-events: none
     }
 
-    .controls{
-    margin-top: 25px;
-}
+    .typesofworkers {
+        margin-top: 25px;
+    }
 
     div {
         margin: 15px;
@@ -124,10 +124,11 @@
 </head>
 
 <body>
-    <div id="controls" title="As defined in the Census" align="center" style="font-size : 1.5em"></div>
-    <div id="workerkeys" align="center" style="font-size : 1.2em"></div>
-    <div id="categoryparameters" align="center"></div>
-    <div id="industryparameters" align="center"></div>
+    <div id="typesofworkers" title="As defined in the Census" align="center" style="font-size : 1.5em"></div>
+    <div id="datagroups" align="center" style="font-size : 1.2em"></div>
+    <div id="ageviews" align="center"></div>
+    <div id="industryviews" align="center"></div>
+    <div id="scaleparameters" align="center"></div>
     <div id="dataparameters" align="center"></div>
     <h3 id="instruction"></h3>
     <div id="canvas" align="center"></div>
@@ -172,12 +173,6 @@
     var geoPath = d3.geoPath()
         .projection(geoProjection);
 
-    d3.queue()
-        .defer(d3.json, "india_districts.json")
-        .defer(d3.csv, "mergedTotal_B1.csv")
-        .defer(d3.json, "india.json")
-        .await(ready);
-
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
     var Hyderabad = [536, 537]
@@ -188,125 +183,14 @@
     var Delhi = [74, 75, 77, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 104, 105, 133, 138, 139, 140, 141, 142]
 
 
-    function Annotate(numbers) {
-        d3.selectAll(".annotation-group").remove();
+    d3.queue()
+        .defer(d3.json, "india_districts.json")
+        .defer(d3.csv, "mergedTotal_B1.csv")
+        .defer(d3.json, "india.json")
+        .await(ready);
 
-        const annotations = [{
-                //below in makeAnnotations has type set to d3.annotationLabel
-                //you can add this type value below to override that default
-                type: d3.annotationCalloutCircle,
-                note: {
-                    label: numbers[5].toFixed(2) + " percent",
-                    title: "Delhi NCR UA Region",
-                    wrap: 300
-                },
 
-                //settings for the subject, in this case the circle radius
-                subject: {
-                    radius: 25
 
-                },
-                x: 275,
-                y: 270,
-                dy: -75,
-                dx: -75
-            },
-            {
-                type: d3.annotationCalloutCircle,
-                note: {
-                    label: numbers[4].toFixed(2) + " percent",
-                    title: "Mumbai UA Region",
-                    wrap: 100
-                },
-
-                subject: {
-                    radius: 20
-
-                },
-                x: 195,
-                y: 490,
-                dy: 75,
-                dx: -75
-            },
-            {
-                type: d3.annotationCalloutCircle,
-                note: {
-                    label: numbers[0].toFixed(2) + " percent",
-                    title: "Hyderabad UA Region",
-                    wrap: 100
-                },
-
-                subject: {
-                    radius: 15
-
-                },
-                x: 300,
-                y: 527,
-                dy: 0,
-                dx: 100
-            },
-            {
-                type: d3.annotationCalloutCircle,
-                note: {
-                    label: numbers[3].toFixed(2) + " percent",
-                    title: "Kolkata UA Region",
-                    wrap: 100
-                },
-
-                subject: {
-                    radius: 20
-
-                },
-                x: 515,
-                y: 410,
-                dy: 70,
-                dx: 70
-            },
-            {
-                type: d3.annotationCalloutCircle,
-                note: {
-                    label: numbers[2].toFixed(2) + " percent",
-                    title: "Chennai UA Region",
-                    wrap: 100
-                },
-
-                subject: {
-                    radius: 15
-
-                },
-                x: 335,
-                y: 625,
-                dy: 50,
-                dx: 50
-            },
-            {
-                type: d3.annotationCalloutCircle,
-                note: {
-                    label: numbers[1].toFixed(2) + " percent",
-                    title: "Bangalore UA Region",
-                    wrap: 100
-                },
-
-                subject: {
-                    radius: 15
-
-                },
-                x: 285,
-                y: 620,
-                dy: 100,
-                dx: -100
-            }
-        ].map(function(d) { d.color = "#000000"; return d })
-
-        const makeAnnotations = d3.annotation()
-            .type(d3.annotationLabel)
-            .annotations(annotations)
-
-        d3.select("svg")
-            .append("g")
-            .attr("class", "annotation-group")
-            .call(makeAnnotations)
-    }
 
     function ready(error, india, Data, indiaState) {
 
@@ -340,7 +224,7 @@
 
         const filterKeys = ["Regular Workers", "Seasonal Workers"]
 
-        d3.select('#controls')
+        d3.select('#typesofworkers')
             .selectAll("path")
             .data(filterKeys)
             .enter()
@@ -353,7 +237,7 @@
             })
 
 
-        backgroundColour = "#fde8e8"
+        backgroundColour = "#ED9722"
 
         function buttonClick(datapoint) {
             d3.selectAll(".workerButtons").style("background", "transparent")
@@ -401,7 +285,7 @@
                     .style("left", d3.event.pageX - 50 + "px")
                     .style("top", d3.event.pageY - 70 + "px")
                     .style("display", "inline-block")
-                    .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>"+ districtData[d.properties.censuscode].toFixed(2));
+                    .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode].toFixed(2));
             })
 
             allDistricts.on("mouseout", function(d) {
@@ -418,16 +302,131 @@
 
         }
 
+        function Annotate(numbers) {
+            d3.selectAll(".annotation-group").remove();
+
+            const annotations = [{
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[5].toFixed(2) + " percent",
+                        title: "Delhi NCR UA Region",
+                        wrap: 300
+                    },
+                    subject: {
+                        radius: 25
+
+                    },
+                    x: 275,
+                    y: 270,
+                    dy: -75,
+                    dx: -75
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[4].toFixed(2) + " percent",
+                        title: "Mumbai UA Region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 20
+
+                    },
+                    x: 195,
+                    y: 490,
+                    dy: 75,
+                    dx: -75
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[0].toFixed(2) + " percent",
+                        title: "Hyderabad UA Region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 15
+
+                    },
+                    x: 300,
+                    y: 527,
+                    dy: 0,
+                    dx: 100
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[3].toFixed(2) + " percent",
+                        title: "Kolkata UA Region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 20
+
+                    },
+                    x: 515,
+                    y: 410,
+                    dy: 70,
+                    dx: 70
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[2].toFixed(2) + " percent",
+                        title: "Chennai UA Region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 15
+
+                    },
+                    x: 335,
+                    y: 625,
+                    dy: 50,
+                    dx: 50
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[1].toFixed(2) + " percent",
+                        title: "Bangalore UA Region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 15
+
+                    },
+                    x: 285,
+                    y: 620,
+                    dy: 100,
+                    dx: -100
+                }
+            ].map(function(d) { d.color = "#000000"; return d })
+
+            const makeAnnotations = d3.annotation()
+                .type(d3.annotationLabel)
+                .annotations(annotations)
+
+            d3.select("svg")
+                .append("g")
+                .attr("class", "annotation-group")
+                .call(makeAnnotations)
+        }
 
 
-        function Calculator(Data) {
+
+        function Calculator(Data, kindofworker) {
 
             d3.select("#notes").text("Total Workforce is defined as the sum of all Main and Marginal workers.")
 
             variable1 = "Total_Main_Workers"
             variable2 = "Total_Marginal_Workers_3months"
             variable3 = "Total_Marginal_Workers_6months"
-            variable4 = variable1 + variable2 + variable3
 
             var districtDatabyDistrict = d3.nest()
                 .key(function(d) { return +d.District_Code; })
@@ -444,7 +443,12 @@
 
             districtDatabyDistrict.forEach(function(d) {
                 d.value['total_workforce'] = (d.value['variable1']) + (d.value['variable2']) + (d.value['variable3'])
-                d.value['percentage'] = ((d.value['variable1']) * 100 / d.value['total_workforce'])
+                if (kindofworker == "Main") {
+                    d.value['percentage'] = ((d.value['variable1']) * 100 / d.value['total_workforce'])
+                }
+                if (kindofworker == "Marginal") {
+                    d.value['percentage'] = ((((d.value['variable2'] + (d.value['variable3'])) * 100) / d.value['total_workforce']))
+                }
             })
 
             var items = districtDatabyDistrict.map(post => +post.value['percentage']);
@@ -491,7 +495,14 @@
                     variablen3 = variablen3 + (districtDatabyDistrict[id_no - 1].value['variable3'])
                 }
 
-                percentage_n = (variablen1 * 100) / (variablen1 + variablen2 + variablen3).toFixed(2);
+                if (kindofworker == "Main") {
+                    percentage_n = (variablen1 * 100) / (variablen1 + variablen2 + variablen3).toFixed(2);
+                }
+
+                if (kindofworker == "Marginal") {
+                    percentage_n = ((variablen2 + variablen3) * 100) / (variablen1 + variablen2 + variablen3).toFixed(2);
+                }
+
                 return percentage_n;
 
             }
@@ -507,7 +518,7 @@
 
 
 
-        function Calculator3(Data, variable) {
+        function Calculator3(Data, variable, kindofworker) {
 
 
             var items = Data.map(post => +post[variable]);
@@ -548,11 +559,24 @@
                 for (item = 0; item < (lengthofids); item++) {
                     id_no = city[item]
                     percentage = +Data[id_no - 1][variable]
-                    population = +Data[id_no - 1]['MainWorkers2011']
-                    variablevalue = variablevalue + ((percentage) * population)
-                    total_population = total_population + (+Data[id_no - 1]['MainWorkers2011'])
+
+                    if (kindofworker == "Main") {
+                        population = +Data[id_no - 1]['MainWorkers2011']
+
+                        variablevalue = variablevalue + ((percentage) * population)
+                        console.log(variablevalue)
+                        total_population = total_population + (+Data[id_no - 1]['MainWorkers2011'])
+
+                    } else if (kindofworker = "Marginal") {
+                        population = +Data[id_no - 1]['MarginalWorkers2011']
+                        variablevalue = variablevalue + ((percentage) * population)
+                        total_population = total_population + (+Data[id_no - 1]['MarginalWorkers2011'])
+                    }
+
                 }
                 percentage_n = variablevalue / total_population
+
+                console.log(percentage_n)
                 return percentage_n;
 
             }
@@ -638,7 +662,7 @@
 
         }
 
-        function Calculator5(Data, variable) {
+        function Calculator5(Data, variable, kindofworker) {
 
             var items = Data.map(post => +post[variable]);
 
@@ -710,6 +734,19 @@
                 var2011 = 'PerMainFemale2011'
             }
 
+            if (variable == "PPChangeinMarginal") {
+                var2001 = 'PerMarginalWorkers2001'
+                var2011 = 'PerMarginalWorkers2011'
+            }
+            if (variable == "PPChangeinMarginalMale") {
+                var2001 = 'PerMarginalMale2001'
+                var2011 = 'PerMarginalMale2011'
+            }
+            if (variable == "PPChangeinMarginalFemale") {
+                var2001 = 'PerMarginalFemale2001'
+                var2011 = 'PerMarginalFemale2011'
+            }
+
 
 
             function CityCalculator(city) {
@@ -722,19 +759,43 @@
                 var variable1 = 0
                 var variable2 = 0
                 for (item = 0; item < (lengthofids); item++) {
+
                     id_no = city[item]
 
-                    variable2011 = +(Data[id_no - 1]['MainWorkers2011'] * Data[id_no - 1][var2011])
-                    total2011 = total2011 + (+Data[id_no - 1]['MainWorkers2011'])
-                    variable1 = variable1 + variable2011
-                    if (id_no == 87 || id_no == 89) {
-                        variable2001 = 0
-                        variable2 = variable2 + variable2001
-                        total2001 = total2001
-                    } else {
-                        variable2001 = (Data[id_no - 1]['MainWorkersTotal2001'] * Data[id_no - 1][var2001])
-                        variable2 = variable2 + variable2001
-                        total2001 = total2001 + (+Data[id_no - 1]['MainWorkersTotal2001'])
+                    if (kindofworker == "Main") {
+
+                        variable2011 = +(Data[id_no - 1]['MainWorkers2011'] * Data[id_no - 1][var2011])
+                        total2011 = total2011 + (+Data[id_no - 1]['MainWorkers2011'])
+                        variable1 = variable1 + variable2011
+                        if (id_no == 87 || id_no == 89) {
+                            variable2001 = 0
+                            variable2 = variable2 + variable2001
+                            total2001 = total2001
+                        } else {
+                            variable2001 = (Data[id_no - 1]['MainWorkersTotal2001'] * Data[id_no - 1][var2001])
+                            variable2 = variable2 + variable2001
+                            total2001 = total2001 + (+Data[id_no - 1]['MainWorkersTotal2001'])
+                        }
+
+
+                    }
+
+                    if (kindofworker == "Marginal") {
+
+                        variable2011 = +(Data[id_no - 1]['MarginalWorkers2011'] * Data[id_no - 1][var2011])
+
+                        total2011 = total2011 + (+Data[id_no - 1]['MarginalWorkers2011'])
+                        variable1 = variable1 + variable2011
+                        if (id_no == 87 || id_no == 89) {
+                            variable2001 = 0
+                            variable2 = variable2 + variable2001
+                            total2001 = total2001
+                        } else {
+                            variable2001 = (Data[id_no - 1]['MarginalWorkers2011'] * Data[id_no - 1][var2001])
+                            variable2 = variable2 + variable2001
+                            total2001 = total2001 + (+Data[id_no - 1]['MarginalWorkers2011'])
+                        }
+
                     }
 
                 }
@@ -835,267 +896,8 @@
 
         }
 
-        function Calculator7(Data) {
 
-            d3.select("#notes").text("Total Workforce is defined as the sum of all Main and Marginal workers.")
 
-            variable1 = "Total_Main_Workers"
-            variable2 = "Total_Marginal_Workers_3months"
-            variable3 = "Total_Marginal_Workers_6months"
-            variable4 = variable1 + variable2 + variable3
-
-            var districtDatabyDistrict = d3.nest()
-                .key(function(d) { return +d.District_Code; })
-                .rollup(function(d) {
-                    return {
-                        variable1: d3.sum(d, function(e) { return e[variable1]; }),
-                        district: d[0].District_Code,
-                        variable2: d3.sum(d, function(e) { return e[variable2]; }),
-                        variable3: d3.sum(d, function(e) { return e[variable3]; }),
-                    }
-                })
-                .entries(Data);
-
-
-            districtDatabyDistrict.forEach(function(d) {
-                d.value['total_workforce'] = (d.value['variable1']) + (d.value['variable2']) + (d.value['variable3'])
-                d.value['percentage'] = ((((d.value['variable2'] + (d.value['variable3'])) * 100) / d.value['total_workforce']))
-            })
-
-            var items = districtDatabyDistrict.map(post => +post.value['percentage']);
-            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc", "#c2e699", "#78c679", "#238443"]);
-
-
-            var districtData = {}
-            districtDatabyDistrict.forEach(function(d) {
-
-                district_variable_count = parseInt(d.value['district'])
-                districtData[district_variable_count] = d.value['percentage']
-                var colourState = colourScale(d.value['percentage']);
-                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
-            })
-
-            var sorted = []
-
-            for (var district in districtData) {
-                sorted.push([district, districtData[district]])
-            }
-
-            sorted.sort(function(a, b) {
-                return b[1] - a[1]
-            })
-            var count = 0
-            while (count < 10) {
-                d3.select("#b" + sorted[count][0]).transition().duration(1000).style("fill", "#BD3884");
-                count = count + 1
-
-            }
-
-
-
-            function CityCalculator(city) {
-                lengthofids = city.length
-                var variablen1 = 0
-                var variablen2 = 0
-                var variablen3 = 0
-                for (item = 0; item < (lengthofids); item++) {
-                    id_no = city[item]
-
-                    variablen1 = variablen1 + (districtDatabyDistrict[id_no - 1].value['variable1'])
-                    variablen2 = variablen2 + (districtDatabyDistrict[id_no - 1].value['variable2'])
-                    variablen3 = variablen3 + (districtDatabyDistrict[id_no - 1].value['variable3'])
-                }
-
-                percentage_n = ((variablen2 + variablen3) * 100) / (variablen1 + variablen2 + variablen3).toFixed(2);
-                return percentage_n;
-
-            }
-
-
-            city_array = [CityCalculator(Hyderabad), CityCalculator(Bangalore), CityCalculator(Chennai), CityCalculator(Kolkata), CityCalculator(Mumbai), CityCalculator(Delhi)]
-
-
-            drawLegendandTooltip(colourScale, districtData, "yes");
-            Annotate(city_array);
-
-        }
-
-        function Calculator8(Data, variable) {
-
-
-            var items = Data.map(post => +post[variable]);
-
-            var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc", "#a1dab4", "#41b6c4", "#225ea8"]);
-
-            var districtData = {}
-            Data.forEach(function(d) {
-                district_variable_count = parseInt(d['DistrictCode'])
-                districtData[district_variable_count] = +d[variable];
-                var colourState = colourScale(+d[variable]);
-                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
-            })
-
-            var sorted = []
-
-            for (var district in districtData) {
-                sorted.push([district, districtData[district]])
-            }
-
-            sorted.sort(function(a, b) {
-                return b[1] - a[1]
-            })
-            var count = 0
-            while (count < 10) {
-                d3.select("#b" + sorted[count][0]).transition().duration(1000).style("fill", "#BD3884");
-                count = count + 1
-
-            }
-
-            function CityCalculator(city) {
-                lengthofids = city.length
-                var variablevalue = 0
-                var total_population = 0
-
-                for (item = 0; item < (lengthofids); item++) {
-                    id_no = city[item]
-                    percentage = +Data[id_no - 1][variable]
-                    population = +Data[id_no - 1]['MarginalWorkers2011']
-                    variablevalue = variablevalue + ((percentage) * population)
-                    total_population = total_population + (+Data[id_no - 1]['MarginalWorkers2011'])
-                }
-                percentage_n = variablevalue / total_population
-                return percentage_n;
-
-            }
-
-            city_array = [CityCalculator(Hyderabad), CityCalculator(Bangalore), CityCalculator(Chennai), CityCalculator(Kolkata), CityCalculator(Mumbai), CityCalculator(Delhi)]
-
-
-            drawLegendandTooltip(colourScale, districtData, "yes");
-            Annotate(city_array);
-
-
-        }
-
-        function Calculator9(Data, variable) {
-
-            var items = Data.map(post => +post[variable]);
-
-            var colourScale = d3.scaleQuantile().domain(items).range(["#d7191c", "#fdae61", "#a6d96a", "#1a9641"]);
-
-            var districtData = {}
-            Data.forEach(function(d) {
-                district_variable_count = d.DistrictCode
-                districtData[district_variable_count] = +d[variable];
-                var colourState = colourScale(+d[variable]);
-
-                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
-            })
-
-            var sorted = []
-
-            for (var district in districtData) {
-                sorted.push([district, districtData[district]])
-            }
-
-            sorted.sort(function(a, b) {
-                return b[1] - a[1]
-            })
-            var count = 0
-            while (count < 10) {
-                d3.select("#b" + sorted[count][0]).transition().duration(1000).style("fill", "#BD3884");
-                count = count + 1
-
-            }
-
-
-
-            var var2011;
-            var var2001;
-            if (variable == "PPChangeAgriculture") {
-                var2001 = 'Agriculture2001'
-                var2011 = 'Agriculture2011'
-            }
-
-            if (variable == "PPChangeinManufacturing") {
-                var2001 = 'Manufacturing2001'
-                var2011 = 'Manufacturing2011'
-            }
-
-            if (variable == "PPChangeinConstruction") {
-                var2001 = 'Construction2001'
-                var2011 = 'Construction2011'
-            }
-
-            if (variable == "PPChangeinWholesale") {
-                var2001 = 'WholesaleRetail2001'
-                var2011 = 'WholesaleRetail2011'
-            }
-
-            if (variable == "PPChangeinServices") {
-                var2001 = 'Services2001'
-                var2011 = 'Services2011'
-            }
-
-            if (variable == "PPChangeinMarginal") {
-                var2001 = 'PerMarginalWorkers2001'
-                var2011 = 'PerMarginalWorkers2011'
-            }
-            if (variable == "PPChangeinMarginalMale") {
-                var2001 = 'PerMarginalMale2001'
-                var2011 = 'PerMarginalMale2011'
-            }
-            if (variable == "PPChangeinMarginalFemale") {
-                var2001 = 'PerMarginalFemale2001'
-                var2011 = 'PerMarginalFemale2011'
-            }
-
-
-
-            function CityCalculator(city) {
-
-                lengthofids = city.length
-                var variable2011 = 0
-                var variable2001 = 0
-                var total2001 = 0
-                var total2011 = 0
-                var variable1 = 0
-                var variable2 = 0
-                for (item = 0; item < (lengthofids); item++) {
-                    id_no = city[item]
-                    variable2011 = +(Data[id_no - 1]['MarginalWorkers2011'] * Data[id_no - 1][var2011])
-
-                    total2011 = total2011 + (+Data[id_no - 1]['MarginalWorkers2011'])
-                    variable1 = variable1 + variable2011
-                    if (id_no == 87 || id_no == 89) {
-                        variable2001 = 0
-                        variable2 = variable2 + variable2001
-                        total2001 = total2001
-                    } else {
-                        variable2001 = (Data[id_no - 1]['MarginalWorkers2011'] * Data[id_no - 1][var2001])
-                        variable2 = variable2 + variable2001
-                        total2001 = total2001 + (+Data[id_no - 1]['MarginalWorkers2011'])
-                    }
-
-                }
-
-                percentage1 = (variable1 / total2011)
-                percentage2 = (variable2 / total2001)
-
-
-                percentage_n = percentage1 - percentage2
-                return percentage_n;
-
-            }
-
-
-            city_array = [CityCalculator(Hyderabad), CityCalculator(Bangalore), CityCalculator(Chennai), CityCalculator(Kolkata), CityCalculator(Mumbai), CityCalculator(Delhi)]
-
-            drawLegendandTooltip(colourScale, districtData, "yes");
-            Annotate(city_array);
-
-
-        }
 
         function Calculator10(Data, variable) {
 
@@ -1157,7 +959,7 @@
                     .style("left", d3.event.pageX - 50 + "px")
                     .style("top", d3.event.pageY - 70 + "px")
                     .style("display", "inline-block")
-                    .html(d.properties.DISTRICT +", "+ d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode]);
+                    .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode]);
             })
 
             allDistricts.on("mouseout", function(d) {
@@ -1177,7 +979,7 @@
             variable1 = "Total_Main_Workers"
             variable2 = "Total_Marginal_Workers_3months"
             variable3 = "Total_Marginal_Workers_6months"
-            variable4="Total_Person_Nonworkers_Seeking"
+            variable4 = "Total_Person_Nonworkers_Seeking"
             variable5 = variable1 + variable2 + variable3 + variable4
 
             var districtDatabyDistrict = d3.nest()
@@ -1195,7 +997,7 @@
 
 
             districtDatabyDistrict.forEach(function(d) {
-                d.value['total_workforce'] = (d.value['variable1']) + (d.value['variable2']) + (d.value['variable3'])+(d.value['variable4'])
+                d.value['total_workforce'] = (d.value['variable1']) + (d.value['variable2']) + (d.value['variable3']) + (d.value['variable4'])
                 d.value['percentage'] = ((d.value['variable1']) * 100 / d.value['total_workforce'])
             })
 
@@ -1266,7 +1068,7 @@
             variable1 = "Total_Main_Workers"
             variable2 = "Total_Marginal_Workers_3months"
             variable3 = "Total_Marginal_Workers_6months"
-            variable4="Total_Person_Nonworkers_Seeking"
+            variable4 = "Total_Person_Nonworkers_Seeking"
             variable5 = variable1 + variable2 + variable3 + variable4
 
             var districtDatabyDistrict = d3.nest()
@@ -1284,11 +1086,9 @@
 
 
             districtDatabyDistrict.forEach(function(d) {
-                d.value['total_workforce'] = (d.value['variable1']) + (d.value['variable2']) + (d.value['variable3'])+(d.value['variable4'])
-                d.value['percentage'] = (((d.value['variable2'])+(d.value['variable3']) * 100 )/ d.value['total_workforce'])
+                d.value['total_workforce'] = (d.value['variable1']) + (d.value['variable2']) + (d.value['variable3']) + (d.value['variable4'])
+                d.value['percentage'] = (((d.value['variable2']) + (d.value['variable3']) * 100) / d.value['total_workforce'])
             })
-
-            console.log(districtDatabyDistrict)
 
             var items = districtDatabyDistrict.map(post => +post.value['percentage']);
             var colourScale = d3.scaleQuantile().domain(items).range(["#ffffcc", "#c2e699", "#78c679", "#238443"]);
@@ -1336,7 +1136,7 @@
                     variablen4 = variablen4 + (districtDatabyDistrict[id_no - 1].value['variable4'])
                 }
 
-                percentage_n = ((variablen2+variablen3) * 100) / (variablen1 + variablen2 + variablen3 + variablen4).toFixed(2);
+                percentage_n = ((variablen2 + variablen3) * 100) / (variablen1 + variablen2 + variablen3 + variablen4).toFixed(2);
                 return percentage_n;
 
             }
@@ -1353,11 +1153,12 @@
 
 
         function Main_Workers() {
+
             worker_keys = ["Percentage of Total Workforce", "Percentage of Labour Force", "Regular Workers by Industry", "Changes since 2001"];
 
 
 
-            d3.select('#workerkeys')
+            d3.select('#datagroups')
                 .selectAll("path")
                 .data(worker_keys)
                 .enter()
@@ -1381,6 +1182,7 @@
                 d3.selectAll(".dataButtons").remove()
                 d3.selectAll(".categoryButtons").remove()
                 d3.selectAll(".industryButtons").remove()
+                d3.selectAll(".ageButtons").remove()
                 d3.selectAll(".annotation-group").remove();
                 d3.selectAll(".legendQuant").remove()
 
@@ -1393,10 +1195,10 @@
                         return (d.Age_Group == "Total" && d.Rural_or_Urban == "Total")
                     });
 
-                    Calculator(newData);
+                    Calculator(newData, "Main");
 
 
-                    worker_keys = ["5-14 years", "15-34 years", "35-59 years", "Above 60 years"];
+                    worker_keys = ["15-59 years", "25-59 years"];
                     d3.select('#dataparameters')
                         .selectAll("path")
                         .data(worker_keys)
@@ -1412,44 +1214,25 @@
                     function parameterClick(datapoint) {
                         d3.selectAll(".dataButtons").style("background", "transparent")
                         d3.select(this).style("background", backgroundColour)
-                        if (datapoint == "5-14 years") {
+                        if (datapoint == "15-59 years") {
                             newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "5-9" || d.Age_Group == "10-14") && d.Rural_or_Urban == "Total")
+                                return ((d.Age_Group == "15-19" || d.Age_Group == "20-24" || d.Age_Group == "25-29" || d.Age_Group == "30-34" || d.Age_Group == "35-40" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
                             });
 
 
-                            Calculator(newData);
+                            Calculator(newData, "Main");
 
                         }
 
-                        if (datapoint == "15-34 years") {
+                        if (datapoint == "25-59 years") {
                             newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "15-19" || d.Age_Group == "20-24" || d.Age_Group == "25-29" || d.Age_Group == "30-34") && d.Rural_or_Urban == "Total")
+                                return ((d.Age_Group == "25-29" || d.Age_Group == "30-34" || d.Age_Group == "35-40" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
                             });
 
-                            Calculator(newData);
+                            Calculator(newData, "Main");
 
                         }
 
-                        if (datapoint == "35-59 years") {
-                            newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "35-39" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
-                            });
-
-                            Calculator(newData);
-
-                        }
-
-                        if (datapoint == "Above 60 years") {
-                            newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "60-69" || d.Age_Group == "70-79" || d.Age_Group == "80+") && d.Rural_or_Urban == "Total")
-                            });
-
-
-
-                            Calculator(newData);
-
-                        }
                     }
 
                 }
@@ -1464,7 +1247,7 @@
                     Calculator11(newData);
 
 
-                    worker_keys = ["5-14 years", "15-34 years", "35-59 years", "Above 60 years"];
+                    worker_keys = ["15-59 years", "25-59 years"];
                     d3.select('#dataparameters')
                         .selectAll("path")
                         .data(worker_keys)
@@ -1480,9 +1263,9 @@
                     function parameterClick(datapoint) {
                         d3.selectAll(".dataButtons").style("background", "transparent")
                         d3.select(this).style("background", backgroundColour)
-                        if (datapoint == "5-14 years") {
+                        if (datapoint == "15-59 years") {
                             newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "5-9" || d.Age_Group == "10-14") && d.Rural_or_Urban == "Total")
+                                return ((d.Age_Group == "15-19" || d.Age_Group == "20-24" || d.Age_Group == "25-29" || d.Age_Group == "30-34" || d.Age_Group == "35-40" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
                             });
 
 
@@ -1490,30 +1273,10 @@
 
                         }
 
-                        if (datapoint == "15-34 years") {
+                        if (datapoint == "25-59 years") {
                             newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "15-19" || d.Age_Group == "20-24" || d.Age_Group == "25-29" || d.Age_Group == "30-34") && d.Rural_or_Urban == "Total")
+                                return ((d.Age_Group == "25-29" || d.Age_Group == "30-34" || d.Age_Group == "35-40" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
                             });
-
-                            Calculator11(newData);
-
-                        }
-
-                        if (datapoint == "35-59 years") {
-                            newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "35-39" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
-                            });
-
-                            Calculator11(newData);
-
-                        }
-
-                        if (datapoint == "Above 60 years") {
-                            newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "60-69" || d.Age_Group == "70-79" || d.Age_Group == "80+") && d.Rural_or_Urban == "Total")
-                            });
-
-
 
                             Calculator11(newData);
 
@@ -1527,7 +1290,54 @@
 
                     d3.select("#notes").text("For districts whose boundaries have been changed since 2001, we have made the following assumptions. For districts with one parent, the comparisons are made for both the old and new district against the 2001 district. For districts with multiple parents, the smallest cohesive common boundary was considered.")
 
-                    d3.csv("B4_complete_aggregate.csv", function(error, Data) {
+                    age_keys = ["Total",
+                        "15-59 years",
+                        "25-59 years"
+                    ];
+
+                    d3.select('#ageviews')
+                        .selectAll("path")
+                        .data(age_keys)
+                        .enter()
+                        .append("button")
+                        .on("click", fileChoice)
+                        .attr("id", d => d)
+                        .attr("class", "ageButtons")
+                        .html(function(d) {
+                            return d;
+                        })
+
+                    var file;
+
+                    function fileChoice(datapoint) {
+                        if (datapoint == "Total") {
+                            file = "B4_complete_aggregate.csv"
+                            ageFUNCTION(file);
+
+                        }
+                        if (datapoint == "15-59 years") {
+                            file = "B4_complete_aggregate_15.csv"
+                            ageFUNCTION(file);
+
+                        }
+                        if (datapoint == "25-59 years") {
+                            file = "B4_complete_aggregate_25.csv"
+                            ageFUNCTION(file);
+
+                        }
+                    }
+
+
+
+                    function ageFUNCTION(file) {
+
+                        d3.selectAll(".dataButtons").remove()
+                        d3.selectAll(".categoryButtons").remove()
+                        d3.selectAll(".industryButtons").remove()
+
+
+
+                    d3.csv(file, function(error, Data) {
 
 
 
@@ -1556,54 +1366,54 @@
                             d3.select(this).style("background", backgroundColour)
                             if (datapoint == "Percentage Points change in Proportion of Regular Workers") {
 
-                                Calculator5(Data, "PPChangeinMain");
+                                Calculator5(Data, "PPChangeinMain", "Main");
 
                             }
 
                             if (datapoint == "Percentage Points change in Proportion of Regular Male Workers") {
 
-                                Calculator5(Data, "PPChangeinMainMale");
+                                Calculator5(Data, "PPChangeinMainMale", "Main");
 
                             }
                             if (datapoint == "Percentage Points change in Proportion of Regular Female Workers") {
 
-                                Calculator5(Data, "PPChangeinMainFemale");
+                                Calculator5(Data, "PPChangeinMainFemale", "Main");
 
                             }
                             if (datapoint == "Percentage change in Female participation") {
 
-                                Calculator5(Data, "PPChangeinFemaleParticipation");
+                                Calculator5(Data, "PPChangeinFemaleParticipation", "Main");
 
                             }
                             if (datapoint == "Percentage Points change in Agriculture") {
 
-                                Calculator5(Data, "PPChangeAgriculture");
+                                Calculator5(Data, "PPChangeAgriculture", "Main");
 
                             }
                             if (datapoint == "Percentage Points change in Manufacturing") {
 
-                                Calculator5(Data, "PPChangeinManufacturing");
+                                Calculator5(Data, "PPChangeinManufacturing", "Main");
 
                             }
                             if (datapoint == "Percentage Points change in Wholesale") {
 
-                                Calculator5(Data, "PPChangeinWholesale");
+                                Calculator5(Data, "PPChangeinWholesale", "Main");
 
                             }
                             if (datapoint == "Percentage Points change in Services") {
 
-                                Calculator5(Data, "PPChangeinServices");
+                                Calculator5(Data, "PPChangeinServices", "Main");
 
                             }
                             if (datapoint == "Percentage Points change in Construction") {
 
-                                Calculator5(Data, "PPChangeinConstruction");
+                                Calculator5(Data, "PPChangeinConstruction", "Main");
 
                             }
 
                             if (datapoint == "Percentage Point Change in Non Agricultural Work") {
 
-                                Calculator5(Data, "PPChangeinNonAgriculturalWork");
+                                Calculator5(Data, "PPChangeinNonAgriculturalWork", "Main");
 
                             }
 
@@ -1612,539 +1422,594 @@
                         }
 
 
-                    })
+                    })}
 
                 }
 
                 if (datapoint == "Regular Workers by Industry") {
                     d3.select("#notes").text("Agriculture includes Agriculture, Forestry and Fishing workers. Manufacturing includes Mining and Quarrying workers. While Wholesale and Retail Trade are also displayed separately, their numbers are included in the Services category too. Detailed Breakdown provides a granular look at these industries. Workers by Industry at a District Level is defined as Percentage of Workers in the industry to the Total number of workers in that district. Workers by Industry at a Total Level is defined as percentage of workers in that district to the total number of workers across the country. ")
 
-                    d3.csv("B4_complete_aggregate.csv", function(error, Data) {
+                    age_keys = ["Total",
+                        "15-59 years",
+                        "25-59 years"
+                    ];
+
+                    d3.select('#ageviews')
+                        .selectAll("path")
+                        .data(age_keys)
+                        .enter()
+                        .append("button")
+                        .on("click", fileChoice)
+                        .attr("id", d => d)
+                        .attr("class", "ageButtons")
+                        .html(function(d) {
+                            return d;
+                        })
+
+                    var file;
+
+                    function fileChoice(datapoint) {
+                        if (datapoint == "Total") {
+                            file = "B4_complete_aggregate.csv"
+                            ageFUNCTION(file);
+
+                        }
+                        if (datapoint == "15-59 years") {
+                            file = "B4_complete_aggregate_15.csv"
+                            ageFUNCTION(file);
+
+                        }
+                        if (datapoint == "25-59 years") {
+                            file = "B4_complete_aggregate_25.csv"
+                            ageFUNCTION(file);
+
+                        }
+                    }
 
 
-                        category_keys = ["Agriculture",
-                            "Manufacturing",
-                            "Wholesale and Retail Trade",
-                            "Construction",
-                            "Services", "Non-Agricultural Industries",
-                            "Detailed Breakdown (Industry wise)",
-                            "Biggest Employer"
-                        ];
 
-                        d3.select('#categoryparameters')
-                            .selectAll("path")
-                            .data(category_keys)
-                            .enter()
-                            .append("button")
-                            .on("click", categoryClick)
-                            .attr("id", d => d)
-                            .attr("class", "categoryButtons")
-                            .html(function(d) {
-                                return d;
-                            })
+                    function ageFUNCTION(file) {
 
-                        function categoryClick(datapoint) {
-                            d3.selectAll(".categoryButtons").style("background", "transparent")
-                            d3.select(this).style("background", backgroundColour)
+                        d3.selectAll(".dataButtons").remove()
+                        d3.selectAll(".categoryButtons").remove()
+                        d3.selectAll(".industryButtons").remove()
 
-                            if (datapoint == "Agriculture") {
-                                Calculator3(Data, "Agriculture2011");
 
-                            }
-                            if (datapoint == "Manufacturing") {
-                                Calculator3(Data, "Manufacturing2011");
+                        d3.csv(file, function(error, Data) {
 
-                            }
-                            if (datapoint == "Wholesale and Retail Trade") {
-                                Calculator3(Data, "WholesaleRetail2011");
 
-                            }
-                            if (datapoint == "Construction") {
-                                Calculator3(Data, "Construction2011");
 
-                            }
-                            if (datapoint == "Services") {
-                                Calculator3(Data, "Services2011");
+                            category_keys = ["Agriculture",
+                                "Manufacturing",
+                                "Wholesale and Retail Trade",
+                                "Construction",
+                                "Services", "Non-Agricultural Industries",
+                                "Detailed Breakdown (Industry wise)",
+                                "Biggest Employer"
+                            ];
 
-                            }
+                            d3.select('#industryviews')
+                                .selectAll("path")
+                                .data(category_keys)
+                                .enter()
+                                .append("button")
+                                .on("click", categoryClick)
+                                .attr("id", d => d)
+                                .attr("class", "categoryButtons")
+                                .html(function(d) {
+                                    return d;
+                                })
 
-                            if (datapoint == "Non-Agricultural Industries") {
-                                Calculator3(Data, "NonAgriculture2011");
-
-                            }
-
-                            if (datapoint == "Biggest Employer") {
-                                Calculator10(Data, "BiggestEmployer")
-                                d3.selectAll(".industryButtons").remove()
+                            function categoryClick(datapoint) {
+                                d3.selectAll(".categoryButtons").style("background", "transparent")
+                                d3.select(this).style("background", backgroundColour)
                                 d3.selectAll(".dataButtons").remove()
+                                d3.selectAll(".industryButtons").remove()
 
-                                data_keys = ["Biggest Employer of Men", "Biggest Employer of Women"]
 
-                                d3.select('#dataparameters')
-                                    .selectAll("path")
-                                    .data(data_keys)
-                                    .enter()
-                                    .append("button")
-                                    .on("click", Click)
-                                    .attr("id", d => d)
-                                    .attr("class", "dataButtons")
-                                    .html(function(d) {
-                                        return d;
-                                    })
 
-                                function Click(datapoint) {
-                                    if (datapoint == "Biggest Employer of Men") {
-                                        Calculator10(Data, "BiggestEmployerByMen")
-                                    }
+                                if (datapoint == "Agriculture") {
+                                    Calculator3(Data, "Agriculture2011", "Main");
 
-                                    if (datapoint == "Biggest Employer of Women") {
-                                        Calculator10(Data, "BiggestEmployerbyWomen")
-                                    }
+                                }
+                                if (datapoint == "Manufacturing") {
+                                    Calculator3(Data, "Manufacturing2011", "Main");
+
+                                }
+                                if (datapoint == "Wholesale and Retail Trade") {
+                                    Calculator3(Data, "WholesaleRetail2011", "Main");
+
+                                }
+                                if (datapoint == "Construction") {
+                                    Calculator3(Data, "Construction2011", "Main");
+
+                                }
+                                if (datapoint == "Services") {
+                                    Calculator3(Data, "Services2011", "Main");
+
                                 }
 
+                                if (datapoint == "Non-Agricultural Industries") {
+                                    Calculator3(Data, "NonAgriculture2011", "Main");
+
+                                }
+
+                                if (datapoint == "Biggest Employer") {
+                                    Calculator10(Data, "BiggestEmployer")
+                                    d3.selectAll(".industryButtons").remove()
+                                    d3.selectAll(".dataButtons").remove()
+                                    d3.selectAll(".ageButtons").remove()
 
 
-                            }
+                                    data_keys = ["Biggest Employer of Men", "Biggest Employer of Women"]
 
-                            if (datapoint == "Detailed Breakdown (Industry wise)") {
+                                    d3.select('#dataparameters')
+                                        .selectAll("path")
+                                        .data(data_keys)
+                                        .enter()
+                                        .append("button")
+                                        .on("click", Click)
+                                        .attr("id", d => d)
+                                        .attr("class", "dataButtons")
+                                        .html(function(d) {
+                                            return d;
+                                        })
 
-                                d3.selectAll(".dataButtons").remove()
-                                d3.selectAll(".annotation-group").remove();
+                                    function Click(datapoint) {
+                                        if (datapoint == "Biggest Employer of Men") {
+                                            Calculator10(Data, "BiggestEmployerByMen")
+                                        }
+
+                                        if (datapoint == "Biggest Employer of Women") {
+                                            Calculator10(Data, "BiggestEmployerbyWomen")
+                                        }
+                                    }
 
 
-                                industry_keys = ["Workers by Industry at a District Level", "Workers by Industry at a Total Level"];
 
+                                }
 
-                                d3.select('#industryparameters')
-                                    .selectAll("path")
-                                    .data(industry_keys)
-                                    .enter()
-                                    .append("button")
-                                    .on("click", industryClick)
-                                    .attr("id", d => d)
-                                    .attr("class", "industryButtons")
-                                    .html(function(d) {
-                                        return d;
-                                    })
+                                if (datapoint == "Detailed Breakdown (Industry wise)") {
 
-                                function industryClick(functiondatapoint) {
-                                    d3.selectAll(".industryButtons").style("background", "transparent")
-                                    d3.select(this).style("background", backgroundColour)
-
+                                    d3.selectAll(".ageButtons").remove()
                                     d3.selectAll(".dataButtons").remove()
                                     d3.selectAll(".annotation-group").remove();
 
 
-                                    d3.csv("mergedTotal_B4.csv", function(error, Data) {
+                                    industry_keys = ["Workers by Industry at a District Level", "Workers by Industry at a Total Level"];
 
-                                        worker_keys = ["Select an Industry", "Cultivators",
-                                            "Agricultural Labourers",
-                                            "Plantation, Livestock, Forestry",
-                                            "Mining and Quarrying",
-                                            "Manufacturing (Household)",
-                                            "Manufacturing (Non Household)",
-                                            "Electricity and Water Supply",
-                                            "Construction",
-                                            "Wholesale and Retail Trade (Household)",
-                                            "Wholesale and Retail Trade (Non Household)",
-                                            "Transportation", "Accomodation and Food Service",
-                                            "Information and Communication (Household)",
-                                            "Information and Communication (Non Household)",
-                                            "Financial and Insurance Activities, Real Estate, Professional Scientific Activities",
-                                            "Administrative and Support Services, Public Administration and Defense",
-                                            "Education, Human Health and Social Service Activities",
-                                            "Arts, Entertainment, Other Service Activities (Household)",
-                                            "Arts, Entertainment, Other Service Activities (Non Household)"
-                                        ];
 
-                                        var select = d3.select('#dataparameters')
-                                            .append('select')
-                                            .attr('class', 'dataButtons')
-                                            .on('change', parameterClick)
+                                    d3.select('#scaleparameters')
+                                        .selectAll("path")
+                                        .data(industry_keys)
+                                        .enter()
+                                        .append("button")
+                                        .on("click", industryClick)
+                                        .attr("id", d => d)
+                                        .attr("class", "industryButtons")
+                                        .html(function(d) {
+                                            return d;
+                                        })
 
-                                        var options = select
-                                            .selectAll('option')
-                                            .data(worker_keys).enter()
-                                            .append('option')
-                                            .text(function(d) {
-                                                return d;
-                                            });
+                                    function industryClick(functiondatapoint) {
+                                        d3.selectAll(".industryButtons").style("background", "transparent")
+                                        d3.select(this).style("background", backgroundColour)
 
-                                        function parameterClick() {
+                                        d3.selectAll(".dataButtons").remove()
+                                        d3.selectAll(".annotation-group").remove();
 
-                                            datapoint = d3.select(this).property('value');
 
-                                            if (datapoint == "Cultivators") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                        d3.csv("mergedTotal_B4.csv", function(error, Data) {
+
+                                            worker_keys = ["Select an Industry", "Cultivators",
+                                                "Agricultural Labourers",
+                                                "Plantation, Livestock, Forestry",
+                                                "Mining and Quarrying",
+                                                "Manufacturing (Household)",
+                                                "Manufacturing (Non Household)",
+                                                "Electricity and Water Supply",
+                                                "Construction",
+                                                "Wholesale and Retail Trade (Household)",
+                                                "Wholesale and Retail Trade (Non Household)",
+                                                "Transportation", "Accomodation and Food Service",
+                                                "Information and Communication (Household)",
+                                                "Information and Communication (Non Household)",
+                                                "Financial and Insurance Activities, Real Estate, Professional Scientific Activities",
+                                                "Administrative and Support Services, Public Administration and Defense",
+                                                "Education, Human Health and Social Service Activities",
+                                                "Arts, Entertainment, Other Service Activities (Household)",
+                                                "Arts, Entertainment, Other Service Activities (Non Household)"
+                                            ];
+
+                                            var select = d3.select('#dataparameters')
+                                                .append('select')
+                                                .attr('class', 'dataButtons')
+                                                .on('change', parameterClick)
+
+                                            var options = select
+                                                .selectAll('option')
+                                                .data(worker_keys).enter()
+                                                .append('option')
+                                                .text(function(d) {
+                                                    return d;
                                                 });
 
-                                                variable = "Total_Cultivators"
-                                                total = Data[26880][variable]
+                                            function parameterClick() {
+
+                                                datapoint = d3.select(this).property('value');
+
+                                                if (datapoint == "Cultivators") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_Cultivators"
+                                                    total = Data[26880][variable]
 
 
 
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+
                                                 }
 
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
+                                                if (datapoint == "Agricultural Labourers") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+
+
+
+                                                    variable = "Total_Labourers"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+
                                                 }
 
+                                                if (datapoint == "Plantation, Livestock, Forestry") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_Forestry"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+                                                }
+
+                                                if (datapoint == "Mining and Quarrying") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_B"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+                                                }
+
+                                                if (datapoint == "Manufacturing (Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_C_HHI"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+                                                }
+
+                                                if (datapoint == "Manufacturing (Non Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_C_NonHHI"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+                                                }
+
+                                                if (datapoint == "Electricity and Water Supply") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_DE"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Construction") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_F"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Wholesale and Retail Trade (Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_G_HHI"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Wholesale and Retail Trade (Non Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_G_NonHHI"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+                                                }
+
+                                                if (datapoint == "Transportation") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_H"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Accomodation and Food Service") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_I"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Information and Communication (Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_J_HHI"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Information and Communication (Non Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_J_NonHHI"
+                                                    total = Data[26880][variable]
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+                                                }
+
+                                                if (datapoint == "Financial and Insurance Activities, Real Estate, Professional Scientific Activities") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_KM"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Administrative and Support Services, Public Administration and Defense") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_NO"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Education, Human Health and Social Service Activities") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_PQ"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Arts, Entertainment, Other Service Activities (Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_RU_HHI"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Arts, Entertainment, Other Service Activities (Non Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_RU_NonHHI"
+                                                    total = Data[26880][variable]
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
 
                                             }
 
-                                            if (datapoint == "Agricultural Labourers") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
+                                        })
 
 
-
-
-                                                variable = "Total_Labourers"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-
-                                            }
-
-                                            if (datapoint == "Plantation, Livestock, Forestry") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_Forestry"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-                                            }
-
-                                            if (datapoint == "Mining and Quarrying") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_B"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-                                            }
-
-                                            if (datapoint == "Manufacturing (Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_C_HHI"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-                                            }
-
-                                            if (datapoint == "Manufacturing (Non Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_C_NonHHI"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-                                            }
-
-                                            if (datapoint == "Electricity and Water Supply") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_DE"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Construction") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_F"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Wholesale and Retail Trade (Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_G_HHI"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Wholesale and Retail Trade (Non Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_G_NonHHI"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-                                            }
-
-                                            if (datapoint == "Transportation") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_H"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Accomodation and Food Service") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_I"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Information and Communication (Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_J_HHI"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Information and Communication (Non Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_J_NonHHI"
-                                                total = Data[26880][variable]
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-                                            }
-
-                                            if (datapoint == "Financial and Insurance Activities, Real Estate, Professional Scientific Activities") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_KM"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Administrative and Support Services, Public Administration and Defense") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_NO"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Education, Human Health and Social Service Activities") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_PQ"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Arts, Entertainment, Other Service Activities (Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_RU_HHI"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Arts, Entertainment, Other Service Activities (Non Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_RU_NonHHI"
-                                                total = Data[26880][variable]
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                        }
-
-                                    })
-
+                                    }
 
                                 }
 
                             }
 
-                        }
-
-                    })
+                        })
+                    }
 
                 }
 
@@ -2153,8 +2018,8 @@
         }
 
         function Marginal_Workers() {
-            worker_keys = ["Percentage of Total Workforce", "Percentage of Labour Force","Seasonal Workers by Industry", "Changes since 2001"];
-            d3.select('#workerkeys')
+            worker_keys = ["Percentage of Total Workforce", "Percentage of Labour Force", "Seasonal Workers by Industry", "Changes since 2001"];
+            d3.select('#datagroups')
                 .selectAll("path")
                 .data(worker_keys)
                 .enter()
@@ -2175,6 +2040,7 @@
                 d3.selectAll(".parameterButtons").style("background", "transparent")
                 d3.select(this).style("background", backgroundColour)
                 d3.selectAll(".dataButtons").remove()
+                d3.selectAll(".ageButtons").remove()
                 d3.selectAll(".categoryButtons").remove()
                 d3.selectAll(".industryButtons").remove()
                 d3.selectAll(".annotation-group").remove();
@@ -2188,10 +2054,10 @@
                         return (d.Age_Group == "Total" && d.Rural_or_Urban == "Total")
                     });
 
-                    Calculator7(newData);
+                    Calculator(newData, "Marginal");
 
 
-                    worker_keys = ["5-14 years", "15-34 years", "35-59 years", "Above 60 years"];
+                    worker_keys = ["15-59 years", "25-59 years"];
                     d3.select('#dataparameters')
                         .selectAll("path")
                         .data(worker_keys)
@@ -2213,43 +2079,33 @@
                             });
 
 
-                            Calculator7(newData);
+                            Calculator(newData, "Marginal");
 
                         }
 
-                        if (datapoint == "15-34 years") {
+                        if (datapoint == "15-59 years") {
                             newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "15-19" || d.Age_Group == "20-24" || d.Age_Group == "25-29" || d.Age_Group == "30-34") && d.Rural_or_Urban == "Total")
+                                return ((d.Age_Group == "15-19" || d.Age_Group == "20-24" || d.Age_Group == "25-29" || d.Age_Group == "30-34" || d.Age_Group == "35-40" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
                             });
 
-                            Calculator7(newData);
+                            Calculator(newData, "Marginal");
 
                         }
 
-                        if (datapoint == "35-59 years") {
+                        if (datapoint == "25-59 years") {
                             newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "35-39" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
+                                return ((d.Age_Group == "25-29" || d.Age_Group == "30-34" || d.Age_Group == "35-40" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
                             });
 
-                            Calculator7(newData);
+                            Calculator(newData, "Marginal");
 
                         }
 
-                        if (datapoint == "Above 60 years") {
-                            newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "60-69" || d.Age_Group == "70-79" || d.Age_Group == "80+") && d.Rural_or_Urban == "Total")
-                            });
-
-
-
-                            Calculator7(newData);
-
-                        }
                     }
 
                 }
 
-                 if (datapoint == "Percentage of Labour Force") {
+                if (datapoint == "Percentage of Labour Force") {
 
                     newData = Data.filter(function(d) {
                         return (d.Age_Group == "Total" && d.Rural_or_Urban == "Total")
@@ -2258,7 +2114,7 @@
                     Calculator12(newData);
 
 
-                    worker_keys = ["5-14 years", "15-34 years", "35-59 years", "Above 60 years"];
+                    worker_keys = ["15-59 years", "25-59 years"];
                     d3.select('#dataparameters')
                         .selectAll("path")
                         .data(worker_keys)
@@ -2274,9 +2130,9 @@
                     function parameterClick(datapoint) {
                         d3.selectAll(".dataButtons").style("background", "transparent")
                         d3.select(this).style("background", backgroundColour)
-                        if (datapoint == "5-14 years") {
+                        if (datapoint == "15-59 years") {
                             newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "5-9" || d.Age_Group == "10-14") && d.Rural_or_Urban == "Total")
+                                return ((d.Age_Group == "15-19" || d.Age_Group == "20-24" || d.Age_Group == "25-29" || d.Age_Group == "30-34" || d.Age_Group == "35-40" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
                             });
 
 
@@ -2284,34 +2140,15 @@
 
                         }
 
-                        if (datapoint == "15-34 years") {
+                        if (datapoint == "25-59 years") {
                             newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "15-19" || d.Age_Group == "20-24" || d.Age_Group == "25-29" || d.Age_Group == "30-34") && d.Rural_or_Urban == "Total")
+                                return ((d.Age_Group == "25-29" || d.Age_Group == "30-34" || d.Age_Group == "35-40" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
                             });
 
                             Calculator12(newData);
 
                         }
 
-                        if (datapoint == "35-59 years") {
-                            newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "35-39" || d.Age_Group == "40-49" || d.Age_Group == "50-59") && d.Rural_or_Urban == "Total")
-                            });
-
-                            Calculator12(newData);
-
-                        }
-
-                        if (datapoint == "Above 60 years") {
-                            newData = Data.filter(function(d) {
-                                return ((d.Age_Group == "60-69" || d.Age_Group == "70-79" || d.Age_Group == "80+") && d.Rural_or_Urban == "Total")
-                            });
-
-
-
-                            Calculator12(newData);
-
-                        }
                     }
 
                 }
@@ -2321,7 +2158,53 @@
 
                     d3.select("#notes").text("For districts whose boundaries have been changed since 2001, we have made the following assumptions. For districts with one parent, the comparisons are made for both the old and new district against the 2001 district. For districts with multiple parents, the smallest cohesive common boundary was considered.")
 
-                    d3.csv("B6_complete_aggregate.csv", function(error, Data) {
+                    age_keys = ["Total",
+                        "15-59 years",
+                        "25-59 years"
+                    ];
+
+                    d3.select('#ageviews')
+                        .selectAll("path")
+                        .data(age_keys)
+                        .enter()
+                        .append("button")
+                        .on("click", fileChoice)
+                        .attr("id", d => d)
+                        .attr("class", "ageButtons")
+                        .html(function(d) {
+                            return d;
+                        })
+
+                    var file;
+
+                    function fileChoice(datapoint) {
+                        if (datapoint == "Total") {
+                            file = "B6_complete_aggregate.csv"
+                            ageFUNCTION(file);
+
+                        }
+                        if (datapoint == "15-59 years") {
+                            file = "B6_complete_aggregate_15.csv"
+                            ageFUNCTION(file);
+
+                        }
+                        if (datapoint == "25-59 years") {
+                            file = "B6_complete_aggregate_25.csv"
+                            ageFUNCTION(file);
+
+                        }
+                    }
+
+
+
+                    function ageFUNCTION(file) {
+
+                        d3.selectAll(".dataButtons").remove()
+                        d3.selectAll(".categoryButtons").remove()
+                        d3.selectAll(".industryButtons").remove()
+
+
+                    d3.csv(file, function(error, Data) {
 
 
                         worker_keys = ["Percentage Points change in Proportion of Seasonal Workers", "Percentage Points change in Proportion of Seasonal Male Workers", "Percentage Points change in Proportion of Seasonal Female Workers",
@@ -2349,54 +2232,54 @@
                             d3.select(this).style("background", backgroundColour)
                             if (datapoint == "Percentage Points change in Proportion of Seasonal Workers") {
 
-                                Calculator9(Data, "PPChangeinMarginal");
+                                Calculator5(Data, "PPChangeinMarginal", "Marginal");
 
                             }
 
                             if (datapoint == "Percentage Points change in Proportion of Seasonal Male Workers") {
 
-                                Calculator9(Data, "PPChangeinMarginalMale");
+                                Calculator5(Data, "PPChangeinMarginalMale", "Marginal");
 
                             }
                             if (datapoint == "Percentage Points change in Proportion of Seasonal Female Workers") {
 
-                                Calculator9(Data, "PPChangeinMarginalFemale");
+                                Calculator5(Data, "PPChangeinMarginalFemale", "Marginal");
 
                             }
                             if (datapoint == "Percentage change in Female participation") {
 
-                                Calculator9(Data, "PPChangeinFemaleParticipation");
+                                Calculator5(Data, "PPChangeinFemaleParticipation", "Marginal");
 
                             }
                             if (datapoint == "Percentage Points change in Agriculture") {
 
-                                Calculator9(Data, "PPChangeAgriculture");
+                                Calculator5(Data, "PPChangeAgriculture", "Marginal");
 
                             }
                             if (datapoint == "Percentage Points change in Manufacturing") {
 
-                                Calculator9(Data, "PPChangeinManufacturing");
+                                Calculator5(Data, "PPChangeinManufacturing", "Marginal");
 
                             }
                             if (datapoint == "Percentage Points change in Wholesale") {
 
-                                Calculator9(Data, "PPChangeinWholesale");
+                                Calculator5(Data, "PPChangeinWholesale", "Marginal");
 
                             }
                             if (datapoint == "Percentage Points change in Services") {
 
-                                Calculator9(Data, "PPChangeinServices");
+                                Calculator5(Data, "PPChangeinServices", "Marginal");
 
                             }
                             if (datapoint == "Percentage Points change in Construction") {
 
-                                Calculator9(Data, "PPChangeinConstruction");
+                                Calculator5(Data, "PPChangeinConstruction", "Marginal");
 
                             }
 
                             if (datapoint == "Percentage Point Change in Non Agricultural Work") {
 
-                                Calculator9(Data, "PPChangeinNonAgriculturalWork");
+                                Calculator5(Data, "PPChangeinNonAgriculturalWork", "Marginal");
 
                             }
 
@@ -2405,538 +2288,586 @@
                         }
 
 
-                    })
+                    })}
 
                 }
 
                 if (datapoint == "Seasonal Workers by Industry") {
                     d3.select("#notes").text("Agriculture includes Agriculture, Forestry and Fishing workers. Manufacturing includes Mining and Quarrying workers. While Wholesale and Retail Trade are also displayed separately, their numbers are included in the Services category too. Detailed Breakdown provides a granular look at these industries. Workers by Industry at a District Level is defined as Percentage of Workers in the industry to the Total number of workers in that district. Workers by Industry at a Total Level is defined as percentage of workers in that district to the total number of workers across the country. ")
 
-                    d3.csv("B6_complete_aggregate.csv", function(error, Data) {
+                    age_keys = ["Total",
+                        "15-59 years",
+                        "25-59 years"
+                    ];
 
-                        category_keys = ["Agriculture",
-                            "Manufacturing",
-                            "Wholesale and Retail Trade",
-                            "Construction",
-                            "Services",
-                            "Non-Agricultural Industries",
-                            "Detailed Breakdown (Industry wise)",
-                            "Biggest Employer"
-                        ];
+                    d3.select('#ageviews')
+                        .selectAll("path")
+                        .data(age_keys)
+                        .enter()
+                        .append("button")
+                        .on("click", fileChoice)
+                        .attr("id", d => d)
+                        .attr("class", "ageButtons")
+                        .html(function(d) {
+                            return d;
+                        })
 
-                        d3.select('#categoryparameters')
-                            .selectAll("path")
-                            .data(category_keys)
-                            .enter()
-                            .append("button")
-                            .on("click", categoryClick)
-                            .attr("id", d => d)
-                            .attr("class", "categoryButtons")
-                            .html(function(d) {
-                                return d;
-                            })
+                    var file;
 
-                        function categoryClick(datapoint) {
-                            d3.selectAll(".categoryButtons").style("background", "transparent")
-                            d3.select(this).style("background", backgroundColour)
+                    function fileChoice(datapoint) {
+                        if (datapoint == "Total") {
+                            file = "B6_complete_aggregate.csv"
+                            ageFUNCTION(file);
 
-                            if (datapoint == "Agriculture") {
-                                Calculator8(Data, "Agriculture2011");
+                        }
+                        if (datapoint == "15-59 years") {
+                            file = "B6_complete_aggregate_15.csv"
+                            ageFUNCTION(file);
 
-                            }
-                            if (datapoint == "Manufacturing") {
-                                Calculator8(Data, "Manufacturing2011");
+                        }
+                        if (datapoint == "25-59 years") {
+                            file = "B6_complete_aggregate_25.csv"
+                            ageFUNCTION(file);
 
-                            }
-                            if (datapoint == "Wholesale and Retail Trade") {
-                                Calculator8(Data, "WholesaleRetail2011");
+                        }
+                    }
 
-                            }
-                            if (datapoint == "Construction") {
-                                Calculator8(Data, "Construction2011");
 
-                            }
-                            if (datapoint == "Services") {
-                                Calculator8(Data, "Services2011");
 
-                            }
+                    function ageFUNCTION(file) {
 
-                            if (datapoint == "Non-Agricultural Industries") {
-                                Calculator8(Data, "NonAgriculture2011");
+                        d3.selectAll(".dataButtons").remove()
+                        d3.selectAll(".categoryButtons").remove()
+                        d3.selectAll(".industryButtons").remove()
 
-                            }
 
-                            if (datapoint == "Biggest Employer") {
-                                Calculator10(Data, "BiggestEmployer")
-                                d3.selectAll(".industryButtons").remove()
-                                d3.selectAll(".dataButtons").remove()
+                        d3.csv("B6_complete_aggregate.csv", function(error, Data) {
 
-                                data_keys = ["Biggest Employer of Men", "Biggest Employer of Women"]
-                                d3.select('#dataparameters')
-                                    .selectAll("path")
-                                    .data(data_keys)
-                                    .enter()
-                                    .append("button")
-                                    .on("click", Click)
-                                    .attr("id", d => d)
-                                    .attr("class", "industryButtons")
-                                    .html(function(d) {
-                                        return d;
-                                    })
+                            category_keys = ["Agriculture",
+                                "Manufacturing",
+                                "Wholesale and Retail Trade",
+                                "Construction",
+                                "Services",
+                                "Non-Agricultural Industries",
+                                "Detailed Breakdown (Industry wise)",
+                                "Biggest Employer"
+                            ];
 
-                                function Click(datapoint) {
-                                    if (datapoint == "Biggest Employer of Men") {
-                                        Calculator10(Data, "BiggestEmployerByMen")
-                                    }
+                            d3.select('#industryviews')
+                                .selectAll("path")
+                                .data(category_keys)
+                                .enter()
+                                .append("button")
+                                .on("click", categoryClick)
+                                .attr("id", d => d)
+                                .attr("class", "categoryButtons")
+                                .html(function(d) {
+                                    return d;
+                                })
 
-                                    if (datapoint == "Biggest Employer of Women") {
-                                        Calculator10(Data, "BiggestEmployerbyWomen")
-                                    }
+                            function categoryClick(datapoint) {
+                                d3.selectAll(".categoryButtons").style("background", "transparent")
+                                d3.select(this).style("background", backgroundColour)
+
+                                if (datapoint == "Agriculture") {
+                                    Calculator3(Data, "Agriculture2011", "Marginal");
+
+                                }
+                                if (datapoint == "Manufacturing") {
+                                    Calculator3(Data, "Manufacturing2011", "Marginal");
+
+                                }
+                                if (datapoint == "Wholesale and Retail Trade") {
+                                    Calculator3(Data, "WholesaleRetail2011", "Marginal");
+
+                                }
+                                if (datapoint == "Construction") {
+                                    Calculator3(Data, "Construction2011", "Marginal");
+
+                                }
+                                if (datapoint == "Services") {
+                                    Calculator3(Data, "Services2011", "Marginal");
+
                                 }
 
+                                if (datapoint == "Non-Agricultural Industries") {
+                                    Calculator3(Data, "NonAgriculture2011", "Marginal");
+
+                                }
+
+                                if (datapoint == "Biggest Employer") {
+                                    Calculator10(Data, "BiggestEmployer")
+                                    d3.selectAll(".industryButtons").remove()
+                                    d3.selectAll(".dataButtons").remove()
+
+                                    data_keys = ["Biggest Employer of Men", "Biggest Employer of Women"]
+                                    d3.select('#dataparameters')
+                                        .selectAll("path")
+                                        .data(data_keys)
+                                        .enter()
+                                        .append("button")
+                                        .on("click", Click)
+                                        .attr("id", d => d)
+                                        .attr("class", "industryButtons")
+                                        .html(function(d) {
+                                            return d;
+                                        })
+
+                                    function Click(datapoint) {
+                                        if (datapoint == "Biggest Employer of Men") {
+                                            Calculator10(Data, "BiggestEmployerByMen")
+                                        }
+
+                                        if (datapoint == "Biggest Employer of Women") {
+                                            Calculator10(Data, "BiggestEmployerbyWomen")
+                                        }
+                                    }
 
 
-                            }
 
-                            if (datapoint == "Detailed Breakdown (Industry wise)") {
+                                }
 
-                                d3.selectAll(".dataButtons").remove()
-                                d3.selectAll(".annotation-group").remove();
-
-
-                                industry_keys = ["Workers by Industry at a District Level", "Workers by Industry at a Total Level"];
-
-
-                                d3.select('#industryparameters')
-                                    .selectAll("path")
-                                    .data(industry_keys)
-                                    .enter()
-                                    .append("button")
-                                    .on("click", industryClick)
-                                    .attr("id", d => d)
-                                    .attr("class", "industryButtons")
-                                    .html(function(d) {
-                                        return d;
-                                    })
-
-                                function industryClick(functiondatapoint) {
-                                    d3.selectAll(".industryButtons").style("background", "transparent")
-                                    d3.select(this).style("background", backgroundColour)
+                                if (datapoint == "Detailed Breakdown (Industry wise)") {
 
                                     d3.selectAll(".dataButtons").remove()
                                     d3.selectAll(".annotation-group").remove();
 
 
-                                    d3.csv("mergedTotal_B6.csv", function(error, Data) {
+                                    industry_keys = ["Workers by Industry at a District Level", "Workers by Industry at a Total Level"];
 
-                                        worker_keys = ["Select an Industry", "Cultivators",
-                                            "Agricultural Labourers",
-                                            "Plantation, Livestock, Forestry",
-                                            "Mining and Quarrying",
-                                            "Manufacturing (Household)",
-                                            "Manufacturing (Non Household)",
-                                            "Electricity and Water Supply",
-                                            "Construction",
-                                            "Wholesale and Retail Trade (Household)",
-                                            "Wholesale and Retail Trade (Non Household)",
-                                            "Transportation", "Accomodation and Food Service",
-                                            "Information and Communication (Household)",
-                                            "Information and Communication (Non Household)",
-                                            "Financial and Insurance Activities, Real Estate, Professional Scientific Activities",
-                                            "Administrative and Support Services, Public Administration and Defense",
-                                            "Education, Human Health and Social Service Activities",
-                                            "Arts, Entertainment, Other Service Activities (Household)",
-                                            "Arts, Entertainment, Other Service Activities (Non Household)"
-                                        ];
 
-                                        var select = d3.select('#dataparameters')
-                                            .append('select')
-                                            .attr('class', 'dataButtons')
-                                            .on('change', parameterClick)
+                                    d3.select('#scaleparameters')
+                                        .selectAll("path")
+                                        .data(industry_keys)
+                                        .enter()
+                                        .append("button")
+                                        .on("click", industryClick)
+                                        .attr("id", d => d)
+                                        .attr("class", "industryButtons")
+                                        .html(function(d) {
+                                            return d;
+                                        })
 
-                                        var options = select
-                                            .selectAll('option')
-                                            .data(worker_keys).enter()
-                                            .append('option')
-                                            .text(function(d) {
-                                                return d;
-                                            });
+                                    function industryClick(functiondatapoint) {
+                                        d3.selectAll(".industryButtons").style("background", "transparent")
+                                        d3.select(this).style("background", backgroundColour)
 
-                                        function parameterClick() {
+                                        d3.selectAll(".dataButtons").remove()
+                                        d3.selectAll(".annotation-group").remove();
+                                        d3.selectAll(".industryButtons").remove();
 
-                                            datapoint = d3.select(this).property('value');
 
-                                            if (datapoint == "Cultivators") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                        d3.csv("mergedTotal_B6.csv", function(error, Data) {
+
+                                            worker_keys = ["Select an Industry", "Cultivators",
+                                                "Agricultural Labourers",
+                                                "Plantation, Livestock, Forestry",
+                                                "Mining and Quarrying",
+                                                "Manufacturing (Household)",
+                                                "Manufacturing (Non Household)",
+                                                "Electricity and Water Supply",
+                                                "Construction",
+                                                "Wholesale and Retail Trade (Household)",
+                                                "Wholesale and Retail Trade (Non Household)",
+                                                "Transportation", "Accomodation and Food Service",
+                                                "Information and Communication (Household)",
+                                                "Information and Communication (Non Household)",
+                                                "Financial and Insurance Activities, Real Estate, Professional Scientific Activities",
+                                                "Administrative and Support Services, Public Administration and Defense",
+                                                "Education, Human Health and Social Service Activities",
+                                                "Arts, Entertainment, Other Service Activities (Household)",
+                                                "Arts, Entertainment, Other Service Activities (Non Household)"
+                                            ];
+
+                                            var select = d3.select('#dataparameters')
+                                                .append('select')
+                                                .attr('class', 'dataButtons')
+                                                .on('change', parameterClick)
+
+                                            var options = select
+                                                .selectAll('option')
+                                                .data(worker_keys).enter()
+                                                .append('option')
+                                                .text(function(d) {
+                                                    return d;
                                                 });
 
-                                                variable = "Total_Cultivators"
-                                                total = Data[26880][variable]
+                                            function parameterClick() {
+
+                                                datapoint = d3.select(this).property('value');
+
+                                                if (datapoint == "Cultivators") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_Cultivators"
+                                                    total = Data[26880][variable]
 
 
 
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+
                                                 }
 
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
+                                                if (datapoint == "Agricultural Labourers") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+
+
+
+                                                    variable = "Total_Labourers"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+
                                                 }
 
+                                                if (datapoint == "Plantation, Livestock, Forestry") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_Forestry"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+                                                }
+
+                                                if (datapoint == "Mining and Quarrying") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_B"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+                                                }
+
+                                                if (datapoint == "Manufacturing (Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_C_HHI"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+                                                }
+
+                                                if (datapoint == "Manufacturing (Non Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_C_NonHHI"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+                                                }
+
+                                                if (datapoint == "Electricity and Water Supply") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_DE"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Construction") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_F"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Wholesale and Retail Trade (Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_G_HHI"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Wholesale and Retail Trade (Non Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_G_NonHHI"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+                                                }
+
+                                                if (datapoint == "Transportation") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_H"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Accomodation and Food Service") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_I"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Information and Communication (Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_J_HHI"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Information and Communication (Non Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_J_NonHHI"
+                                                    total = Data[26880][variable]
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+                                                }
+
+                                                if (datapoint == "Financial and Insurance Activities, Real Estate, Professional Scientific Activities") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_KM"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Administrative and Support Services, Public Administration and Defense") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_NO"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Education, Human Health and Social Service Activities") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_PQ"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Arts, Entertainment, Other Service Activities (Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_RU_HHI"
+                                                    total = Data[26880][variable]
+
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
+
+                                                if (datapoint == "Arts, Entertainment, Other Service Activities (Non Household)") {
+                                                    newData = Data.filter(function(d) {
+                                                        return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
+                                                    });
+
+                                                    variable = "Total_RU_NonHHI"
+                                                    total = Data[26880][variable]
+
+                                                    if (functiondatapoint == "Workers by Industry at a Total Level") {
+                                                        Calculator4(newData, variable, total);
+                                                    }
+
+                                                    if (functiondatapoint == "Workers by Industry at a District Level") {
+                                                        Calculator6(newData, variable);
+                                                    }
+
+                                                }
 
                                             }
 
-                                            if (datapoint == "Agricultural Labourers") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
+                                        })
 
 
-
-
-                                                variable = "Total_Labourers"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-
-                                            }
-
-                                            if (datapoint == "Plantation, Livestock, Forestry") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_Forestry"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-                                            }
-
-                                            if (datapoint == "Mining and Quarrying") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_B"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-                                            }
-
-                                            if (datapoint == "Manufacturing (Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_C_HHI"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-                                            }
-
-                                            if (datapoint == "Manufacturing (Non Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_C_NonHHI"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-                                            }
-
-                                            if (datapoint == "Electricity and Water Supply") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_DE"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Construction") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_F"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Wholesale and Retail Trade (Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_G_HHI"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Wholesale and Retail Trade (Non Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_G_NonHHI"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-                                            }
-
-                                            if (datapoint == "Transportation") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_H"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Accomodation and Food Service") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_I"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Information and Communication (Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_J_HHI"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Information and Communication (Non Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_J_NonHHI"
-                                                total = Data[26880][variable]
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-                                            }
-
-                                            if (datapoint == "Financial and Insurance Activities, Real Estate, Professional Scientific Activities") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_KM"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Administrative and Support Services, Public Administration and Defense") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_NO"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Education, Human Health and Social Service Activities") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_PQ"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Arts, Entertainment, Other Service Activities (Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_RU_HHI"
-                                                total = Data[26880][variable]
-
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                            if (datapoint == "Arts, Entertainment, Other Service Activities (Non Household)") {
-                                                newData = Data.filter(function(d) {
-                                                    return ((d.Age == "Total" && d.Rural_or_Urban == "Total"));
-                                                });
-
-                                                variable = "Total_RU_NonHHI"
-                                                total = Data[26880][variable]
-
-                                                if (functiondatapoint == "Workers by Industry at a Total Level") {
-                                                    Calculator4(newData, variable, total);
-                                                }
-
-                                                if (functiondatapoint == "Workers by Industry at a District Level") {
-                                                    Calculator6(newData, variable);
-                                                }
-
-                                            }
-
-                                        }
-
-                                    })
-
+                                    }
 
                                 }
 
                             }
 
-                        }
-
-                    })
+                        })
+                    }
 
                 }
 
