@@ -270,7 +270,7 @@
         .await(ready);
 
 
-    function ready(error, india, FinalData, indiaState, B415, B425, B615, B625,B4B615,B4B625) {
+    function ready(error, india, FinalData, indiaState, B415, B425, B615, B625, B4B615, B4B625) {
 
         if (error) throw error;
 
@@ -300,7 +300,7 @@
             .style("stroke-width", '2px')
             .style("opacity", 0.85)
 
-        const filterKeys = ["ALL WORKERS", "REGULAR WORKERS", "SEASONAL WORKERS" ]
+        const filterKeys = ["ALL WORKERS", "REGULAR WORKERS", "SEASONAL WORKERS"]
 
         backgroundColour = "#F7941D"
 
@@ -367,11 +367,15 @@
             })
 
             allDistricts.on("mousemove", function(d) {
-                tooltip
-                    .style("left", d3.event.pageX - 50 + "px")
-                    .style("top", d3.event.pageY - 70 + "px")
-                    .style("display", "inline-block")
-                    .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode].toFixed(2));
+                if (d.properties.DISTRICT != "Data Not Available") {
+                    tooltip
+                        .style("left", d3.event.pageX - 50 + "px")
+                        .style("top", d3.event.pageY - 70 + "px")
+                        .style("display", "inline-block")
+                        .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode].toFixed(2));
+
+                }
+
             })
 
             allDistricts.on("mouseout", function(d) {
@@ -815,10 +819,12 @@
             var top10list = []
 
 
+
             var count = 0
             while (count < 10) {
                 id = sorted[count][0]
-                district_name = districtName[id - 1]
+                console.log(id)
+                district_name = districtName[id].substring(11)
                 district_percentage = sorted[count][1].toFixed(2)
                 top10list.push([district_name, district_percentage])
                 d3.select("#b" + sorted[count][0]).transition().duration(1000).style("fill", "#7F4C94");
@@ -1317,7 +1323,6 @@
         function MainLargestEmployer(Data, sex) {
 
             d3.select("#notes").text("Farm consists of Cultivators, Agricultural Labourers and Forestry, Plantation etc category workers of the National Industrial Classification (2008). Manufacturing includes B and C (Household) and C (Non Household) categories. Trade is G (Household) and G (Non Household) according to the NIC. Construction is F. Services include DE, G(Household), G(Non Household), H, I, JM, NO, PQ and RU(Household) and RU (Non Household) ")
-
 
 
             if (sex == "All") {
@@ -4383,7 +4388,6 @@
                         return ((d.Age == "15-19" || d.Age == "20-24" || d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59"))
                     });
 
-                    MainLargestEmployer(newData, sex);
 
                     age_keys = ["15-59 years", "25-59 years", "Child workers (<15 years)", "Senior workers (>60 years)"];
 
@@ -4422,6 +4426,9 @@
                         datapoint = d3.select(this).property('value')
                         sex = datapoint
                     }
+
+                    MainLargestEmployer(newData, sex);
+
 
 
                     function parameterClick(datapoint) {
@@ -4605,10 +4612,6 @@
 
             }
 
-            if (initial === true) {
-                workerKeyClick(worker_keys[0])
-            }
-
         }
 
         function Marginal_Workers() {
@@ -4677,7 +4680,7 @@
 
                     function parameterClick(datapoint) {
                         datapoint = d3.select(this).property('value')
-            
+
                         if (datapoint == "Child workers (<15 years)") {
                             newData = FinalData.filter(function(d) {
                                 return ((d.Age == "5-9" || d.Age == "10-14"))
