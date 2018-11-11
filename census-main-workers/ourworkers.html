@@ -944,7 +944,7 @@
 
                     }
 
-                    if (kindofworker == "Total") {
+                    if (kindofworker == "All") {
 
                         variable2011 = +(Data[id_no - 1]['TotalWorkers2011'] * Data[id_no - 1][var2011])
 
@@ -1320,7 +1320,7 @@
 
 
 
-            if (sex == "Total") {
+            if (sex == "All") {
                 var districtDatabyDistrict = d3.nest()
                     .key(function(d) {
                         return +d.District_Code;
@@ -1646,7 +1646,7 @@
 
 
 
-            if (sex == "Total") {
+            if (sex == "All") {
                 var districtDatabyDistrict = d3.nest()
                     .key(function(d) {
                         return +d.District_Code;
@@ -1972,7 +1972,7 @@
 
 
 
-            if (sex == "Total") {
+            if (sex == "All") {
                 var districtDatabyDistrict = d3.nest()
                     .key(function(d) {
                         return +d.District_Code;
@@ -2339,7 +2339,7 @@
                     d.value['percentage'] = (((d.value['variable2']) + (d.value['variable3']) * 100) / d.value['total_workforce'])
 
                 }
-                if (kindofworker == "Total") {
+                if (kindofworker == "All") {
                     d.value['percentage'] = (((d.value['variable1']) + (d.value['variable2']) + (d.value['variable3'])) * 100 / d.value['total_workforce'])
 
                 }
@@ -2418,7 +2418,7 @@
                     percentage_n = ((variablen2 + variablen3) * 100) / (variablen1 + variablen2 + variablen3 + variablen4).toFixed(2);
 
                 }
-                if (kindofworker == "Total") {
+                if (kindofworker == "All") {
                     percentage_n = ((variablen1 = variablen2 + variablen3) * 100) / (variablen1 + variablen2 + variablen3 + variablen4).toFixed(2);
 
                 }
@@ -3671,7 +3671,8 @@
 
             city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
 
-            title = "% of All regular workers in " + domain + " industry"
+            title = "% of All workers in " + domain
+
 
 
             drawLegendandTooltip(colourScale, districtData, "yes", title);
@@ -3721,7 +3722,7 @@
                 if (kindofworker == "Seasonal") {
                     d.value['percentage'] = ((((d.value['variable2'] + (d.value['variable3'])) * 100) / d.value['variable4']))
                 }
-                if (kindofworker == "Total") {
+                if (kindofworker == "All") {
                     d.value['percentage'] = (d.value['variable1'] + d.value['variable2'] + d.value['variable3']) * 100 / d.value['variable4']
                 }
             })
@@ -3802,7 +3803,7 @@
                     percentage_n = ((variablen2 + variablen3) * 100) / (variablen4).toFixed(2);
                 }
 
-                if (kindofworker == "Total") {
+                if (kindofworker == "All") {
                     percentage_n = ((variablen1 + variablen2 + variablen3) * 100) / (variablen4).toFixed(2);
                 }
 
@@ -3887,8 +3888,7 @@
 
                     function parameterClick(datapoint) {
                         datapoint = d3.select(this).property('value')
-                        d3.selectAll(".dataButtons").style("background", "transparent")
-                        d3.select(this).style("background", backgroundColour)
+
 
                         if (datapoint == "Child workers (<15 years)") {
                             newData = FinalData.filter(function(d) {
@@ -3967,8 +3967,6 @@
 
                     function parameterClick(datapoint) {
                         datapoint = d3.select(this).property('value')
-                        d3.selectAll(".dataButtons").style("background", "transparent")
-                        d3.select(this).style("background", backgroundColour)
 
                         if (datapoint == "Child workers (<15 years)") {
                             newData = FinalData.filter(function(d) {
@@ -4045,7 +4043,6 @@
 
                     function parameterClick(datapoint) {
                         datapoint = d3.select(this).property('value')
-                        d3.selectAll(".dataButtons").style("background", "transparent")
 
                         if (datapoint == "Child workers (<15 years)") {
                             newData = FinalData.filter(function(d) {
@@ -4170,7 +4167,7 @@
                         var domain = domain
                         var dropdown = "dropdown1"
 
-                        if (domain == "Agriculture") {
+                        if (domain == "Farm") {
                             industry_keys = ["Cultivators", "Farm Labourers", "Plantation etc"]
                         }
                         if (domain == "Manufacturing") {
@@ -4372,9 +4369,6 @@
                     d3.select("#top10listheader").text("")
                     d3.selectAll(".item").remove()
 
-
-
-
                     d3.selectAll(".categoryButtons").style("background", "transparent")
                     d3.select(this).style("background", backgroundColour)
                     d3.selectAll(".dataButtons").remove()
@@ -4382,7 +4376,7 @@
                     d3.selectAll(".ageButtons").remove()
                     d3.selectAll(".sexButtons").remove()
 
-                    sex = "Total"
+                    sex = "All"
 
 
                     newData = FinalData.filter(function(d) {
@@ -4407,7 +4401,7 @@
                             return d;
                         });
 
-                    sex_keys = ["Total", "Male", "Female"]
+                    sex_keys = ["All", "Male", "Female"]
 
 
 
@@ -4432,8 +4426,6 @@
 
                     function parameterClick(datapoint) {
                         datapoint = d3.select(this).property('value')
-                        d3.selectAll(".dataButtons").style("background", "transparent")
-
                         if (datapoint == "Child workers (<15 years)") {
                             newData = FinalData.filter(function(d) {
                                 return ((d.Age == "5-9" || d.Age == "10-14"))
@@ -4489,7 +4481,7 @@
                     d3.select("#notes").text("For districts whose boundaries have been changed since 2001, we have made the following assumptions. For districts with one parent, the comparisons are made for both the old and new district against the 2001 district. For districts with multiple parents, the smallest cohesive common boundary was considered.")
 
                     worker_keys = ["Regular workers", "Regular Male Workers", "Regular Female Workers",
-                        "Agriculture",
+                        "Farm",
                         "Manufacturing",
                         "Construction",
                         "Trade",
@@ -4535,7 +4527,7 @@
 
                         }
 
-                        if (datapoint == "Agriculture") {
+                        if (datapoint == "Farm") {
 
                             variable = "PPChangeAgriculture"
 
@@ -4685,9 +4677,7 @@
 
                     function parameterClick(datapoint) {
                         datapoint = d3.select(this).property('value')
-                        d3.selectAll(".dataButtons").style("background", "transparent")
-                        d3.select(this).style("background", backgroundColour)
-
+            
                         if (datapoint == "Child workers (<15 years)") {
                             newData = FinalData.filter(function(d) {
                                 return ((d.Age == "5-9" || d.Age == "10-14"))
@@ -4765,8 +4755,6 @@
 
                     function parameterClick(datapoint) {
                         datapoint = d3.select(this).property('value')
-                        d3.selectAll(".dataButtons").style("background", "transparent")
-                        d3.select(this).style("background", backgroundColour)
 
                         if (datapoint == "Child workers (<15 years)") {
                             newData = FinalData.filter(function(d) {
@@ -4970,7 +4958,7 @@
                         var domain = domain
                         var dropdown = "dropdown1"
 
-                        if (domain == "Agriculture") {
+                        if (domain == "Farm") {
                             industry_keys = ["Cultivators", "Farm Labourers", "Plantation etc"]
                         }
                         if (domain == "Manufacturing") {
@@ -5182,7 +5170,7 @@
                     d3.selectAll(".ageButtons").remove()
                     d3.selectAll(".sexButtons").remove()
 
-                    sex = "Total"
+                    sex = "All"
 
 
                     newData = FinalData.filter(function(d) {
@@ -5207,7 +5195,7 @@
                             return d;
                         });
 
-                    sex_keys = ["Total", "Male", "Female"]
+                    sex_keys = ["All", "Male", "Female"]
 
 
 
@@ -5232,8 +5220,6 @@
 
                     function parameterClick(datapoint) {
                         datapoint = d3.select(this).property('value')
-                        d3.selectAll(".dataButtons").style("background", "transparent")
-
                         if (datapoint == "Child workers (<15 years)") {
                             newData = FinalData.filter(function(d) {
                                 return ((d.Age == "5-9" || d.Age == "10-14"))
@@ -5289,7 +5275,7 @@
                     d3.select("#notes").text("For districts whose boundaries have been changed since 2001, we have made the following assumptions. For districts with one parent, the comparisons are made for both the old and new district against the 2001 district. For districts with multiple parents, the smallest cohesive common boundary was considered.")
 
                     worker_keys = ["Seasonal workers", "Seasonal Male Workers", "Seasonal Female Workers",
-                        "Agriculture",
+                        "Farm",
                         "Manufacturing",
                         "Construction",
                         "Trade",
@@ -5335,7 +5321,7 @@
 
                         }
 
-                        if (datapoint == "Agriculture") {
+                        if (datapoint == "Farm") {
 
                             variable = "PPChangeAgriculture"
 
@@ -5460,7 +5446,7 @@
                         return ((d.Age == "15-19" || d.Age == "20-24" || d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59"))
                     });
 
-                    PercentofTotalPopulation(newData, "Total");
+                    PercentofTotalPopulation(newData, "All");
 
 
                     age_keys = ["15-59 years", "25-59 years", "Child workers (<15 years)", "Senior workers (>60 years)"];
@@ -5481,16 +5467,13 @@
 
                     function parameterClick(datapoint) {
                         datapoint = d3.select(this).property('value')
-                        d3.selectAll(".dataButtons").style("background", "transparent")
-                        d3.select(this).style("background", backgroundColour)
-
                         if (datapoint == "Child workers (<15 years)") {
                             newData = FinalData.filter(function(d) {
                                 return ((d.Age == "5-9" || d.Age == "10-14"))
                             });
 
 
-                            PercentofTotalPopulation(newData, "Total");
+                            PercentofTotalPopulation(newData, "All");
 
                         }
 
@@ -5500,7 +5483,7 @@
                             });
 
 
-                            PercentofTotalPopulation(newData, "Total");
+                            PercentofTotalPopulation(newData, "All");
 
                         }
 
@@ -5509,7 +5492,7 @@
                                 return ((d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59"))
                             });
 
-                            PercentofTotalPopulation(newData, "Total");
+                            PercentofTotalPopulation(newData, "All");
 
                         }
 
@@ -5519,7 +5502,7 @@
                             });
 
 
-                            PercentofTotalPopulation(newData, "Total");
+                            PercentofTotalPopulation(newData, "All");
 
                         }
 
@@ -5538,7 +5521,7 @@
                         return ((d.Age == "15-19" || d.Age == "20-24" || d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59"))
                     })
 
-                    PercentofLabourForce(newData, "Total");
+                    PercentofLabourForce(newData, "All");
 
 
                     age_keys = ["15-59 years", "25-59 years", "Child workers (<15 years)", "Senior workers (>60 years)"];
@@ -5567,7 +5550,7 @@
                             });
 
 
-                            PercentofLabourForce(newData, "Total");
+                            PercentofLabourForce(newData, "All");
 
                         }
 
@@ -5576,7 +5559,7 @@
                                 return ((d.Age == "15-19" || d.Age == "20-24" || d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59"))
                             });
 
-                            PercentofLabourForce(newData, "Total");
+                            PercentofLabourForce(newData, "All");
 
                         }
 
@@ -5585,7 +5568,7 @@
                                 return ((d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59"))
                             });
 
-                            PercentofLabourForce(newData, "Total");
+                            PercentofLabourForce(newData, "All");
 
                         }
 
@@ -5595,7 +5578,7 @@
                             });
 
 
-                            PercentofLabourForce(newData, "Total");
+                            PercentofLabourForce(newData, "All");
 
                         }
                     }
@@ -5684,11 +5667,11 @@
                         var domain = domain
                         var dropdown = "dropdown1"
 
-                        if (domain == "Agriculture") {
+                        if (domain == "Farm") {
                             industry_keys = ["Cultivators", "Farm Labourers", "Plantation etc"]
                         }
                         if (domain == "Manufacturing") {
-                            industry_keys = ["Mining", "Manufacturing (Household)", "Manufacturing (Non Household)"]
+                            industry_keys = ["Manufacturing (Household)", "Manufacturing (Non Household)"]
                         }
                         if (domain == "Trade") {
                             industry_keys = ["Trade(Household)", "Trade(Non Household)"]
@@ -5701,6 +5684,8 @@
                         }
 
                         if (domain == "Construction") {
+
+                            console.log("Whee")
                             d3.select("#industryheader").text("")
                             d3.select("#sexheader").text("")
                             d3.select("#ageheader").text("")
@@ -5897,7 +5882,7 @@
                     d3.selectAll(".ageButtons").remove()
                     d3.selectAll(".sexButtons").remove()
 
-                    sex = "Total"
+                    sex = "All"
 
 
                     newData = FinalData.filter(function(d) {
@@ -5922,7 +5907,7 @@
                             return d;
                         });
 
-                    sex_keys = ["Total", "Male", "Female"]
+                    sex_keys = ["All", "Male", "Female"]
 
 
 
@@ -6003,7 +5988,7 @@
 
                     d3.select("#notes").text("Because of a change in Industrial Classification categories between the 2001 and 2008 Census, Comparisions are appropriate at a macro-industry level. For districts whose boundaries have been changed since 2001, we have made the following assumptions. For districts with one parent, the comparisons are made for both the old and new district against the 2001 district. For districts with multiple parents, the smallest cohesive common boundary was considered.")
 
-                    worker_keys = ["Agriculture",
+                    worker_keys = ["Farm",
                         "Manufacturing",
                         "Construction",
                         "Trade",
@@ -6027,13 +6012,13 @@
                     var variable = "PPChangeAgriculture";
 
 
-                    ChangeSince2001(B4B615, variable, "Total")
+                    ChangeSince2001(B4B615, variable, "All")
 
                     function parameterClick(datapoint) {
                         d3.selectAll(".dataButtons").style("background", "transparent")
                         d3.select(this).style("background", backgroundColour)
 
-                        if (datapoint == "Agriculture") {
+                        if (datapoint == "Farm") {
 
                             variable = "PPChangeAgriculture"
 
@@ -6065,7 +6050,7 @@
 
                         }
 
-                        ChangeSince2001(B4B615, variable, "Total")
+                        ChangeSince2001(B4B615, variable, "All")
 
 
                     }
@@ -6098,10 +6083,10 @@
                         datapoint = d3.select(this).property('value')
 
                         if (datapoint == "15-59 years") {
-                            ChangeSince2001(B4B615, variable, "Total")
+                            ChangeSince2001(B4B615, variable, "All")
                         }
                         if (datapoint == "25-59 years") {
-                            ChangeSince2001(B4B625, variable, "Total")
+                            ChangeSince2001(B4B625, variable, "All")
                         }
 
                     }
