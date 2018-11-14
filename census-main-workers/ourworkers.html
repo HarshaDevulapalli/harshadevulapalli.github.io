@@ -509,7 +509,7 @@
 
         function PercentofTotalWorkers(Data, kindofworker) {
 
-            d3.select("#notes").text("Total Workforce is defined as the sum of all Regular and Seasonal workers.")
+            d3.select("#notes").text("Workforce is defined as the sum of all Regular and Seasonal workers.")
             d3.selectAll(".item").remove()
 
             variable1 = "Total_Workers_Main"
@@ -526,6 +526,7 @@
                         }),
                         district: d[0].District_Code,
                         district_name: d[0].Area_Name,
+                        state_name: d[0].State_Name,
                         variable2: d3.sum(d, function(e) {
                             return e[variable2];
                         }),
@@ -626,7 +627,7 @@
 
             city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
 
-            title = kindofworker + " workers as % of Total workers"
+            title = kindofworker + " workers as % of workers"
 
             drawLegendandTooltip(colourScale, districtData, "yes", title);
             Annotate(city_array);
@@ -848,6 +849,12 @@
                 var2011 = 'Agriculture2011'
             }
 
+            if (variable == "PPChangeinNonAgriculturalWork") {
+                var2001 = 'Agriculture2001'
+                var2011 = 'Agriculture2011'
+            }
+
+
             if (variable == "PPChangeinManufacturing") {
                 var2001 = 'Manufacturing2001'
                 var2011 = 'Manufacturing2011'
@@ -967,8 +974,13 @@
                 percentage1 = (variable1 / total2011)
                 percentage2 = (variable2 / total2001)
 
+                if(variable=="PPChangeinNonAgriculturalWork"){
+                    percentage1=100-percentage1
+                    percentage2=100-percentage2
+                }
 
                 percentage_n = percentage1 - percentage2
+
                 return percentage_n;
 
             }
@@ -3685,7 +3697,7 @@
 
         function PercentofTotalPopulation(Data, kindofworker) {
 
-            d3.select("#notes").text("Total Workforce is defined as the sum of all Regular and Seasonal workers. The above values are as proportion of population between those ages.")
+            d3.select("#notes").text("Workforce is defined as the sum of all Regular and Seasonal workers. The above values are as proportion of population between those ages.")
             d3.selectAll(".item").remove()
 
             variable1 = "Total_Workers_Main"
@@ -3815,7 +3827,7 @@
 
             city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
 
-            title = kindofworker + " workers as % of Total population"
+            title = kindofworker + " workers as % of population"
 
             drawLegendandTooltip(colourScale, districtData, "yes", title);
             Annotate(city_array);
@@ -3825,7 +3837,7 @@
 
         function Main_Workers() {
 
-            worker_keys = ["% of Total population", "% of Total workers", "% of Labour force", "Regular workers by industry", "Largest employer", "Change since 2001 (% pts)"];
+            worker_keys = ["% of population", "% of workers", "% of Labour force", "Regular workers by industry", "Largest employer", "Change since 2001 (% pts)"];
 
 
             d3.select('#datagroups')
@@ -3858,9 +3870,9 @@
                 d3.selectAll(".sexButtons").remove()
 
 
-                if (datapoint == "% of Total population") {
+                if (datapoint == "% of population") {
 
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#ageheader").text(" AGE ")
                     d3.select("#sexheader").text("")
                     d3.select("#industryheader").text("")
 
@@ -3937,9 +3949,9 @@
 
 
 
-                if (datapoint == "% of Total workers") {
+                if (datapoint == "% of workers") {
 
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#ageheader").text(" AGE ")
                     d3.select("#sexheader").text("")
                     d3.select("#industryheader").text("")
 
@@ -4015,7 +4027,7 @@
 
                 if (datapoint == "% of Labour force") {
 
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#ageheader").text(" AGE ")
                     d3.select("#sexheader").text("")
                     d3.select("#industryheader").text("")
 
@@ -4092,9 +4104,9 @@
 
                     d3.select("#notes").text("Agriculture includes Agriculture, Forestry and Fishing workers. Manufacturing includes Mining and Quarrying workers. While Wholesale and Retail Trade are also displayed separately, their numbers are included in the Services category too. Detailed Breakdown provides a granular look at these industries. Workers by Industry at a District Level is defined as Percentage of Workers in the industry to the Total number of workers in that district. Workers by Industry at a Total Level is defined as percentage of workers in that district to the total number of workers across the country. ")
 
-                    d3.select("#industryheader").text(" FILTER BY INDUSTRY ")
+                    d3.select("#industryheader").text(" SUB-CATEGORIES ")
                     d3.select("#sexheader").text("")
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#ageheader").text(" AGE ")
 
 
 
@@ -4203,6 +4215,7 @@
                             .text(function(d) {
                                 return d;
                             });
+
 
 
                         function industryClick() {
@@ -4365,8 +4378,8 @@
                 if (datapoint == "Largest employer") {
 
                     d3.select("#industryheader").text("")
-                    d3.select("#sexheader").text(" FILTER BY SEX ")
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#sexheader").text(" GENDER ")
+                    d3.select("#ageheader").text(" AGE ")
                     d3.select("#top10listheader").text("")
                     d3.selectAll(".item").remove()
 
@@ -4482,7 +4495,7 @@
 
                     d3.select("#industryheader").text("")
                     d3.select("#sexheader").text("")
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#ageheader").text(" AGE ")
 
                     d3.select("#notes").text("For districts whose boundaries have been changed since 2001, we have made the following assumptions. For districts with one parent, the comparisons are made for both the old and new district against the 2001 district. For districts with multiple parents, the smallest cohesive common boundary was considered.")
 
@@ -4615,7 +4628,7 @@
 
         function Marginal_Workers() {
 
-            worker_keys = ["% of Total population", "% of Total workers", "% of Labour force", "Seasonal workers by industry", "Largest employer", "Change since 2001 (% pts)"];
+            worker_keys = ["% of population", "% of workers", "% of Labour force", "Seasonal workers by industry", "Largest employer", "Change since 2001 (% pts)"];
 
 
             d3.select('#datagroups')
@@ -4648,9 +4661,9 @@
                 d3.selectAll(".sexButtons").remove()
 
 
-                if (datapoint == "% of Total population") {
+                if (datapoint == "% of population") {
 
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#ageheader").text(" AGE ")
                     d3.select("#sexheader").text("")
                     d3.select("#industryheader").text("")
 
@@ -4726,9 +4739,9 @@
 
 
 
-                if (datapoint == "% of Total workers") {
+                if (datapoint == "% of workers") {
 
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#ageheader").text(" AGE ")
                     d3.select("#sexheader").text("")
                     d3.select("#industryheader").text("")
 
@@ -4804,7 +4817,7 @@
 
                 if (datapoint == "% of Labour force") {
 
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#ageheader").text(" AGE ")
                     d3.select("#sexheader").text("")
                     d3.select("#industryheader").text("")
 
@@ -4882,9 +4895,9 @@
 
                     d3.select("#notes").text("Agriculture includes Agriculture, Forestry and Fishing workers. Manufacturing includes Mining and Quarrying workers. While Wholesale and Retail Trade are also displayed separately, their numbers are included in the Services category too. Detailed Breakdown provides a granular look at these industries. Workers by Industry at a District Level is defined as Percentage of Workers in the industry to the Total number of workers in that district. Workers by Industry at a Total Level is defined as percentage of workers in that district to the total number of workers across the country. ")
 
-                    d3.select("#industryheader").text(" FILTER BY INDUSTRY ")
+                    d3.select("#industryheader").text(" SUB-CATEGORIES ")
                     d3.select("#sexheader").text("")
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#ageheader").text(" AGE ")
 
 
 
@@ -5157,8 +5170,8 @@
                 if (datapoint == "Largest employer") {
 
                     d3.select("#industryheader").text("")
-                    d3.select("#sexheader").text(" FILTER BY SEX ")
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#sexheader").text(" GENDER ")
+                    d3.select("#ageheader").text(" AGE ")
                     d3.select("#top10listheader").text("")
                     d3.selectAll(".item").remove()
 
@@ -5272,7 +5285,7 @@
 
                     d3.select("#industryheader").text("")
                     d3.select("#sexheader").text("")
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#ageheader").text(" AGE ")
 
                     d3.select("#notes").text("For districts whose boundaries have been changed since 2001, we have made the following assumptions. For districts with one parent, the comparisons are made for both the old and new district against the 2001 district. For districts with multiple parents, the smallest cohesive common boundary was considered.")
 
@@ -5405,7 +5418,7 @@
 
         function Total_Workers(initial) {
 
-            worker_keys = ["% of Total population", "% of Labour force", "Total workers by industry", "Largest employer", "Change since 2001 (% pts)"];
+            worker_keys = ["% of population", "% of Labour force", "Workers by industry", "Largest employer", "Change since 2001 (% pts)"];
 
 
             d3.select('#datagroups')
@@ -5438,9 +5451,9 @@
                 d3.selectAll(".sexButtons").remove()
 
 
-                if (datapoint == "% of Total population") {
+                if (datapoint == "% of population") {
 
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#ageheader").text(" AGE ")
                     d3.select("#sexheader").text("")
                     d3.select("#industryheader").text("")
 
@@ -5515,7 +5528,7 @@
 
                 if (datapoint == "% of Labour force") {
 
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#ageheader").text(" AGE ")
                     d3.select("#sexheader").text("")
                     d3.select("#industryheader").text("")
 
@@ -5588,14 +5601,14 @@
                 }
 
 
-                if (datapoint == "Total workers by industry") {
+                if (datapoint == "Workers by industry") {
 
 
                     d3.select("#notes").text("Agriculture includes Agriculture, Forestry and Fishing workers. Manufacturing includes Mining and Quarrying workers. While Wholesale and Retail Trade are also displayed separately, their numbers are included in the Services category too. Detailed Breakdown provides a granular look at these industries. Workers by Industry at a District Level is defined as Percentage of Workers in the industry to the Total number of workers in that district. Workers by Industry at a Total Level is defined as percentage of workers in that district to the total number of workers across the country. ")
 
-                    d3.select("#industryheader").text(" FILTER BY INDUSTRY ")
+                    d3.select("#industryheader").text(" SUB-CATEGORIES ")
                     d3.select("#sexheader").text("")
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#ageheader").text(" AGE ")
 
 
 
@@ -5868,8 +5881,8 @@
                 if (datapoint == "Largest employer") {
 
                     d3.select("#industryheader").text("")
-                    d3.select("#sexheader").text(" FILTER BY SEX ")
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#sexheader").text(" GENDER ")
+                    d3.select("#ageheader").text(" AGE ")
                     d3.select("#top10listheader").text("")
                     d3.selectAll(".item").remove()
 
@@ -5985,7 +5998,7 @@
 
                     d3.select("#industryheader").text("")
                     d3.select("#sexheader").text("")
-                    d3.select("#ageheader").text(" FILTER BY AGE ")
+                    d3.select("#ageheader").text(" AGE ")
 
                     d3.select("#notes").text("Because of a change in Industrial Classification categories between the 2001 and 2008 Census, Comparisions are appropriate at a macro-industry level. For districts whose boundaries have been changed since 2001, we have made the following assumptions. For districts with one parent, the comparisons are made for both the old and new district against the 2001 district. For districts with multiple parents, the smallest cohesive common boundary was considered.")
 
