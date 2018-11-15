@@ -1,0 +1,1446 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://d3js.org/d3-queue.v2.min.js"></script>
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
+    <style>
+    body {
+        font-family: "Fira Sans Extra Condensed", sans-serif;
+    }
+
+    p,
+    ul {
+        font-weight: 600;
+        font-size: 1.25em;
+        margin: 10px;
+
+    }
+
+    li {
+        margin: 10px;
+
+    }
+
+
+    .button {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #EEE5DD;
+        margin: 10px;
+
+    }
+
+    /* Style the buttons inside the.button */
+    .button button {
+        font-family: "Fira Sans Extra Condensed", sans-serif;
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-weight: 600;
+        font-size: 1em;
+    }
+
+    /* Change background color of buttons on hover */
+    .button button:hover {
+        background-color: #ddd;
+    }
+
+    /* Create an active/current.buttonlink class */
+    .button button.active {
+        background-color: #ccc;
+    }
+
+    .toolTip {
+        position: absolute;
+        display: none;
+        min-width: 60px;
+        height: auto;
+        background: none repeat scroll 0 0 #ffffff;
+        border: 1.5px solid #000000;
+        padding: 10px;
+        text-align: center;
+        font-family: "Fira Sans Extra Condensed", sans-serif;
+        font-weight: 600;
+        font-size: 0.8em;
+    }
+
+    .article {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        padding: 1rem;
+        text-align: center;
+        transform: translate(-50%, -50%);
+    }
+
+    .left-panel {
+        width: 15%;
+    }
+
+    .right-panel {
+        float: left;
+        width: 85%;
+    }
+
+    #industryButtons_cont {
+        position: relative;
+        display: inline-block;
+        overflow: visible;
+        margin: 10px;
+    }
+
+    #industryButtons_cont .button {
+        margin: 0;
+    }
+
+    #detailedIndustryButtons button {
+        display: block;
+        float: none;
+        align-content: left;
+    }
+    #detailedIndustryButtons {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        max-width: max-content;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1;
+    }
+
+    #industryButtons_cont:hover #detailedIndustryButtons {
+        display: block;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="button" id="workerButtons"></div>
+    <div class="button" id="dataButtons"></div>
+    <div id="industryButtons_cont">
+        <div class="button" id="industryButtons"></div>
+        <div class="button" id="detailedIndustryButtons"></div>
+    </div>
+    <div class="left-panel">
+        <div class="button" id="genderButtons"></div>
+        <div class="button" id="ageButtons"></div>
+        <div class="button" id="denominatorButtons"></div>
+        <div>
+            <p id="top10listheader"></p>
+        </div>
+        <div id="top10list"></div>
+    </div>
+    <div class="right-panel">
+        <div id="canvas" align="center"></div>
+    </div>
+    <script>
+    var width = 800;
+    var height = 800;
+
+    var aspect = width / height,
+        chart = d3.select('#chart');
+
+
+    // Create SVG
+    var svg = d3.select("#canvas")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("align", "center");
+
+
+
+    var geoProjection = d3.geoMercator()
+        .scale(1200)
+        .center([83, 23])
+        .translate([width / 2, height / 2]);
+
+    var geoPath = d3.geoPath()
+        .projection(geoProjection);
+
+    var tooltip = d3.select("body").append("div").attr("class", "toolTip");
+
+    var Hyderabad = [536, 537]
+    var Bangalore = [572, 583]
+    var Chennai = [602, 603, 604]
+    var Kolkata = [336, 337, 338, 341, 342, 343]
+    var Mumbai = [517, 518, 519, 520, 521]
+    var Delhi = [74, 75, 77, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 104, 105, 133, 138, 139, 140, 141, 142]
+
+
+
+
+    d3.queue()
+        .defer(d3.csv, "total2011.csv")
+        .defer(d3.csv, "main2011.csv")
+        .defer(d3.csv, "marginal2011.csv")
+        .defer(d3.csv, "total2001.csv")
+        .defer(d3.csv, "main2001.csv")
+        .defer(d3.csv, "marginal2001.csv")
+        .defer(d3.json, "india_districts.json")
+        .defer(d3.json, "india.json")
+        .await(ready);
+
+    function ready(error, TotalData2011, MainData2011, MarginalData2011, TotalData2001, MainData2001, MarginalData2001, IndiaDistricts, IndiaStates) {
+
+        if (error) throw error;
+
+        var allStates = svg.append("g")
+            .selectAll("path")
+            .data(topojson.feature(IndiaStates, IndiaStates.objects.india).features)
+            .enter()
+            .append("path")
+            .attr("d", geoPath)
+            .style("stroke", "#000000")
+            .style("fill", "transparent")
+            .style("stroke-width", "1.5px")
+
+        var allDistricts = svg.append("g")
+            .attr("id", "allDistricts")
+            .selectAll("path")
+            .data(topojson.feature(IndiaDistricts, IndiaDistricts.objects.india_district).features)
+            .enter()
+            .append("path")
+            .attr("d", geoPath)
+            .attr("class", "district")
+            .attr("id", function(d) {
+                return ("b" + d.properties.censuscode)
+            })
+            .style("fill", "#f0f0f0")
+            .style("stroke", "transparent")
+            .style("stroke-width", '2px')
+            .style("opacity", 0.85)
+
+
+        backgroundColour = "#F7941D"
+
+        var workerChoice;
+        var dataChoice;
+        var industryChoice;
+        var genderChoice;
+        var ageChoice;
+        var denominatorChoice;
+        var detailedIndustryChoice;
+
+        var workerButtonChoice;
+        var dataButtonChoice;
+        var industryButtonChoice;
+        var genderButtonChoice;
+        var ageButtonChoice;
+        var denominatorButtonChoice;
+        var detailedIndustryButtonChoice;
+
+        workerButtonKeys = ["All workers", "Regular workers", "Seasonal workers"]
+
+        d3.select('#workerButtons')
+            .selectAll("path")
+            .data(workerButtonKeys)
+            .enter()
+            .append("button")
+            .on("click", workerButtonClick)
+            .attr("id", d => d)
+            .attr("class", "workerButtons")
+            .html(function(d) {
+                return d;
+            })
+
+        function workerButtonClick(datapoint) {
+
+            d3.selectAll(".workerButtons").style("background", "transparent")
+            d3.select(this).style("background", backgroundColour)
+            workerChoice = datapoint;
+            workerButtonChoice = true
+
+        }
+
+        dataButtonKeys = ["Workers by industry", "Largest employer", "Change since 2001"]
+
+        d3.select('#dataButtons')
+            .selectAll("path")
+            .data(dataButtonKeys)
+            .enter()
+            .append("button")
+            .on("click", dataButtonClick)
+            .attr("id", d => d)
+            .attr("class", "dataButtons")
+            .html(function(d) {
+                return d;
+            })
+
+        function dataButtonClick(datapoint) {
+            d3.selectAll(".dataButtons").style("background", "transparent")
+            d3.select(this).style("background", backgroundColour)
+            dataChoice = datapoint;
+            dataButtonChoice = true
+            dataaddon = dataChoice
+
+            if (datapoint == "Workers by industry") {
+
+                industryButtonKeys = ["Farm", "Manufacturing", "Construction", "Trade", "Services", "Non Farm"]
+
+                d3.select('#industryButtons')
+                    .selectAll("path")
+                    .data(industryButtonKeys)
+                    .enter()
+                    .append("button")
+                    .on("mouseover", function (d) {
+                        var rect = this.getBoundingClientRect();
+                        var rectParent = this.parentNode.getBoundingClientRect();
+                        d3.select('#detailedIndustryButtons')
+                            .style("left", function () {
+                                return rect.left - rectParent.left
+                            })
+                        industryButtonClick.call(this, d)
+                    })
+                    .attr("id", d => d)
+                    .attr("class", "industryButtons")
+                    .html(function(d) {
+                        return d;
+                    })
+
+                function industryButtonClick(datapoint) {
+                    d3.selectAll(".industryButtons").style("background", "transparent")
+                    d3.selectAll(".detailedIndustryButtons").remove();
+
+                    d3.select(this).style("background", backgroundColour)
+                    industryChoice = datapoint;
+                    industryButtonChoice = true
+                    if (datapoint == "Farm") {
+                        detailedIndustryButtonKeys = ["Cultivators", "Labourers", "Forestry"]
+                        industryaddon = ["Cultivators", "Labourers", "Forestry"]
+                    }
+                    if (datapoint == "Manufacturing") {
+                        detailedIndustryButtonKeys = ["Manufacturing (Household)", "Manufacturing (Non Household)"]
+                        industryaddon = ["C_HHI", "C_NonHHI"]
+                    }
+                    if (datapoint == "Trade") {
+                        detailedIndustryButtonKeys = ["Trade (Household)", "Trade (Non Household)"]
+                        industryaddon = ["G_HHI", "G_NonHHI"]
+                    }
+                    if (datapoint == "Services") {
+                        detailedIndustryButtonKeys = ["Utilities", "Trade (Household)", "Trade (Non Household)", "Transportation", "Hospitality", "IT (Household)", "IT (Non Household)", "Finance", "Administration and Defence", "Education and Health", "Other Services (Household)", "Other Services (Non Household)"]
+                        industryaddon = ["DE", "G_HHI", "G_NonHHI", "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
+                    }
+                    if (datapoint == "Non Farm") {
+                        detailedIndustryButtonKeys = ["Mining", "Manufacturing (Household)", "Manufacturing (Non Household)", "Utilities", "Trade (Household)", "Trade (Non Household)", "Transportation", "Hospitality", "IT (Household)", "IT (Non Household)", "Finance", "Administration and Defence", "Education and Health", "Other Services (Household)", "Other Services (Non Household)"]
+                        industryaddon = ["B", "C_HHI", "C_NonHHI", "DE", "G_HHI", "G_NonHHI", "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
+                    }
+
+
+
+                    d3.select('#detailedIndustryButtons')
+                        .selectAll("path")
+                        .data(detailedIndustryButtonKeys)
+                        .enter()
+                        .append("button")
+                        .on("click", detailedIndustryButtonClick)
+                        .attr("id", d => d)
+                        .attr("class", "detailedIndustryButtons")
+                        .html(function(d) {
+                            return d;
+                        })
+
+                    function detailedIndustryButtonClick(datapoint) {
+                        d3.selectAll(".detailedIndustryButtons").style("background", "transparent")
+                        d3.select(this).style("background", backgroundColour)
+                        detailedIndustryChoice = datapoint
+                        detailedIndustryButtonChoice = true
+
+                        if (detailedIndustryChoice == "Cultivators") {
+                            detailedindustryaddon = "Cultivators"
+                        }
+
+                        if (detailedIndustryChoice == "Labourers") {
+                            detailedindustryaddon = "Labourers"
+                        }
+
+                        if (detailedIndustryChoice == "Forestry") {
+                            detailedindustryaddon = "Forestry"
+                        }
+
+                        if (detailedIndustryChoice == "Mining") {
+                            detailedindustryaddon = "B"
+                        }
+
+                        if (detailedIndustryChoice == "Manufacturing (Household)") {
+                            detailedindustryaddon = "C_HHI"
+                        }
+
+                        if (detailedIndustryChoice == "Manufacturing (Non Household)") {
+                            detailedindustryaddon = "C_NonHHI"
+                        }
+
+                        if (detailedIndustryChoice == "Utilities") {
+                            detailedindustryaddon = "DE"
+                        }
+
+                        if (detailedIndustryChoice == "Construction") {
+                            detailedindustryaddon = "F"
+                        }
+
+                        if (detailedIndustryChoice == "Trade (Household)") {
+                            detailedindustryaddon = "G_HHI"
+                        }
+
+                        if (detailedIndustryChoice == "Trade (Non Household)") {
+                            detailedindustryaddon = "G_NonHHI"
+                        }
+
+
+
+                        if (detailedIndustryChoice == "Transportation") {
+                            detailedindustryaddon = "H"
+                        }
+
+                        if (detailedIndustryChoice == "Hospitality") {
+                            detailedindustryaddon = "I"
+                        }
+
+                        if (detailedIndustryChoice == "IT (Household)") {
+                            detailedindustryaddon = "J_HHI"
+                        }
+
+                        if (detailedIndustryChoice == "IT (Non Household)") {
+                            detailedindustryaddon = "J_NonHHI"
+                        }
+                        if (detailedIndustryChoice == "Finance") {
+                            detailedindustryaddon = "KM"
+                        }
+
+                        if (detailedIndustryChoice == "Administration and Defense") {
+                            detailedindustryaddon = "NO"
+                        }
+
+                        if (detailedIndustryChoice == "Education and Health") {
+                            detailedindustryaddon = "PQ"
+                        }
+
+                        if (detailedIndustryChoice == "Other Services (Household)") {
+                            detailedindustryaddon = "RU_HHI"
+                        }
+
+                        if (detailedIndustryChoice == "Other Services (Non Household)") {
+                            detailedindustryaddon = "RU_NonHHI"
+                        }
+
+                    }
+
+                }
+
+            }
+
+            if (datapoint == "Largest employer") {
+            	d3.select("#industryButtons").selectAll("button.industryButtons").remove()
+            	d3.selectAll("#denominatorButtons").remove()
+
+            }
+
+            if (datapoint == "Change since 2001") {
+
+                industryButtonKeys = ["Farm", "Manufacturing", "Construction", "Trade", "Services", "Non Farm"]
+
+                d3.select('#industryButtons')
+                    .selectAll("path")
+                    .data(industryButtonKeys)
+                    .enter()
+                    .append("button")
+                    .on("click", industryButtonClick)
+                    .attr("id", d => d)
+                    .attr("class", "industryButtons")
+                    .html(function(d) {
+                        return d;
+                    })
+
+                function industryButtonClick(datapoint) {
+                    d3.selectAll(".industryButtons").style("background", "transparent")
+                    d3.selectAll(".detailedIndustryButtons").remove();
+
+                    d3.select(this).style("background", backgroundColour)
+                    industryChoice = datapoint;
+                    industryButtonChoice = true
+                    industryaddon = datapoint;
+
+                }
+
+            }
+
+
+        }
+
+
+        genderButtonKeys = ["All", "Men", "Women"]
+
+        d3.select('#genderButtons')
+            .selectAll("path")
+            .data(genderButtonKeys)
+            .enter()
+            .append("button")
+            .on("click", genderButtonClick)
+            .attr("id", d => d)
+            .attr("class", "genderButtons")
+            .html(function(d) {
+                return d;
+            })
+
+
+        function genderButtonClick(datapoint) {
+            d3.selectAll(".genderButtons").style("background", "transparent")
+            d3.select(this).style("background", backgroundColour)
+            genderChoice = datapoint;
+            genderButtonChoice = true
+
+
+            if (genderChoice == "All") {
+                genderaddon = "Total_";
+            } else if (genderChoice == "Men") {
+                genderaddon = "Male_";
+            } else if (genderChoice == "Women") {
+                genderaddon = "Female_";
+            }
+
+        }
+
+
+        ageButtonKeys = ["5-14", "15-59", "25-59", "60+", "Total"]
+
+        d3.select('#ageButtons')
+            .selectAll("path")
+            .data(ageButtonKeys)
+            .enter()
+            .append("button")
+            .on("click", ageButtonClick)
+            .attr("id", d => d)
+            .attr("class", "ageButtons")
+            .html(function(d) {
+                return d;
+            })
+
+        function ageButtonClick(datapoint) {
+            d3.selectAll(".ageButtons").style("background", "transparent")
+            d3.select(this).style("background", backgroundColour)
+            ageChoice = datapoint;
+            ageButtonChoice = true
+        }
+
+
+        denominatorButtonKeys = ["Population", "Labour", "Workers"]
+
+        d3.select('#denominatorButtons')
+            .selectAll("path")
+            .data(denominatorButtonKeys)
+            .enter()
+            .append("button")
+            .on("click", denominatorButtonClick)
+            .attr("id", d => d)
+            .attr("class", "denominatorButtons")
+            .html(function(d) {
+                return d;
+            })
+
+        function denominatorButtonClick(datapoint) {
+            d3.selectAll(".denominatorButtons").style("background", "transparent")
+            d3.select(this).style("background", backgroundColour)
+            denominatorChoice = datapoint;
+            denominatorButtonChoice = true
+            if (denominatorChoice == "Population") {
+
+                denominatoraddon = "Total_Population"
+            }
+
+            if (denominatorChoice == "Workers") {
+
+                denominatoraddon = "Total_Workers"
+            }
+        }
+
+
+
+
+
+        var $vals = document.querySelectorAll(".button")
+        var numVals = $vals.length;
+
+        $vals.forEach(function(sel) {
+            sel.addEventListener("click", function(event) {
+                var vals = [];
+
+                if (dataChoice == "Workers by industry") {
+
+
+                    if (workerButtonChoice == true && dataButtonChoice == true && ageButtonChoice == true && denominatorButtonChoice == true && genderButtonChoice == true) {
+
+                        filteredData2011 = DataFilter(workerChoice, ageChoice)[0]
+                        filteredData2001 = DataFilter(workerChoice, ageChoice)[1]
+
+                        if (industryButtonChoice == true) {
+                            values = [filteredData2011, dataChoice, genderaddon, denominatoraddon, industryaddon, filteredData2001]
+
+                        }
+
+                        if (industryButtonChoice == true && detailedIndustryButtonChoice == true) {
+
+                            values = [filteredData2011, dataChoice, genderaddon, denominatoraddon, industryaddon, detailedindustryaddon, filteredData2001]
+
+                        }
+
+                        MapFunction(values)
+
+                    }
+                }
+
+                if (dataChoice == "Largest employer")
+
+                {
+
+
+                    if (workerButtonChoice == true && dataButtonChoice == true && ageButtonChoice == true && genderButtonChoice == true) {
+                        filteredData2011 = DataFilter(workerChoice, ageChoice)[0]
+                        values = [filteredData2011, dataChoice, genderaddon]
+                        MapFunction(values)
+                    }
+
+
+
+                }
+
+                if (dataChoice == "Change since 2001") {
+
+
+                    filteredData2011 = DataFilter(workerChoice, ageChoice)[0]
+                    filteredData2001 = DataFilter(workerChoice, ageChoice)[1]
+
+                    values = [filteredData2011, dataChoice, genderaddon, denominatoraddon, industryaddon, filteredData2001]
+                    MapFunction(values)
+                }
+
+
+
+
+
+
+            });
+        });
+
+
+        function DataFilter(workerChoice, ageChoice) {
+
+
+            if (workerChoice == "All workers") {
+                file2011 = TotalData2011
+                file2001 = TotalData2001
+            } else if (workerChoice == "Regular workers") {
+                file2011 = MainData2011
+                file2001 = MainData2001
+            } else {
+                file2011 = MarginalData2011
+                file2001 = MarginalData2001
+            }
+
+            if (ageChoice == "5-14") {
+
+                filteredData2011 = file2011.filter(function(d) {
+                    return ((d.Age == "5-9" || d.Age == "10-14") && (d.Rural_or_Urban == "Total"))
+                });
+
+                filteredData2001 = file2011.filter(function(d) {
+                    return ((d.Age == "5-9" || d.Age == "10-14") && (d.Rural_or_Urban == "Total"))
+                });
+
+            }
+
+            if (ageChoice == "15-59") {
+
+                filteredData2011 = file2011.filter(function(d) {
+                    return ((d.Age == "15-19" || d.Age == "20-24" || d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59") && (d.Rural_or_Urban == "Total"))
+                });
+
+                filteredData2001 = file2001.filter(function(d) {
+                    return ((d.Age == "15-19" || d.Age == "20-24" || d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59") && (d.Rural_or_Urban == "Total"))
+                });
+
+
+            }
+
+            if (ageChoice == "25-59") {
+
+                filteredData2011 = file2011.filter(function(d) {
+                    return ((d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59") && (d.Rural_or_Urban == "Total"))
+                });
+
+                filteredData2001 = file2001.filter(function(d) {
+                    return ((d.Age == "15-19" || d.Age == "20-24" || d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59") && (d.Rural_or_Urban == "Total"))
+                });
+
+
+            }
+
+            if (ageChoice == "60+") {
+
+                filteredData2011 = file2011.filter(function(d) {
+                    return ((d.Age == "60-69" || d.Age == "70-79" || d.Age == "80+") && (d.Rural_or_Urban == "Total"))
+                });
+
+                filteredData2001 = file2001.filter(function(d) {
+                    return ((d.Age == "15-19" || d.Age == "20-24" || d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59") && (d.Rural_or_Urban == "Total"))
+                });
+
+
+            }
+
+            if (ageChoice == "Total") {
+
+                filteredData2011 = file2011.filter(function(d) {
+                    return ((d.Age == "Total") && (d.Rural_or_Urban == "Total"))
+                });
+
+                filteredData2001 = file2001.filter(function(d) {
+                    return ((d.Age == "15-19" || d.Age == "20-24" || d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59") && (d.Rural_or_Urban == "Total"))
+                });
+
+
+            }
+
+            return [filteredData2011, filteredData2001];
+
+        }
+
+
+        function MapFunction(values) {
+
+            d3.selectAll(".item").remove()
+
+            if (dataChoice == "Workers by industry") {
+
+                if (values.length == 6) {
+                    WorkersByIndustryCategories(values)
+                }
+
+
+                if (values.length == 7) {
+                    WorkersByIndustry(values)
+                }
+
+            }
+
+            if (dataChoice == "Largest employer") {
+
+                LargestEmployer(values)
+            }
+
+            if (dataChoice == "Change since 2001") {
+
+                ChangeSince2001(values)
+            }
+
+        }
+
+
+        function ChangeSince2001(values) {
+
+            file2011 = values[0]
+            file2001 = values[5]
+            denominator = values[3]
+
+            industry = values[4]
+
+            if (industry == "Farm") {
+                variables2011_array = ["Cultivators", "Labourers", "Forestry"]
+                variables2001_array = ["Cultivators", "Labourers", "Plantation"]
+            }
+
+
+
+            var districtDatabyDistrict2011 = d3.nest()
+                .key(function(d) {
+                    return +d.District_Code;
+                })
+                .rollup(function(d) {
+                    return {
+                        numerator: d3.sum(d, function(e) {
+                            sum = 0
+                            for (let i = 0; i < variables2011_array.length; i++) {
+                                thing = values[2] + variables2011_array[i]
+                                item = +e[thing]
+                                sum = sum + item
+                            }
+                            return sum;
+                        }),
+
+                        denominator: d3.sum(d, function(e) {
+                            return e[denominator];
+                        }),
+                        district_name: d[0].Area_Name,
+                        state_name: d[0].State_Name,
+
+                    }
+                })
+                .entries(file2011);
+
+
+            districtDatabyDistrict2011.forEach(function(d) {
+                d.value['percentage'] = ((d.value['numerator']) * 100 / d.value['denominator'])
+            })
+
+            console.log(districtDatabyDistrict2011)
+
+
+            var districtDatabyDistrict2001 = d3.nest()
+                .key(function(d) {
+                    return +d.Census2011Code;
+                })
+                .rollup(function(d) {
+                    return {
+                        numerator: d3.sum(d, function(e) {
+                            sum = 0
+                            for (let i = 0; i < variables2001_array.length; i++) {
+                                thing = values[2] + variables2001_array[i]
+                                item = +e[thing]
+                                sum = sum + item
+                            }
+                            return sum;
+                        }),
+
+                        denominator: d3.sum(d, function(e) {
+                            return e[denominator];
+                        }),
+                        district_name: d[0].Area_Name,
+                        census2011_code: d[0].Census2011Code,
+                        districtbroken: d[0].DistBroken
+
+                    }
+                })
+                .entries(file2001);
+
+
+            districtDatabyDistrict2001.forEach(function(d) {
+                d.value['percentage'] = ((d.value['numerator']) * 100 / d.value['denominator'])
+            })
+
+
+
+            changeData={}
+             districtDatabyDistrict2011.forEach(function(d) {
+             	census_key=d.key
+             	var val = districtDatabyDistrict2001.find(function(item) { return item.key == census_key });
+             	if(val)
+             	{
+             		if(val.value['districtbroken']=="N"){
+             			percentage_2011=districtDatabyDistrict2011[d.key].value['percentage']
+             			percentage_2001=val.value['percentage']
+             			changeData[census_key]= percentage_2011-percentage_2001
+             		}
+
+             		if(val.value['districtbroken']=="YM"){
+             			console.log(d.key)
+             		}
+
+             	}
+
+   
+
+            })
+
+           console.log(changeData)
+
+        }
+
+        function WorkersByIndustryCategories(values) {
+
+            file2011 = values[0]
+            lengthofarray = values.length
+            numerator = values[2] + values[lengthofarray - 2]
+            denominator = values[3]
+            variables_array = values[4]
+
+            var districtDatabyDistrict = d3.nest()
+                .key(function(d) {
+                    return +d.District_Code;
+                })
+                .rollup(function(d) {
+                    return {
+                        numerator: d3.sum(d, function(e) {
+                            sum = 0
+                            for (let i = 0; i < variables_array.length; i++) {
+                                thing = values[2] + variables_array[i]
+                                item = +e[thing]
+                                sum = sum + item
+                            }
+                            return sum;
+                        }),
+
+                        denominator: d3.sum(d, function(e) {
+                            return e[denominator];
+                        }),
+                        district_name: d[0].Area_Name,
+                        state_name: d[0].State_Name,
+
+                    }
+                })
+                .entries(file2011);
+
+            districtDatabyDistrict.forEach(function(d) {
+                d.value['percentage'] = ((d.value['numerator']) * 100 / d.value['denominator'])
+            })
+
+
+            var items = districtDatabyDistrict.map(post => +post.value['percentage']);
+            var colourScale = d3.scaleQuantile().domain(items).range(["#FAB816", "#FFD27C", "#B2C483", "#81A53E"]);
+
+
+            var districtData = {}
+            districtDatabyDistrict.forEach(function(d) {
+                district_variable_count = parseInt(d.key)
+                districtData[district_variable_count] = d.value['percentage']
+                var colourState = colourScale(d.value['percentage']);
+                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
+            })
+
+
+
+            function UrbanAggCalculator(city) {
+                lengthofids = city.length
+                var numerator = 0
+                var denominator = 0
+                for (item = 0; item < (lengthofids); item++) {
+                    id_no = city[item]
+
+                    numerator = numerator + (districtDatabyDistrict[id_no - 1].value['numerator'])
+                    denominator = denominator + (districtDatabyDistrict[id_no - 1].value['denominator'])
+                }
+
+                percentage_n = (numerator * 100) / (denominator).toFixed(2);
+
+                return percentage_n;
+            }
+
+
+            city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
+
+            // title = numerator + "as % of " + denominator
+
+
+            var sorted = []
+
+            for (var district in districtData) {
+                sorted.push([district, districtData[district]])
+            }
+
+            sorted.sort(function(a, b) {
+                return b[1] - a[1]
+            })
+
+            var top10list = []
+
+            var count = 0
+
+            while (count < 10) {
+                id = sorted[count][0]
+                district_name = districtDatabyDistrict[id - 1].value['district_name'].substring(11)
+                state_name = districtDatabyDistrict[id - 1].value['state_name']
+                district_percentage = sorted[count][1].toFixed(2)
+                top10list.push([district_name, state_name, district_percentage])
+                d3.select("#b" + sorted[count][0]).transition().duration(1000).style("fill", "#7F4C94");
+                count = count + 1
+
+            }
+
+            d3.select("#top10listheader").text(" TOP 10 DISTRICTS ")
+
+
+            d3.select('#top10list')
+                .selectAll('.item')
+                .data(top10list)
+                .enter()
+                .append('li')
+                .classed('item', true)
+                .text(function(d) { return d[0] })
+                .append("text").text(", ")
+                .append("text").text(function(d) { return d[1] })
+                .append("text").text(": ")
+                .append("text").text(function(d) { return d[2] })
+                .append("text").text("%");
+
+            drawLegendandTooltip(colourScale, districtData, "yes", "LEGEND")
+            Annotate(city_array);
+        }
+
+        function WorkersByIndustry(values) {
+
+
+
+            file2011 = values[0]
+            lengthofarray = values.length
+            numerator = values[2] + values[lengthofarray - 2]
+            denominator = values[3]
+
+            var districtDatabyDistrict = d3.nest()
+                .key(function(d) {
+                    return +d.District_Code;
+                })
+                .rollup(function(d) {
+                    return {
+                        numerator: d3.sum(d, function(e) {
+                            return e[numerator];
+                        }),
+                        denominator: d3.sum(d, function(e) {
+                            return e[denominator];
+                        }),
+                        district_name: d[0].Area_Name,
+                        state_name: d[0].State_Name,
+
+                    }
+                })
+                .entries(file2011);
+
+
+            districtDatabyDistrict.forEach(function(d) {
+                d.value['percentage'] = ((d.value['numerator']) * 100 / d.value['denominator'])
+            })
+
+            var items = districtDatabyDistrict.map(post => +post.value['percentage']);
+            var colourScale = d3.scaleQuantile().domain(items).range(["#FAB816", "#FFD27C", "#B2C483", "#81A53E"]);
+
+
+            var districtData = {}
+            districtDatabyDistrict.forEach(function(d) {
+                district_variable_count = parseInt(d.key)
+                districtData[district_variable_count] = d.value['percentage']
+                var colourState = colourScale(d.value['percentage']);
+                d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
+            })
+
+
+
+            function UrbanAggCalculator(city) {
+                lengthofids = city.length
+                var numerator = 0
+                var denominator = 0
+                for (item = 0; item < (lengthofids); item++) {
+                    id_no = city[item]
+
+                    numerator = numerator + (districtDatabyDistrict[id_no - 1].value['numerator'])
+                    denominator = denominator + (districtDatabyDistrict[id_no - 1].value['denominator'])
+                }
+
+                percentage_n = (numerator * 100) / (denominator).toFixed(2);
+
+                return percentage_n;
+            }
+
+
+            city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
+
+            // title = numerator + "as % of " + denominator
+
+
+            var sorted = []
+
+            for (var district in districtData) {
+                sorted.push([district, districtData[district]])
+            }
+
+            sorted.sort(function(a, b) {
+                return b[1] - a[1]
+            })
+
+            var top10list = []
+
+            var count = 0
+
+            while (count < 10) {
+                id = sorted[count][0]
+                district_name = districtDatabyDistrict[id - 1].value['district_name'].substring(11)
+                state_name = districtDatabyDistrict[id - 1].value['state_name']
+                district_percentage = sorted[count][1].toFixed(2)
+                top10list.push([district_name, state_name, district_percentage])
+                d3.select("#b" + sorted[count][0]).transition().duration(1000).style("fill", "#7F4C94");
+                count = count + 1
+
+            }
+
+            d3.select("#top10listheader").text(" TOP 10 DISTRICTS ")
+
+
+            d3.select('#top10list')
+                .selectAll('.item')
+                .data(top10list)
+                .enter()
+                .append('li')
+                .classed('item', true)
+                .text(function(d) { return d[0] })
+                .append("text").text(", ")
+                .append("text").text(function(d) { return d[1] })
+                .append("text").text(": ")
+                .append("text").text(function(d) { return d[2] })
+                .append("text").text("%");
+
+            drawLegendandTooltip(colourScale, districtData, "yes", "LEGEND")
+            Annotate(city_array);
+        }
+
+
+        function LargestEmployer(values) {
+
+            file2011 = values[0]
+            genderaddon = values[2]
+
+            var districtDatabyDistrict = d3.nest()
+                .key(function(d) {
+                    return +d.District_Code;
+                })
+                .rollup(function(d) {
+                    return {
+                        Cultivators: d3.sum(d, function(e) {
+                            return e[genderaddon + 'Cultivators'];
+                        }),
+                        Labourers: d3.sum(d, function(e) {
+                            return e[genderaddon + 'Labourers'];
+                        }),
+                        Forestry: d3.sum(d, function(e) {
+                            return e[genderaddon + 'Forestry'];
+                        }),
+                        B: d3.sum(d, function(e) {
+                            return e[genderaddon + 'B'];
+                        }),
+                        C_HHI: d3.sum(d, function(e) {
+                            return e[genderaddon + 'C_HHI'];
+                        }),
+                        C_NonHHI: d3.sum(d, function(e) {
+                            return e[genderaddon + 'C_NonHHI'];
+                        }),
+                        DE: d3.sum(d, function(e) {
+                            return e[genderaddon + 'DE'];
+                        }),
+                        F: d3.sum(d, function(e) {
+                            return e[genderaddon + 'F'];
+                        }),
+                        G_HHI: d3.sum(d, function(e) {
+                            return e[genderaddon + 'G_HHI'];
+                        }),
+                        G_NonHHI: d3.sum(d, function(e) {
+                            return e[genderaddon + 'G_NonHHI'];
+                        }),
+                        H: d3.sum(d, function(e) {
+                            return e[genderaddon + 'H'];
+                        }),
+                        I: d3.sum(d, function(e) {
+                            return e[genderaddon + 'I'];
+                        }),
+                        J_HHI: d3.sum(d, function(e) {
+                            return e[genderaddon + 'J_HHI'];
+                        }),
+                        J_NonHHI: d3.sum(d, function(e) {
+                            return e[genderaddon + 'J_NonHHI'];
+                        }),
+                        KM: d3.sum(d, function(e) {
+                            return e[genderaddon + 'KM'];
+                        }),
+                        NO: d3.sum(d, function(e) {
+                            return e[genderaddon + 'NO'];
+                        }),
+                        PQ: d3.sum(d, function(e) {
+                            return e[genderaddon + 'PQ'];
+                        }),
+                        RU_HHI: d3.sum(d, function(e) {
+                            return e[genderaddon + 'RU_HHI'];
+                        }),
+                        RU_NonHHI: d3.sum(d, function(e) {
+                            return e[genderaddon + 'RU_NonHHI'];
+                        }),
+                    }
+                })
+                .entries(file2011);
+
+            var colourScale = d3.scaleOrdinal().domain(["Agricultural Labourers",
+                "Cultivators",
+                "Manufacturing",
+                "Construction",
+                "Trade",
+                "Education and Health",
+                "Administration and Defence",
+                "Plantation etc",
+                "Mining",
+                "Other Services",
+                "Transportation"
+            ]).range(["b29f34",
+                "789b3e",
+                "637474",
+                "33464d",
+                "e58a2e",
+                "734785",
+                "23597c",
+                "54603a",
+                "161819",
+                "bc352a",
+                "ffffff"
+            ]);
+
+            var districtData = {}
+            districtDatabyDistrict.forEach(function(d) {
+                code = d.key
+                item = d.value
+                max = Object.keys(item).reduce((a, b) => item[a] > item[b] ? a : b);
+                if (max == "Cultivators") {
+                    max = "Cultivators"
+                }
+                if (max == "Labourers") {
+                    max = "Agricultural Labourers"
+                }
+                if (max == "Forestry") {
+                    max = "Plantation, Livestock, Forestry"
+                }
+                if (max == "B") {
+                    max = "Mining"
+                }
+                if (max == "C_HHI") {
+                    max = "Manufacturing"
+                }
+                if (max == "C_NonHHI") {
+                    max = "Manufacturing"
+                }
+                if (max == "F") {
+                    max = "Construction"
+                }
+                if (max == "H") {
+                    max = "Transportation"
+                }
+                if (max == "G_HHI") {
+                    max = "Trade"
+                }
+                if (max == "G_NonHHI") {
+                    max = "Trade"
+                }
+                if (max == "NO") {
+                    max = "Administration and Defence"
+                }
+                if (max == "PQ") {
+                    max = "Education and Health"
+                }
+                if (max == "RU_HHI") {
+                    max = "Other Services"
+                }
+                if (max == "RU_NonHHI") {
+                    max = "Other Services"
+                }
+                districtData[code] = max;
+                var colourState = colourScale(max);
+                d3.select("#b" + code).transition().duration(1000).style("fill", colourState);
+            })
+
+            svg.append("g")
+                .attr("class", "legendQuant")
+                .attr("transform", "translate(450,20)");
+
+            var legend = d3.legendColor()
+                .labelFormat(d3.format(".2f"))
+                .title("Industry")
+                .scale(colourScale)
+
+            svg.select(".legendQuant")
+                .call(legend);
+
+
+            allDistricts.on("mouseover", function(d) {
+                d3.select(this).classed("hover", true).style("stroke", "black").raise();
+            })
+
+            allDistricts.on("mousemove", function(d) {
+                tooltip
+                    .style("left", d3.event.pageX - 50 + "px")
+                    .style("top", d3.event.pageY - 70 + "px")
+                    .style("display", "inline-block")
+                    .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode]);
+            })
+
+            allDistricts.on("mouseout", function(d) {
+                d3.select(this).classed("hover", false).style("stroke", "transparent").lower();
+                tooltip.style("display", "none");
+
+            })
+
+        }
+
+
+        function drawLegendandTooltip(colourScale, districtData, token, title) {
+
+
+            svg.append("g")
+                .attr("class", "legendQuant")
+                .attr("transform", "translate(500,50)");
+
+            var legend = d3.legendColor()
+                .labelFormat(d3.format(".2f"))
+                .title(title)
+                .scale(colourScale)
+                .orient("horizontal")
+                .labelWrap(25)
+                .shapeWidth(30)
+
+            svg.select(".legendQuant")
+                .call(legend);
+
+            if (token == "yes") {
+                var newLabel = d3.selectAll(".legendCells").append("g").attr("class", "cell").attr("transform", "translate(128,0)")
+                newLabel.append("rect").attr("class", "swatch").attr("height", "15").attr("width", "30").style("fill", "rgb(189,56,132)")
+                newLabel.append("text").attr("class", "label").attr("transform", "translate(0,33)").style("text-anchor", "left").append("tspan").text("Top 10 districts")
+            }
+
+            allDistricts.on("mouseover", function(d) {
+                d3.select(this).classed("hover", true).style("stroke", "black").raise();
+            })
+
+            allDistricts.on("mousemove", function(d) {
+                if (d.properties.DISTRICT != "Data Not Available") {
+                    tooltip
+                        .style("left", d3.event.pageX - 50 + "px")
+                        .style("top", d3.event.pageY - 70 + "px")
+                        .style("display", "inline-block")
+                        .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode].toFixed(2) + " percent");
+
+                }
+
+            })
+
+            allDistricts.on("mouseout", function(d) {
+                d3.select(this).classed("hover", false).style("stroke", "transparent").lower();
+                tooltip.style("display", "none");
+
+            })
+
+        }
+
+        function Annotate(numbers) {
+            d3.selectAll(".annotation-group").remove();
+
+            const annotations = [{
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[5].toFixed(2) + " percent",
+                        title: "Delhi NCR",
+                        wrap: 300
+                    },
+                    subject: {
+                        radius: 25
+
+                    },
+                    x: 275,
+                    y: 270,
+                    dy: -75,
+                    dx: -75
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[4].toFixed(2) + " percent",
+                        title: "Mumbai-Pune region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 15
+
+                    },
+                    x: 195,
+                    y: 490,
+                    dy: 75,
+                    dx: -75
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[0].toFixed(2) + " percent",
+                        title: "Hyderabad region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 12
+
+                    },
+                    x: 300,
+                    y: 527,
+                    dy: 0,
+                    dx: 100
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[3].toFixed(2) + " percent",
+                        title: "Kolkata region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 15
+
+                    },
+                    x: 515,
+                    y: 410,
+                    dy: 70,
+                    dx: 70
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[2].toFixed(2) + " percent",
+                        title: "Chennai region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 15
+
+                    },
+                    x: 335,
+                    y: 625,
+                    dy: 50,
+                    dx: 50
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[1].toFixed(2) + " percent",
+                        title: "Bangalore region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 12
+
+                    },
+                    x: 285,
+                    y: 620,
+                    dy: 100,
+                    dx: -100
+                }
+            ].map(function(d) {
+                d.color = "#000000";
+                return d
+            })
+
+            const makeAnnotations = d3.annotation()
+                .type(d3.annotationLabel)
+                .annotations(annotations)
+
+            d3.select("svg")
+                .append("g")
+                .attr("class", "annotation-group")
+                .call(makeAnnotations)
+        }
+
+    }
+    </script>
+</body>
+
+</html>

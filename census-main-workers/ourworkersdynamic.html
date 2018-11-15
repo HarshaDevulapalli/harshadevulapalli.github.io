@@ -1,7 +1,6 @@
 <html>
 
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF8">
     <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
     <script src="https://d3js.org/topojson.v1.min.js"></script>
@@ -32,8 +31,8 @@
     .button {
         overflow: hidden;
         border: 1px solid #ccc;
-        background-color: #EEE5DD;
-        margin: 10px;
+/*        background-color: #EEE5DD;
+*/        margin: 10px;
 
     }
 
@@ -88,45 +87,44 @@
         font-size: 0.8em;
     }
 
-    .article {
-        position: relative;
-        top: 50%;
-        left: 50%;
-        padding: 1rem;
-        text-align: center;
-        transform: translate(-50%, -50%);
+
+    #container {
+        float: left;
+        width: 100%;
     }
 
     .left-panel {
         float: left;
-        width: 15%;
+        width: 20%;
     }
 
     .centre-panel {
         float: left;
-        width: 70%;
+        width: 60%;
     }
 
     .right-panel {
         float: left;
-        width: 15%;
+        width: 20%;
     }
+
     .notes {
         float: left;
+        width: 100%;
     }
     </style>
 </head>
 
 <body>
-    <div class="button" id="workerButtons"></div>
-    <div class="button" id="dataButtons"></div>
-    <div class="button" id="industryButtons"></div>
+    <div class="button" id="workerButtons" style="font-size: 1.7em;"></div>
+    <div class="button" id="dataButtons" style="font-size: 1.4em;"></div>
+    <div class="button" id="industryButtons" style="font-size: 1.2em;"></div>
     <div class="button" id="detailedIndustryButtons"></div>
-    <div id="w3-container">
-      <div class="left-panel">
+    <div id="container">
+        <div class="left-panel">
             <div class="button" id="ageButtons"></div>
             <div class="button" id="denominatorButtons"></div>
-             <div>
+            <div>
                 <p id="top10listheader"></p>
             </div>
             <div id="top10list"></div>
@@ -147,7 +145,14 @@
         var height = 800;
 
         var aspect = width / height,
-            chart = d3.select('#chart');
+            chart = d3.select('#svg');
+
+        d3.select(window)
+            .on("resize", function() {
+                var targetWidth = chart.node().getBoundingClientRect().width;
+                chart.attr("width", targetWidth);
+                chart.attr("height", targetWidth / aspect);
+            });
 
 
         // Create SVG
@@ -231,6 +236,8 @@
 
             if (error) throw error;
 
+            console.log("Here we start.")
+
             var allStates = svg.append("g")
                 .selectAll("path")
                 .data(topojson.feature(IndiaStates, IndiaStates.objects.india).features)
@@ -240,6 +247,8 @@
                 .style("stroke", "#000000")
                 .style("fill", "transparent")
                 .style("stroke-width", "1.5px")
+
+            console.log("Draw the states")
 
             var allDistricts = svg.append("g")
                 .attr("id", "allDistricts")
@@ -256,6 +265,9 @@
                 .style("stroke", "transparent")
                 .style("stroke-width", '2px')
                 .style("opacity", 0.85)
+
+            console.log("Draw the districts")
+
 
 
             backgroundColour = "#F7941D"
@@ -290,6 +302,9 @@
                     return d;
                 })
 
+            console.log("Draw the worker buttons")
+
+
             function workerButtonClick(datapoint) {
 
                 d3.selectAll(".workerButtons").style("background", "transparent")
@@ -313,16 +328,28 @@
                     return d;
                 })
 
+
+
             function dataButtonClick(datapoint) {
                 d3.selectAll(".dataButtons").style("background", "transparent")
                 d3.select(this).style("background", backgroundColour)
                 dataChoice = datapoint;
+                console.log(datapoint)
                 dataButtonChoice = true
                 dataaddon = dataChoice
 
+
+
                 if (datapoint == "Workers by industry") {
+                    d3.select("#top10listheader").text("TOP 10 DISTRICTS")
+
+                    d3.selectAll("#industryButtons").attr("hidden", null);
+                    d3.select("#denominatorButtons").attr("hidden", null);
+                    d3.select("#industryButtons").selectAll("button.industryButtons").remove()
+
 
                     industryButtonKeys = ["Farm", "Manufacturing", "Construction", "Trade", "Services", "Non Farm"]
+
 
                     d3.select('#industryButtons')
                         .selectAll("path")
@@ -336,6 +363,7 @@
                             return d;
                         })
 
+
                     function industryButtonClick(datapoint) {
                         d3.selectAll(".industryButtons").style("background", "transparent")
                         d3.selectAll(".detailedIndustryButtons").remove();
@@ -343,6 +371,7 @@
                         d3.select(this).style("background", backgroundColour)
                         industryChoice = datapoint;
                         industryButtonChoice = true
+                        detailedIndustryButtonChoice = false
                         if (datapoint == "Farm") {
                             detailedIndustryButtonKeys = ["Cultivators", "Labourers", "Forestry"]
                             industryaddon = ["Cultivators", "Labourers", "Forestry"]
@@ -471,12 +500,22 @@
                 }
 
                 if (datapoint == "Largest employer") {
-                    // d3.selectAll("#.ndustryButtons").remove()
-                    // d3.selectAll("#denominatorButtons").remove()
+                    d3.select("#industryButtons").selectAll("button.industryButtons").remove()
+                    d3.select("#top10listheader").text("")
+                    // console.log("YEAH YEAH")
+                    d3.select("#denominatorButtons").attr("hidden", true);
 
                 }
 
                 if (datapoint == "Change since 2001") {
+
+                    d3.select("#industryButtons").selectAll("button.industryButtons").remove()
+                    d3.select("#detailedIndustryButtons").selectAll("button.detailedIndustryButtons").remove()
+                    d3.select("#top10listheader").text("")
+
+
+                    // d3.selectAll("#industryButtons").attr("hidden", null);
+                    d3.select("#denominatorButtons").attr("hidden", null);
 
                     industryButtonKeys = ["Farm", "Manufacturing", "Construction", "Trade", "Services", "Non Farm"]
 
@@ -491,6 +530,9 @@
                         .html(function(d) {
                             return d;
                         })
+
+
+
 
                     function industryButtonClick(datapoint) {
                         d3.selectAll(".industryButtons").style("background", "transparent")
@@ -648,7 +690,7 @@
                             filteredData2011 = DataFilter(workerChoice, ageChoice)[0]
                             filteredData2001 = DataFilter(workerChoice, ageChoice)[1]
 
-                            if (industryButtonChoice == true) {
+                            if (industryButtonChoice == true && detailedIndustryButtonChoice ==false) {
                                 values = [filteredData2011, dataChoice, genderaddon, denominatoraddon, industryaddon, filteredData2001]
 
                             }
