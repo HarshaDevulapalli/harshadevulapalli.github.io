@@ -1,0 +1,58 @@
+CensusCode,District,,,,CensusCode,District,,,DistrictCode,Area,DistrictBroken2011,,,,,,,,,,,,,
+8,Baramula,,,,48,Patiala,,,8,Baramula ,Y,,,"8,9",8,,,,303,Barpeta ,YM,255,Lower Subansiri ,Y
+10,Srinagar,,,,51,Rupnagar,,,9,Bandipore ,Y,,,"10,11",10,,,,306,Sonitpur ,YM,256,Kurung Kumey ,Y
+12,Pulwama,,,,125,Banswara,,,10,Srinagar ,Y,,,"12,13",12,,,,319,Bongaigaon ,YM,257,Dibang Valley ,Y
+14,Anantnag,,,,126,Chittaurgarh,,,11,Ganderbal ,Y,,,"16,17,18",16,,,,320,Chirang ,YM,258,Lower Dibang Valley ,Y
+16,Doda,,,,130,Udaipur,,,12,Pulwama ,Y,,,"19,20",19,,,,321,Kamrup ,YM,259,Lohit ,Y
+19,Udhampur,,,,173,Pratapgarh,,,13,Shupiyan ,Y,,,"21,22",21,,,,322,Kamrup Metropolitan ,YM,260,Anjaw ,Y
+21,Jammu,,,,303,Barpeta,,,14,Anantnag ,Y,,,"49,50",49,,,,323,Nalbari ,YM,267,Tuensang ,Y
+49,Amritsar,,,,306,Sonitpur,,,15,Kulgam ,Y,,,"53,54",53,,,,324,Baksa ,YM,268,Longleng ,Y
+53,Sangrur,,,,319,Bongaigaon,,,16,Doda ,Y,,,"86,87",86,,,,325,Darrang ,YM,269,Kiphire ,Y
+86,Gurgaon,,,,321,Kamrup,,,17,Ramban ,Y,,,"88,89",88,,,,326,Udalguri ,YM,270,Kohima ,Y
+88,Faridabad,,,,323,Nalbari,,,18,Kishtwar ,Y,,,"201, 202",201,,,,610,Erode ,YM,271,Peren ,Y
+201,Etah,,,,325,Darrang,,,19,Udhampur ,Y,,,"239, 240",239,,,,632,Coimbatore ,YM,,,
+239,Jehanabad ,,,,610,Erode,,,20,Reasi ,Y,,,"255, 256",255,,,,633,Tiruppur ,YM,,,
+255,Lower Subansiri,,,,632,Coimbatore,,,21,Jammu ,Y,,,"257, 258",257,,,,48,Patiala ,YM,,,
+257,Dibang Valley,,,,,,,,22,Samba ,Y,,,"259, 260",259,,,,51,Rupnagar ,YM,,,
+259,Lohit,,,,,,,,39,Shahid Bhagat Singh Nagar ,Y,,,"267, 268, 269",267,,,,52,Sahibzada Ajit Singh Nagar ,YM,,,
+267,Tuensang,,,,,,,,,,,,,"270, 271",270,,,,125,Banswara ,YM,,,
+270,Kohima,,,,,,,,49,Amritsar ,Y,,,"344, 345",?,,,,126,Chittaurgarh ,YM,,,
+304,Morigaon,,,,,,,,50,Tarn Taran ,Y,,,"358, 359",358,,,,130,Udaipur ,YM,,,
+358,Palamu,,,,,,,,,,,,,"360, 361",360,,,,131,Pratapgarh ,YM,,,
+360,Hazaribagh,,,,,,,,,,,,,"362, 363",362,,,,,,,,,
+362,Dumka,,,,,,,,53,Sangrur ,Y,,,"364, 365",364,,,,,,,344,Paschim Medinipur ,Y
+364,Ranchi,,,,,,,,54,Barnala ,Y,,,"367, 368",367,,,,,,,345,Purba Medinipur ,Y
+366,Gumla,,,,,,,,86,Gurgaon ,Y,,,"368, 369",368,,,,,,,358,Palamu ,Y
+368,Pashchimi Singhbhum,,,,,,,,87,Mewat ,Y,,,"414, 415",414,,,,,,,359,Latehar ,Y
+414,Bastar,,,,,,,,88,Faridabad ,Y,,,"416, 417",416,,,,,,,360,Hazaribagh ,Y
+416,Dantewada *,,,,,,,,89,Palwal ,Y,,,"458, 459",458,,,,,,,361,Ramgarh ,Y
+458,Guna,,,,,,,,,,,,,"460, 461",460,,,,,,,362,Dumka ,Y
+460,Shahdol,,,,,,,,,,,,,"462, 463",462,,,,,,,363,Jamtara ,Y
+462,Sidhi,,,,,,,,,,,,,"464, 465",464,,,,,,,364,Ranchi ,Y
+464,Jhabua,,,,,,,,,,,,,"466, 467",466,,,,,,,365,Khunti ,Y
+466,East Nimar,,,,,,,,201,Etah ,Y,,,"492, 493",492,,,,,,,366,Gumla ,Y
+492,Surat,,,,,,,,202,Kanshiram Nagar ,Y,,,"579, 580",579,,,,,,,367,Simdega ,Y
+579,Gulbarga,,,,,,,,239,Jehanabad ,Y,,,"581, 582",581,,,,,,,368,Pashchimi Singhbhum ,Y
+581,Kolar,,,,,,,,240,Arwal ,Y,,,"583, 584",583,,,,,,,369,Saraikela-Kharsawan ,Y
+583,Bangalore Rural,,,,,,,,,,,,,,,,,,,,,414,Bastar ,Y
+630,Dharmapuri,,,,,,,,,,,,,,,,,,,,,415,Narayanpur ,Y
+,,,,,,,,,,,,,,,,,,,,,,416,Dakshin Bastar Dantewada ,Y
+,,,,,,,,,,,,,,,,,,,,,,417,Bijapur ,Y
+,,,,,,,,,,,,,,,,,,,,,,458,Guna ,Y
+,,,,,,,,,,,,,,,,,,,,,,459,Ashoknagar ,Y
+,,,,,,,,,,,,,,,,,,,,,,460,Shahdol (43),Y
+,,,,,,,,,,,,,,,,,,,,,,461,Anuppur (44),Y
+,,,,,,,,,,,,,,,,,,,,,,462,Sidhi (45),Y
+,,,,,,,,,,,,,,,,,,,,,,463,Singrauli (46),Y
+,,,,,,,,,,,,,,,,,,,,,,464,Jhabua (47),Y
+,,,,,,,,,,,,,,,,,,,,,,465,Alirajpur (48),Y
+,,,,,,,,,,,,,,,,,,,,,,466,Khandwa (East Nimar) (49),Y
+,,,,,,,,,,,,,,,,,,,,,,467,Burhanpur (50),Y
+,,,,,,,,,,,,,,,,,,,,,,492,Surat ,Y
+,,,,,,,,,,,,,,,,,,,,,,493,Tapi ,Y
+,,,,,,,,,,,,,,,,,,,,,,579,Gulbarga ,Y
+,,,,,,,,,,,,,,,,,,,,,,580,Yadgir ,Y
+,,,,,,,,,,,,,,,,,,,,,,581,Kolar ,Y
+,,,,,,,,,,,,,,,,,,,,,,582,Chikkaballapura ,Y
+,,,,,,,,,,,,,,,,,,,,,,583,Bangalore Rural ,Y
+,,,,,,,,,,,,,,,,,,,,,,584,Ramanagara ,Y
