@@ -9,7 +9,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
     <script src="https://d3js.org/d3-array.v2.min.js"></script>
     <script src="jquery-3.3.1.min.js"></script>
-
     </script>
     <style>
     body {
@@ -29,7 +28,7 @@
 
     }
 
-    .label{
+    .label {
         text-anchor: none;
     }
 
@@ -136,9 +135,9 @@
     <div class="button" id="workerButtons" style="font-size: 1.7em;"></div>
     <div class="button" id="dataButtons" style="font-size: 1.4em;"></div>
     <div class="button" id="industryButtons" style="font-size: 1.2em;"></div>
-    <div class="button" id="detailedIndustryButtons"></div>
     <div id="container">
         <div class="left-panel">
+            <div class="button" id="detailedIndustryButtons"></div>
             <div class="button" id="ageButtons"></div>
             <div class="button" id="denominatorButtons"></div>
             <div>
@@ -390,20 +389,30 @@
                         industryChoice = datapoint;
                         industryButtonChoice = true
                         detailedIndustryButtonChoice = false
+
+                        if(datapoint!="Construction"){
+                            d3.select("#detailedIndustryButtons").attr("hidden", null);
+
+                        }
                         if (datapoint == "Farm") {
                             detailedIndustryButtonKeys = ["Cultivators", "Labourers", "Forestry"]
                             industryaddon = ["Cultivators", "Labourers", "Forestry"]
+
                         }
                         if (datapoint == "Manufacturing") {
                             detailedIndustryButtonKeys = ["Manufacturing (Household)", "Manufacturing (Non Household)"]
                             industryaddon = ["C_HHI", "C_NonHHI"]
+
                         }
                         if (datapoint == "Trade") {
                             detailedIndustryButtonKeys = ["Trade (Household)", "Trade (Non Household)"]
                             industryaddon = ["G_HHI", "G_NonHHI"]
+
                         }
                         if (datapoint == "Construction") {
                             industryaddon = ["F"]
+                            d3.select("#detailedIndustryButtons").attr("hidden", true);
+
                         }
                         if (datapoint == "Services") {
                             detailedIndustryButtonKeys = ["Utilities", "Trade (Household)", "Trade (Non Household)", "Transportation", "Hospitality", "IT (Household)", "IT (Non Household)", "Finance", "Administration and Defence", "Education and Health", "Other Services (Household)", "Other Services (Non Household)"]
@@ -415,22 +424,39 @@
                         }
 
 
+                        var select = d3.select('#detailedIndustryButtons')
+                            .append('select')
+                            .attr('class', 'detailedIndustryButtons')
+                            .attr('id', "dropdown0")
+                            .on('change', detailedIndustryButtonClick)
 
-                        d3.select('#detailedIndustryButtons')
-                            .selectAll("path")
-                            .data(detailedIndustryButtonKeys)
-                            .enter()
-                            .append("button")
-                            .on("click", detailedIndustryButtonClick)
-                            .attr("id", d => d)
-                            .attr("class", "detailedIndustryButtons")
-                            .html(function(d) {
+
+                        var options = select
+                            .selectAll('option')
+                            .data(detailedIndustryButtonKeys).enter()
+                            .append('option')
+                            .attr("id", function(d) {
+                                return d;
+                            })
+                            .text(function(d) {
                                 return d;
                             })
 
+
+                        // d3.select('#detailedIndustryButtons')
+                        //     .selectAll("path")
+                        //     .data(detailedIndustryButtonKeys)
+                        //     .enter()
+                        //     .append("button")
+                        //     .on("click", detailedIndustryButtonClick)
+                        //     .attr("id", d => d)
+                        //     .attr("class", "detailedIndustryButtons")
+                        //     .html(function(d) {
+                        //         return d;
+                        //     })
+
                         function detailedIndustryButtonClick(datapoint) {
-                            d3.selectAll(".detailedIndustryButtons").style("background", "transparent")
-                            d3.select(this).style("background", backgroundColour)
+                            datapoint =  d3.select(this).property('value')
                             detailedIndustryChoice = datapoint
                             detailedIndustryButtonChoice = true
 
@@ -521,6 +547,7 @@
                     d3.select("#industryButtons").selectAll("button.industryButtons").remove()
                     d3.select("#top10listheader").text("")
                     d3.select("#denominatorButtons").attr("hidden", true);
+                    d3.select("#detailedIndustryButtons").attr("hidden", true);
                     d3.select("#detailedIndustryButtons").attr("hidden", true);
 
 
@@ -639,7 +666,7 @@
                 .text(function(d) {
                     return d;
                 })
-                
+
 
 
             function ageButtonClick(datapoint) {
@@ -668,7 +695,7 @@
             var select = d3.select('#denominatorButtons')
                 .append('select')
                 .attr('class', 'denominatorButtons')
-                .attr('id','dropdown2')
+                .attr('id', 'dropdown2')
                 .on('change', denominatorButtonClick)
 
 
@@ -714,19 +741,20 @@
             d3.select('#Farm').dispatch('click');
             d3.select('#Farm').dispatch('click');
             d3.select('#All').dispatch('click');
+            d3.select("#dropdown1").dispatch('change');
+            d3.select("#dropdown2").dispatch('change');
+
 
             // $("#dropdown1").val("15-59 years").attr("selected","selected");
-            d3.select("#dropdown1").select("[id='15_59']").attr('change')
-            d3.select("#dropdown2").select("[id='Population']").attr("selected",true)
+            d3.select("#dropdown1").select("[id='15_59']").attr("selected", true)
+            d3.select("#dropdown2").select("[id='Population']").attr("selected", true)
 
-            // thing.getElementsByTagName('option')[2].selected = 'selected'
 
-         
             dataChoice = "Workers by industry"
             genderaddon = "Total_"
             denominatoraddon = "Total_Population"
-            workerChoice="All workers"
-            ageChoice="15-59 years"
+            workerChoice = "All workers"
+            ageChoice = "15-59 years"
             filteredData2011 = DataFilter("All workers", "15-59 years")[0]
             filteredData2001 = DataFilter("All workers", "15-59 years")[1]
 
@@ -781,7 +809,7 @@
                         if (dataChoice == "Change since 2001") {
                             filteredData2011 = DataFilter(workerChoice, ageChoice)[0]
                             filteredData2001 = DataFilter(workerChoice, ageChoice)[1]
-
+                            console.log(industryaddon)
                             values = [filteredData2011, dataChoice, genderaddon, denominatoraddon, industryaddon, filteredData2001]
                             MapFunction(values)
                         }
@@ -907,6 +935,10 @@
 
 
             function ChangeSince2001(values) {
+
+                console.log("HERE WE ARE")
+                console.log(industryaddon)
+                d3.select("#detailedIndustryButtons").attr("hidden", true);
 
                 file2011 = values[0]
                 file2001 = values[5]
@@ -1593,6 +1625,9 @@
 
 
             function LargestEmployer(values) {
+
+                d3.select(".annotation-group").remove()
+
 
                 file2011 = values[0]
                 genderaddon = values[2]
