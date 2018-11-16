@@ -13,6 +13,7 @@
     <style>
     body {
         font-family: "Fira Sans Extra Condensed", sans-serif;
+        width:90%;
     }
 
     p,
@@ -35,10 +36,12 @@
 
     .button {
         overflow: hidden;
-        border: 1px solid #ccc;
-        /*        background-color: #EEE5DD;
-*/
-        margin: 10px;
+/*        border: 1px solid #ccc;
+*/        /*        background-color: #EEE5DD;
+*/      display: flex; /* or inline-flex */
+        justify-content: flex-start;
+        margin: 30px;
+        align-content: stretch;
 
     }
 
@@ -47,7 +50,7 @@
         font-family: "Fira Sans Extra Condensed", sans-serif;
         background-color: inherit;
         float: left;
-        border: none;
+        border: 1px solid #ccc;
         outline: none;
         cursor: pointer;
         padding: 14px 16px;
@@ -61,7 +64,7 @@
         font-family: "Fira Sans Extra Condensed", sans-serif;
         background-color: inherit;
         float: left;
-        border: none;
+        border: 1px solid #ccc;
         outline: none;
         cursor: pointer;
         padding: 14px 16px;
@@ -108,7 +111,7 @@
 
     .centre-panel {
         float: left;
-        width: 60%;
+        width: 80%;
     }
 
     .right-panel {
@@ -128,6 +131,13 @@
     .annotations {
         pointer-events: none;
     }
+
+    .rowofbuttons {
+  display: flex; /* or inline-flex */
+   justify-content: flex-start;
+    margin: 10px;
+
+}
     </style>
 </head>
 
@@ -135,11 +145,13 @@
     <div class="button" id="workerButtons" style="font-size: 1.7em;"></div>
     <div class="button" id="dataButtons" style="font-size: 1.4em;"></div>
     <div class="button" id="industryButtons" style="font-size: 1.2em;"></div>
-    <div id="container">
-        <div class="left-panel">
-            <div class="button" id="detailedIndustryButtons"></div>
+    <div class="rowofbuttons"> <div class="button" id="detailedIndustryButtons"></div>
             <div class="button" id="ageButtons"></div>
             <div class="button" id="denominatorButtons"></div>
+            <div class="button" id="genderButtons"></div>
+        </div>
+    <div id="container">
+        <div class="left-panel">
             <div>
                 <p id="top10listheader"></p>
             </div>
@@ -147,9 +159,6 @@
         </div>
         <div class="centre-panel">
             <div id="canvas" align="center"></div>
-        </div>
-        <div class="right-panel">
-            <div class="button" id="genderButtons"></div>
         </div>
     </div>
     <div id="notes">
@@ -389,23 +398,22 @@
                         industryChoice = datapoint;
                         industryButtonChoice = true
                         detailedIndustryButtonChoice = false
-
                         if(datapoint!="Construction"){
                             d3.select("#detailedIndustryButtons").attr("hidden", null);
 
                         }
                         if (datapoint == "Farm") {
-                            detailedIndustryButtonKeys = ["Cultivators", "Labourers", "Forestry"]
+                            detailedIndustryButtonKeys = ["Choose a sub-industry","Cultivators", "Labourers", "Forestry"]
                             industryaddon = ["Cultivators", "Labourers", "Forestry"]
 
                         }
                         if (datapoint == "Manufacturing") {
-                            detailedIndustryButtonKeys = ["Manufacturing (Household)", "Manufacturing (Non Household)"]
+                            detailedIndustryButtonKeys = ["Choose a sub-industry","Manufacturing (Household)", "Manufacturing (Non Household)"]
                             industryaddon = ["C_HHI", "C_NonHHI"]
 
                         }
                         if (datapoint == "Trade") {
-                            detailedIndustryButtonKeys = ["Trade (Household)", "Trade (Non Household)"]
+                            detailedIndustryButtonKeys = ["Choose a sub-industry","Trade (Household)", "Trade (Non Household)"]
                             industryaddon = ["G_HHI", "G_NonHHI"]
 
                         }
@@ -415,11 +423,11 @@
 
                         }
                         if (datapoint == "Services") {
-                            detailedIndustryButtonKeys = ["Utilities", "Trade (Household)", "Trade (Non Household)", "Transportation", "Hospitality", "IT (Household)", "IT (Non Household)", "Finance", "Administration and Defence", "Education and Health", "Other Services (Household)", "Other Services (Non Household)"]
+                            detailedIndustryButtonKeys = ["Choose a sub-industry","Utilities", "Trade (Household)", "Trade (Non Household)", "Transportation", "Hospitality", "IT (Household)", "IT (Non Household)", "Finance", "Administration and Defence", "Education and Health", "Other Services (Household)", "Other Services (Non Household)"]
                             industryaddon = ["DE", "G_HHI", "G_NonHHI", "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
                         }
                         if (datapoint == "Non Farm") {
-                            detailedIndustryButtonKeys = ["Mining", "Manufacturing (Household)", "Manufacturing (Non Household)", "Utilities", "Trade (Household)", "Trade (Non Household)", "Transportation", "Hospitality", "IT (Household)", "IT (Non Household)", "Finance", "Administration and Defence", "Education and Health", "Other Services (Household)", "Other Services (Non Household)"]
+                            detailedIndustryButtonKeys = ["Choose a sub-industry","Mining", "Manufacturing (Household)", "Manufacturing (Non Household)", "Utilities", "Trade (Household)", "Trade (Non Household)", "Transportation", "Hospitality", "IT (Household)", "IT (Non Household)", "Finance", "Administration and Defence", "Education and Health", "Other Services (Household)", "Other Services (Non Household)"]
                             industryaddon = ["B", "C_HHI", "C_NonHHI", "DE", "G_HHI", "G_NonHHI", "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
                         }
 
@@ -631,7 +639,7 @@
             }
 
 
-            ageButtonKeys = ["5-14 years", "15-59 years", "25-59 years", "60+ years", "All ages"]
+            ageButtonKeys = ["Choose an age category","5-14 years", "15-59 years", "25-59 years", "60+ years", "All ages"]
 
             // d3.select('#ageButtons')
             //     .selectAll("path")
@@ -784,7 +792,7 @@
 
                                 if (industryButtonChoice == true && detailedIndustryButtonChoice == true) {
 
-                                    values = [filteredData2011, dataChoice, genderaddon, denominatoraddon, industryaddon, detailedindustryaddon, filteredData2001]
+                                    values = [filteredData2011, dataChoice, genderaddon, denominatoraddon, industryaddon, detailedindustryaddon, filteredData2001,industryChoice]
 
                                 }
 
@@ -937,7 +945,7 @@
             function ChangeSince2001(values) {
 
                 console.log("HERE WE ARE")
-                console.log(industryaddon)
+                console.log(values)
                 d3.select("#detailedIndustryButtons").attr("hidden", true);
 
                 file2011 = values[0]
@@ -1271,10 +1279,6 @@
                     var colourState = colourScale(change_percentage);
                     d3.select("#b" + d.key).transition().duration(1000).style("fill", colourState);
                 })
-
-
-                console.log(colourScale)
-
 
                 drawLegendandTooltip(colourScale, changeData, "no", title)
                 d3.select(".annotation-group").remove()
