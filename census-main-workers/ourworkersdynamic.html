@@ -48,6 +48,7 @@
         transition: 0.3s;
         font-weight: 600;
         font-size: 1em;
+        align: middle;
     }
 
     select {
@@ -61,6 +62,7 @@
         transition: 0.3s;
         font-weight: 600;
         font-size: 1em;
+        width: 100%;
     }
 
     /* Change background color of buttons on hover */
@@ -108,9 +110,16 @@
         width: 20%;
     }
 
+    #genderButtons {
+        text-align: center;
+    }
+
     .notes {
         float: left;
         width: 100%;
+    }
+    .annotations{
+        pointer-events: none;
     }
     </style>
 </head>
@@ -504,6 +513,9 @@
                     d3.select("#top10listheader").text("")
                     // console.log("YEAH YEAH")
                     d3.select("#denominatorButtons").attr("hidden", true);
+                    d3.select("#detailedIndustryButtons").attr("hidden", true);
+
+
 
                 }
 
@@ -584,7 +596,7 @@
             }
 
 
-            ageButtonKeys = ["5-14", "15-59", "25-59", "60+", "Total"]
+            ageButtonKeys = ["5-14 years", "15-59 years", "25-59 years", "60+ years", "All ages"]
 
             // d3.select('#ageButtons')
             //     .selectAll("path")
@@ -624,7 +636,7 @@
             }
 
 
-            denominatorButtonKeys = ["Population", "Labour", "Workers"]
+            denominatorButtonKeys = ["Population", "Labour force", "Workers"]
 
             // d3.select('#denominatorButtons')
             //     .selectAll("path")
@@ -667,7 +679,12 @@
 
                 if (denominatorChoice == "Workers") {
 
-                    denominatoraddon = "Total_Workers"
+                    denominatoraddon = "All_Overall_Total_Workers"
+                }
+
+                if (denominatorChoice == "Labour force") {
+
+                    denominatoraddon = "Total_Labour_Force"
                 }
             }
 
@@ -754,7 +771,7 @@
                     file2001 = MarginalData2001
                 }
 
-                if (ageChoice == "5-14") {
+                if (ageChoice == "5-14 years") {
 
                     filteredData2011 = file2011.filter(function(d) {
                         return ((d.Age == "5-9" || d.Age == "10-14") && (d.Rural_or_Urban == "Total"))
@@ -766,7 +783,7 @@
 
                 }
 
-                if (ageChoice == "15-59") {
+                if (ageChoice == "15-59 years") {
 
                     filteredData2011 = file2011.filter(function(d) {
                         return ((d.Age == "15-19" || d.Age == "20-24" || d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59") && (d.Rural_or_Urban == "Total"))
@@ -779,7 +796,7 @@
 
                 }
 
-                if (ageChoice == "25-59") {
+                if (ageChoice == "25-59 years") {
 
                     filteredData2011 = file2011.filter(function(d) {
                         return ((d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59") && (d.Rural_or_Urban == "Total"))
@@ -792,7 +809,7 @@
 
                 }
 
-                if (ageChoice == "60+") {
+                if (ageChoice == "60+ years") {
 
                     filteredData2011 = file2011.filter(function(d) {
                         return ((d.Age == "60-69" || d.Age == "70-79" || d.Age == "80+") && (d.Rural_or_Urban == "Total"))
@@ -805,7 +822,7 @@
 
                 }
 
-                if (ageChoice == "Total") {
+                if (ageChoice == "All ages") {
 
                     filteredData2011 = file2011.filter(function(d) {
                         return ((d.Age == "Total") && (d.Rural_or_Urban == "Total"))
@@ -1734,7 +1751,7 @@
 
                 svg.append("g")
                     .attr("class", "legendQuant")
-                    .attr("transform", "translate(450,20)");
+                    .attr("transform", "translate(450,-10)");
 
                 var legend = d3.legendColor()
                     .labelFormat(d3.format(".2f"))
