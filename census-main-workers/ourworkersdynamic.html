@@ -18,7 +18,7 @@
 
     p,
     ul {
-        font-weight: 600;
+        font-weight: 400;
         font-size: 1.25em;
         margin: 10px;
 
@@ -157,7 +157,7 @@
     <div id="container">
         <div class="left-panel">
             <div>
-                <p id="top10listheader"></p>
+                <h3 style="margin-left: 10px" id="top10listheader"></h3>
             </div>
             <div id="top10list"></div>
         </div>
@@ -165,10 +165,15 @@
             <div id="canvas" align="center"></div>
         </div>
     </div>
-    <div id="notes">
-        <h3> Source: Census 2011, Census 2001 </h3>
+    <div id="source">
+        <p> Source: Census 2011, Census 2001 </p>
     </div>
-    <div class="notes">
+    <div id="map-notes"">
+        <p id="specific-notes"></p>
+    </div>
+    <div id="standard-notes">
+        <p>Regular and Seasonal workers refer to Main and Marginal workers of the Census. </p><p> Delhi-NCR includes the NCT and the adjoining districts of Alwar, Baghpat, Bharatpur, Bhiwani, Bulandshahr, Faridabad, Noida, Ghaziabad, Gurgaon, Jhajjar, Jind, Karnal, Mahendragarh, Meerut, Mewat, Muzaffarnagar, Palwal, Panipat, Rewari, Rohtak and Sonipat. Mumbai-Pune region consists of Mumbai, Mumbai (Suburban), Thane, Raigad and Pune. Kolkata region includes North and South 24 Paraganas, Howrah, Hugli and Nadia. Chennai region includes Chennai, Kancheepuram and Thiruvalluvar. Bengaluru region includes Bengaluru and Bengaluru Rural districts. Hyderabad region includes Hyderabad and Rangareddy districts.</p>
+    </div>
         <script>
         var width = 800;
         var height = 800;
@@ -371,6 +376,8 @@
 
 
                 if (datapoint == "Workers by industry") {
+
+                    d3.select("#specific-notes").text("Our definitions of Farm includes Cultivators, Agricultural Labourers and all workers in Plantation, Forestry and Fishing. Manufacturing includes workers in  both household and non household Manufacturing. Trade also includes household and non household workers. Services include workers in Trade, Utilities, Hospitality, Transportation, Finance, Administration and Defence, Education and Health and Other services")
                     d3.select("#top10listheader").text("TOP 10 DISTRICTS")
 
                     d3.selectAll("#industryButtons").attr("hidden", null);
@@ -559,6 +566,7 @@
                 }
 
                 if (datapoint == "Largest employer") {
+                     d3.select("#specific-notes").text("")
                     d3.select("#industryButtons").selectAll("button.industryButtons").remove()
                     d3.select("#top10listheader").text("")
                     d3.select("#denominatorButtons").attr("hidden", true);
@@ -567,6 +575,7 @@
                 }
 
                 if (datapoint == "Change since 2001") {
+                    d3.select("#specific-notes").text("All above values in percentage points. For districts whose boundaries have changed between 2001 and 2011 - our calculations depended on the number of parent districts. For single parent districts, the change for both the 2011 districts were calculated against the 2001 parent. For districts with multiple parents, the smallest unchanged contiguous region was considered. ")
 
                     d3.select("#dropdown0").attr("hidden", true);
                     d3.select("#industryButtons").selectAll("button.industryButtons").remove()
@@ -2012,7 +2021,7 @@
                             type: d3.annotationCalloutCircle,
                             note: {
                                 label: numbers[1].toFixed(2) + " percent",
-                                title: "Bangalore region",
+                                title: "Bengaluru region",
                                 wrap: 100
                             },
 
