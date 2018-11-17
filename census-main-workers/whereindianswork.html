@@ -1,13 +1,14 @@
 <html>
 
 <head>
-    <title>Where Indians Work</title>
+<!--     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ -->    <title>Where Indians Work</title>
     <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
     <script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="https://d3js.org/d3-queue.v2.min.js"></script>
     <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
     <script src="https://d3js.org/d3-array.v2.min.js"></script>
     <style>
     body {
@@ -40,9 +41,10 @@
         /* or inline-flex */
         justify-content: flex-start;
         align-content: stretch;
-        width: 73.5%;
         margin-left: 10px;
         margin-right: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
 
     }
 
@@ -551,7 +553,14 @@
                     .enter()
                     .append("button")
                     .on("click", industryButtonClick)
-                    .attr("id", d => d)
+                    .attr("id", function(d){
+                        if(d=="Non Farm"){
+                            return "Non_Farm"
+                        }
+                        else{
+                            return d;
+                        }
+                    })
                     .attr("class", "industryButtons")
                     .html(function(d) {
                         return d;
@@ -720,10 +729,6 @@
 
                     if (dataChoice == "Workers by industry") {
 
-                        console.log(industryChoice)
-                        console.log(values)
-
-
                         if (workerButtonChoice == true && dataButtonChoice == true && industryButtonChoice == true && ageButtonChoice == true && denominatorButtonChoice == true && genderButtonChoice == true) {
 
                             filteredData2011 = DataFilter(workerChoice, ageChoice)[0]
@@ -759,9 +764,6 @@
                     }
 
                     if (dataChoice == "Change since 2001") {
-
-                        console.log(industryChoice)
-                        console.log(values)
 
                         filteredData2011 = DataFilter(workerChoice, ageChoice)[0]
                         filteredData2001 = DataFilter(workerChoice, ageChoice)[1]
@@ -1015,13 +1017,14 @@
             changeData = {}
             districtDatabyDistrict2011.forEach(function(d) {
                 census_key = d.key
-
                 var val = districtDatabyDistrict2001.find(function(item) { return item.key == census_key });
                 if (val) {
                     if (val.value['districtbroken'] == "N") {
-                        if (val.value['census2011_code'] == "137") {}
-                        percentage_2011 = districtDatabyDistrict2011[d.key].value['percentage']
+                        // console.log(census_key, val.value['census2011_code'])
+                        percentage_2011 = districtDatabyDistrict2011[d.key-1].value['percentage']
                         percentage_2001 = val.value['percentage']
+                        // console.log(districtDatabyDistrict2011[d.key-1].value['district_name'],val.value['district_name'])
+                        // console.log(percentage_2011,percentage_2001)
                         changeData[census_key] = percentage_2011 - percentage_2001
 
                     }
