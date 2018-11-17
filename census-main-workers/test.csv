@@ -1,7 +1,0 @@
-State,District,Age,Type,TotalPopulation,MalePopulation,FemalePopulation,MainPopulation,MaleMainPopulation,FemaleMainPopulation,MarginalPopulation,MaleMarginalPopulation,FemaleMarginalPopulation,TotalWorkers,NonWorkers
-JK,Kupwara,15-19,Rural,100,60,40,60,40,20,20,5,15,80,20
-JK,Kupwara,20-24,Rural,120,60,60,80,40,40,20,5,15,100,20
-JK,Kupwara,25-29,Rural,140,70,90,100,60,40,30,10,20,130,10
-JK,Kupwara,15-19,Urban,200,100,100,150,80,70,30,5,25,180,20
-JK,Kupwara,20-24,Urban,300,160,140,200,120,80,50,20,30,250,50
-JK,Kupwara,25-29,Urban,400,220,180,300,170,130,50,25,25,350,50
