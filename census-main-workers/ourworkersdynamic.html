@@ -42,6 +42,8 @@
         justify-content: flex-start;
         align-content: stretch;
         width: 73.5%;
+        margin-left: 10px;
+        margin-right: 10px;
 
     }
 
@@ -72,8 +74,7 @@
         font-weight: 600;
         font-size: 1em;
         width: 100%;
-        margin-left: 10px;
-        margin-right: 10px;
+
     }
 
     /* Change background color of buttons on hover */
@@ -138,7 +139,6 @@
         display: flex;
         /* or inline-flex */
         justify-content: space-between;
-        margin: 10px;
 
     }
     </style>
@@ -149,10 +149,10 @@
     <div class="button" id="dataButtons" style="font-size: 1.4em;"></div>
     <div class="button" id="industryButtons" style="font-size: 1.2em;"></div>
     <div class="rowofbuttons">
-        <div class="button" id="detailedIndustryButtons"></div>
         <div class="button" id="ageButtons"></div>
         <div class="button" id="denominatorButtons"></div>
         <div class="button" id="genderButtons"></div>
+        <div class="button" id="detailedIndustryButtons"></div>
     </div>
     <div id="container">
         <div class="left-panel">
@@ -374,6 +374,8 @@
                     d3.select("#top10listheader").text("TOP 10 DISTRICTS")
 
                     d3.selectAll("#industryButtons").attr("hidden", null);
+                    d3.selectAll("#dropdown0").attr("hidden", null);
+
                     d3.select("#denominatorButtons").attr("hidden", null);
                     d3.select("#industryButtons").selectAll("button.industryButtons").remove()
 
@@ -402,10 +404,10 @@
                         industryChoice = datapoint;
                         industryButtonChoice = true
                         detailedIndustryButtonChoice = false
-                        if (datapoint != "Construction") {
-                            d3.select("#detailedIndustryButtons").attr("hidden", null);
+                        // if (datapoint != "Construction") {
+                        //     d3.select(".detailedIndustryButtons").attr("hidden", "null");
+                        // }
 
-                        }
                         if (datapoint == "Farm") {
                             detailedIndustryButtonKeys = ["Choose a sub-industry", "Cultivators", "Labourers", "Forestry"]
                             industryaddon = ["Cultivators", "Labourers", "Forestry"]
@@ -423,7 +425,8 @@
                         }
                         if (datapoint == "Construction") {
                             industryaddon = ["F"]
-                            d3.select("#detailedIndustryButtons").attr("hidden", true);
+                            detailedIndustryButtonKeys = ["Choose a sub-industry", "Construction"]
+                            // d3.select(".detailedIndustryButtons").attr("hidden", "true");
 
                         }
                         if (datapoint == "Services") {
@@ -559,15 +562,13 @@
                     d3.select("#industryButtons").selectAll("button.industryButtons").remove()
                     d3.select("#top10listheader").text("")
                     d3.select("#denominatorButtons").attr("hidden", true);
-                    d3.select("#detailedIndustryButtons").attr("hidden", true);
-                    d3.select("#detailedIndustryButtons").attr("hidden", true);
-
-
+                    d3.select("#dropdown0").attr("hidden", true);
 
                 }
 
                 if (datapoint == "Change since 2001") {
 
+                    d3.select("#dropdown0").attr("hidden", true);
                     d3.select("#industryButtons").selectAll("button.industryButtons").remove()
                     d3.select("#detailedIndustryButtons").selectAll("button.detailedIndustryButtons").remove()
                     d3.select("#top10listheader").text("")
