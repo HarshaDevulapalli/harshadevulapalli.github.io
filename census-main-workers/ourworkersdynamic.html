@@ -441,8 +441,8 @@
                             industryaddon = ["DE", "G_HHI", "G_NonHHI", "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
                         }
                         if (datapoint == "Non Farm") {
-                            detailedIndustryButtonKeys = ["Choose a sub-industry", "Mining", "Manufacturing (Household)", "Manufacturing (Non Household)", "Utilities", "Trade (Household)", "Trade (Non Household)", "Transportation", "Hospitality", "IT (Household)", "IT (Non Household)", "Finance", "Administration and Defence", "Education and Health", "Other Services (Household)", "Other Services (Non Household)"]
-                            industryaddon = ["B", "C_HHI", "C_NonHHI", "DE", "G_HHI", "G_NonHHI", "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
+                            detailedIndustryButtonKeys = ["Choose a sub-industry", "Mining", "Manufacturing (Household)", "Manufacturing (Non Household)", "Utilities", "Construction", "Trade (Household)", "Trade (Non Household)", "Transportation", "Hospitality", "IT (Household)", "IT (Non Household)", "Finance", "Administration and Defence", "Education and Health", "Other Services (Household)", "Other Services (Non Household)"]
+                            industryaddon = ["B", "C_HHI", "C_NonHHI", "DE", "F","G_HHI", "G_NonHHI", "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
                         }
 
 
@@ -463,19 +463,6 @@
                             .text(function(d) {
                                 return d;
                             })
-
-
-                        // d3.select('#detailedIndustryButtons')
-                        //     .selectAll("path")
-                        //     .data(detailedIndustryButtonKeys)
-                        //     .enter()
-                        //     .append("button")
-                        //     .on("click", detailedIndustryButtonClick)
-                        //     .attr("id", d => d)
-                        //     .attr("class", "detailedIndustryButtons")
-                        //     .html(function(d) {
-                        //         return d;
-                        //     })
 
                         function detailedIndustryButtonClick(datapoint) {
                             datapoint = d3.select(this).property('value')
@@ -655,17 +642,6 @@
 
             ageButtonKeys = ["Choose an age category", "5-14 years", "15-59 years", "25-59 years", "60+ years", "All ages"]
 
-            // d3.select('#ageButtons')
-            //     .selectAll("path")
-            //     .data(ageButtonKeys)
-            //     .enter()
-            //     .append("button")
-            //     .on("click", ageButtonClick)
-            //     .attr("id", d => d)
-            //     .attr("class", "ageButtons")
-            //     .html(function(d) {
-            //         return d;
-            //     })
 
             var select = d3.select('#ageButtons')
                 .append('select')
@@ -693,26 +669,12 @@
 
             function ageButtonClick(datapoint) {
                 datapoint = d3.select(this).property('value')
-                // d3.selectAll(".ageButtons").style("background", "transparent")
-                // d3.select(this).style("background", backgroundColour)
                 ageChoice = datapoint;
                 ageButtonChoice = true
             }
 
 
             denominatorButtonKeys = ["As proportion of", "Population", "Labour force", "Workers"]
-
-            // d3.select('#denominatorButtons')
-            //     .selectAll("path")
-            //     .data(denominatorButtonKeys)
-            //     .enter()
-            //     .append("button")
-            //     .on("click", denominatorButtonClick)
-            //     .attr("id", d => d)
-            //     .attr("class", "denominatorButtons")
-            //     .html(function(d) {
-            //         return d;
-            //     })
 
             var select = d3.select('#denominatorButtons')
                 .append('select')
@@ -733,8 +695,6 @@
             function denominatorButtonClick(datapoint) {
                 datapoint = d3.select(this).property('value')
 
-                // d3.selectAll(".denominatorButtons").style("background", "transparent")
-                // d3.select(this).style("background", backgroundColour)
                 denominatorChoice = datapoint;
                 denominatorButtonChoice = true
                 if (denominatorChoice == "Population") {
@@ -761,13 +721,9 @@
             d3.select('#Allworkers').dispatch('click');
             d3.select('#WorkersByIndustry').dispatch('click');
             d3.select('#Farm').dispatch('click');
-            d3.select('#Farm').dispatch('click');
             d3.select('#All').dispatch('click');
             d3.select("#dropdown1").dispatch('change');
             d3.select("#dropdown2").dispatch('change');
-
-
-            // $("#dropdown1").val("15-59 years").attr("selected","selected");
             d3.select("#dropdown1").select("[id='15_59']").attr("selected", true)
             d3.select("#dropdown2").select("[id='Population']").attr("selected", true)
 
@@ -794,7 +750,7 @@
 
                         if (dataChoice == "Workers by industry") {
 
-                            if (workerButtonChoice == true && dataButtonChoice == true && ageButtonChoice == true && denominatorButtonChoice == true && genderButtonChoice == true) {
+                            if (workerButtonChoice == true && dataButtonChoice == true && industryButtonChoice==true && ageButtonChoice == true && denominatorButtonChoice == true && genderButtonChoice == true) {
 
                                 filteredData2011 = DataFilter(workerChoice, ageChoice)[0]
                                 filteredData2001 = DataFilter(workerChoice, ageChoice)[1]
@@ -831,7 +787,6 @@
                         if (dataChoice == "Change since 2001") {
                             filteredData2011 = DataFilter(workerChoice, ageChoice)[0]
                             filteredData2001 = DataFilter(workerChoice, ageChoice)[1]
-                            console.log(industryaddon)
                             values = [filteredData2011, dataChoice, genderaddon, denominatoraddon, industryaddon, filteredData2001]
                             MapFunction(values)
                         }
@@ -926,12 +881,15 @@
 
 
             function MapFunction(values) {
+                console.log(industryChoice)
+
 
                 d3.selectAll(".item").remove()
 
                 if (values[1] == "Workers by industry") {
 
                     if (values.length == 6) {
+                        // d3.select('#'+industryChoice).dispatch('click');
                         WorkersByIndustryCategories(values)
                     }
 
@@ -948,8 +906,8 @@
                 }
 
                 if (dataChoice == "Change since 2001") {
-
-
+                    // console.log('#'+industryChoice)
+                    // d3.select('#'+industryChoice).dispatch('click');
                     ChangeSince2001(values)
                 }
 
@@ -958,7 +916,6 @@
 
             function ChangeSince2001(values) {
 
-                console.log(values)
                 d3.select("#detailedIndustryButtons").attr("hidden", true);
 
                 file2011 = values[0]
@@ -1407,9 +1364,6 @@
 
                     city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
 
-                    // title = numerator + "as % of " + denominator
-
-
                     var sorted = []
 
                     for (var district in districtData) {
@@ -1625,8 +1579,6 @@
 
 
                     city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
-
-                    // title = numerator + "as % of " + denominator
 
 
                     var sorted = []
