@@ -75,6 +75,7 @@
         font-weight: 600;
         font-size: 1em;
         width: 100%;
+        position: relative;
 
     }
 
@@ -152,9 +153,11 @@
     <div class="rowofbuttons">
         <div class="button" id="ageButtons"></div>
         <div class="button" id="denominatorButtons"></div>
-        <div class="button" id="genderButtons"></div>
         <div class="button" id="detailedIndustryButtons"></div>
+        <div class="button" id="genderButtons"></div>
+
     </div>
+    <br></br>
     <div id="container">
         <div class="left-panel">
             <div>
@@ -883,7 +886,6 @@
 
             function MapFunction(values) {
                 console.log(industryChoice)
-                d3.select('#'+industryChoice).dispatch('click');
 
                 d3.selectAll(".item").remove()
 
@@ -891,7 +893,7 @@
 
                     if (values.length == 6) {
                         console.log(values)
-                        WorkersByIndustryCategories(values)
+                        WorkersByIndustryCategories(values,industryChoice)
                     }
 
 
@@ -907,15 +909,13 @@
                 }
 
                 if (dataChoice == "Change since 2001") {
-                    // console.log('#'+industryChoice)
-                    // d3.select('#'+industryChoice).dispatch('click');
-                    ChangeSince2001(values)
+                    ChangeSince2001(values,industryChoice)
                 }
 
             }
 
 
-            function ChangeSince2001(values) {
+            function ChangeSince2001(values,industryChoice) {
 
                 d3.select("#detailedIndustryButtons").attr("hidden", true);
 
@@ -936,7 +936,7 @@
 
                 title = "% pts change in " + fauxgenderaddon + " " + values[4] + " workers"
 
-                industry = values[4]
+                industry = industryChoice
 
                 if (industry == "Farm") {
                     variables2011_array = ["Cultivators", "Labourers", "Forestry"]
@@ -1292,14 +1292,25 @@
 
                 }
 
-                function WorkersByIndustryCategories(values) {
+                function WorkersByIndustryCategories(values,industryChoice) {
                     file2011 = values[0]
                     lengthofarray = values.length
                     numerator = values[2] + values[lengthofarray - 2]
                     denominator = values[3]
                     variables_array = values[4]
 
-                    title = "% of " + values[2] + " workers in industry"
+                    if (values[2] == "Total_") {
+                    fauxgenderaddon = "all"
+                }
+                if (values[2] == "Male_") {
+                    fauxgenderaddon = "male"
+                }
+                if (values[2] == "Female_") {
+                    fauxgenderaddon = "female"
+                }
+
+
+                    title = "% of " + fauxgenderaddon + " workers in industry"
 
                     var districtDatabyDistrict = d3.nest()
                         .key(function(d) {
