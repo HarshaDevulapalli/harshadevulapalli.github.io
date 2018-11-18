@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Where Indians Work</title>
     <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="https://d3js.org/d3-queue.v2.min.js"></script>
     <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
@@ -17,19 +20,14 @@
     }
 
     p,
-    ul {
+    ul,li {
         font-weight: 400;
-        font-size: 1em;
+        font-size: 0.8em;
         margin: 10px;
 
     }
 
-    li {
-        margin: 10px;
-
-    }
-
-    /* basic positioning */
+     /* basic positioning */
     .legend {
         list-style: none;
     }
@@ -93,8 +91,6 @@
     }
 
 
-
-
     .button {
         overflow: hidden;
 
@@ -104,11 +100,11 @@
         /* or inline-flex */
         justify-content: flex-start;
         align-content: stretch;
-        margin-left: 10px;
+        /*        margin-left: 10px;
         margin-right: 10px;
         margin-top: 10px;
         margin-bottom: 10px;
-
+*/
     }
 
     /* Style the buttons inside the.button */
@@ -119,7 +115,7 @@
         border: 0px;
         outline: none;
         cursor: pointer;
-        padding: 14px 16px;
+        padding: 8px 8px;
         transition: 0.3s;
         font-weight: 600;
         font-size: 1em;
@@ -133,14 +129,12 @@
         border: 1px solid #ccc;
         outline: none;
         cursor: pointer;
-        /*        padding: 1vw 1vw;
-*/
         transition: 0.3s;
         font-weight: 600;
         font-size: 1em;
-        position: relative;
+        position: absolute;
         display: block;
-
+        padding: 8px 8px;
     }
 
     /* Change background color of buttons on hover */
@@ -196,7 +190,7 @@
         pointer-events: none;
     }
 
-    .rowofbuttons {
+    .button col-xs-6 {
         display: flex;
         /* or inline-flex */
         justify-content: space-between;
@@ -206,41 +200,62 @@
 </head>
 
 <body>
-    <div class="button" id="dataButtons" style="font-size: 1.2em;"></div>
-    <p> Select worker category </p>
-    <div class="button" id="workerButtons" style="font-size: 1.1em;"></div>
-    <p> Select Industry </p>
-    <div class="button" id="industryButtons" style="font-size: 1em;"></div>
-    <div class="rowofbuttons" style="margin:10px">
-        <div class="button" id="ageButtons"></div>
-        <div class="button" id="denominatorButtons"></div>
-        <div class="button" id="detailedIndustryButtons"></div>
-        <div class="button" id="genderButtons"></div>
+    <div class="container">
+        <div class="row button" id="dataButtons" style="font-size: 1.2em;"></div>
     </div>
-    <div id="container">
-        <div class="left-panel">
-            <ul class="legend" hidden="true">
-                <li><span class="AgriculturalLabourers"></span> Agricultural Labourers</li>
-                <li><span class="Cultivators"></span>Cultivators</li>
-                <li><span class="Manufacturing"></span>Manufacturing</li>
-                <li><span class="Construction"></span> Construction</li>
-                <li><span class="Trade"></span>Trade</li>
-                <li><span class="EducationAndHealth"></span> Education and Health</li>
-                <li><span class="AdministrationAndDefence"></span>Administration and Defence</li>
-                <li><span class="Plantation"></span>Plantation etc</li>
-                <li><span class="Mining"></span> Mining</li>
-                <li><span class="OtherServices"></span>Other Services</li>
-                <li><span class="Transportation"></span>Transportation</li>
-            </ul>
-            <div>
-                <h3 style="margin-left: 10px" id="top10listheader"></h3>
+    <div class="container">
+        <div class="row">
+            <p> Select worker category </p>
+        </div>
+        <div class="row button" id="workerButtons" style="font-size: 1.1em;"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <p> Select Industry </p>
+        </div>
+        <div class="row button" id="industryButtons" style="font-size: 1em;"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <p></p>
+        </div>
+        <div class="row">
+            <div class="button col-xs-6" id="ageButtons"></div>
+            <div class="button col-xs-6" id="denominatorButtons"></div>
+            <div class="button col-xs-6" id="detailedIndustryButtons"></div>
+            <div class="button col-xs-6" id="genderButtons"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <p></p>
+        </div>
+        <div class="row">
+            <div class="col-md-9 xs-12">
+                <div id="canvas" align="center"></div>
             </div>
-            <div id="top10list"></div>
-        </div>
-        <div class="centre-panel">
-            <div id="canvas" align="center"></div>
+            <div class="col-md-3 xs-12">
+                <ul class="legend" hidden="true">
+                    <li><span class="AgriculturalLabourers"></span> Agricultural Labourers</li>
+                    <li><span class="Cultivators"></span>Cultivators</li>
+                    <li><span class="Manufacturing"></span>Manufacturing</li>
+                    <li><span class="Construction"></span> Construction</li>
+                    <li><span class="Trade"></span>Trade</li>
+                    <li><span class="EducationAndHealth"></span> Education and Health</li>
+                    <li><span class="AdministrationAndDefence"></span>Administration and Defence</li>
+                    <li><span class="Plantation"></span>Plantation etc</li>
+                    <li><span class="Mining"></span> Mining</li>
+                    <li><span class="OtherServices"></span>Other Services</li>
+                    <li><span class="Transportation"></span>Transportation</li>
+                </ul>
+                <div><p id="top10listheader"></p>
+                </div>
+                <div id="top10list"></div>
+            </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
     <div id="source">
         <p> Source: Census 2011, Census 2001 </p>
     </div>
@@ -252,6 +267,8 @@
         <p>Regular and Seasonal workers refer to Main and Marginal workers of the Census. </p>
         <p> Delhi-NCR includes the NCT and the adjoining districts of Alwar, Baghpat, Bharatpur, Bhiwani, Bulandshahr, Faridabad, Noida, Ghaziabad, Gurgaon, Jhajjar, Jind, Karnal, Mahendragarh, Meerut, Mewat, Muzaffarnagar, Palwal, Panipat, Rewari, Rohtak and Sonipat. Mumbai-Pune region consists of Mumbai, Mumbai (Suburban), Thane, Raigad and Pune. Kolkata region includes North and South 24 Paraganas, Howrah, Hugli and Nadia. Chennai region includes Chennai, Kancheepuram and Thiruvalluvar. Bengaluru region includes Bengaluru and Bengaluru Rural districts. Hyderabad region includes Hyderabad and Rangareddy districts.</p>
     </div>
+</div>
+</div>
     <script>
     var width = 800;
     var height = 800;
@@ -387,7 +404,7 @@
                     return d;
                 }
             })
-            .attr("class", "workerButtons")
+            .attr("class", "workerButtons col")
             .html(function(d) {
                 return d;
             })
@@ -416,7 +433,7 @@
                     return d;
                 }
             })
-            .attr("class", "dataButtons")
+            .attr("class", "dataButtons col")
             .html(function(d) {
                 return d;
             })
@@ -462,7 +479,7 @@
                             return d;
                         }
                     })
-                    .attr("class", "industryButtons")
+                    .attr("class", "industryButtons col")
                     .html(function(d) {
                         return d;
                     })
@@ -513,7 +530,7 @@
 
                     var select = d3.select('#detailedIndustryButtons')
                         .append('select')
-                        .attr('class', 'detailedIndustryButtons')
+                        .attr('class', 'detailedIndustryButtons col')
                         .attr('id', "dropdown0")
                         .on('change', detailedIndustryButtonClick)
 
@@ -655,7 +672,7 @@
                             return d;
                         }
                     })
-                    .attr("class", "industryButtons")
+                    .attr("class", "industryButtons col")
                     .html(function(d) {
                         return d;
                     })
@@ -689,7 +706,7 @@
             .append("button")
             .on("click", genderButtonClick)
             .attr("id", d => d)
-            .attr("class", "genderButtons")
+            .attr("class", "genderButtons col")
             .html(function(d) {
                 return d;
             })
@@ -718,7 +735,7 @@
 
         var select = d3.select('#ageButtons')
             .append('select')
-            .attr('class', 'ageButtonsClass')
+            .attr('class', 'ageButtonsClass col')
             .attr('id', "dropdown1")
             .on('change', ageButtonClick)
 
@@ -751,7 +768,7 @@
 
         var select = d3.select('#denominatorButtons')
             .append('select')
-            .attr('class', 'denominatorButtons')
+            .attr('class', 'denominatorButtons col')
             .attr('id', 'dropdown2')
             .on('change', denominatorButtonClick)
 
@@ -2126,6 +2143,9 @@
 
     }
     </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 
 </html>
