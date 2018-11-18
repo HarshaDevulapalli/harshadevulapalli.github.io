@@ -1962,7 +1962,7 @@
             d3.selectAll(".label").style("text-anchor", "start")
 
             allDistricts.on("mouseover", function(d) {
-                d3.select(this).classed("hover", true).style("stroke", "black").style("stroke-width", function(d) { return 10; }) .raise();
+                d3.select(this).classed("hover", true).style("stroke", "black").style("stroke-width", 1.5).raise();
             })
 
             allDistricts.on("mousemove", function(d) {
@@ -2000,14 +2000,14 @@
             svg.select(".legendQuant")
                 .call(legend);
 
-            // if (token == "yes") {
-            //     var newLabel = d3.selectAll(".legendCells").append("g").attr("class", "cell").attr("transform", "translate(128,0)")
-            //     newLabel.append("rect").attr("class", "swatch").attr("height", "15").attr("width", "30").style("fill", "rgb(189,56,132)")
-            //     newLabel.append("text").attr("class", "label").attr("transform", "translate(0,33)").style("text-anchor", "left").append("tspan").text("Top 10 districts")
-            // }
+            if (token == "yes") {
+                var newLabel = d3.selectAll(".legendCells").append("g").attr("class", "cell").attr("transform", "translate(128,0)")
+                newLabel.append("rect").attr("class", "swatch").attr("height", "15").attr("width", "30").style("fill", "rgb(189,56,132)")
+                newLabel.append("text").attr("class", "label").attr("transform", "translate(0,33)").style("text-anchor", "left").append("tspan").text("Top 10 districts")
+            }
 
             allDistricts.on("mouseover", function(d) {
-                d3.select(this).classed("hover", true).style("stroke", "black").raise();
+                d3.select(this).classed("hover", true).style("stroke", "black").style("stroke-width", 1.5).raise();
             })
 
             allDistricts.on("mousemove", function(d) {
