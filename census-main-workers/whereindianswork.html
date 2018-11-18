@@ -27,6 +27,15 @@
 
     }
 
+    h4 {
+        font-weight: 600;
+        font-size: 1em;
+        margin: 10px;
+
+    }
+
+
+
      /* basic positioning */
     .legend {
         list-style: none;
@@ -220,10 +229,11 @@
             <p></p>
         </div>
         <div class="row">
-            <div class="button col-xs-6" id="ageButtons"></div>
-            <div class="button col-xs-6" id="denominatorButtons"></div>
-            <div class="button col-xs-6" id="detailedIndustryButtons"></div>
-            <div class="button col-xs-6" id="genderButtons"></div>
+            <div class="button col-md-3 col-xs-6" id="ageButtons"></div>
+            <div class="button col-md-3 col-xs-6" id="denominatorButtons"></div>
+            <div class="button col-md-3 col-xs-6" id="detailedIndustryButtons"></div>
+            <div class="button col-md-3 col-xs-6" id="genderButtons"></div>
+
         </div>
     </div>
     <div class="container">
@@ -248,7 +258,7 @@
                     <li><span class="OtherServices"></span>Other Services</li>
                     <li><span class="Transportation"></span>Transportation</li>
                 </ul>
-                <div><p id="top10listheader"></p>
+                <div><h4 id="top10listheader"></h4>
                 </div>
                 <div id="top10list"></div>
             </div>
@@ -259,14 +269,17 @@
     <div id="source">
         <p> Source: Census 2011, Census 2001 </p>
     </div>
-    <div id="map-notes"">
-        <p id=" specific-notes">
+</div>
+    <div class="row">
+        <p id="specific-notes">
         </p>
     </div>
+    <div class="row">
     <div id="standard-notes">
         <p>Regular and Seasonal workers refer to Main and Marginal workers of the Census. </p>
         <p> Delhi-NCR includes the NCT and the adjoining districts of Alwar, Baghpat, Bharatpur, Bhiwani, Bulandshahr, Faridabad, Noida, Ghaziabad, Gurgaon, Jhajjar, Jind, Karnal, Mahendragarh, Meerut, Mewat, Muzaffarnagar, Palwal, Panipat, Rewari, Rohtak and Sonipat. Mumbai-Pune region consists of Mumbai, Mumbai (Suburban), Thane, Raigad and Pune. Kolkata region includes North and South 24 Paraganas, Howrah, Hugli and Nadia. Chennai region includes Chennai, Kancheepuram and Thiruvalluvar. Bengaluru region includes Bengaluru and Bengaluru Rural districts. Hyderabad region includes Hyderabad and Rangareddy districts.</p>
     </div>
+</div>
 </div>
 </div>
     <script>
@@ -455,7 +468,7 @@
                 d3.select("#top10listheader").text("TOP 10 DISTRICTS")
 
                 d3.selectAll("#industryButtons").attr("hidden", null);
-                d3.selectAll("#dropdown0").attr("hidden", null);
+                d3.selectAll("#detailedIndustryButtons").attr("hidden", null);
                 d3.selectAll(".legend").attr("hidden", true);
 
 
@@ -1016,7 +1029,6 @@
 
             file2011 = values[0]
             file2001 = values[5]
-            console.log(file2001)
             denominator = values[3]
 
             if (values[2] == "Total_") {
@@ -1125,9 +1137,6 @@
             })
 
             changeData = {}
-
-            console.log(districtDatabyDistrict2011)
-            console.log(districtDatabyDistrict2001)
 
             districtDatabyDistrict2011.forEach(function(d) {
                 census_key = d.key
