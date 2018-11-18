@@ -206,6 +206,10 @@
         justify-content: space-between;
 
     }
+
+    #dropdown0 {
+        {cursor: pointer;}
+    }
     </style>
 </head>
 
@@ -230,9 +234,9 @@
             <p></p>
         </div>
         <div class="row">
-            <div class="button col-md-3 col-xs-6" id="ageButtons"></div>
-            <div class="button col-md-3 col-xs-6" id="denominatorButtons"></div>
-            <div class="button col-md-3 col-xs-6" id="detailedIndustryButtons"></div>
+            <div class="select col-md-3 col-xs-6" id="ageButtons"></div>
+            <div class="select col-md-3 col-xs-6" id="denominatorButtons"></div>
+            <div class="select col-md-3 col-xs-6" id="detailedIndustryButtons"></div>
             <div class="button col-md-3 col-xs-6" id="genderButtons"></div>
 
         </div>
@@ -334,12 +338,12 @@
 
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
-    var Hyderabad = [536, 537]
-    var Bangalore = [572, 583]
-    var Chennai = [602, 603, 604]
-    var Kolkata = [336, 337, 338, 341, 342, 343]
-    var Mumbai = [517, 518, 519, 520, 521]
-    var Delhi = [74, 75, 77, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 104, 105, 133, 138, 139, 140, 141, 142]
+    var Hyderabad = [536, 537];
+    var Bangalore = [572, 583];
+    var Chennai = [602, 603, 604];
+    var Kolkata = [336, 337, 338, 341, 342, 343];
+    var Mumbai = [517, 518, 519, 520, 521];
+    var Delhi = [74, 75, 77, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 104, 105, 133, 138, 139, 140, 141, 142];
 
     d3.queue()
         .defer(d3.csv, "total2011.csv")
@@ -355,8 +359,6 @@
     function ready(error, TotalData2011, MainData2011, MarginalData2011, TotalData2001, MainData2001, MarginalData2001, IndiaDistricts, IndiaStates) {
 
         if (error) throw error;
-
-
 
         var allStates = svg.append("g")
             .selectAll("path")
@@ -469,7 +471,7 @@
                 d3.select("#top10listheader").text("TOP 10 DISTRICTS")
 
                 d3.selectAll("#industryButtons").attr("hidden", null);
-                d3.selectAll("#detailedIndustryButtons").attr("hidden", null);
+                d3.selectAll("#dropdown0").attr("hidden", null);
                 d3.selectAll(".legend").attr("hidden", true);
 
 
@@ -507,10 +509,6 @@
                     industryChoice = datapoint;
                     industryButtonChoice = true
                     detailedIndustryButtonChoice = false
-                    // if (datapoint != "Construction") {
-                    //     d3.select(".detailedIndustryButtons").attr("hidden", "null");
-                    // }
-
                     if (datapoint == "Farm") {
                         detailedIndustryButtonKeys = ["Choose a sub-industry", "Cultivators", "Labourers", "Forestry"]
                         industryaddon = ["Cultivators", "Labourers", "Forestry"]
@@ -1964,7 +1962,7 @@
             d3.selectAll(".label").style("text-anchor", "start")
 
             allDistricts.on("mouseover", function(d) {
-                d3.select(this).classed("hover", true).style("stroke", "black").raise();
+                d3.select(this).classed("hover", true).style("stroke", "black").style("stroke-width", function(d) { return 10; }) .raise();
             })
 
             allDistricts.on("mousemove", function(d) {
@@ -2002,11 +2000,11 @@
             svg.select(".legendQuant")
                 .call(legend);
 
-            if (token == "yes") {
-                var newLabel = d3.selectAll(".legendCells").append("g").attr("class", "cell").attr("transform", "translate(128,0)")
-                newLabel.append("rect").attr("class", "swatch").attr("height", "15").attr("width", "30").style("fill", "rgb(189,56,132)")
-                newLabel.append("text").attr("class", "label").attr("transform", "translate(0,33)").style("text-anchor", "left").append("tspan").text("Top 10 districts")
-            }
+            // if (token == "yes") {
+            //     var newLabel = d3.selectAll(".legendCells").append("g").attr("class", "cell").attr("transform", "translate(128,0)")
+            //     newLabel.append("rect").attr("class", "swatch").attr("height", "15").attr("width", "30").style("fill", "rgb(189,56,132)")
+            //     newLabel.append("text").attr("class", "label").attr("transform", "translate(0,33)").style("text-anchor", "left").append("tspan").text("Top 10 districts")
+            // }
 
             allDistricts.on("mouseover", function(d) {
                 d3.select(this).classed("hover", true).style("stroke", "black").raise();
