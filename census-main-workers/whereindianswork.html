@@ -567,7 +567,7 @@
                     })
                 function industryButtonClick(datapoint) {
                     d3.selectAll(".industryButtons").style("background", "transparent")
-                    d3.selectAll(".detailedIndustryButtons").remove();
+                    // d3.selectAll(".detailedIndustryButtons").remove();
                     d3.select(this).style("background", backgroundColour)
                     industryChoice = datapoint;
                     industryButtonChoice = true
