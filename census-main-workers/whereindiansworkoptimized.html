@@ -528,7 +528,7 @@
                 })
 
 
-                d3.json("list.json", function(error, list) {
+                d3.json(title+"list.json", function(error, list) {
 
                     d3.select("#top10listheader").text(" TOP 10 DISTRICTS ")
 
@@ -551,7 +551,7 @@
 
                     })
 
-                    d3.csv("city.txt", function(error, city) {
+                    d3.csv(title+"city.txt", function(error, city) {
                         Annotate(city.columns)
                     })
 
@@ -583,6 +583,8 @@
 
             }
             if (data == "LARGESTEMPLOYER") {
+
+            	d3.selectAll(".legendQuant").attr("hidden", null);
 
                 d3.selectAll(".legend").attr("hidden", null);
                 d3.select("#top10listheader").text("")

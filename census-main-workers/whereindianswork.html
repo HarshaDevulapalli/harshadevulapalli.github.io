@@ -14,96 +14,73 @@
     <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
     <script src="https://d3js.org/d3-array.v2.min.js"></script>
+
     <style>
     body {
         font-family: "Fira Sans Extra Condensed", sans-serif;
     }
-
     p,
-    ul,
-    li {
+    ul,li {
         font-weight: 400;
         font-size: 0.8em;
         margin: 10px;
-
     }
-
     h4 {
         font-weight: 600;
         font-size: 1em;
         margin: 10px;
-
     }
-
-
-
-    /* basic positioning */
+     /* basic positioning */
     .legend {
         list-style: none;
     }
-
     .legend li {
         float: left;
         margin: 5px;
         font-size: 0.8em;
     }
-
     .legend span {
         border: 1px solid #ccc;
         float: left;
         width: 12px;
         height: 12px;
     }
-
     /* your colors */
     .legend .AgriculturalLabourers {
         background-color: #b29f34;
     }
-
     .legend .Cultivators {
         background-color: #789b3e;
     }
-
     .legend .Manufacturing {
         background-color: #637474;
     }
-
     .legend .Construction {
         background-color: #33464d;
     }
-
     .legend .Trade {
         background-color: #e58a2e;
     }
-
     .legend .EducationAndHealth {
         background-color: #734785;
     }
-
     .legend .AdministrationAndDefence {
         background-color: #23597c;
     }
-
     .legend .Plantation {
         background-color: #54603a;
     }
-
     .legend .Mining {
         background-color: #161819;
     }
-
     .legend .OtherServices {
         background-color: #bc352a;
     }
-
     .legend .Transportation {
         background-color: #ffffff;
     }
-
-
     .button {
         overflow: hidden;
-
         /*        background-color: #EEE5DD;
 */
         display: flex;
@@ -116,7 +93,6 @@
         margin-bottom: 10px;
 */
     }
-
     /* Style the buttons inside the.button */
     .button button {
         font-family: "Fira Sans Extra Condensed", sans-serif;
@@ -131,7 +107,6 @@
         font-size: 1em;
         align: middle;
     }
-
     select {
         font-family: "Fira Sans Extra Condensed", sans-serif;
         background-color: inherit;
@@ -145,19 +120,15 @@
         position: absolute;
         display: block;
         padding: 8px 8px;
-
     }
-
     /* Change background color of buttons on hover */
     .button button:hover {
         background-color: #ddd;
     }
-
     /* Create an active/current.buttonlink class */
     .button button.active {
         background-color: #ccc;
     }
-
     .toolTip {
         position: absolute;
         display: none;
@@ -171,47 +142,32 @@
         font-weight: 600;
         font-size: 0.8em;
     }
-
-
     #container {
         float: left;
         width: 100%;
     }
-
     .left-panel {
         float: left;
         width: 20%;
     }
-
     .centre-panel {
         float: left;
         width: 80%;
     }
-
     #genderButtons {
         text-align: center;
     }
-
     .notes {
         float: left;
         width: 100%;
     }
-
     .annotations {
         pointer-events: none;
     }
-
     .button col-xs-6 {
         display: flex;
         /* or inline-flex */
         justify-content: space-between;
-
-    }
-
-    #dropdown0 {
-            {
-            cursor: pointer;
-        }
     }
     </style>
 </head>
@@ -237,10 +193,11 @@
             <p></p>
         </div>
         <div class="row">
-            <div class="select col-md-3 col-xs-6" id="ageButtons"></div>
-            <div class="select col-md-3 col-xs-6" id="denominatorButtons"></div>
-            <div class="select col-md-3 col-xs-6" id="detailedIndustryButtons"></div>
+            <div class="button col-md-3 col-xs-6" id="ageButtons"></div>
+            <div class="button col-md-3 col-xs-6" id="denominatorButtons"></div>
+            <div class="button col-md-3 col-xs-6" id="detailedIndustryButtons"></div>
             <div class="button col-md-3 col-xs-6" id="genderButtons"></div>
+
         </div>
     </div>
     <div class="container">
@@ -273,45 +230,41 @@
     </div>
     <div class="container">
         <div class="row">
-            <div id="source">
-                <p> Source: Census 2011, Census 2001 </p>
-            </div>
-        </div>
-        <div class="row">
-            <p id="specific-notes">
-            </p>
-        </div>
-        <div class="row">
-            <div id="standard-notes">
-                <p>Regular and Seasonal workers refer to Main and Marginal workers of the Census. </p>
-                <p> Delhi-NCR includes the NCT and the adjoining districts of Alwar, Baghpat, Bharatpur, Bhiwani, Bulandshahr, Faridabad, Noida, Ghaziabad, Gurgaon, Jhajjar, Jind, Karnal, Mahendragarh, Meerut, Mewat, Muzaffarnagar, Palwal, Panipat, Rewari, Rohtak and Sonipat. Mumbai-Pune region consists of Mumbai, Mumbai (Suburban), Thane, Raigad and Pune. Kolkata region includes North and South 24 Paraganas, Howrah, Hugli and Nadia. Chennai region includes Chennai, Kancheepuram and Thiruvalluvar. Bengaluru region includes Bengaluru and Bengaluru Rural districts. Hyderabad region includes Hyderabad and Rangareddy districts.</p>
-            </div>
-        </div>
+    <div id="source">
+        <p> Source: Census 2011, Census 2001 </p>
     </div>
+</div>
+    <div class="row">
+        <p id="specific-notes">
+        </p>
     </div>
+    <div class="row">
+    <div id="standard-notes">
+        <p>Regular and Seasonal workers refer to Main and Marginal workers of the Census. </p>
+        <p> Delhi-NCR includes the NCT and the adjoining districts of Alwar, Baghpat, Bharatpur, Bhiwani, Bulandshahr, Faridabad, Noida, Ghaziabad, Gurgaon, Jhajjar, Jind, Karnal, Mahendragarh, Meerut, Mewat, Muzaffarnagar, Palwal, Panipat, Rewari, Rohtak and Sonipat. Mumbai-Pune region consists of Mumbai, Mumbai (Suburban), Thane, Raigad and Pune. Kolkata region includes North and South 24 Paraganas, Howrah, Hugli and Nadia. Chennai region includes Chennai, Kancheepuram and Thiruvalluvar. Bengaluru region includes Bengaluru and Bengaluru Rural districts. Hyderabad region includes Hyderabad and Rangareddy districts.</p>
+    </div>
+</div>
+</div>
+</div>
     <script>
     var width = 800;
     var height = 800;
-
     function responsivefy(svg) {
         // get container + svg aspect ratio
         var container = d3.select(svg.node().parentNode),
             width = parseInt(svg.style("width")),
             height = parseInt(svg.style("height")),
             aspect = width / height;
-
         // add viewBox and preserveAspectRatio properties,
         // and call resize so that svg resizes on inital page load
         svg.attr("viewBox", "0 0 " + width + " " + height)
             .attr("perserveAspectRatio", "xMinYMid")
             .call(resize);
-
         // to register multiple listeners for same event type, 
         // you need to add namespace, i.e., 'click.foo'
         // necessary if you call invoke this function for multiple svgs
         // api docs: https://github.com/mbostock/d3/wiki/Selections#on
         d3.select(window).on("resize." + container.attr("id"), resize);
-
         // get width of container and resize svg to fit it
         function resize() {
             var targetWidth = parseInt(container.style("width"));
@@ -319,7 +272,6 @@
             svg.attr("height", Math.round(targetWidth / aspect));
         }
     }
-
     // Create SVG
     var svg = d3.select("#canvas")
         .append("svg")
@@ -327,26 +279,19 @@
         .attr("height", height)
         .attr("align", "center")
         .call(responsivefy);
-
-
-
     var geoProjection = d3.geoMercator()
         .scale(1200)
         .center([83, 23])
         .translate([width / 2, height / 2]);
-
     var geoPath = d3.geoPath()
         .projection(geoProjection);
-
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
-
-    var Hyderabad = [536, 537];
-    var Bangalore = [572, 583];
-    var Chennai = [602, 603, 604];
-    var Kolkata = [336, 337, 338, 341, 342, 343];
-    var Mumbai = [517, 518, 519, 520, 521];
-    var Delhi = [74, 75, 77, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 104, 105, 133, 138, 139, 140, 141, 142];
-
+    var Hyderabad = [536, 537]
+    var Bangalore = [572, 583]
+    var Chennai = [602, 603, 604]
+    var Kolkata = [336, 337, 338, 341, 342, 343]
+    var Mumbai = [517, 518, 519, 520, 521]
+    var Delhi = [74, 75, 77, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 104, 105, 133, 138, 139, 140, 141, 142]
     d3.queue()
         .defer(d3.csv, "total2011.csv")
         .defer(d3.csv, "main2011.csv")
@@ -357,11 +302,8 @@
         .defer(d3.json, "india_districts.json")
         .defer(d3.json, "india.json")
         .await(ready);
-
     function ready(error, TotalData2011, MainData2011, MarginalData2011, TotalData2001, MainData2001, MarginalData2001, IndiaDistricts, IndiaStates) {
-
         if (error) throw error;
-
         var allStates = svg.append("g")
             .selectAll("path")
             .data(topojson.feature(IndiaStates, IndiaStates.objects.india).features)
@@ -371,7 +313,6 @@
             .style("stroke", "#000000")
             .style("fill", "transparent")
             .style("stroke-width", "1.5px")
-
         var allDistricts = svg.append("g")
             .attr("id", "allDistricts")
             .selectAll("path")
@@ -387,10 +328,7 @@
             .style("stroke", "transparent")
             .style("stroke-width", '2px')
             .style("opacity", 0.9)
-
-
         backgroundColour = "#F7941D"
-
         var workerChoice;
         var dataChoice;
         var industryChoice;
@@ -398,7 +336,6 @@
         var ageChoice;
         var denominatorChoice;
         var detailedIndustryChoice;
-
         var workerButtonChoice;
         var dataButtonChoice;
         var industryButtonChoice;
@@ -406,9 +343,7 @@
         var ageButtonChoice;
         var denominatorButtonChoice;
         var detailedIndustryButtonChoice;
-
         workerButtonKeys = ["All workers", "Regular workers", "Seasonal workers"]
-
         d3.select('#workerButtons')
             .selectAll("path")
             .data(workerButtonKeys)
@@ -426,18 +361,13 @@
             .html(function(d) {
                 return d;
             })
-
         function workerButtonClick(datapoint) {
-
             d3.selectAll(".workerButtons").style("background", "transparent")
             d3.select(this).style("background", backgroundColour)
             workerChoice = datapoint;
             workerButtonChoice = true
-
         }
-
         dataButtonKeys = ["WORKERS BY INDUSTRY", "CHANGE SINCE 2001", "LARGEST EMPLOYER"]
-
         d3.select('#dataButtons')
             .selectAll("path")
             .data(dataButtonKeys)
@@ -455,35 +385,21 @@
             .html(function(d) {
                 return d;
             })
-
-
-
         function dataButtonClick(datapoint) {
             d3.selectAll(".dataButtons").style("background", "transparent")
             d3.select(this).style("background", backgroundColour)
             dataChoice = datapoint;
             dataButtonChoice = true
             dataaddon = dataChoice
-
-
-
             if (datapoint == "WORKERS BY INDUSTRY") {
-
                 d3.select("#specific-notes").text("Our definitions of Farm includes Cultivators, Agricultural Labourers and all workers in Plantation, Forestry and Fishing. Manufacturing includes workers in  both household and non household Manufacturing. Trade also includes household and non household workers. Services include workers in Trade, Utilities, Hospitality, Transportation, Finance, Administration and Defence, Education and Health and Other services")
                 d3.select("#top10listheader").text("TOP 10 DISTRICTS")
-
                 d3.selectAll("#industryButtons").attr("hidden", null);
-                d3.selectAll("#dropdown0").attr("hidden", null);
+                d3.selectAll("#detailedIndustryButtons").attr("hidden", null);
                 d3.selectAll(".legend").attr("hidden", true);
-
-
                 d3.select("#denominatorButtons").attr("hidden", null);
                 d3.select("#industryButtons").selectAll("button.industryButtons").remove()
-
-
                 industryButtonKeys = ["Farm", "Manufacturing", "Construction", "Trade", "Services", "Non Farm"]
-
-
                 d3.select('#industryButtons')
                     .selectAll("path")
                     .data(industryButtonKeys)
@@ -501,36 +417,32 @@
                     .html(function(d) {
                         return d;
                     })
-
-
                 function industryButtonClick(datapoint) {
                     d3.selectAll(".industryButtons").style("background", "transparent")
                     d3.selectAll(".detailedIndustryButtons").remove();
-
                     d3.select(this).style("background", backgroundColour)
                     industryChoice = datapoint;
                     industryButtonChoice = true
                     detailedIndustryButtonChoice = false
+                    // if (datapoint != "Construction") {
+                    //     d3.select(".detailedIndustryButtons").attr("hidden", "null");
+                    // }
                     if (datapoint == "Farm") {
                         detailedIndustryButtonKeys = ["Choose a sub-industry", "Cultivators", "Labourers", "Forestry"]
                         industryaddon = ["Cultivators", "Labourers", "Forestry"]
-
                     }
                     if (datapoint == "Manufacturing") {
                         detailedIndustryButtonKeys = ["Choose a sub-industry", "Manufacturing (Household)", "Manufacturing (Non Household)"]
                         industryaddon = ["C_HHI", "C_NonHHI"]
-
                     }
                     if (datapoint == "Trade") {
                         detailedIndustryButtonKeys = ["Choose a sub-industry", "Trade (Household)", "Trade (Non Household)"]
                         industryaddon = ["G_HHI", "G_NonHHI"]
-
                     }
                     if (datapoint == "Construction") {
                         industryaddon = ["F"]
                         detailedIndustryButtonKeys = ["Choose a sub-industry", "Construction"]
                         // d3.select(".detailedIndustryButtons").attr("hidden", "true");
-
                     }
                     if (datapoint == "Services") {
                         detailedIndustryButtonKeys = ["Choose a sub-industry", "Utilities", "Trade (Household)", "Trade (Non Household)", "Transportation", "Hospitality", "IT (Household)", "IT (Non Household)", "Finance", "Administration and Defence", "Education and Health", "Other Services (Household)", "Other Services (Non Household)"]
@@ -540,15 +452,11 @@
                         detailedIndustryButtonKeys = ["Choose a sub-industry", "Mining", "Manufacturing (Household)", "Manufacturing (Non Household)", "Utilities", "Construction", "Trade (Household)", "Trade (Non Household)", "Transportation", "Hospitality", "IT (Household)", "IT (Non Household)", "Finance", "Administration and Defence", "Education and Health", "Other Services (Household)", "Other Services (Non Household)"]
                         industryaddon = ["B", "C_HHI", "C_NonHHI", "DE", "F", "G_HHI", "G_NonHHI", "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
                     }
-
-
                     var select = d3.select('#detailedIndustryButtons')
                         .append('select')
                         .attr('class', 'detailedIndustryButtons col')
                         .attr('id', "dropdown0")
                         .on('change', detailedIndustryButtonClick)
-
-
                     var options = select
                         .selectAll('option')
                         .data(detailedIndustryButtonKeys).enter()
@@ -559,120 +467,87 @@
                         .text(function(d) {
                             return d;
                         })
-
                     function detailedIndustryButtonClick(datapoint) {
                         datapoint = d3.select(this).property('value')
                         detailedIndustryChoice = datapoint
                         detailedIndustryButtonChoice = true
-
                         if (detailedIndustryChoice == "Cultivators") {
                             detailedindustryaddon = "Cultivators"
                         }
-
                         if (detailedIndustryChoice == "Labourers") {
                             detailedindustryaddon = "Labourers"
                         }
-
                         if (detailedIndustryChoice == "Forestry") {
                             detailedindustryaddon = "Forestry"
                         }
-
                         if (detailedIndustryChoice == "Mining") {
                             detailedindustryaddon = "B"
                         }
-
                         if (detailedIndustryChoice == "Manufacturing (Household)") {
                             detailedindustryaddon = "C_HHI"
                         }
-
                         if (detailedIndustryChoice == "Manufacturing (Non Household)") {
                             detailedindustryaddon = "C_NonHHI"
                         }
-
                         if (detailedIndustryChoice == "Utilities") {
                             detailedindustryaddon = "DE"
                         }
-
                         if (detailedIndustryChoice == "Construction") {
                             detailedindustryaddon = "F"
                         }
-
                         if (detailedIndustryChoice == "Trade (Household)") {
                             detailedindustryaddon = "G_HHI"
                         }
-
                         if (detailedIndustryChoice == "Trade (Non Household)") {
                             detailedindustryaddon = "G_NonHHI"
                         }
-
-
-
                         if (detailedIndustryChoice == "Transportation") {
                             detailedindustryaddon = "H"
                         }
-
                         if (detailedIndustryChoice == "Hospitality") {
                             detailedindustryaddon = "I"
                         }
-
                         if (detailedIndustryChoice == "IT (Household)") {
                             detailedindustryaddon = "J_HHI"
                         }
-
                         if (detailedIndustryChoice == "IT (Non Household)") {
                             detailedindustryaddon = "J_NonHHI"
                         }
                         if (detailedIndustryChoice == "Finance") {
                             detailedindustryaddon = "KM"
                         }
-
                         if (detailedIndustryChoice == "Administration and Defense") {
                             detailedindustryaddon = "NO"
                         }
-
                         if (detailedIndustryChoice == "Education and Health") {
                             detailedindustryaddon = "PQ"
                         }
-
                         if (detailedIndustryChoice == "Other Services (Household)") {
                             detailedindustryaddon = "RU_HHI"
                         }
-
                         if (detailedIndustryChoice == "Other Services (Non Household)") {
                             detailedindustryaddon = "RU_NonHHI"
                         }
-
                     }
-
                 }
-
             }
-
             if (datapoint == "LARGEST EMPLOYER") {
                 d3.select("#specific-notes").text("")
                 d3.select("#industryButtons").selectAll("button.industryButtons").remove()
                 d3.select("#top10listheader").text("")
                 d3.select("#denominatorButtons").attr("hidden", true);
-                d3.select("#dropdown0").attr("hidden", true);
-
+                d3.select("#detailedIndustryButtons").attr("hidden", true);
             }
-
             if (datapoint == "CHANGE SINCE 2001") {
                 d3.select("#specific-notes").text("All above values in percentage points. For districts whose boundaries have changed between 2001 and 2011 - our calculations depended on the number of parent districts. For single parent districts, the change for both the 2011 districts were calculated against the 2001 parent. For districts with multiple parents, the smallest unchanged contiguous region was considered. ")
-
-                d3.select("#dropdown0").attr("hidden", true);
+                d3.select("#detailedIndustryButtons").attr("hidden", true);
                 d3.select("#industryButtons").selectAll("button.industryButtons").remove()
-                d3.select("#detailedIndustryButtons").selectAll("button.detailedIndustryButtons").remove()
+                // d3.select("#detailedIndustryButtons").selectAll("button.detailedIndustryButtons").remove()
                 d3.select("#top10listheader").text("")
-
-
                 // d3.selectAll("#industryButtons").attr("hidden", null);
                 d3.select("#denominatorButtons").attr("hidden", null);
                 d3.selectAll(".legend").attr("hidden", true);
-
-
                 industryButtonKeys = ["Farm", "Manufacturing", "Construction", "Trade", "Services", "Non Farm"]
-
                 d3.select('#industryButtons')
                     .selectAll("path")
                     .data(industryButtonKeys)
@@ -690,29 +565,17 @@
                     .html(function(d) {
                         return d;
                     })
-
-
-
-
                 function industryButtonClick(datapoint) {
                     d3.selectAll(".industryButtons").style("background", "transparent")
                     d3.selectAll(".detailedIndustryButtons").remove();
-
                     d3.select(this).style("background", backgroundColour)
                     industryChoice = datapoint;
                     industryButtonChoice = true
                     industryaddon = datapoint;
-
                 }
-
             }
-
-
         }
-
-
         genderButtonKeys = ["All", "Men", "Women"]
-
         d3.select('#genderButtons')
             .selectAll("path")
             .data(genderButtonKeys)
@@ -724,15 +587,11 @@
             .html(function(d) {
                 return d;
             })
-
-
         function genderButtonClick(datapoint) {
             d3.selectAll(".genderButtons").style("background", "transparent")
             d3.select(this).style("background", backgroundColour)
             genderChoice = datapoint;
             genderButtonChoice = true
-
-
             if (genderChoice == "All") {
                 genderaddon = "Total_";
             } else if (genderChoice == "Men") {
@@ -740,20 +599,13 @@
             } else if (genderChoice == "Women") {
                 genderaddon = "Female_";
             }
-
         }
-
-
         ageButtonKeys = ["Choose an age category", "5-14 years", "15-59 years", "25-59 years", "60+ years", "All ages"]
-
-
         var select = d3.select('#ageButtons')
             .append('select')
             .attr('class', 'ageButtonsClass col')
             .attr('id', "dropdown1")
             .on('change', ageButtonClick)
-
-
         var options = select
             .selectAll('option')
             .data(ageButtonKeys).enter()
@@ -768,25 +620,17 @@
             .text(function(d) {
                 return d;
             })
-
-
-
         function ageButtonClick(datapoint) {
             datapoint = d3.select(this).property('value')
             ageChoice = datapoint;
             ageButtonChoice = true
         }
-
-
         denominatorButtonKeys = ["As proportion of", "Population", "Labour force", "Workers"]
-
         var select = d3.select('#denominatorButtons')
             .append('select')
             .attr('class', 'denominatorButtons col')
             .attr('id', 'dropdown2')
             .on('change', denominatorButtonClick)
-
-
         var options = select
             .selectAll('option')
             .data(denominatorButtonKeys).enter()
@@ -795,33 +639,22 @@
             .text(function(d) {
                 return d;
             });
-
         function denominatorButtonClick(datapoint) {
             datapoint = d3.select(this).property('value')
-
             denominatorChoice = datapoint;
             denominatorButtonChoice = true
             if (denominatorChoice == "Population") {
-
                 denominatoraddon = "Total_Population"
             }
-
             if (denominatorChoice == "Workers") {
-
                 denominatoraddon = "All_Overall_Total_Workers"
             }
-
             if (denominatorChoice == "Labour force") {
-
                 denominatoraddon = "Total_Labour_Force"
             }
         }
-
-
-
         var $vals = document.querySelectorAll(".button, select")
         var numVals = $vals.length;
-
         d3.select('#Allworkers').dispatch('click');
         d3.select('#WorkersByIndustry').dispatch('click');
         d3.select('#Farm').dispatch('click');
@@ -830,8 +663,6 @@
         d3.select("#dropdown2").dispatch('change');
         d3.select("#dropdown1").select("[id='15_59']").attr("selected", true)
         d3.select("#dropdown2").select("[id='Population']").attr("selected", true)
-
-
         dataChoice = "WORKERS BY INDUSTRY"
         genderaddon = "Total_"
         denominatoraddon = "Total_Population"
@@ -839,72 +670,43 @@
         ageChoice = "15-59 years"
         filteredData2011 = DataFilter("All workers", "15-59 years")[0]
         filteredData2001 = DataFilter("All workers", "15-59 years")[1]
-
-
         values = [filteredData2011, dataChoice, genderaddon, denominatoraddon, ["Cultivators", "Labourers", "Forestry"], filteredData2001]
-
         MapFunction(values)
-
         $vals.forEach(function(sel) {
-
             ['click', 'change'].forEach(function(e) {
                 sel.addEventListener(e, function(event) {
-
                     var vals = [];
-
                     if (dataChoice == "WORKERS BY INDUSTRY") {
-
                         if (workerButtonChoice == true && dataButtonChoice == true && industryButtonChoice == true && ageButtonChoice == true && denominatorButtonChoice == true && genderButtonChoice == true) {
-
                             filteredData2011 = DataFilter(workerChoice, ageChoice)[0]
                             filteredData2001 = DataFilter(workerChoice, ageChoice)[1]
-
                             if (industryButtonChoice == true && detailedIndustryButtonChoice == false) {
                                 values = [filteredData2011, dataChoice, genderaddon, denominatoraddon, industryaddon, filteredData2001]
-
                             }
-
                             if (industryButtonChoice == true && detailedIndustryButtonChoice == true) {
-
                                 values = [filteredData2011, dataChoice, genderaddon, denominatoraddon, industryaddon, detailedindustryaddon, filteredData2001]
-
                             }
-
                             MapFunction(values)
-
                         }
                     }
-
                     if (dataChoice == "LARGEST EMPLOYER")
-
                     {
                         if (workerButtonChoice == true && dataButtonChoice == true && ageButtonChoice == true && genderButtonChoice == true) {
                             filteredData2011 = DataFilter(workerChoice, ageChoice)[0]
                             values = [filteredData2011, dataChoice, genderaddon]
                             MapFunction(values)
                         }
-
-
-
                     }
-
                     if (dataChoice == "CHANGE SINCE 2001") {
-
                         filteredData2011 = DataFilter(workerChoice, ageChoice)[0]
                         filteredData2001 = DataFilter(workerChoice, ageChoice)[1]
                         values = [filteredData2011, dataChoice, genderaddon, denominatoraddon, industryaddon, filteredData2001]
                         MapFunction(values)
                     }
-
                 });
             });
-
         });
-
-
         function DataFilter(workerChoice, ageChoice) {
-
-
             if (workerChoice == "All workers") {
                 file2011 = TotalData2011
                 file2001 = TotalData2001
@@ -915,105 +717,66 @@
                 file2011 = MarginalData2011
                 file2001 = MarginalData2001
             }
-
             if (ageChoice == "5-14 years") {
-
                 filteredData2011 = file2011.filter(function(d) {
                     return ((d.Age == "5-9" || d.Age == "10-14") && (d.Rural_or_Urban == "Total"))
                 });
-
                 filteredData2001 = file2001.filter(function(d) {
                     return ((d.Age == "5-9" || d.Age == "10-14") && (d.Rural_or_Urban == "Total"))
                 });
-
             }
-
             if (ageChoice == "15-59 years") {
-
                 filteredData2011 = file2011.filter(function(d) {
                     return ((d.Age == "15-19" || d.Age == "20-24" || d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59") && (d.Rural_or_Urban == "Total"))
                 });
-
                 filteredData2001 = file2001.filter(function(d) {
                     return ((d.Age == "15-19" || d.Age == "20-24" || d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59") && (d.Rural_or_Urban == "Total"))
                 });
-
-
             }
-
             if (ageChoice == "25-59 years") {
-
                 filteredData2011 = file2011.filter(function(d) {
                     return ((d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59") && (d.Rural_or_Urban == "Total"))
                 });
-
                 filteredData2001 = file2001.filter(function(d) {
                     return ((d.Age == "25-29" || d.Age == "30-34" || d.Age == "35-39" || d.Age == "40-49" || d.Age == "50-59") && (d.Rural_or_Urban == "Total"))
                 });
-
-
             }
-
             if (ageChoice == "60+ years") {
-
                 filteredData2011 = file2011.filter(function(d) {
                     return ((d.Age == "60-69" || d.Age == "70-79" || d.Age == "80+") && (d.Rural_or_Urban == "Total"))
                 });
-
                 filteredData2001 = file2001.filter(function(d) {
                     return ((d.Age == "60-69" || d.Age == "70-79" || d.Age == "80+") && (d.Rural_or_Urban == "Total"))
                 });
-
-
             }
-
             if (ageChoice == "All ages") {
-
                 filteredData2011 = file2011.filter(function(d) {
                     return ((d.Age == "Total") && (d.Rural_or_Urban == "Total"))
                 });
-
                 filteredData2001 = file2001.filter(function(d) {
-                    return ((d.Age == "All ages") && (d.Rural_or_Urban == "Total"))
+                    return ((d.Age == "Total") && (d.Rural_or_Urban == "Total"))
                 });
-
             }
-
             return [filteredData2011, filteredData2001];
-
         }
-
-
         function MapFunction(values) {
-
-            console.log(dataChoice, workerChoice, industryChoice, ageChoice, denominatorChoice, genderChoice)
-
             d3.selectAll(".item").remove()
-
             if (values[1] == "WORKERS BY INDUSTRY") {
-
                 if (values.length == 6) {
                     if (industryChoice == "Non Farm") {
                         d3.select("#Non_Farm").dispatch('click');
                     } else {
                         d3.select("#" + industryChoice).dispatch('click');
                     }
-
                     WorkersByIndustryCategories(values, industryChoice)
                 }
-
-
                 if (values.length == 7) {
                     WorkersByIndustry(values)
                 }
-
             }
-
             if (dataChoice == "LARGEST EMPLOYER") {
-
                 LargestEmployer(values)
             }
-
             if (dataChoice == "CHANGE SINCE 2001") {
                 if (industryChoice == "Non Farm") {
                     d3.select("#Non_Farm").dispatch('click');
@@ -1022,18 +785,12 @@
                 }
                 ChangeSince2001(values, industryChoice)
             }
-
         }
-
-
         function ChangeSince2001(values, industryChoice) {
-
             d3.select("#detailedIndustryButtons").attr("hidden", true);
-
             file2011 = values[0]
             file2001 = values[5]
             denominator = values[3]
-
             if (values[2] == "Total_") {
                 fauxgenderaddon = "all"
             }
@@ -1043,12 +800,8 @@
             if (values[2] == "Female_") {
                 fauxgenderaddon = "female"
             }
-
-
             title = "% pts change in " + fauxgenderaddon + " " + industryChoice + " workers"
-
             industry = industryChoice
-
             if (industry == "Farm") {
                 variables2011_array = ["Cultivators", "Labourers", "Forestry"]
                 variables2001_array = ["Cultivators", "Labourers", "Plantation"]
@@ -1073,9 +826,6 @@
                 variables2011_array = ["B", "C_HHI", "C_NonHHI", "DE", "G_HHI", "G_NonHHI", "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
                 variables2001_array = ["C", "D_HHI", "D_NonHHI", "E", "H", "I", "JK", "LQ"]
             }
-
-
-
             var districtDatabyDistrict2011 = d3.nest()
                 .key(function(d) {
                     return +d.District_Code;
@@ -1091,22 +841,17 @@
                             }
                             return sum;
                         }),
-
                         denominator: d3.sum(d, function(e) {
                             return e[denominator];
                         }),
                         district_name: d[0].Area_Name,
                         state_name: d[0].State_Name,
-
                     }
                 })
                 .entries(file2011);
-
-
             districtDatabyDistrict2011.forEach(function(d) {
                 d.value['percentage'] = ((d.value['numerator']) * 100 / d.value['denominator'])
             })
-
             var districtDatabyDistrict2001 = d3.nest()
                 .key(function(d) {
                     return +d.Census2011Code;
@@ -1122,25 +867,19 @@
                             }
                             return sum;
                         }),
-
                         denominator: d3.sum(d, function(e) {
                             return e[denominator];
                         }),
                         district_name: d[0].Area_Name,
                         census2011_code: d[0].Census2011Code,
                         districtbroken: d[0].DistBroken
-
                     }
                 })
                 .entries(file2001);
-
-
             districtDatabyDistrict2001.forEach(function(d) {
                 d.value['percentage'] = ((d.value['numerator']) * 100 / d.value['denominator'])
             })
-
             changeData = {}
-
             districtDatabyDistrict2011.forEach(function(d) {
                 census_key = d.key
                 var val = districtDatabyDistrict2001.find(function(item) { return item.key == census_key });
@@ -1148,27 +887,18 @@
                     if (val.value['districtbroken'] == "N") {
                         percentage_2011 = districtDatabyDistrict2011[d.key - 1].value['percentage']
                         percentage_2001 = val.value['percentage']
-
                         changeData[census_key] = percentage_2011 - percentage_2001
-
                     }
-
                     if (val.value['districtbroken'] == "Y") {
-
-
                         if (val.value['census2011_code'] == "16") {
-
                             numerator_2011 = districtDatabyDistrict2011[+d.key - 1].value['numerator'] + districtDatabyDistrict2011[d.key].value['numerator'] + districtDatabyDistrict2011[+d.key + 1].value['numerator']
                             denominator_2011 = districtDatabyDistrict2011[+d.key - 1].value['denominator'] + districtDatabyDistrict2011[d.key].value['denominator'] + districtDatabyDistrict2011[+d.key + 1].value['denominator']
-
                             percentage_2011 = (numerator_2011 * 100) / denominator_2011
                             percentage_2001 = val.value['percentage']
                             changeData[16] = percentage_2011 - percentage_2001
                             changeData[17] = percentage_2011 - percentage_2001
                             changeData[18] = percentage_2011 - percentage_2001
-
                         } else if (val.value['census2011_code'] == "267") {
-
                             numerator_2011 = districtDatabyDistrict2011[+d.key - 1].value['numerator'] + districtDatabyDistrict2011[d.key].value['numerator'] + districtDatabyDistrict2011[+d.key + 1].value['numerator']
                             denominator_2011 = districtDatabyDistrict2011[+d.key - 1].value['denominator'] + districtDatabyDistrict2011[d.key].value['denominator'] + districtDatabyDistrict2011[+d.key + 1].value['denominator']
                             percentage_2011 = (numerator_2011 * 100) / denominator_2011
@@ -1176,7 +906,6 @@
                             changeData[267] = percentage_2011 - percentage_2001
                             changeData[268] = percentage_2011 - percentage_2001
                             changeData[269] = percentage_2011 - percentage_2001
-
                         } else {
                             numerator_2011 = districtDatabyDistrict2011[+d.key - 1].value['numerator'] + districtDatabyDistrict2011[d.key].value['numerator']
                             denominator_2011 = districtDatabyDistrict2011[+d.key - 1].value['denominator'] + districtDatabyDistrict2011[d.key].value['denominator']
@@ -1184,128 +913,80 @@
                             percentage_2001 = val.value['percentage']
                             changeData[census_key] = percentage_2011 - percentage_2001
                             changeData[+census_key + 1] = percentage_2011 - percentage_2001
-
                         }
-
                     }
-
-
                     if (val.value['districtbroken'] == "YM") {
-
                         if (val.value['census2011_code'] == "48") {
-
                             var district2011_1 = districtDatabyDistrict2011.find(function(item) { return item.key == 48 });
                             var district2011_2 = districtDatabyDistrict2011.find(function(item) { return item.key == 51 });
                             var district2011_3 = districtDatabyDistrict2011.find(function(item) { return item.key == 52 });
-
                             var district2001_1 = districtDatabyDistrict2001.find(function(item) { return item.key == 48 });
                             var district2001_2 = districtDatabyDistrict2001.find(function(item) { return item.key == 51 });
-
-
                             numerator_2011 = district2011_1.value['numerator'] + district2011_2.value['numerator'] + district2011_3.value['numerator']
-
                             denominator_2011 = district2011_1.value['denominator'] + district2011_2.value['denominator'] + district2011_3.value['denominator']
-
                             numerator_2001 = district2001_1.value['numerator'] + district2001_2.value['numerator']
-
                             denominator_2001 = district2001_1.value['denominator'] + district2001_2.value['denominator']
-
                             percentage_2001 = (numerator_2001 * 100) / denominator_2001
                             percentage_2011 = (numerator_2011 * 100) / denominator_2011
                             changeData[48] = percentage_2011 - percentage_2001
                             changeData[51] = percentage_2011 - percentage_2001
                             changeData[52] = percentage_2011 - percentage_2001
-
                         }
-
                         if (val.value['census2011_code'] == "610") {
-
                             var district2011_1 = districtDatabyDistrict2011.find(function(item) { return item.key == 610 });
                             var district2011_2 = districtDatabyDistrict2011.find(function(item) { return item.key == 632 });
                             var district2011_3 = districtDatabyDistrict2011.find(function(item) { return item.key == 633 });
-
                             var district2001_1 = districtDatabyDistrict2001.find(function(item) { return item.key == 610 });
                             var district2001_2 = districtDatabyDistrict2001.find(function(item) { return item.key == 632 });
-
                             numerator_2011 = district2011_1.value['numerator'] + district2011_2.value['numerator'] + district2011_3.value['numerator']
-
                             denominator_2011 = district2011_1.value['denominator'] + district2011_2.value['denominator'] + district2011_3.value['denominator']
-
                             numerator_2001 = district2001_1.value['numerator'] + district2001_2.value['numerator']
-
                             denominator_2001 = district2001_1.value['denominator'] + district2001_2.value['denominator']
-
                             percentage_2001 = (numerator_2001 * 100) / denominator_2001
                             percentage_2011 = (numerator_2011 * 100) / denominator_2011
                             changeData[610] = percentage_2011 - percentage_2001
                             changeData[632] = percentage_2011 - percentage_2001
                             changeData[633] = percentage_2011 - percentage_2001
-
                         }
-
                         if (val.value['census2011_code'] == "125") {
-
                             var district2011_1 = districtDatabyDistrict2011.find(function(item) { return item.key == 125 });
                             var district2011_2 = districtDatabyDistrict2011.find(function(item) { return item.key == 126 });
                             var district2011_3 = districtDatabyDistrict2011.find(function(item) { return item.key == 130 });
                             var district2011_4 = districtDatabyDistrict2011.find(function(item) { return item.key == 131 });
-
                             var district2001_1 = districtDatabyDistrict2001.find(function(item) { return item.key == 125 });
                             var district2001_2 = districtDatabyDistrict2001.find(function(item) { return item.key == 126 });
                             var district2001_3 = districtDatabyDistrict2001.find(function(item) { return item.key == 130 });
-
                             numerator_2011 = district2011_1.value['numerator'] + district2011_2.value['numerator'] + district2011_3.value['numerator'] + district2011_4.value['numerator']
-
                             denominator_2011 = district2011_1.value['denominator'] + district2011_2.value['denominator'] + district2011_3.value['denominator'] + district2011_4.value['denominator']
-
                             numerator_2001 = district2001_1.value['numerator'] + district2001_2.value['numerator'] + district2001_3.value['numerator']
-
                             denominator_2001 = district2001_1.value['denominator'] + district2001_2.value['denominator'] + district2001_3.value['denominator']
-
                             percentage_2001 = (numerator_2001 * 100) / denominator_2001
                             percentage_2011 = (numerator_2011 * 100) / denominator_2011
                             changeData[125] = percentage_2011 - percentage_2001
                             changeData[126] = percentage_2011 - percentage_2001
                             changeData[130] = percentage_2011 - percentage_2001
                             changeData[131] = percentage_2011 - percentage_2001
-
                         }
-
-
                         if (val.value['census2011_code'] == "306") {
-
                             var district2011_1 = districtDatabyDistrict2011.find(function(item) { return item.key == 306 });
                             var district2011_2 = districtDatabyDistrict2011.find(function(item) { return item.key == 325 });
                             var district2011_3 = districtDatabyDistrict2011.find(function(item) { return item.key == 326 });
                             var district2011_4 = districtDatabyDistrict2011.find(function(item) { return item.key == 304 });
-
-
                             var district2001_1 = districtDatabyDistrict2001.find(function(item) { return item.key == 304 });
                             var district2001_2 = districtDatabyDistrict2001.find(function(item) { return item.key == 305 });
                             var district2001_3 = districtDatabyDistrict2001.find(function(item) { return item.key == 325 });
-
-
                             numerator_2011 = district2011_1.value['numerator'] + district2011_2.value['numerator'] + district2011_3.value['numerator'] + district2011_4.value['numerator']
-
                             denominator_2011 = district2011_1.value['denominator'] + district2011_2.value['denominator'] + district2011_3.value['denominator'] + district2011_4.value['denominator']
-
                             numerator_2001 = district2001_1.value['numerator'] + district2001_2.value['numerator'] + district2001_3.value['numerator']
-
                             denominator_2001 = district2001_1.value['denominator'] + district2001_2.value['denominator'] + district2001_3.value['denominator']
-
                             percentage_2001 = (numerator_2001 * 100) / denominator_2001
                             percentage_2011 = (numerator_2011 * 100) / denominator_2011
-
                             changeData[306] = percentage_2011 - percentage_2001
                             changeData[325] = percentage_2011 - percentage_2001
                             changeData[326] = percentage_2011 - percentage_2001
                             changeData[304] = percentage_2011 - percentage_2001
-
-
                         }
-
                         if (val.value['census2011_code'] == "303") {
-
                             var district2011_1 = districtDatabyDistrict2011.find(function(item) { return item.key == 303 });
                             var district2011_2 = districtDatabyDistrict2011.find(function(item) { return item.key == 319 });
                             var district2011_3 = districtDatabyDistrict2011.find(function(item) { return item.key == 320 });
@@ -1313,22 +994,14 @@
                             var district2011_5 = districtDatabyDistrict2011.find(function(item) { return item.key == 322 });
                             var district2011_6 = districtDatabyDistrict2011.find(function(item) { return item.key == 323 });
                             var district2011_7 = districtDatabyDistrict2011.find(function(item) { return item.key == 324 });
-
-
                             var district2001_1 = districtDatabyDistrict2001.find(function(item) { return item.key == 309 });
                             var district2001_2 = districtDatabyDistrict2001.find(function(item) { return item.key == 319 });
                             var district2001_3 = districtDatabyDistrict2001.find(function(item) { return item.key == 321 });
                             var district2001_4 = districtDatabyDistrict2001.find(function(item) { return item.key == 323 });
-
                             numerator_2011 = district2011_1.value['numerator'] + district2011_2.value['numerator'] + district2011_3.value['numerator'] + district2011_4.value['numerator'] + district2011_5.value['numerator'] + district2011_6.value['numerator'] + district2011_7.value['numerator']
-
-
                             denominator_2011 = district2011_1.value['denominator'] + district2011_2.value['denominator'] + district2011_3.value['denominator'] + district2011_4.value['denominator'] + district2011_5.value['denominator'] + district2011_6.value['denominator'] + district2011_7.value['denominator']
-
                             numerator_2001 = district2001_1.value['numerator'] + district2001_2.value['numerator'] + district2001_3.value['numerator'] + district2001_4.value['numerator']
-
                             denominator_2001 = district2001_1.value['denominator'] + district2001_2.value['denominator'] + district2001_3.value['denominator'] + district2001_4.value['denominator']
-
                             percentage_2001 = (numerator_2001 * 100) / denominator_2001
                             percentage_2011 = (numerator_2011 * 100) / denominator_2011
                             changeData[303] = percentage_2011 - percentage_2001
@@ -1338,34 +1011,22 @@
                             changeData[322] = percentage_2011 - percentage_2001
                             changeData[323] = percentage_2011 - percentage_2001
                             changeData[324] = percentage_2011 - percentage_2001
-
-
                         }
-
-
                     }
-
                 }
             })
-
             items = []
             for (var key in changeData) {
                 var value = changeData[key];
                 items.push(value)
             }
-
-
             var colourScale = d3.scaleQuantile().domain(items).range(["#D71920", "#E2694D", "#A2B86F", "#81A53E"]);
-
             districtDatabyDistrict2011.forEach(function(d) {
                 change_percentage = changeData[d.key]
                 var colourState = colourScale(change_percentage);
                 d3.select("#b" + d.key).transition().duration(1000).style("fill", colourState);
             })
-
-
             function UrbanAggCalculator(city) {
-
                 lengthofids = city.length
                 var numerator2011 = 0
                 var denominator2011 = 0
@@ -1376,7 +1037,6 @@
                     var district2011 = districtDatabyDistrict2011.find(function(item) { return item.key == id_no });
                     numerator2011 = numerator2011 + district2011.value['numerator']
                     denominator2011 = denominator2011 + district2011.value['denominator']
-
                     if (id_no == 87 || id_no == 89) {
                         numerator2001 = numerator2001;
                         denominator2001 = denominator2001;
@@ -1385,110 +1045,22 @@
                         numerator2001 = numerator2001 + district2001.value['numerator']
                         denominator2001 = denominator2001 + district2001.value['denominator']
                     }
-
-
                 }
                 percentage1 = (numerator2011 * 100 / denominator2011)
                 percentage2 = (numerator2001 * 100 / denominator2001)
                 percentage_n = percentage1 - percentage2
-                return percentage_n.toFixed(2);
-
+                return percentage_n;
             }
-
             city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
-
-
-
-            console.log(dataChoice,workerChoice,industryChoice,ageChoice,denominatorChoice,genderChoice)
-            if(dataChoice=="CHANGE SINCE 2001"){
-            	fauxdataName="CHANGESINCE2001"
-            }
-
-            if(workerChoice=="All workers"){
-            	fauxworkerName="ALLWORKERS"
-            }
-            if(workerChoice=="Regular workers"){
-            	fauxworkerName="REGULARWORKERS"
-            }
-            if(workerChoice=="Seasonal workers"){
-            	fauxworkerName="SEASONALWORKERS"
-            }
-            if(industryChoice=="Farm"){
-            	fauxindustryName="FARM"
-            }
-            if(industryChoice=="Manufacturing"){
-            	fauxindustryName="MANUFACTURING"
-            }
-            if(industryChoice=="Trade"){
-            	fauxindustryName="TRADE"
-            }
-            if(industryChoice=="Construction"){
-            	fauxindustryName="CONSTRUCTION"
-            }
-            if(industryChoice=="Services"){
-            	fauxindustryName="SERVICES"
-            }
-            if(industryChoice=="Non Farm"){
-            	fauxindustryName="NON_FARM"
-            }
-            if(denominatorChoice=="Population"){
-            	fauxdenominatorName="POPULATION"
-            }
-            if(denominatorChoice=="Labour force"){
-            	fauxdenominatorName="LABOUR"
-            }
-            if(denominatorChoice=="Workers"){
-            	fauxdenominatorName="WORKERS"
-            }
-        
-            if(ageChoice=="5-14 years"){
-            	fauxageName="CHILDWORKERS"
-            }
-            if(ageChoice=="15-59 years"){
-            	fauxageName="YOUTHANDADULTWORKERS"
-            }
-            if(ageChoice=="25-59 years"){
-            	fauxageName="ADULTWORKERS"
-            }
-            if(ageChoice=="60+ years"){
-            	fauxageName="SENIORWORKERS"
-            }
-            if(ageChoice=="All ages"){
-            	fauxageName="ALLAGEWORKERS"
-            }
-            if(genderChoice=="All"){
-            	fauxgenderName="ALL"
-            }
-            if(genderChoice=="Men"){
-            	fauxgenderName="MEN"
-            }
-             if(genderChoice=="Women"){
-            	fauxgenderName="WOMEN"
-            }
-
-            title=fauxdataName+fauxworkerName+fauxindustryName+fauxageName+fauxdenominatorName+fauxgenderName
-            console.log(title)
-
-            download(title+".json",JSON.stringify(changeData))
-            download(title+"city.txt",(city_array))
-
-     
             drawLegendandTooltip(colourScale, changeData, "no", title)
-
             d3.select(".annotation-group").remove()
             Annotate(city_array);
-
-
         }
-
         function WorkersByIndustryCategories(values, industryChoice) {
-
-
             file2011 = values[0]
             lengthofarray = values.length
             numerator = values[2] + values[lengthofarray - 2]
             denominator = values[3]
-
             if (industryChoice == "Farm") {
                 variables2011_array = ["Cultivators", "Labourers", "Forestry"]
             }
@@ -1507,12 +1079,8 @@
             if (industryChoice == "Non Farm") {
                 variables2011_array = ["B", "C_HHI", "C_NonHHI", "DE", "G_HHI", "G_NonHHI", "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
             }
-
             variables_array = variables2011_array
             // variables_array = values[4]
-
-
-
             if (values[2] == "Total_") {
                 fauxgenderaddon = "all"
             }
@@ -1522,10 +1090,7 @@
             if (values[2] == "Female_") {
                 fauxgenderaddon = "female"
             }
-
-
             title = "% of " + fauxgenderaddon + " workers in " + industryChoice + " industries"
-
             var districtDatabyDistrict = d3.nest()
                 .key(function(d) {
                     return +d.District_Code;
@@ -1541,25 +1106,19 @@
                             }
                             return sum;
                         }),
-
                         denominator: d3.sum(d, function(e) {
                             return e[denominator];
                         }),
                         district_name: d[0].Area_Name,
                         state_name: d[0].State_Name,
-
                     }
                 })
                 .entries(file2011);
-
             districtDatabyDistrict.forEach(function(d) {
-                d.value['percentage'] = ((d.value['numerator']) * 100 / d.value['denominator']).toFixed(2);
+                d.value['percentage'] = ((d.value['numerator']) * 100 / d.value['denominator'])
             })
-
             var items = districtDatabyDistrict.map(post => +post.value['percentage']);
-
             var colourScale = d3.scaleQuantile().domain(items).range(["#FAB816", "#FFD27C", "#41b6c4", "#225ea8"]);
-
             var districtData = {}
             districtDatabyDistrict.forEach(function(d) {
                 district_variable_count = parseInt(d.key)
@@ -1567,56 +1126,38 @@
                 var colourState = colourScale(d.value['percentage']);
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
-
-
-
             function UrbanAggCalculator(city) {
                 lengthofids = city.length
                 var numerator = 0
                 var denominator = 0
                 for (item = 0; item < (lengthofids); item++) {
                     id_no = city[item]
-
                     numerator = numerator + (districtDatabyDistrict[id_no - 1].value['numerator'])
                     denominator = denominator + (districtDatabyDistrict[id_no - 1].value['denominator'])
                 }
-
-                percentage_n = (numerator * 100) / (denominator)
-
-                return percentage_n.toFixed(2);
+                percentage_n = (numerator * 100) / (denominator).toFixed(2);
+                return percentage_n;
             }
-
-
             city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
-
             var sorted = []
-
             for (var district in districtData) {
                 sorted.push([district, districtData[district]])
             }
-
             sorted.sort(function(a, b) {
                 return b[1] - a[1]
             })
-
             var top10list = []
-
             var count = 0
-
             while (count < 10) {
                 id = sorted[count][0]
                 district_name = districtDatabyDistrict[id - 1].value['district_name'].substring(11)
                 state_name = districtDatabyDistrict[id - 1].value['state_name']
-                district_percentage = sorted[count][1]
-                top10list.push([district_name, state_name, district_percentage,sorted[count][0]])
+                district_percentage = sorted[count][1].toFixed(2)
+                top10list.push([district_name, state_name, district_percentage])
                 d3.select("#b" + sorted[count][0]).transition().duration(1000).style("fill", "#7F4C94");
                 count = count + 1
-
             }
-
             d3.select("#top10listheader").text(" TOP 10 DISTRICTS ")
-
-
             d3.select('#top10list')
                 .selectAll('.item')
                 .data(top10list)
@@ -1629,26 +1170,10 @@
                 .append("text").text(": ")
                 .append("text").text(function(d) { return d[2] })
                 .append("text").text("%");
-
-            console.log(districtData)
-            JSON_data=JSON.stringify(districtData)
-
-
-            console.log(city_array)
-            console.log(top10list)
-
-            // download("data.json",JSON_data)
-            // download("city.txt",city_array)
-            // download("list.json",JSON.stringify(top10list))
-
-
             drawLegendandTooltip(colourScale, districtData, "yes", title)
-
             Annotate(city_array);
         }
-
         function LabelNames(values) {
-
             lengthofarray = values.length
             numerator = values[2] + values[lengthofarray - 2]
             denominator = values[3]
@@ -1661,7 +1186,6 @@
             if (values[2] == "Female_") {
                 fauxgenderaddon = "female"
             }
-
             if (values[3] == "Total_Population") {
                 fauxdenominator = "population"
             }
@@ -1671,14 +1195,11 @@
             if (values[3] == "All_Overall_Total_Workers") {
                 fauxdenominator = "workers"
             }
-
             if (values[lengthofarray - 2] == "Cultivators" || values[lengthofarray - 2] == "Labourers") {
                 preposition = "as"
             } else {
                 preposition = "in"
             }
-
-
             if (values[lengthofarray - 2] == "Cultivators") {
                 fauxindustry = "cultivators"
             }
@@ -1691,49 +1212,42 @@
             if (values[lengthofarray - 2] == "C_HHI") {
                 fauxindustry = "non-household manufacturing"
             }
-
             if (values[lengthofarray - 2] == "C_HHI") {
                 fauxindustry = "household manufacturing"
             }
             if (values[lengthofarray - 2] == "C_HHI") {
                 fauxindustry = "non-household manufacturing"
             }
-
             if (values[lengthofarray - 2] == "G_HHI") {
                 fauxindustry = "household trade"
             }
             if (values[lengthofarray - 2] == "G_NonHHI") {
                 fauxindustry = "non-household trade"
             }
-
             if (values[lengthofarray - 2] == "F") {
                 fauxindustry = "construction"
             }
             if (values[lengthofarray - 2] == "DE") {
                 fauxindustry = "utilities"
             }
-
             if (values[lengthofarray - 2] == "H") {
                 fauxindustry = "transportation"
             }
             if (values[lengthofarray - 2] == "I") {
                 fauxindustry = "hospitality"
             }
-
             if (values[lengthofarray - 2] == "J_HHI") {
                 fauxindustry = "IT (household)"
             }
             if (values[lengthofarray - 2] == "J_NonHHI") {
                 fauxindustry = "IT (non-household)"
             }
-
             if (values[lengthofarray - 2] == "KM") {
                 fauxindustry = "finance"
             }
             if (values[lengthofarray - 2] == "NO") {
                 fauxindustry = "administration and defence"
             }
-
             if (values[lengthofarray - 2] == "PQ") {
                 fauxindustry = "education and health"
             }
@@ -1743,24 +1257,15 @@
             if (values[lengthofarray - 2] == "RU_NonHHI") {
                 fauxindustry = "other services (non-household)"
             }
-
-
             return [fauxgenderaddon, fauxdenominator, preposition, fauxindustry]
         }
-
         function WorkersByIndustry(values) {
-
-
             file2011 = values[0]
             lengthofarray = values.length
             numerator = values[2] + values[lengthofarray - 2]
             denominator = values[3]
-
             fauxvalues = LabelNames(values)
-
             title = "% of " + fauxvalues[0] + " " + fauxvalues[1] + " working " + fauxvalues[2] + " " + fauxvalues[3]
-
-
             var districtDatabyDistrict = d3.nest()
                 .key(function(d) {
                     return +d.District_Code;
@@ -1775,20 +1280,14 @@
                         }),
                         district_name: d[0].Area_Name,
                         state_name: d[0].State_Name,
-
                     }
                 })
                 .entries(file2011);
-
-
             districtDatabyDistrict.forEach(function(d) {
                 d.value['percentage'] = ((d.value['numerator']) * 100 / d.value['denominator'])
             })
-
             var items = districtDatabyDistrict.map(post => +post.value['percentage']);
             var colourScale = d3.scaleQuantile().domain(items).range(["#FAB816", "#FFD27C", "#41b6c4", "#225ea8"]);
-
-
             var districtData = {}
             districtDatabyDistrict.forEach(function(d) {
                 district_variable_count = parseInt(d.key)
@@ -1796,57 +1295,38 @@
                 var colourState = colourScale(d.value['percentage']);
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
-
-
-
             function UrbanAggCalculator(city) {
                 lengthofids = city.length
                 var numerator = 0
                 var denominator = 0
                 for (item = 0; item < (lengthofids); item++) {
                     id_no = city[item]
-
                     numerator = numerator + (districtDatabyDistrict[id_no - 1].value['numerator'])
                     denominator = denominator + (districtDatabyDistrict[id_no - 1].value['denominator'])
                 }
-
-                percentage_n = (numerator * 100) / (denominator)
-
+                percentage_n = (numerator * 100) / (denominator).toFixed(2);
                 return percentage_n;
             }
-
-
             city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
-
-
             var sorted = []
-
             for (var district in districtData) {
                 sorted.push([district, districtData[district]])
             }
-
             sorted.sort(function(a, b) {
                 return b[1] - a[1]
             })
-
             var top10list = []
-
             var count = 0
-
             while (count < 10) {
                 id = sorted[count][0]
                 district_name = districtDatabyDistrict[id - 1].value['district_name'].substring(11)
                 state_name = districtDatabyDistrict[id - 1].value['state_name']
-                district_percentage = sorted[count][1]
+                district_percentage = sorted[count][1].toFixed(2)
                 top10list.push([district_name, state_name, district_percentage])
                 d3.select("#b" + sorted[count][0]).transition().duration(1000).style("fill", "#7F4C94");
                 count = count + 1
-
             }
-
             d3.select("#top10listheader").text(" TOP 10 DISTRICTS ")
-
-
             d3.select('#top10list')
                 .selectAll('.item')
                 .data(top10list)
@@ -1859,22 +1339,14 @@
                 .append("text").text(": ")
                 .append("text").text(function(d) { return d[2] })
                 .append("text").text("%");
-
             drawLegendandTooltip(colourScale, districtData, "yes", title)
             Annotate(city_array);
         }
-
-
-        function LargestEmployer(values) {            d3.selectAll(".legend").attr("hidden", null);
-
-
-        	console.log("I SHOULD BE IN HERE!!")
-
+        function LargestEmployer(values) {
+            d3.selectAll(".legend").attr("hidden", null);
             d3.select(".annotation-group").remove()
-
             file2011 = values[0]
             genderaddon = values[2]
-
             var districtDatabyDistrict = d3.nest()
                 .key(function(d) {
                     return +d.District_Code;
@@ -1941,7 +1413,6 @@
                     }
                 })
                 .entries(file2011);
-
             var colourScale = d3.scaleOrdinal().domain(["Agricultural Labourers",
                 "Cultivators",
                 "Manufacturing",
@@ -1965,7 +1436,6 @@
                 "bc352a",
                 "ffffff"
             ]);
-
             var districtData = {}
             districtDatabyDistrict.forEach(function(d) {
                 code = d.key
@@ -2017,94 +1487,33 @@
                 var colourState = colourScale(max);
                 d3.select("#b" + code).transition().duration(1000).style("fill", colourState);
             })
-
-   
-
             function UrbanAggCalculator(city) {
                 lengthofids = city.length
                 var numerator = 0
                 var denominator = 0
                 for (item = 0; item < (city.length); item++) {
                     id_no = city[item]
-
                     numerator = numerator + (districtDatabyDistrict[id_no - 1].value['numerator'])
                     denominator = denominator + (districtDatabyDistrict[id_no - 1].value['denominator'])
                 }
-
                 percentage_n = (numerator * 100) / (denominator).toFixed(2);
-
                 return percentage_n;
             }
-
-
             city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
-
-            console.log(dataChoice,workerChoice,industryChoice,ageChoice,denominatorChoice,genderChoice)
-            // if(dataChoice=="LARGEST EMPLOYER"){
-            // 	fauxdataName="LARGESTEMPLOYER"
-            // }
-
-            // if(workerChoice=="All workers"){
-            // 	fauxworkerName="ALLWORKERS"
-            // }
-            // if(workerChoice=="Regular workers"){
-            // 	fauxworkerName="REGULARWORKERS"
-            // }
-            // if(workerChoice=="Seasonal workers"){
-            // 	fauxworkerName="SEASONALWORKERS"
-            // }
-            // if(ageChoice=="5-14 years"){
-            // 	fauxageName="CHILDWORKERS"
-            // }
-            // if(ageChoice=="15-59 years"){
-            // 	fauxageName="YOUTHANDADULTWORKERS"
-            // }
-            // if(ageChoice=="25-59 years"){
-            // 	fauxageName="ADULTWORKERS"
-            // }
-            // if(ageChoice=="60+ years"){
-            // 	fauxageName="SENIORWORKERS"
-            // }
-            // if(ageChoice=="All ages"){
-            // 	fauxageName="ALLAGEWORKERS"
-            // }
-            // if(genderChoice=="All"){
-            // 	fauxgenderName="ALL"
-            // }
-            // if(genderChoice=="Men"){
-            // 	fauxgenderName="MEN"
-            // }
-            //  if(genderChoice=="Women"){
-            // 	fauxgenderName="WOMEN"
-            // }
-
-            // title=fauxdataName+fauxworkerName+fauxageName+fauxgenderName
-            // console.log(title)
-
-            // download(title+".json",JSON.stringify(districtData))
-           
-
-
             d3.selectAll(".legendQuant").remove()
             // svg.append("g")
             //     .attr("class", "legendQuant")
-
             // var legend = d3.legendColor()
             //     .labelFormat(d3.format(".2f"))
             //     .title("Industry")
             //     .scale(colourScale)
-
             // svg.select(".legendQuant")
             //     .call(legend);
-
-
             d3.selectAll(".legendtitle").remove()
             d3.selectAll(".label").style("text-anchor", "start")
-
             allDistricts.on("mouseover", function(d) {
-                d3.select(this).classed("hover", true).style("stroke", "black").style("stroke-width", 1.5).raise();
+                d3.select(this).classed("hover", true).style("stroke", "black").raise();
             })
-
             allDistricts.on("mousemove", function(d) {
                 tooltip
                     .style("left", d3.event.pageX - 50 + "px")
@@ -2112,23 +1521,15 @@
                     .style("display", "inline-block")
                     .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode]);
             })
-
             allDistricts.on("mouseout", function(d) {
                 d3.select(this).classed("hover", false).style("stroke", "transparent").lower();
                 tooltip.style("display", "none");
-
             })
-
         }
-
-
         function drawLegendandTooltip(colourScale, districtData, token, title) {
-
-
             svg.append("g")
                 .attr("class", "legendQuant")
                 .attr("transform", "translate(500,50)");
-
             var legend = d3.legendColor()
                 .labelFormat(d3.format(".2f"))
                 .title(title)
@@ -2136,53 +1537,41 @@
                 .orient("horizontal")
                 .labelWrap(25)
                 .shapeWidth(30)
-
             svg.select(".legendQuant")
                 .call(legend);
-
             if (token == "yes") {
                 var newLabel = d3.selectAll(".legendCells").append("g").attr("class", "cell").attr("transform", "translate(128,0)")
                 newLabel.append("rect").attr("class", "swatch").attr("height", "15").attr("width", "30").style("fill", "rgb(189,56,132)")
                 newLabel.append("text").attr("class", "label").attr("transform", "translate(0,33)").style("text-anchor", "left").append("tspan").text("Top 10 districts")
             }
-
             allDistricts.on("mouseover", function(d) {
-                d3.select(this).classed("hover", true).style("stroke", "black").style("stroke-width", 1.5).raise();
+                d3.select(this).classed("hover", true).style("stroke", "black").raise();
             })
-
             allDistricts.on("mousemove", function(d) {
                 if (d.properties.DISTRICT != "Data Not Available") {
                     tooltip
                         .style("left", d3.event.pageX - 50 + "px")
                         .style("top", d3.event.pageY - 70 + "px")
                         .style("display", "inline-block")
-                        .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode] + " percent");
-
+                        .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode].toFixed(2) + " percent");
                 }
-
             })
-
             allDistricts.on("mouseout", function(d) {
                 d3.select(this).classed("hover", false).style("stroke", "transparent").lower();
                 tooltip.style("display", "none");
-
             })
-
         }
-
         function Annotate(numbers) {
             d3.selectAll(".annotation-group").remove();
-
             const annotations = [{
                     type: d3.annotationCalloutCircle,
                     note: {
-                        label: numbers[5] + " percent",
+                        label: numbers[5].toFixed(2) + " percent",
                         title: "Delhi NCR",
                         wrap: 300
                     },
                     subject: {
                         radius: 25
-
                     },
                     x: 275,
                     y: 270,
@@ -2192,14 +1581,12 @@
                 {
                     type: d3.annotationCalloutCircle,
                     note: {
-                        label: numbers[4] + " percent",
+                        label: numbers[4].toFixed(2) + " percent",
                         title: "Mumbai-Pune region",
                         wrap: 100
                     },
-
                     subject: {
                         radius: 15
-
                     },
                     x: 195,
                     y: 490,
@@ -2209,14 +1596,12 @@
                 {
                     type: d3.annotationCalloutCircle,
                     note: {
-                        label: numbers[0] + " percent",
+                        label: numbers[0].toFixed(2) + " percent",
                         title: "Hyderabad region",
                         wrap: 100
                     },
-
                     subject: {
                         radius: 12
-
                     },
                     x: 300,
                     y: 527,
@@ -2226,14 +1611,12 @@
                 {
                     type: d3.annotationCalloutCircle,
                     note: {
-                        label: numbers[3] + " percent",
+                        label: numbers[3].toFixed(2) + " percent",
                         title: "Kolkata region",
                         wrap: 100
                     },
-
                     subject: {
                         radius: 15
-
                     },
                     x: 515,
                     y: 410,
@@ -2243,14 +1626,12 @@
                 {
                     type: d3.annotationCalloutCircle,
                     note: {
-                        label: numbers[2] + " percent",
+                        label: numbers[2].toFixed(2) + " percent",
                         title: "Chennai region",
                         wrap: 100
                     },
-
                     subject: {
                         radius: 15
-
                     },
                     x: 335,
                     y: 625,
@@ -2260,14 +1641,12 @@
                 {
                     type: d3.annotationCalloutCircle,
                     note: {
-                        label: numbers[1] + " percent",
+                        label: numbers[1].toFixed(2) + " percent",
                         title: "Bengaluru region",
                         wrap: 100
                     },
-
                     subject: {
                         radius: 12
-
                     },
                     x: 285,
                     y: 620,
@@ -2278,29 +1657,14 @@
                 d.color = "#000000";
                 return d
             })
-
             const makeAnnotations = d3.annotation()
                 .type(d3.annotationLabel)
                 .annotations(annotations)
-
             d3.select("svg")
                 .append("g")
                 .attr("class", "annotation-group")
                 .call(makeAnnotations)
         }
-
-        function download(filename, text) {
-                var element = document.createElement('a');
-                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-                element.setAttribute('download', filename);
-                element.style.display = 'none';
-                document.body.appendChild(element);
-                element.click();
-
-                document.body.removeChild(element);
-            }
-
-
     }
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
