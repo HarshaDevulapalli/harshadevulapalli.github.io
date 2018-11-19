@@ -14,14 +14,14 @@
     <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
     <script src="https://d3js.org/d3-array.v2.min.js"></script>
-
     <style>
     body {
         font-family: "Fira Sans Extra Condensed", sans-serif;
     }
 
     p,
-    ul,li {
+    ul,
+    li {
         font-weight: 400;
         font-size: 0.8em;
         margin: 10px;
@@ -37,7 +37,7 @@
 
 
 
-     /* basic positioning */
+    /* basic positioning */
     .legend {
         list-style: none;
     }
@@ -145,6 +145,7 @@
         position: absolute;
         display: block;
         padding: 8px 8px;
+
     }
 
     /* Change background color of buttons on hover */
@@ -208,7 +209,9 @@
     }
 
     #dropdown0 {
-        {cursor: pointer;}
+            {
+            cursor: pointer;
+        }
     }
     </style>
 </head>
@@ -238,7 +241,6 @@
             <div class="select col-md-3 col-xs-6" id="denominatorButtons"></div>
             <div class="select col-md-3 col-xs-6" id="detailedIndustryButtons"></div>
             <div class="button col-md-3 col-xs-6" id="genderButtons"></div>
-
         </div>
     </div>
     <div class="container">
@@ -271,22 +273,22 @@
     </div>
     <div class="container">
         <div class="row">
-    <div id="source">
-        <p> Source: Census 2011, Census 2001 </p>
+            <div id="source">
+                <p> Source: Census 2011, Census 2001 </p>
+            </div>
+        </div>
+        <div class="row">
+            <p id="specific-notes">
+            </p>
+        </div>
+        <div class="row">
+            <div id="standard-notes">
+                <p>Regular and Seasonal workers refer to Main and Marginal workers of the Census. </p>
+                <p> Delhi-NCR includes the NCT and the adjoining districts of Alwar, Baghpat, Bharatpur, Bhiwani, Bulandshahr, Faridabad, Noida, Ghaziabad, Gurgaon, Jhajjar, Jind, Karnal, Mahendragarh, Meerut, Mewat, Muzaffarnagar, Palwal, Panipat, Rewari, Rohtak and Sonipat. Mumbai-Pune region consists of Mumbai, Mumbai (Suburban), Thane, Raigad and Pune. Kolkata region includes North and South 24 Paraganas, Howrah, Hugli and Nadia. Chennai region includes Chennai, Kancheepuram and Thiruvalluvar. Bengaluru region includes Bengaluru and Bengaluru Rural districts. Hyderabad region includes Hyderabad and Rangareddy districts.</p>
+            </div>
+        </div>
     </div>
-</div>
-    <div class="row">
-        <p id="specific-notes">
-        </p>
     </div>
-    <div class="row">
-    <div id="standard-notes">
-        <p>Regular and Seasonal workers refer to Main and Marginal workers of the Census. </p>
-        <p> Delhi-NCR includes the NCT and the adjoining districts of Alwar, Baghpat, Bharatpur, Bhiwani, Bulandshahr, Faridabad, Noida, Ghaziabad, Gurgaon, Jhajjar, Jind, Karnal, Mahendragarh, Meerut, Mewat, Muzaffarnagar, Palwal, Panipat, Rewari, Rohtak and Sonipat. Mumbai-Pune region consists of Mumbai, Mumbai (Suburban), Thane, Raigad and Pune. Kolkata region includes North and South 24 Paraganas, Howrah, Hugli and Nadia. Chennai region includes Chennai, Kancheepuram and Thiruvalluvar. Bengaluru region includes Bengaluru and Bengaluru Rural districts. Hyderabad region includes Hyderabad and Rangareddy districts.</p>
-    </div>
-</div>
-</div>
-</div>
     <script>
     var width = 800;
     var height = 800;
@@ -972,7 +974,7 @@
                 });
 
                 filteredData2001 = file2001.filter(function(d) {
-                    return ((d.Age == "Total") && (d.Rural_or_Urban == "Total"))
+                    return ((d.Age == "All ages") && (d.Rural_or_Urban == "Total"))
                 });
 
             }
@@ -983,6 +985,8 @@
 
 
         function MapFunction(values) {
+
+            console.log(dataChoice, workerChoice, industryChoice, ageChoice, denominatorChoice, genderChoice)
 
             d3.selectAll(".item").remove()
 
@@ -1387,13 +1391,90 @@
                 percentage1 = (numerator2011 * 100 / denominator2011)
                 percentage2 = (numerator2001 * 100 / denominator2001)
                 percentage_n = percentage1 - percentage2
-                return percentage_n;
+                return percentage_n.toFixed(2);
 
             }
 
             city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
 
+
+
+            console.log(dataChoice,workerChoice,industryChoice,ageChoice,denominatorChoice,genderChoice)
+            if(dataChoice=="CHANGE SINCE 2001"){
+            	fauxdataName="CHANGESINCE2001"
+            }
+
+            if(workerChoice=="All workers"){
+            	fauxworkerName="ALLWORKERS"
+            }
+            if(workerChoice=="Regular workers"){
+            	fauxworkerName="REGULARWORKERS"
+            }
+            if(workerChoice=="Seasonal workers"){
+            	fauxworkerName="SEASONALWORKERS"
+            }
+            if(industryChoice=="Farm"){
+            	fauxindustryName="FARM"
+            }
+            if(industryChoice=="Manufacturing"){
+            	fauxindustryName="MANUFACTURING"
+            }
+            if(industryChoice=="Trade"){
+            	fauxindustryName="TRADE"
+            }
+            if(industryChoice=="Construction"){
+            	fauxindustryName="CONSTRUCTION"
+            }
+            if(industryChoice=="Services"){
+            	fauxindustryName="SERVICES"
+            }
+            if(industryChoice=="Non Farm"){
+            	fauxindustryName="NON_FARM"
+            }
+            if(denominatorChoice=="Population"){
+            	fauxdenominatorName="POPULATION"
+            }
+            if(denominatorChoice=="Labour force"){
+            	fauxdenominatorName="LABOUR"
+            }
+            if(denominatorChoice=="Workers"){
+            	fauxdenominatorName="WORKERS"
+            }
+        
+            if(ageChoice=="5-14 years"){
+            	fauxageName="CHILDWORKERS"
+            }
+            if(ageChoice=="15-59 years"){
+            	fauxageName="YOUTHANDADULTWORKERS"
+            }
+            if(ageChoice=="25-59 years"){
+            	fauxageName="ADULTWORKERS"
+            }
+            if(ageChoice=="60+ years"){
+            	fauxageName="SENIORWORKERS"
+            }
+            if(ageChoice=="All ages"){
+            	fauxageName="ALLAGEWORKERS"
+            }
+            if(genderChoice=="All"){
+            	fauxgenderName="ALL"
+            }
+            if(genderChoice=="Men"){
+            	fauxgenderName="MEN"
+            }
+             if(genderChoice=="Women"){
+            	fauxgenderName="WOMEN"
+            }
+
+            title=fauxdataName+fauxworkerName+fauxindustryName+fauxageName+fauxdenominatorName+fauxgenderName
+            console.log(title)
+
+            download(title+".json",JSON.stringify(changeData))
+            download(title+"city.txt",(city_array))
+
+     
             drawLegendandTooltip(colourScale, changeData, "no", title)
+
             d3.select(".annotation-group").remove()
             Annotate(city_array);
 
@@ -1472,9 +1553,8 @@
                 .entries(file2011);
 
             districtDatabyDistrict.forEach(function(d) {
-                d.value['percentage'] = ((d.value['numerator']) * 100 / d.value['denominator'])
+                d.value['percentage'] = ((d.value['numerator']) * 100 / d.value['denominator']).toFixed(2);
             })
-
 
             var items = districtDatabyDistrict.map(post => +post.value['percentage']);
 
@@ -1501,9 +1581,9 @@
                     denominator = denominator + (districtDatabyDistrict[id_no - 1].value['denominator'])
                 }
 
-                percentage_n = (numerator * 100) / (denominator).toFixed(2);
+                percentage_n = (numerator * 100) / (denominator)
 
-                return percentage_n;
+                return percentage_n.toFixed(2);
             }
 
 
@@ -1527,8 +1607,8 @@
                 id = sorted[count][0]
                 district_name = districtDatabyDistrict[id - 1].value['district_name'].substring(11)
                 state_name = districtDatabyDistrict[id - 1].value['state_name']
-                district_percentage = sorted[count][1].toFixed(2)
-                top10list.push([district_name, state_name, district_percentage])
+                district_percentage = sorted[count][1]
+                top10list.push([district_name, state_name, district_percentage,sorted[count][0]])
                 d3.select("#b" + sorted[count][0]).transition().duration(1000).style("fill", "#7F4C94");
                 count = count + 1
 
@@ -1550,7 +1630,20 @@
                 .append("text").text(function(d) { return d[2] })
                 .append("text").text("%");
 
+            console.log(districtData)
+            JSON_data=JSON.stringify(districtData)
+
+
+            console.log(city_array)
+            console.log(top10list)
+
+            // download("data.json",JSON_data)
+            // download("city.txt",city_array)
+            // download("list.json",JSON.stringify(top10list))
+
+
             drawLegendandTooltip(colourScale, districtData, "yes", title)
+
             Annotate(city_array);
         }
 
@@ -1717,7 +1810,7 @@
                     denominator = denominator + (districtDatabyDistrict[id_no - 1].value['denominator'])
                 }
 
-                percentage_n = (numerator * 100) / (denominator).toFixed(2);
+                percentage_n = (numerator * 100) / (denominator)
 
                 return percentage_n;
             }
@@ -1744,7 +1837,7 @@
                 id = sorted[count][0]
                 district_name = districtDatabyDistrict[id - 1].value['district_name'].substring(11)
                 state_name = districtDatabyDistrict[id - 1].value['state_name']
-                district_percentage = sorted[count][1].toFixed(2)
+                district_percentage = sorted[count][1]
                 top10list.push([district_name, state_name, district_percentage])
                 d3.select("#b" + sorted[count][0]).transition().duration(1000).style("fill", "#7F4C94");
                 count = count + 1
@@ -1772,10 +1865,10 @@
         }
 
 
-        function LargestEmployer(values) {
+        function LargestEmployer(values) {            d3.selectAll(".legend").attr("hidden", null);
 
 
-            d3.selectAll(".legend").attr("hidden", null);
+        	console.log("I SHOULD BE IN HERE!!")
 
             d3.select(".annotation-group").remove()
 
@@ -1925,6 +2018,8 @@
                 d3.select("#b" + code).transition().duration(1000).style("fill", colourState);
             })
 
+   
+
             function UrbanAggCalculator(city) {
                 lengthofids = city.length
                 var numerator = 0
@@ -1943,6 +2038,51 @@
 
 
             city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
+
+            console.log(dataChoice,workerChoice,industryChoice,ageChoice,denominatorChoice,genderChoice)
+            // if(dataChoice=="LARGEST EMPLOYER"){
+            // 	fauxdataName="LARGESTEMPLOYER"
+            // }
+
+            // if(workerChoice=="All workers"){
+            // 	fauxworkerName="ALLWORKERS"
+            // }
+            // if(workerChoice=="Regular workers"){
+            // 	fauxworkerName="REGULARWORKERS"
+            // }
+            // if(workerChoice=="Seasonal workers"){
+            // 	fauxworkerName="SEASONALWORKERS"
+            // }
+            // if(ageChoice=="5-14 years"){
+            // 	fauxageName="CHILDWORKERS"
+            // }
+            // if(ageChoice=="15-59 years"){
+            // 	fauxageName="YOUTHANDADULTWORKERS"
+            // }
+            // if(ageChoice=="25-59 years"){
+            // 	fauxageName="ADULTWORKERS"
+            // }
+            // if(ageChoice=="60+ years"){
+            // 	fauxageName="SENIORWORKERS"
+            // }
+            // if(ageChoice=="All ages"){
+            // 	fauxageName="ALLAGEWORKERS"
+            // }
+            // if(genderChoice=="All"){
+            // 	fauxgenderName="ALL"
+            // }
+            // if(genderChoice=="Men"){
+            // 	fauxgenderName="MEN"
+            // }
+            //  if(genderChoice=="Women"){
+            // 	fauxgenderName="WOMEN"
+            // }
+
+            // title=fauxdataName+fauxworkerName+fauxageName+fauxgenderName
+            // console.log(title)
+
+            // download(title+".json",JSON.stringify(districtData))
+           
 
 
             d3.selectAll(".legendQuant").remove()
@@ -2016,7 +2156,7 @@
                         .style("left", d3.event.pageX - 50 + "px")
                         .style("top", d3.event.pageY - 70 + "px")
                         .style("display", "inline-block")
-                        .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode].toFixed(2) + " percent");
+                        .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode] + " percent");
 
                 }
 
@@ -2036,7 +2176,7 @@
             const annotations = [{
                     type: d3.annotationCalloutCircle,
                     note: {
-                        label: numbers[5].toFixed(2) + " percent",
+                        label: numbers[5] + " percent",
                         title: "Delhi NCR",
                         wrap: 300
                     },
@@ -2052,7 +2192,7 @@
                 {
                     type: d3.annotationCalloutCircle,
                     note: {
-                        label: numbers[4].toFixed(2) + " percent",
+                        label: numbers[4] + " percent",
                         title: "Mumbai-Pune region",
                         wrap: 100
                     },
@@ -2069,7 +2209,7 @@
                 {
                     type: d3.annotationCalloutCircle,
                     note: {
-                        label: numbers[0].toFixed(2) + " percent",
+                        label: numbers[0] + " percent",
                         title: "Hyderabad region",
                         wrap: 100
                     },
@@ -2086,7 +2226,7 @@
                 {
                     type: d3.annotationCalloutCircle,
                     note: {
-                        label: numbers[3].toFixed(2) + " percent",
+                        label: numbers[3] + " percent",
                         title: "Kolkata region",
                         wrap: 100
                     },
@@ -2103,7 +2243,7 @@
                 {
                     type: d3.annotationCalloutCircle,
                     note: {
-                        label: numbers[2].toFixed(2) + " percent",
+                        label: numbers[2] + " percent",
                         title: "Chennai region",
                         wrap: 100
                     },
@@ -2120,7 +2260,7 @@
                 {
                     type: d3.annotationCalloutCircle,
                     note: {
-                        label: numbers[1].toFixed(2) + " percent",
+                        label: numbers[1] + " percent",
                         title: "Bengaluru region",
                         wrap: 100
                     },
@@ -2148,6 +2288,18 @@
                 .attr("class", "annotation-group")
                 .call(makeAnnotations)
         }
+
+        function download(filename, text) {
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+                element.setAttribute('download', filename);
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+
+                document.body.removeChild(element);
+            }
+
 
     }
     </script>

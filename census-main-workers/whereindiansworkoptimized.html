@@ -1,0 +1,825 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Where Indians Work</title>
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://d3js.org/d3-queue.v2.min.js"></script>
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <style>
+    body {
+        font-family: "Fira Sans Extra Condensed", sans-serif;
+    }
+
+    p,
+    ul,
+    li {
+        font-weight: 400;
+        font-size: 0.8em;
+        margin: 10px;
+
+    }
+
+    h4 {
+        font-weight: 600;
+        font-size: 1em;
+        margin: 10px;
+
+    }
+
+    .legend {
+        list-style: none;
+    }
+
+    .legend li {
+        float: left;
+        margin: 5px;
+        font-size: 0.8em;
+    }
+
+    .legend span {
+        border: 1px solid #ccc;
+        float: left;
+        width: 12px;
+        height: 12px;
+    }
+
+    /* your colors */
+    .legend .AgriculturalLabourers {
+        background-color: #b29f34;
+    }
+
+    .legend .Cultivators {
+        background-color: #789b3e;
+    }
+
+    .legend .Manufacturing {
+        background-color: #637474;
+    }
+
+    .legend .Construction {
+        background-color: #33464d;
+    }
+
+    .legend .Trade {
+        background-color: #e58a2e;
+    }
+
+    .legend .EducationAndHealth {
+        background-color: #734785;
+    }
+
+    .legend .AdministrationAndDefence {
+        background-color: #23597c;
+    }
+
+    .legend .Plantation {
+        background-color: #54603a;
+    }
+
+    .legend .Mining {
+        background-color: #161819;
+    }
+
+    .legend .OtherServices {
+        background-color: #bc352a;
+    }
+
+    .legend .Transportation {
+        background-color: #ffffff;
+    }
+
+
+    .button {
+        overflow: hidden;
+
+        /*        background-color: #EEE5DD;
+*/
+        display: flex;
+        /* or inline-flex */
+        justify-content: flex-start;
+        align-content: stretch;
+        /*        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+*/
+    }
+
+
+
+
+
+    button {
+        font-family: "Fira Sans Extra Condensed", sans-serif;
+        float: left;
+        border: 0px;
+        outline: none;
+        cursor: pointer;
+        padding: 8px 8px;
+        transition: 0.3s;
+        font-weight: 600;
+        font-size: 1em;
+        background-color: #ffffff;
+    }
+
+    button.Active {
+        background-color: #F7941D;
+    }
+
+    button.inActive {
+        background-color: #ffffff;
+    }
+
+    select {
+        font-family: "Fira Sans Extra Condensed", sans-serif;
+        background-color: inherit;
+        float: left;
+        border: 1px solid #ccc;
+        outline: none;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: 600;
+        font-size: 1em;
+        position: absolute;
+        display: block;
+        padding: 8px 8px;
+
+    }
+
+    .toolTip {
+        position: absolute;
+        display: none;
+        min-width: 60px;
+        height: auto;
+        background: none repeat scroll 0 0 #ffffff;
+        border: 1.5px solid #000000;
+        padding: 10px;
+        text-align: center;
+        font-family: "Fira Sans Extra Condensed", sans-serif;
+        font-weight: 600;
+        font-size: 0.8em;
+    }
+
+    .annotations {
+        pointer-events: none;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="data">
+        <div class="row" style="font-size: 1.2em;">
+            <button class="data col" id="WORKERSBYINDUSTRY" onClick="fndata('WORKERSBYINDUSTRY')">WORKERS BY INDUSTRY</button>
+            <button class="data col" id="CHANGESINCE2001" onClick="fndata('CHANGESINCE2001')">CHANGES SINCE 2001</button>
+            <button class="data col" id="LARGESTEMPLOYER" onClick="fndata('LARGESTEMPLOYER')">LARGEST EMPLOYER</button>
+        </div>
+    </div>
+    <div class="container" id="worker">
+        <div class="row">
+            <p> Select type of worker </p>
+        </div>
+        <div class="row" style="font-size: 1.1em;">
+            <button class="worker col" id="ALLWORKERS" onClick="fnworker('ALLWORKERS')">ALL WORKERS</button>
+            <button class="worker col" id="REGULARWORKERS" onClick="fnworker('REGULARWORKERS')">REGULAR WORKERS</button>
+            <button class="worker col" id="SEASONALWORKERS" onClick="fnworker('SEASONALWORKERS')">SEASONAL WORKERS</button>
+        </div>
+    </div>
+    <div class="container" id="industry">
+        <div class="row">
+            <p> Select industry </p>
+        </div>
+        <div class="row" style="font-size: 1em;">
+            <button class="industry col col-xs-6" id="FARM" onClick="fnindustry('FARM')">FARM</button>
+            <button class="industry col col-xs-6" id="MANUFACTURING" onClick="fnindustry('MANUFACTURING')">MANUFACTURING</button>
+            <button class="industry col col-xs-6" id="TRADE" onClick="fnindustry('TRADE')">TRADE</button>
+            <button class="industry col col-xs-6" id="CONSTRUCTION" onClick="fnindustry('CONSTRUCTION')">CONSTRUCTION</button>
+            <button class="industry col col-xs-6" id="SERVICES" onClick="fnindustry('SERVICES')">SERVICES</button>
+            <button class="industry col col-xs-6" id="NONFARM" onClick="fnindustry('NON_FARM')">NON FARM</button>
+        </div>
+    </div>
+    <div class="container" id="parameter">
+        <div class="row">
+            <p> Choose a parameter</p>
+        </div>
+        <div class="row" style="font-size: 1em;">
+            <div class="age col-md-3 col-xs-6">
+                <select class="col" id="age" onchange="fnage(this)">
+                    <option>Select an age group</option>
+                    <option value='CHILDWORKERS'>5-14 YEARS</option>
+                    <option value='YOUTHANDADULTWORKERS'>15-59 YEARS</option>
+                    <option value='ADULTWORKERS'>25-59 YEARS</option>
+                    <option value='SENIORWORKERS'>ABOVE 60 YEARS</option>
+                    <option value='ALLAGEWORKERS'>ALL WORKERS</option>
+                </select>
+            </div>
+            <div class="denominator col-md-3 col-xs-6">
+                <select class="col" id="denominator" onchange="fndenominator(this)">
+                    <option>Select a denominator</option>
+                    <option value='POPULATION'>POPULATION</option>
+                    <option value='LABOUR'>LABOUR</option>
+                    <option value='WORKERS'>WORKERS</option>
+                </select>
+            </div>
+            <div class="detailedIndustry col-md-3 col-xs-6" id="detailedIndustry">
+            </div>
+            <div class="gender col-md-3 col-xs-6">
+                <select class="col" id="gender" onchange="fngender(this)">
+                    <option>Select a gender</option>
+                    <option value='ALL'>ALL</option>
+                    <option value='MEN'>MEN</option>
+                    <option value='WOMEN'>WOMEN</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="main">
+        <div class="row">
+            <div class="col-md-9 xs-12">
+                <div id="canvas" align="center"></div>
+            </div>
+            <div class="col-md-3 xs-12">
+                <ul class="legend" hidden="true">
+                    <li><span class="AgriculturalLabourers"></span> Agricultural Labourers</li>
+                    <li><span class="Cultivators"></span>Cultivators</li>
+                    <li><span class="Manufacturing"></span>Manufacturing</li>
+                    <li><span class="Construction"></span> Construction</li>
+                    <li><span class="Trade"></span>Trade</li>
+                    <li><span class="EducationAndHealth"></span> Education and Health</li>
+                    <li><span class="AdministrationAndDefence"></span>Administration and Defence</li>
+                    <li><span class="Plantation"></span>Plantation etc</li>
+                    <li><span class="Mining"></span> Mining</li>
+                    <li><span class="OtherServices"></span>Other Services</li>
+                    <li><span class="Transportation"></span>Transportation</li>
+                </ul>
+                <div><h4 id="top10listheader"></h4>
+                </div>
+                <div id="top10list"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div id="source">
+                <p> Source: Census 2011, Census 2001 </p>
+            </div>
+        </div>
+        <div class="row">
+            <p id="specific-notes">
+            </p>
+        </div>
+        <div class="row">
+            <div id="standard-notes">
+                <p>Regular and Seasonal workers refer to Main and Marginal workers of the Census. </p>
+                <p> Delhi-NCR includes the NCT and the adjoining districts of Alwar, Baghpat, Bharatpur, Bhiwani, Bulandshahr, Faridabad, Noida, Ghaziabad, Gurgaon, Jhajjar, Jind, Karnal, Mahendragarh, Meerut, Mewat, Muzaffarnagar, Palwal, Panipat, Rewari, Rohtak and Sonipat. Mumbai-Pune region consists of Mumbai, Mumbai (Suburban), Thane, Raigad and Pune. Kolkata region includes North and South 24 Paraganas, Howrah, Hugli and Nadia. Chennai region includes Chennai, Kancheepuram and Thiruvalluvar. Bengaluru region includes Bengaluru and Bengaluru Rural districts. Hyderabad region includes Hyderabad and Rangareddy districts.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+    var data = "none";
+    var worker = "none";
+    var industry = "none";
+    var age = "none";
+    var denominator = "none";
+    var gender = "none";
+    var detailedIndustry = "none";
+
+    backgroundColour = "#F7941D"
+
+
+
+    function fndata(choice) {
+        data = choice;
+        $("#" + choice).addClass('Active').siblings().removeClass('Active');
+
+    }
+
+    function fnworker(choice) {
+        worker = choice;
+        $("#" + choice).addClass('Active').siblings().removeClass('Active');
+    }
+
+    function fnindustry(choice) {
+        industry = choice;
+        detailedIndustry = "none";
+        $("#" + choice).addClass('Active').siblings().removeClass('Active');
+        if (industry == "FARM") {
+            detailedIndustryButtonKeys = ["Choose a sub-industry", "Cultivators", "Labourers", "Forestry"]
+        }
+        if (industry == "MANUFACTURING") {
+            detailedIndustryButtonKeys = ["Choose a sub-industry", "Manufacturing (Household)", "Manufacturing (Non Household)"]
+        }
+        if (industry == "TRADE") {
+            detailedIndustryButtonKeys = ["Choose a sub-industry", "Trade (Household)", "Trade (Non Household)"]
+        }
+        if (industry == "CONSTRUCTION") {
+            detailedIndustryButtonKeys = ["Choose a sub-industry", "Construction"]
+        }
+        if (industry == "SERVICES") {
+            detailedIndustryButtonKeys = ["Choose a sub-industry", "Utilities", "Trade (Household)", "Trade (Non Household)", "Transportation", "Hospitality", "IT (Household)", "IT (Non Household)", "Finance", "Administration and Defence", "Education and Health", "Other Services (Household)", "Other Services (Non Household)"]
+        }
+        if (industry == "NON_FARM") {
+            detailedIndustryButtonKeys = ["Choose a sub-industry", "Mining", "Manufacturing (Household)", "Manufacturing (Non Household)", "Utilities", "Construction", "Trade (Household)", "Trade (Non Household)", "Transportation", "Hospitality", "IT (Household)", "IT (Non Household)", "Finance", "Administration and Defence", "Education and Health", "Other Services (Household)", "Other Services (Non Household)"]
+        }
+
+        d3.select("select.ind.col").remove()
+
+        var select = d3.select('#detailedIndustry')
+            .append('select')
+            .attr('class', 'ind col')
+            .on('change', detailedIndustryButtonClick)
+
+
+        var options = select
+            .selectAll('option')
+            .data(detailedIndustryButtonKeys).enter()
+            .append('option')
+            .attr("id", function(d) {
+                return d;
+            })
+            .text(function(d) {
+                return d;
+            })
+
+        function detailedIndustryButtonClick(datapoint) {
+
+            if (datapoint != "Choose a sub-industry")
+                detailedIndustry = datapoint
+        }
+    }
+
+    function fnage(choice) {
+        age = choice.value;
+
+    }
+
+    function fndenominator(choice) {
+        denominator = choice.value;
+    }
+
+    function fngender(choice) {
+        gender = choice.value;
+
+    }
+
+    function responsivefy(svg) {
+        // get container + svg aspect ratio
+        var container = d3.select(svg.node().parentNode),
+            width = parseInt(svg.style("width")),
+            height = parseInt(svg.style("height")),
+            aspect = width / height;
+
+        // add viewBox and preserveAspectRatio properties,
+        // and call resize so that svg resizes on inital page load
+        svg.attr("viewBox", "0 0 " + width + " " + height)
+            .attr("perserveAspectRatio", "xMinYMid")
+            .call(resize);
+
+        // to register multiple listeners for same event type, 
+        // you need to add namespace, i.e., 'click.foo'
+        // necessary if you call invoke this function for multiple svgs
+        // api docs: https://github.com/mbostock/d3/wiki/Selections#on
+        d3.select(window).on("resize." + container.attr("id"), resize);
+
+        // get width of container and resize svg to fit it
+        function resize() {
+            var targetWidth = parseInt(container.style("width"));
+            svg.attr("width", targetWidth);
+            svg.attr("height", Math.round(targetWidth / aspect));
+        }
+    }
+    var width = 800;
+    var height = 800;
+
+    // Create SVG
+    var svg = d3.select("#canvas")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("align", "center")
+        .call(responsivefy);
+
+
+    var geoProjection = d3.geoMercator()
+        .scale(1200)
+        .center([83, 23])
+        .translate([width / 2, height / 2]);
+
+    var geoPath = d3.geoPath()
+        .projection(geoProjection);
+
+    var tooltip = d3.select("body").append("div").attr("class", "toolTip");
+
+
+    d3.queue()
+        .defer(d3.json, "india_districts.json")
+        .defer(d3.json, "india.json")
+        .await(ready);
+
+    function ready(error, IndiaDistricts, IndiaStates) {
+
+        if (error) throw error;
+
+        var allStates = svg.append("g")
+            .selectAll("path")
+            .data(topojson.feature(IndiaStates, IndiaStates.objects.india).features)
+            .enter()
+            .append("path")
+            .attr("d", geoPath)
+            .style("stroke", "#000000")
+            .style("fill", "transparent")
+            .style("stroke-width", "1.5px")
+
+        var allDistricts = svg.append("g")
+            .attr("id", "allDistricts")
+            .selectAll("path")
+            .data(topojson.feature(IndiaDistricts, IndiaDistricts.objects.india_district).features)
+            .enter()
+            .append("path")
+            .attr("d", geoPath)
+            .attr("class", "district")
+            .attr("id", function(d) {
+                return ("b" + d.properties.censuscode)
+            })
+            .style("fill", "#f0f0f0")
+            .style("stroke", "transparent")
+            .style("stroke-width", '2px')
+            .style("opacity", 0.9)
+
+        var $vals = document.querySelectorAll("button, select")
+
+        $vals.forEach(function(sel) {
+
+            ['click', 'change'].forEach(function(e) {
+                sel.addEventListener(e, function(event) {
+                    title = data + worker + industry + age + denominator + gender
+                    if (data != "none" && worker != "none") {
+
+                        if (data == "WORKERSBYINDUSTRY") {
+                            d3.select("#detailedIndustry").attr("hidden", null)
+                            d3.selectAll("#denominator").attr("hidden", null)
+                            d3.selectAll(".legend").attr("hidden", true);
+                            d3.selectAll("#industry").attr("hidden",null)
+
+
+                            if (industry != "none" && detailedIndustry == "none") {
+                                title = data + worker + industry + age + denominator + gender
+                                legendtitle = "% of " + gender.toLowerCase() + " workers in " + industry.toLowerCase() + " industry"
+                            }
+                            if (industry != "none" && detailedIndustry != "none") {
+                                title = data + worker + industry + detailedIndustry + age + denominator + gender
+                                legendtitle = "% of " + gender.toLowerCase() + " workers in/as " + detailedIndustry.toLowerCase()
+                            }
+
+                        }
+
+                        if (data == "CHANGESINCE2001") {
+                            d3.selectAll("#detailedIndustry").attr("hidden", true)
+                            d3.selectAll("#denominator").attr("hidden", null)
+                            d3.select("#top10listheader").text("");
+                            d3.select('#top10list').remove();
+                            d3.selectAll(".legend").attr("hidden", true);
+                            d3.selectAll("#industry").attr("hidden",null)
+
+                            title = data + worker + industry + age + denominator + gender
+                            legendtitle = "% pts change in " + gender.toLowerCase() + " workers in/as " + industry.toLowerCase()
+                        }
+
+                        if (data == "LARGESTEMPLOYER") {
+                            d3.selectAll("#detailedIndustry").attr("hidden", true)
+                            d3.selectAll("#denominator").attr("hidden", true)
+                            d3.selectAll("#industry").attr("hidden",true)
+                            title = data + worker + age + gender + ".json"
+                            console.log(title)
+                        }
+
+                        MapFunction(data, title)
+
+                    }
+                })
+            })
+        })
+
+
+        function MapFunction(data, title) {
+
+            if (data == "WORKERSBYINDUSTRY") {
+
+                d3.json(title+".json", function(error, districtData) {
+                    console.log(districtData)
+                    list_of_districts = Object.keys(districtData)
+                    var items = Object.values(districtData)
+                    var colourScale = d3.scaleQuantile().domain(items).range(["#FAB816", "#FFD27C", "#41b6c4", "#225ea8"]);
+                    list_of_districts.forEach(function(d) {
+                        var colourState = colourScale(districtData[d]);
+                        d3.select("#b" + d).transition().duration(1000).style("fill", colourState);
+
+                    })
+
+                    drawLegendandTooltip(colourScale, districtData, "yes", legendtitle)
+
+                })
+
+
+                d3.json("list.json", function(error, list) {
+
+                    d3.select("#top10listheader").text(" TOP 10 DISTRICTS ")
+
+                    d3.select('#top10list')
+                        .selectAll('.item')
+                        .data(list)
+                        .enter()
+                        .append('li')
+                        .classed('item', true)
+                        .text(function(d) { return d[0] })
+                        .append("text").text(", ")
+                        .append("text").text(function(d) { return d[1] })
+                        .append("text").text(": ")
+                        .append("text").text(function(d) { return d[2] })
+                        .append("text").text("%");
+
+                    list.forEach(function(d) {
+                        console.log(d)
+                        d3.select("#b" + d[3]).transition().duration(1000).style("fill", "#7F4C94");
+
+                    })
+
+                    d3.csv("city.txt", function(error, city) {
+                        Annotate(city.columns)
+                    })
+
+                })
+            }
+
+            if (data == "CHANGESINCE2001") {
+                d3.json(title+".json", function(error, districtData) {
+                	console.log(districtData)
+                    list_of_districts = Object.keys(districtData)
+                    var items = Object.values(districtData)
+                    var colourScale = d3.scaleQuantile().domain(items).range(["#D71920", "#E2694D", "#A2B86F", "#81A53E"]);
+                    list_of_districts.forEach(function(d) {
+                        var colourState = colourScale(districtData[d]);
+                        d3.select("#b" + d).transition().duration(1000).style("fill", colourState);
+
+                    })
+
+					drawLegendandTooltip(colourScale, districtData, "no", legendtitle);
+
+                })
+
+
+                d3.csv(title+"city.txt", function(error, city) {
+                	console.log(city)
+                    Annotate(city.columns)
+                })
+
+
+            }
+            if (data == "LARGESTEMPLOYER") {
+
+                d3.selectAll(".legend").attr("hidden", null);
+                d3.select("#top10listheader").text("")
+
+                var colourScale = d3.scaleOrdinal().domain(["Agricultural Labourers",
+                    "Cultivators",
+                    "Manufacturing",
+                    "Construction",
+                    "Trade",
+                    "Education and Health",
+                    "Administration and Defence",
+                    "Plantation etc",
+                    "Mining",
+                    "Other Services",
+                    "Transportation"
+                ]).range(["b29f34",
+                    "789b3e",
+                    "637474",
+                    "33464d",
+                    "e58a2e",
+                    "734785",
+                    "23597c",
+                    "54603a",
+                    "161819",
+                    "bc352a",
+                    "ffffff"
+                ]);
+
+
+                d3.json(title, function(error, districtData) {
+                    list_of_districts = Object.keys(districtData)
+                    var items = Object.values(districtData)
+                    list_of_districts.forEach(function(d) {
+                        var colourState = colourScale(districtData[d]);
+                        d3.select("#b" + d).transition().duration(1000).style("fill", colourState);
+                    })
+
+                    d3.selectAll(".legendtitle").remove()
+                    d3.selectAll(".label").style("text-anchor", "start")
+
+                    allDistricts.on("mouseover", function(d) {
+                        d3.select(this).classed("hover", true).style("stroke", "black").style("stroke-width", 1.5).raise();
+                    })
+
+                    allDistricts.on("mousemove", function(d) {
+                        tooltip
+                            .style("left", d3.event.pageX - 50 + "px")
+                            .style("top", d3.event.pageY - 70 + "px")
+                            .style("display", "inline-block")
+                            .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode]);
+                    })
+
+                    allDistricts.on("mouseout", function(d) {
+                        d3.select(this).classed("hover", false).style("stroke", "transparent").lower();
+                        tooltip.style("display", "none");
+
+                    })
+
+                })
+
+
+            }
+        }
+
+
+        function drawLegendandTooltip(colourScale, districtData, token, title) {
+
+
+            svg.append("g")
+                .attr("class", "legendQuant")
+                .attr("transform", "translate(500,50)");
+
+            var legend = d3.legendColor()
+                .labelFormat(d3.format(".2f"))
+                .title(title)
+                .scale(colourScale)
+                .orient("horizontal")
+                .labelWrap(25)
+                .shapeWidth(30)
+
+            svg.select(".legendQuant")
+                .call(legend);
+
+            if (token == "yes") {
+                var newLabel = d3.selectAll(".legendCells").append("g").attr("class", "cell").attr("transform", "translate(128,0)")
+                newLabel.append("rect").attr("class", "swatch").attr("height", "15").attr("width", "30").style("fill", "rgb(189,56,132)")
+                newLabel.append("text").attr("class", "label").attr("transform", "translate(0,33)").style("text-anchor", "left").append("tspan").text("Top 10 districts")
+            }
+
+            allDistricts.on("mouseover", function(d) {
+                d3.select(this).classed("hover", true).style("stroke", "black").style("stroke-width", 1.5).raise();
+            })
+
+            allDistricts.on("mousemove", function(d) {
+                if (d.properties.DISTRICT != "Data Not Available") {
+                    tooltip
+                        .style("left", d3.event.pageX - 50 + "px")
+                        .style("top", d3.event.pageY - 70 + "px")
+                        .style("display", "inline-block")
+                        .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode].toFixed(2) + " percent");
+
+                }
+
+            })
+
+            allDistricts.on("mouseout", function(d) {
+                d3.select(this).classed("hover", false).style("stroke", "transparent").lower();
+                tooltip.style("display", "none");
+
+            })
+
+        }
+
+        function Annotate(numbers) {
+            d3.selectAll(".annotation-group").remove();
+
+            const annotations = [{
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[5] + " percent",
+                        title: "Delhi NCR",
+                        wrap: 300
+                    },
+                    subject: {
+                        radius: 25
+
+                    },
+                    x: 275,
+                    y: 270,
+                    dy: -75,
+                    dx: -75
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[4] + " percent",
+                        title: "Mumbai-Pune region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 15
+
+                    },
+                    x: 195,
+                    y: 490,
+                    dy: 75,
+                    dx: -75
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[0] + " percent",
+                        title: "Hyderabad region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 12
+
+                    },
+                    x: 300,
+                    y: 527,
+                    dy: 0,
+                    dx: 100
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[3] + " percent",
+                        title: "Kolkata region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 15
+
+                    },
+                    x: 515,
+                    y: 410,
+                    dy: 70,
+                    dx: 70
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[2] + " percent",
+                        title: "Chennai region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 15
+
+                    },
+                    x: 335,
+                    y: 625,
+                    dy: 50,
+                    dx: 50
+                },
+                {
+                    type: d3.annotationCalloutCircle,
+                    note: {
+                        label: numbers[1] + " percent",
+                        title: "Bengaluru region",
+                        wrap: 100
+                    },
+
+                    subject: {
+                        radius: 12
+
+                    },
+                    x: 285,
+                    y: 620,
+                    dy: 100,
+                    dx: -100
+                }
+            ].map(function(d) {
+                d.color = "#000000";
+                return d
+            })
+
+            const makeAnnotations = d3.annotation()
+                .type(d3.annotationLabel)
+                .annotations(annotations)
+
+            d3.select("svg")
+                .append("g")
+                .attr("class", "annotation-group")
+                .call(makeAnnotations)
+        }
+    }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+</html>
+</body>
