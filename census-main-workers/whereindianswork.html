@@ -299,8 +299,8 @@
         .defer(d3.csv, "total2001.csv")
         .defer(d3.csv, "main2001.csv")
         .defer(d3.csv, "marginal2001.csv")
-        .defer(d3.json, "india_districts.json")
-        .defer(d3.json, "india.json")
+        .defer(d3.json, "india_districts_2.json")
+        .defer(d3.json, "india_2.json")
         .await(ready);
     function ready(error, TotalData2011, MainData2011, MarginalData2011, TotalData2001, MainData2001, MarginalData2001, IndiaDistricts, IndiaStates) {
         if (error) throw error;
