@@ -1244,11 +1244,13 @@
              if(genderChoice=="Women"){
                 fauxgenderName="WOMEN"
             }
+
+            console.log(districtDatabyDistrict)
             title=fauxdataName+fauxworkerName+fauxindustryName+fauxageName+fauxdenominatorName+fauxgenderName
             console.log(title)
-            download(title+".json",JSON.stringify(districtData))
+            download(title+".json",JSON.stringify(districtDatabyDistrict))
             download(title+"city.txt",(city_array))
-            download(title+"top10.json",(top10list))
+            download(title+"top10.json",JSON.stringify(top10list))
 
             // console.log(districtData)
             // JSON_data=JSON.stringify(districtData)

@@ -22,9 +22,8 @@
     ul,
     li {
         font-weight: 400;
-        font-size: 0.8em;
-        margin: 10px;
-
+        font-size: 1em;
+        float: left;
     }
 
     h4 {
@@ -35,20 +34,22 @@
     }
 
     .legend {
-        list-style: none;
+        list-style: outside none none;
     }
 
     .legend li {
         float: left;
-        margin: 5px;
-        font-size: 0.8em;
+        font-size: 1em;
+        width: auto;
+
     }
 
     .legend span {
         border: 1px solid #ccc;
         float: left;
-        width: 12px;
-        height: 12px;
+        width: 30px;
+        height: 15px;
+        display: block;
     }
 
     /* your colors */
@@ -61,15 +62,15 @@
     }
 
     .legend .Manufacturing {
-        background-color: #637474;
+        background-color: #23597c;
     }
 
     .legend .Construction {
-        background-color: #33464d;
+        background-color: #33474E;
     }
 
     .legend .Trade {
-        background-color: #e58a2e;
+        background-color: #F7941D;
     }
 
     .legend .EducationAndHealth {
@@ -77,7 +78,7 @@
     }
 
     .legend .AdministrationAndDefence {
-        background-color: #23597c;
+        background-color: #975E2E;
     }
 
     .legend .Plantation {
@@ -85,7 +86,7 @@
     }
 
     .legend .Mining {
-        background-color: #161819;
+        background-color: #17191A;
     }
 
     .legend .OtherServices {
@@ -93,7 +94,7 @@
     }
 
     .legend .Transportation {
-        background-color: #ffffff;
+        background-color: #C66E28;
     }
 
 
@@ -247,17 +248,17 @@
             </div>
             <div class="col-md-3 xs-12">
                 <ul class="legend" hidden="true">
-                    <li><span class="AgriculturalLabourers"></span> Agricultural Labourers</li>
-                    <li><span class="Cultivators"></span>Cultivators</li>
-                    <li><span class="Manufacturing"></span>Manufacturing</li>
-                    <li><span class="Construction"></span> Construction</li>
-                    <li><span class="Trade"></span>Trade</li>
-                    <li><span class="EducationAndHealth"></span> Education and Health</li>
-                    <li><span class="AdministrationAndDefence"></span>Administration and Defence</li>
-                    <li><span class="Plantation"></span>Plantation etc</li>
-                    <li><span class="Mining"></span> Mining</li>
-                    <li><span class="OtherServices"></span>Other Services</li>
-                    <li><span class="Transportation"></span>Transportation</li>
+                    <li><span class="AgriculturalLabourers"></span> &nbsp; Agricultural Labourers &nbsp;</li>
+                    <li><span class="Cultivators"></span> &nbsp; Cultivators &nbsp;</li>
+                    <li><span class="Manufacturing"></span> &nbsp; Manufacturing &nbsp;</li>
+                    <li><span class="Construction"></span> &nbsp; Construction &nbsp;</li>
+                    <li><span class="Trade"></span> &nbsp; Trade &nbsp;</li>
+                    <li><span class="EducationAndHealth"></span> &nbsp; Education and Health &nbsp;</li>
+                    <li><span class="AdministrationAndDefence"></span> &nbsp; Administration and Defence &nbsp;</li>
+                    <li><span class="Plantation"></span> &nbsp; Plantation etc &nbsp;</li>
+                    <li><span class="Mining"></span> &nbsp; Mining &nbsp;</li>
+                    <li><span class="OtherServices"></span> &nbsp; Other Services &nbsp;</li>
+                    <li><span class="Transportation"></span> &nbsp; Transportation &nbsp;</li>
                 </ul>
                 <div><h4 id="top10listheader"></h4>
                 </div>
@@ -460,13 +461,14 @@
             ['click', 'change'].forEach(function(e) {
                 sel.addEventListener(e, function(event) {
                     title = data + worker + industry + age + denominator + gender
-                    if (data != "none" && worker != "none") {
+                    if (data != "none" && worker != "none" && age!= "none" && gender!="none") {
+
 
                         if (data == "WORKERSBYINDUSTRY") {
                             d3.select("#detailedIndustry").attr("hidden", null)
                             d3.selectAll("#denominator").attr("hidden", null)
                             d3.selectAll(".legend").attr("hidden", true);
-                            d3.selectAll("#industry").attr("hidden",null)
+                            d3.selectAll("#industry").attr("hidden", null)
 
 
                             if (industry != "none" && detailedIndustry == "none") {
@@ -486,7 +488,7 @@
                             d3.select("#top10listheader").text("");
                             d3.select('#top10list').remove();
                             d3.selectAll(".legend").attr("hidden", true);
-                            d3.selectAll("#industry").attr("hidden",null)
+                            d3.selectAll("#industry").attr("hidden", null)
 
                             title = data + worker + industry + age + denominator + gender
                             legendtitle = "% pts change in " + gender.toLowerCase() + " workers in/as " + industry.toLowerCase()
@@ -495,9 +497,8 @@
                         if (data == "LARGESTEMPLOYER") {
                             d3.selectAll("#detailedIndustry").attr("hidden", true)
                             d3.selectAll("#denominator").attr("hidden", true)
-                            d3.selectAll("#industry").attr("hidden",true)
+                            d3.selectAll("#industry").attr("hidden", true)
                             title = data + worker + age + gender + ".json"
-                            console.log(title)
                         }
 
                         MapFunction(data, title)
@@ -512,23 +513,22 @@
 
             if (data == "WORKERSBYINDUSTRY") {
 
-                d3.json(title+".json", function(error, districtData) {
-                    console.log(districtData)
+                d3.json(title + ".json", function(error, districtData) {
+                    if (error) throw error;
+                    var items = districtData.map(a=>+a.value['percentage'])
                     list_of_districts = Object.keys(districtData)
-                    var items = Object.values(districtData)
+                   
                     var colourScale = d3.scaleQuantile().domain(items).range(["#FAB816", "#FFD27C", "#41b6c4", "#225ea8"]);
-                    list_of_districts.forEach(function(d) {
-                        var colourState = colourScale(districtData[d]);
-                        d3.select("#b" + d).transition().duration(1000).style("fill", colourState);
+
+                    list_of_districts.forEach(function(d) {        
+                        geog_count=+d+1
+                        var colourState = colourScale(districtData[d].value['percentage']);
+                        d3.select("#b" + geog_count).transition().duration(1000).style("fill", colourState);
 
                     })
 
-                    drawLegendandTooltip(colourScale, districtData, "yes", legendtitle)
-
-                })
-
-
-                d3.json(title+"list.json", function(error, list) {
+                    d3.json(title + "top10.json", function(error, list) {
+                    if (error) throw error;
 
                     d3.select("#top10listheader").text(" TOP 10 DISTRICTS ")
 
@@ -546,21 +546,25 @@
                         .append("text").text("%");
 
                     list.forEach(function(d) {
-                        console.log(d)
-                        d3.select("#b" + d[3]).transition().duration(1000).style("fill", "#7F4C94");
+                        d3.select("#b" + d[3]).transition().duration(10).style("fill", "#bd3884");
+                    });
 
-                    })
-
-                    d3.csv(title+"city.txt", function(error, city) {
+                    d3.csv(title + "city.txt", function(error, city) {
+                        if (error) throw error;
                         Annotate(city.columns)
                     })
 
                 })
+
+                    drawLegendandTooltipWorkers(colourScale, districtData, "yes", legendtitle)
+
+                })
+
+
             }
 
             if (data == "CHANGESINCE2001") {
-                d3.json(title+".json", function(error, districtData) {
-                	console.log(districtData)
+                d3.json(title + ".json", function(error, districtData) {
                     list_of_districts = Object.keys(districtData)
                     var items = Object.values(districtData)
                     var colourScale = d3.scaleQuantile().domain(items).range(["#D71920", "#E2694D", "#A2B86F", "#81A53E"]);
@@ -570,13 +574,12 @@
 
                     })
 
-					drawLegendandTooltip(colourScale, districtData, "no", legendtitle);
+                    drawLegendandTooltip(colourScale, districtData, "no", legendtitle);
 
                 })
 
 
-                d3.csv(title+"city.txt", function(error, city) {
-                	console.log(city)
+                d3.csv(title + "city.txt", function(error, city) {
                     Annotate(city.columns)
                 })
 
@@ -584,7 +587,7 @@
             }
             if (data == "LARGESTEMPLOYER") {
 
-            	d3.selectAll(".legendQuant").attr("hidden", null);
+                d3.selectAll(".legendQuant").attr("hidden", null);
 
                 d3.selectAll(".legend").attr("hidden", null);
                 d3.select("#top10listheader").text("")
@@ -602,15 +605,15 @@
                     "Transportation"
                 ]).range(["b29f34",
                     "789b3e",
-                    "637474",
-                    "33464d",
-                    "e58a2e",
-                    "734785",
                     "23597c",
+                    "33474E",
+                    "F7941D",
+                    "734785",
+                    "975E2E",
                     "54603a",
-                    "161819",
+                    "17191A",
                     "bc352a",
-                    "ffffff"
+                    "C66E28"
                 ]);
 
 
@@ -650,7 +653,7 @@
         }
 
 
-        function drawLegendandTooltip(colourScale, districtData, token, title) {
+        function drawLegendandTooltipWorkers(colourScale, districtData, token, title) {
 
 
             svg.append("g")
@@ -684,7 +687,55 @@
                         .style("left", d3.event.pageX - 50 + "px")
                         .style("top", d3.event.pageY - 70 + "px")
                         .style("display", "inline-block")
-                        .html(d.properties.DISTRICT + ", " + d.properties.ST_NM + "<br>" + districtData[d.properties.censuscode].toFixed(2) + " percent");
+                        .html(d.properties.DISTRICT + ", " + d.properties.ST_NM +": "+ districtData[+d.properties.censuscode-1].value['percentage'] + " %"+ "<br>" + districtData[+d.properties.censuscode-1].value['numerator'] + " workers out of " + districtData[+d.properties.censuscode-1].value['denominator'] + " people");
+
+                }
+
+            })
+
+            allDistricts.on("mouseout", function(d) {
+                d3.select(this).classed("hover", false).style("stroke", "transparent").lower();
+                tooltip.style("display", "none");
+
+            })
+
+        }
+
+          function drawLegendandTooltip(colourScale, districtData, token, title) {
+
+
+            svg.append("g")
+                .attr("class", "legendQuant")
+                .attr("transform", "translate(500,50)");
+
+            var legend = d3.legendColor()
+                .labelFormat(d3.format(".2f"))
+                .title(title)
+                .scale(colourScale)
+                .orient("horizontal")
+                .labelWrap(25)
+                .shapeWidth(30)
+
+            svg.select(".legendQuant")
+                .call(legend);
+
+            if (token == "yes") {
+                var newLabel = d3.selectAll(".legendCells").append("g").attr("class", "cell").attr("transform", "translate(128,0)")
+                newLabel.append("rect").attr("class", "swatch").attr("height", "15").attr("width", "30").style("fill", "rgb(189,56,132)")
+                newLabel.append("text").attr("class", "label").attr("transform", "translate(0,33)").style("text-anchor", "left").append("tspan").text("Top 10 districts")
+            }
+
+            allDistricts.on("mouseover", function(d) {
+                d3.select(this).classed("hover", true).style("stroke", "black").style("stroke-width", 1.5).raise();
+            })
+
+            allDistricts.on("mousemove", function(d) {
+                if (d.properties.DISTRICT != "Data Not Available") {
+                    tooltip
+                        .style("left", d3.event.pageX - 50 + "px")
+                        .style("top", d3.event.pageY - 70 + "px")
+                        .style("display", "inline-block")
+                        .html(d.properties.DISTRICT + ", " + d.properties.ST_NM +": "+ districtData[+d.properties.censuscode].toFixed(2)+ " %");
 
                 }
 
