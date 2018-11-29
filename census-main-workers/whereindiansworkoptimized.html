@@ -18,7 +18,14 @@
         font-family: "Fira Sans Extra Condensed", sans-serif;
     }
 
-    p,
+    p
+    {
+        font-weight: 400;
+        font-size: 1em;
+        float: left;
+        color: #A9A9A9;
+    }
+
     ul,
     li {
         font-weight: 400;
@@ -28,7 +35,7 @@
 
     h4 {
         font-weight: 600;
-        font-size: 1em;
+        font-size: 1.4em;
         margin: 10px;
 
     }
@@ -121,7 +128,7 @@
     button {
         font-family: "Fira Sans Extra Condensed", sans-serif;
         float: left;
-        border: 0px;
+        border: 1px solid #ccc;
         outline: none;
         cursor: pointer;
         padding: 8px 8px;
@@ -133,10 +140,12 @@
 
     button.Active {
         background-color: #F7941D;
+        color: white;
     }
 
     button.inActive {
         background-color: #ffffff;
+        color: black;
     }
 
     select {
@@ -169,6 +178,15 @@
         font-size: 0.8em;
     }
 
+    #top10listheader{
+        font-weight: 600;
+
+    }
+
+    .percentage{
+        font-weight: 600;
+    }
+
     .annotations {
         pointer-events: none;
     }
@@ -185,7 +203,7 @@
     </div>
     <div class="container" id="worker">
         <div class="row">
-            <p> Select type of worker </p>
+            <p class="my-auto"> Select type of worker </p>
         </div>
         <div class="row" style="font-size: 1.1em;">
             <button class="worker col" id="ALLWORKERS" onClick="fnworker('ALLWORKERS')">ALL WORKERS</button>
@@ -195,7 +213,7 @@
     </div>
     <div class="container" id="industry">
         <div class="row">
-            <p> Select industry </p>
+            <p class="my-auto"> Select industry </p>
         </div>
         <div class="row" style="font-size: 1em;">
             <button class="industry col col-xs-6" id="FARM" onClick="fnindustry('FARM')">FARM</button>
@@ -208,7 +226,7 @@
     </div>
     <div class="container" id="parameter">
         <div class="row">
-            <p> Choose a parameter</p>
+            <p class="my-auto"> Choose a parameter</p>
         </div>
         <div class="row" style="font-size: 1em;">
             <div class="age col-md-3 col-xs-6">
