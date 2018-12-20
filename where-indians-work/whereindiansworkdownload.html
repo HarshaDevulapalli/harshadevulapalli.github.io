@@ -866,8 +866,8 @@
                 variables2001_array = ["E", "H", "I", "JK", "LQ"]
             }
             if (industry == "Non Farm") {
-                variables2011_array = ["B", "C_HHI", "C_NonHHI", "DE", "G_HHI", "G_NonHHI", "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
-                variables2001_array = ["C", "D_HHI", "D_NonHHI", "E", "H", "I", "JK", "LQ"]
+                variables2011_array = ["B", "C_HHI", "C_NonHHI", "DE", "F", "G_HHI", "G_NonHHI", "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
+                variables2001_array = ["C", "D_HHI", "D_NonHHI", "E", "F","G","H", "I", "JK", "LQ"]
             }
             var districtDatabyDistrict2011 = d3.nest()
                 .key(function(d) {
@@ -922,6 +922,8 @@
             districtDatabyDistrict2001.forEach(function(d) {
                 d.value['percentage'] = ((d.value['numerator']) * 100 / d.value['denominator'])
             })
+
+
             changeData = {}
             districtDatabyDistrict2011.forEach(function(d) {
                 census_key = d.key
@@ -1097,9 +1099,89 @@
             }
             city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
 
+
+            // DOWNLOAD HERE
+
+            fauxdenominatorName = "POPULATION"
+            
+
+
+            if (dataChoice == "CHANGE SINCE 2001") {
+                fauxdataName = "CHANGESINCE2001"
+            }
+            if (workerChoice == "All workers") {
+                fauxworkerName = "ALLWORKERS"
+            }
+            if (workerChoice == "Regular workers") {
+                fauxworkerName = "REGULARWORKERS"
+            }
+            if (workerChoice == "Seasonal workers") {
+                fauxworkerName = "SEASONALWORKERS"
+            }
+            if (industryChoice == "Farm") {
+                fauxindustryName = "FARM"
+            }
+            if (industryChoice == "Manufacturing") {
+                fauxindustryName = "MANUFACTURING"
+            }
+            if (industryChoice == "Trade") {
+                fauxindustryName = "TRADE"
+            }
+            if (industryChoice == "Construction") {
+                fauxindustryName = "CONSTRUCTION"
+            }
+            if (industryChoice == "Services") {
+                fauxindustryName = "SERVICES"
+            }
+            if (industryChoice == "Non Farm") {
+                fauxindustryName = "NON_FARM"
+            }
+            if (denominatorChoice == "Population") {
+                fauxdenominatorName = "POPULATION"
+            }
+            if (denominatorChoice == "Labour force") {
+                fauxdenominatorName = "LABOUR"
+            }
+            if (denominatorChoice == "Workers") {
+                fauxdenominatorName = "WORKERS"
+            }
+
+            if (ageChoice == "5-14 years") {
+                fauxageName = "CHILDWORKERS"
+            }
+            if (ageChoice == "15-59 years") {
+                fauxageName = "YOUTHANDADULTWORKERS"
+            }
+            if (ageChoice == "25-59 years") {
+                fauxageName = "ADULTWORKERS"
+            }
+            if (ageChoice == "60+ years") {
+                fauxageName = "SENIORWORKERS"
+            }
+            if (ageChoice == "All ages") {
+                fauxageName = "ALLAGEWORKERS"
+            }
+            if (genderChoice == "All") {
+                fauxgenderName = "ALL"
+            }
+            if (genderChoice == "Men") {
+                fauxgenderName = "MEN"
+            }
+            if (genderChoice == "Women") {
+                fauxgenderName = "WOMEN"
+            }
+
+           title = fauxdataName + fauxworkerName + fauxindustryName + fauxageName + fauxdenominatorName + fauxgenderName
+            download(title + ".json", JSON.stringify(changeData))
+            download(title + "city.txt", (city_array))
+
             drawLegendandTooltip(colourScale, changeData, "no", title)
             d3.select(".annotation-group").remove()
             Annotate(city_array);
+
+
+
+
         }
 
         function WorkersByIndustryCategories(values, industryChoice) {
@@ -1123,7 +1205,7 @@
                 variables2011_array = ["DE", "G_HHI", "G_NonHHI", "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
             }
             if (industryChoice == "Non Farm") {
-                variables2011_array = ["B", "C_HHI", "C_NonHHI", "DE", "G_HHI", "G_NonHHI", "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
+                variables2011_array = ["B", "C_HHI", "C_NonHHI", "DE", "F","G_HHI", "G_NonHHI",  "H", "I", "J_HHI", "J_NonHHI", "KM", "NO", "PQ", "RU_HHI", "RU_NonHHI"]
             }
             variables_array = variables2011_array
             // variables_array = values[4]
@@ -1219,74 +1301,74 @@
                 .append("text").text("%");
 
 
-            // fauxdenominatorName = "POPULATION"
-            // console.log(dataChoice, workerChoice, industryChoice, ageChoice, denominatorChoice, genderChoice)
+            fauxdenominatorName = "POPULATION"
+        
 
 
-            // if (dataChoice == "WORKERS BY INDUSTRY") {
-            //     fauxdataName = "WORKERSBYINDUSTRY"
-            // }
-            // if (workerChoice == "All workers") {
-            //     fauxworkerName = "ALLWORKERS"
-            // }
-            // if (workerChoice == "Regular workers") {
-            //     fauxworkerName = "REGULARWORKERS"
-            // }
-            // if (workerChoice == "Seasonal workers") {
-            //     fauxworkerName = "SEASONALWORKERS"
-            // }
-            // if (industryChoice == "Farm") {
-            //     fauxindustryName = "FARM"
-            // }
-            // if (industryChoice == "Manufacturing") {
-            //     fauxindustryName = "MANUFACTURING"
-            // }
-            // if (industryChoice == "Trade") {
-            //     fauxindustryName = "TRADE"
-            // }
-            // if (industryChoice == "Construction") {
-            //     fauxindustryName = "CONSTRUCTION"
-            // }
-            // if (industryChoice == "Services") {
-            //     fauxindustryName = "SERVICES"
-            // }
-            // if (industryChoice == "Non Farm") {
-            //     fauxindustryName = "NON_FARM"
-            // }
-            // if (denominatorChoice == "Population") {
-            //     fauxdenominatorName = "POPULATION"
-            // }
-            // if (denominatorChoice == "Labour force") {
-            //     fauxdenominatorName = "LABOUR"
-            // }
-            // if (denominatorChoice == "Workers") {
-            //     fauxdenominatorName = "WORKERS"
-            // }
+            if (dataChoice == "WORKERS BY INDUSTRY") {
+                fauxdataName = "WORKERSBYINDUSTRY"
+            }
+            if (workerChoice == "All workers") {
+                fauxworkerName = "ALLWORKERS"
+            }
+            if (workerChoice == "Regular workers") {
+                fauxworkerName = "REGULARWORKERS"
+            }
+            if (workerChoice == "Seasonal workers") {
+                fauxworkerName = "SEASONALWORKERS"
+            }
+            if (industryChoice == "Farm") {
+                fauxindustryName = "FARM"
+            }
+            if (industryChoice == "Manufacturing") {
+                fauxindustryName = "MANUFACTURING"
+            }
+            if (industryChoice == "Trade") {
+                fauxindustryName = "TRADE"
+            }
+            if (industryChoice == "Construction") {
+                fauxindustryName = "CONSTRUCTION"
+            }
+            if (industryChoice == "Services") {
+                fauxindustryName = "SERVICES"
+            }
+            if (industryChoice == "Non Farm") {
+                fauxindustryName = "NON_FARM"
+            }
+            if (denominatorChoice == "Population") {
+                fauxdenominatorName = "POPULATION"
+            }
+            if (denominatorChoice == "Labour force") {
+                fauxdenominatorName = "LABOUR"
+            }
+            if (denominatorChoice == "Workers") {
+                fauxdenominatorName = "WORKERS"
+            }
 
-            // if (ageChoice == "5-14 years") {
-            //     fauxageName = "CHILDWORKERS"
-            // }
-            // if (ageChoice == "15-59 years") {
-            //     fauxageName = "YOUTHANDADULTWORKERS"
-            // }
-            // if (ageChoice == "25-59 years") {
-            //     fauxageName = "ADULTWORKERS"
-            // }
-            // if (ageChoice == "60+ years") {
-            //     fauxageName = "SENIORWORKERS"
-            // }
-            // if (ageChoice == "All ages") {
-            //     fauxageName = "ALLAGEWORKERS"
-            // }
-            // if (genderChoice == "All") {
-            //     fauxgenderName = "ALL"
-            // }
-            // if (genderChoice == "Men") {
-            //     fauxgenderName = "MEN"
-            // }
-            // if (genderChoice == "Women") {
-            //     fauxgenderName = "WOMEN"
-            // }
+            if (ageChoice == "5-14 years") {
+                fauxageName = "CHILDWORKERS"
+            }
+            if (ageChoice == "15-59 years") {
+                fauxageName = "YOUTHANDADULTWORKERS"
+            }
+            if (ageChoice == "25-59 years") {
+                fauxageName = "ADULTWORKERS"
+            }
+            if (ageChoice == "60+ years") {
+                fauxageName = "SENIORWORKERS"
+            }
+            if (ageChoice == "All ages") {
+                fauxageName = "ALLAGEWORKERS"
+            }
+            if (genderChoice == "All") {
+                fauxgenderName = "ALL"
+            }
+            if (genderChoice == "Men") {
+                fauxgenderName = "MEN"
+            }
+            if (genderChoice == "Women") {
+                fauxgenderName = "WOMEN"
+            }
 
             // console.log(districtDatabyDistrict)
             // title = fauxdataName + fauxworkerName + fauxindustryName + fauxageName + fauxdenominatorName + fauxgenderName
@@ -1299,9 +1381,7 @@
             // JSON_data=JSON.stringify(districtData)
             // console.log(city_array)
             // console.log(top10list)
-            // // download("data.json",JSON_data)
-            // // download("city.txt",city_array)
-            // // download("list.json",JSON.stringify(top10list))
+           
             drawLegendandTooltip(colourScale, districtData, "yes", title)
             Annotate(city_array);
         }
