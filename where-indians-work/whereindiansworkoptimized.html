@@ -226,7 +226,7 @@
     </div>
     <div class="container" id="parameter">
         <div class="row">
-            <p class="my-auto"> Choose a parameter</p>
+            <p class="my-auto"> Choose a demographic </p>
         </div>
         <div class="row" style="font-size: 1em;">
             <div class="age col-md-3 col-xs-6">
@@ -299,6 +299,8 @@
             <div class="row">
                 <div id="standard-notes">
                     <p>Regular and Seasonal workers refer to Main and Marginal workers of the Census. </p>
+                    <p>Population, Labour and Workers refer to Total Population, Total Labour and Total Workers in that particular demographic. Labour is defined as the sum of regular, seasonal workers and non workers who were seeking employment at that particular point in time.</p>
+
                     <p> Delhi-NCR includes the NCT and the adjoining districts of Alwar, Baghpat, Bharatpur, Bhiwani, Bulandshahr, Faridabad, Noida, Ghaziabad, Gurgaon, Jhajjar, Jind, Karnal, Mahendragarh, Meerut, Mewat, Muzaffarnagar, Palwal, Panipat, Rewari, Rohtak and Sonipat. Mumbai-Pune region consists of Mumbai, Mumbai (Suburban), Thane, Raigad and Pune. Kolkata region includes North and South 24 Paraganas, Howrah, Hugli and Nadia. Chennai region includes Chennai, Kancheepuram and Thiruvalluvar. Bengaluru region includes Bengaluru and Bengaluru Rural districts. Hyderabad region includes Hyderabad and Rangareddy districts.</p>
                 </div>
             </div>
@@ -339,21 +341,27 @@
 
             if (industry == "FARM") {
                 detailedIndustryButtonKeys = ["Choose a sub-industry", "Cultivators", "Labourers", "Forestry"]
+                d3.select('#specific-notes').text("Farm industry includes cultivators, labourers and forestry workers.")
             }
             if (industry == "MANUFACTURING") {
                 detailedIndustryButtonKeys = ["Choose a sub-industry", "Manufacturing (Household)", "Manufacturing (Non Household)"]
+                d3.select('#specific-notes').text("Manufacturing industry includes workers from household and non-household manufacturing.")
             }
             if (industry == "TRADE") {
                 detailedIndustryButtonKeys = ["Choose a sub-industry", "Trade (Household)", "Trade (Non Household)"]
+                d3.select('#specific-notes').text("Trade industry includes workers from household and non-household trade.")
             }
             if (industry == "CONSTRUCTION") {
                 detailedIndustryButtonKeys = ["Choose a sub-industry", "Construction"]
+                d3.select('#specific-notes').text("Construction industry includes construction workers.")
             }
             if (industry == "SERVICES") {
                 detailedIndustryButtonKeys = ["Choose a sub-industry", "Administration and Defence", "Education and Health", "Finance", "Hospitality", "IT (Household)", "IT (Non Household)", "Other Services (Household)", "Other Services (Non Household)", "Trade (Household)", "Trade (Non Household)", "Transportation", "Utilities"]
+                d3.select('#specific-notes').text("Service industry includes workers in administration and defence, education and health, finance, hospitality, IT, trade, other services, transportation and utilities.")
             }
             if (industry == "NON_FARM") {
                 detailedIndustryButtonKeys = ["Choose a sub-industry", "Administration and Defence", "Construction", "Education and Health", "Finance", "Hospitality", "IT (Household)", "IT (Non Household)", "Manufacturing (Household)", "Manufacturing (Non Household)", "Mining", "Other Services (Household)", "Other Services (Non Household)", "Trade (Household)", "Trade (Non Household)", "Transportation", "Utilities"]
+                d3.select('#specific-notes').text("Non farm workers include all workers who work in industries excluding farm workers.")
             }
 
             var select = d3.select('#dIndustry')
@@ -661,7 +669,7 @@
 
                             d3.csv(title + "city.txt", function(error, city) {
                                 if (error) throw error;
-                                Annotate(city.columns)
+                                Annotate(city.columns,"no")
                             })
 
                         })
@@ -674,6 +682,8 @@
                 }
 
                 if (data == "CHANGESINCE2001") {
+                     d3.select('#specific-notes').text("All changes calculated in percentage points.")
+
                     d3.json(title + ".json", function(error, districtData) {
                         list_of_districts = Object.keys(districtData)
                         var items = Object.values(districtData)
@@ -690,12 +700,13 @@
 
 
                     d3.csv(title + "city.txt", function(error, city) {
-                        Annotate(city.columns)
+                        Annotate(city.columns,"yes")
                     })
 
 
                 }
                 if (data == "LARGESTEMPLOYER") {
+                    d3.select('#specific-notes').text("Largest employer in a district is the industry that employers the most workers.")
 
                     d3.selectAll(".legendQuant").attr("hidden", null);
                     d3.selectAll(".legendQuant").remove();
@@ -849,7 +860,7 @@
                             .style("left", d3.event.pageX - 50 + "px")
                             .style("top", d3.event.pageY - 85 + "px")
                             .style("display", "inline-block")
-                            .html("<font size='4'>" + d.properties.DISTRICT + "</font>, <font size='2.75'>" + d.properties.ST_NM + "</font><br><font size='3.25'>" + districtData[+d.properties.censuscode].toFixed(2) + " % </font>");
+                            .html("<font size='4'>" + d.properties.DISTRICT + "</font>, <font size='2.75'>" + d.properties.ST_NM + "</font><br><font size='3.25'>" + districtData[+d.properties.censuscode].toFixed(2) + " % points </font>");
 
                     }
 
@@ -863,13 +874,20 @@
 
             }
 
-            function Annotate(numbers) {
+            function Annotate(numbers,variable) {
                 d3.selectAll(".annotation-group").remove();
+
+                if(variable=="yes"){
+                    addonlabel=" % points"
+                }
+                else{
+                    addonlabel=" %"
+                }
 
                 const annotations = [{
                         type: d3.annotationCalloutCircle,
                         note: {
-                            label: numbers[5] + " percent",
+                            label: numbers[5] + addonlabel,
                             title: "Delhi NCR",
                             wrap: 300
                         },
@@ -885,7 +903,7 @@
                     {
                         type: d3.annotationCalloutCircle,
                         note: {
-                            label: numbers[4] + " percent",
+                            label: numbers[4] + addonlabel,
                             title: "Mumbai-Pune region",
                             wrap: 100
                         },
@@ -902,7 +920,7 @@
                     {
                         type: d3.annotationCalloutCircle,
                         note: {
-                            label: numbers[0] + " percent",
+                            label: numbers[0] + addonlabel,
                             title: "Hyderabad region",
                             wrap: 100
                         },
@@ -919,7 +937,7 @@
                     {
                         type: d3.annotationCalloutCircle,
                         note: {
-                            label: numbers[3] + " percent",
+                            label: numbers[3] + addonlabel,
                             title: "Kolkata region",
                             wrap: 100
                         },
@@ -936,7 +954,7 @@
                     {
                         type: d3.annotationCalloutCircle,
                         note: {
-                            label: numbers[2] + " percent",
+                            label: numbers[2] + addonlabel,
                             title: "Chennai region",
                             wrap: 100
                         },
@@ -953,7 +971,7 @@
                     {
                         type: d3.annotationCalloutCircle,
                         note: {
-                            label: numbers[1] + " percent",
+                            label: numbers[1] + addonlabel,
                             title: "Bengaluru region",
                             wrap: 100
                         },
