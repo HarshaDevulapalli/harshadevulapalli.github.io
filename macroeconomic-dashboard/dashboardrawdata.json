@@ -1,0 +1,3790 @@
+{
+    "period": "November 2018",
+    "data": [
+        {
+            "variable": "Passenger vehicle sales (domestic)",
+            "lowerrange": 6.57,
+            "upperrange": 2.30,
+            "suffix": "(% YoY)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": -5.361806641
+            },
+            {
+                "Year": "Feb 14",
+                "Value": 1.391061875
+            },
+            {
+                "Year": "Mar 14",
+                "Value": -5.083160371
+            },
+            {
+                "Year": "Apr 14",
+                "Value": -10.40421396
+            },
+            {
+                "Year": "May 14",
+                "Value": 3.083978575
+            },
+            {
+                "Year": "Jun 14",
+                "Value": 14.75964018
+            },
+            {
+                "Year": "Jul 14",
+                "Value": 3.493098853
+            },
+            {
+                "Year": "Aug 14",
+                "Value": 11.10543394
+            },
+            {
+                "Year": "Sep 14",
+                "Value": -2.001551145
+            },
+            {
+                "Year": "Oct 14",
+                "Value": -4.974274779
+            },
+            {
+                "Year": "Nov 14",
+                "Value": 9.097960922
+            },
+            {
+                "Year": "Dec 14",
+                "Value": 13.88157173
+            },
+            {
+                "Year": "Jan 15",
+                "Value": 2.496511523
+            },
+            {
+                "Year": "Feb 15",
+                "Value": 6.446854913
+            },
+            {
+                "Year": "Mar 15",
+                "Value": 2.480192719
+            },
+            {
+                "Year": "Apr 15",
+                "Value": 18.29443593
+            },
+            {
+                "Year": "May 15",
+                "Value": 6.738552708
+            },
+            {
+                "Year": "Jun 15",
+                "Value": 0.779526569
+            },
+            {
+                "Year": "Jul 15",
+                "Value": 14.64872945
+            },
+            {
+                "Year": "Aug 15",
+                "Value": 5.792029241
+            },
+            {
+                "Year": "Sep 15",
+                "Value": 7.692533166
+            },
+            {
+                "Year": "Oct 15",
+                "Value": 21.64072161
+            },
+            {
+                "Year": "Nov 15",
+                "Value": 9.440164116
+            },
+            {
+                "Year": "Dec 15",
+                "Value": 12.09189697
+            },
+            {
+                "Year": "Jan 16",
+                "Value": -0.148766228
+            },
+            {
+                "Year": "Feb 16",
+                "Value": -2.867263699
+            },
+            {
+                "Year": "Mar 16",
+                "Value": 0.645656705
+            },
+            {
+                "Year": "Apr 16",
+                "Value": 3.110688226
+            },
+            {
+                "Year": "May 16",
+                "Value": -1.069169791
+            },
+            {
+                "Year": "Jun 16",
+                "Value": -4.940966985
+            },
+            {
+                "Year": "Jul 16",
+                "Value": 10.40654261
+            },
+            {
+                "Year": "Aug 16",
+                "Value": 8.943461202
+            },
+            {
+                "Year": "Sep 16",
+                "Value": 15.1734049
+            },
+            {
+                "Year": "Oct 16",
+                "Value": -0.178614691
+            },
+            {
+                "Year": "Nov 16",
+                "Value": -0.321646147
+            },
+            {
+                "Year": "Dec 16",
+                "Value": -8.905022409
+            },
+            {
+                "Year": "Jan 17",
+                "Value": 11.67273247
+            },
+            {
+                "Year": "Feb 17",
+                "Value": 5.238822125
+            },
+            {
+                "Year": "Mar 17",
+                "Value": 6.400614525
+            },
+            {
+                "Year": "Apr 17",
+                "Value": 15.05753516
+            },
+            {
+                "Year": "May 17",
+                "Value": 5.248572437
+            },
+            {
+                "Year": "Jun 17",
+                "Value": -11.13112886
+            },
+            {
+                "Year": "Jul 17",
+                "Value": 8.47583263
+            },
+            {
+                "Year": "Aug 17",
+                "Value": 11.80192458
+            },
+            {
+                "Year": "Sep 17",
+                "Value": 6.65951403
+            },
+            {
+                "Year": "Oct 17",
+                "Value": -4.558541495
+            },
+            {
+                "Year": "Nov 17",
+                "Value": 5.563094348
+            },
+            {
+                "Year": "Dec 17",
+                "Value": 1.842904758
+            },
+            {
+                "Year": "Jan 18",
+                "Value": -1.722576135
+            },
+            {
+                "Year": "Feb 18",
+                "Value": 2.891456963
+            },
+            {
+                "Year": "Mar 18",
+                "Value": 2.067306989
+            },
+            {
+                "Year": "Apr 18",
+                "Value": 5.986655522
+            },
+            {
+                "Year": "May 18",
+                "Value": 20.46680116
+            },
+            {
+                "Year": "Jun 18",
+                "Value": 34.32570316
+            },
+            {
+                "Year": "Jul 18",
+                "Value": -0.154103537
+            },
+            {
+                "Year": "Aug 18",
+                "Value": -0.759668508
+            },
+            {
+                "Year": "Sep 18",
+                "Value": -4.6027997
+            },
+            {
+                "Year": "Oct 18",
+                "Value": 0.626265245
+            }]
+        },
+        {
+            "variable": "Tractor sales (domestic)",
+            "lowerrange": 12.14,
+            "upperrange": 1.30,
+            "suffix": "(% YoY)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": 14.66042155
+            },
+            {
+                "Year": "Feb 14",
+                "Value": 16.1871345
+            },
+            {
+                "Year": "Mar 14",
+                "Value": 3.719638068
+            },
+            {
+                "Year": "Apr 14",
+                "Value": -7.104912559
+            },
+            {
+                "Year": "May 14",
+                "Value": 0.676286451
+            },
+            {
+                "Year": "Jun 14",
+                "Value": 7.250857589
+            },
+            {
+                "Year": "Jul 14",
+                "Value": -5.927204048
+            },
+            {
+                "Year": "Aug 14",
+                "Value": -4.511735729
+            },
+            {
+                "Year": "Sep 14",
+                "Value": 6.992142253
+            },
+            {
+                "Year": "Oct 14",
+                "Value": -12.31756954
+            },
+            {
+                "Year": "Nov 14",
+                "Value": -32.26548474
+            },
+            {
+                "Year": "Dec 14",
+                "Value": -28.88046217
+            },
+            {
+                "Year": "Jan 15",
+                "Value": -26.68005095
+            },
+            {
+                "Year": "Feb 15",
+                "Value": -32.80796729
+            },
+            {
+                "Year": "Mar 15",
+                "Value": -30.37857422
+            },
+            {
+                "Year": "Apr 15",
+                "Value": -18.97398728
+            },
+            {
+                "Year": "May 15",
+                "Value": -18.14004577
+            },
+            {
+                "Year": "Jun 15",
+                "Value": -13.02968023
+            },
+            {
+                "Year": "Jul 15",
+                "Value": -12.46746809
+            },
+            {
+                "Year": "Aug 15",
+                "Value": -20.87518587
+            },
+            {
+                "Year": "Sep 15",
+                "Value": -34.03508259
+            },
+            {
+                "Year": "Oct 15",
+                "Value": -16.5228319
+            },
+            {
+                "Year": "Nov 15",
+                "Value": 29.44863193
+            },
+            {
+                "Year": "Dec 15",
+                "Value": -0.168187511
+            },
+            {
+                "Year": "Jan 16",
+                "Value": 0.482864209
+            },
+            {
+                "Year": "Feb 16",
+                "Value": 9.110688061
+            },
+            {
+                "Year": "Mar 16",
+                "Value": 14.34358368
+            },
+            {
+                "Year": "Apr 16",
+                "Value": 14.37978332
+            },
+            {
+                "Year": "May 16",
+                "Value": 15.31890151
+            },
+            {
+                "Year": "Jun 16",
+                "Value": 14.57515204
+            },
+            {
+                "Year": "Jul 16",
+                "Value": 8.305252725
+            },
+            {
+                "Year": "Aug 16",
+                "Value": 16.28058602
+            },
+            {
+                "Year": "Sep 16",
+                "Value": 49.39563973
+            },
+            {
+                "Year": "Oct 16",
+                "Value": 44.25481582
+            },
+            {
+                "Year": "Nov 16",
+                "Value": -13.05748107
+            },
+            {
+                "Year": "Dec 16",
+                "Value": 7.670800774
+            },
+            {
+                "Year": "Jan 17",
+                "Value": 5.54676512
+            },
+            {
+                "Year": "Feb 17",
+                "Value": 7.465104686
+            },
+            {
+                "Year": "Mar 17",
+                "Value": 24.53776732
+            },
+            {
+                "Year": "Apr 17",
+                "Value": 19.30438183
+            },
+            {
+                "Year": "May 17",
+                "Value": 11.69763022
+            },
+            {
+                "Year": "Jun 17",
+                "Value": -1.713731081
+            },
+            {
+                "Year": "Jul 17",
+                "Value": 14.39813846
+            },
+            {
+                "Year": "Aug 17",
+                "Value": 34.45364293
+            },
+            {
+                "Year": "Sep 17",
+                "Value": 50.27686644
+            },
+            {
+                "Year": "Oct 17",
+                "Value": -2.687765555
+            },
+            {
+                "Year": "Nov 17",
+                "Value": 17.28037681
+            },
+            {
+                "Year": "Dec 17",
+                "Value": 27.73819828
+            },
+            {
+                "Year": "Jan 18",
+                "Value": 38.12220649
+            },
+            {
+                "Year": "Feb 18",
+                "Value": 38.60315435
+            },
+            {
+                "Year": "Mar 18",
+                "Value": 52.17400332
+            },
+            {
+                "Year": "Apr 18",
+                "Value": 20.37256223
+            },
+            {
+                "Year": "May 18",
+                "Value": 19.62394528
+            },
+            {
+                "Year": "Jun 18",
+                "Value": 35.49561782
+            },
+            {
+                "Year": "Jul 18",
+                "Value": 19.90172552
+            },
+            {
+                "Year": "Aug 18",
+                "Value": 8.892432234
+            },
+            {
+                "Year": "Sep 18",
+                "Value": -12.25747817
+            }]
+        },
+        {
+            "variable": "2-wheeler sales",
+            "lowerrange": 11.74,
+            "upperrange": 6.33,
+            "suffix": "(% YoY)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": 8.87
+            },
+            {
+                "Year": "Feb 14",
+                "Value": 9.7
+            },
+            {
+                "Year": "Mar 14",
+                "Value": 21.18
+            },
+            {
+                "Year": "Apr 14",
+                "Value": 10.37
+            },
+            {
+                "Year": "May 14",
+                "Value": 15.93
+            },
+            {
+                "Year": "Jun 14",
+                "Value": 13.11
+            },
+            {
+                "Year": "Jul 14",
+                "Value": 14.72
+            },
+            {
+                "Year": "Aug 14",
+                "Value": 19.22
+            },
+            {
+                "Year": "Sep 14",
+                "Value": 22.73
+            },
+            {
+                "Year": "Oct 14",
+                "Value": -3.610059501
+            },
+            {
+                "Year": "Nov 14",
+                "Value": 4.887108668
+            },
+            {
+                "Year": "Dec 14",
+                "Value": 3.555342037
+            },
+            {
+                "Year": "Jan 15",
+                "Value": 1.065254749
+            },
+            {
+                "Year": "Feb 15",
+                "Value": -0.988164483
+            },
+            {
+                "Year": "Mar 15",
+                "Value": -0.844242947
+            },
+            {
+                "Year": "Apr 15",
+                "Value": -0.164988213
+            },
+            {
+                "Year": "May 15",
+                "Value": -1.246946458
+            },
+            {
+                "Year": "Jun 15",
+                "Value": 3.54910154
+            },
+            {
+                "Year": "Jul 15",
+                "Value": 0.135751763
+            },
+            {
+                "Year": "Aug 15",
+                "Value": -2.984602075
+            },
+            {
+                "Year": "Sep 15",
+                "Value": -1.06230143
+            },
+            {
+                "Year": "Oct 15",
+                "Value": 13.31260878
+            },
+            {
+                "Year": "Nov 15",
+                "Value": 1.46899497
+            },
+            {
+                "Year": "Dec 15",
+                "Value": -3.097327506
+            },
+            {
+                "Year": "Jan 16",
+                "Value": 2.629908393
+            },
+            {
+                "Year": "Feb 16",
+                "Value": 12.7551561
+            },
+            {
+                "Year": "Mar 16",
+                "Value": 10.92259278
+            },
+            {
+                "Year": "Apr 16",
+                "Value": 21.23077784
+            },
+            {
+                "Year": "May 16",
+                "Value": 9.659731531
+            },
+            {
+                "Year": "Jun 16",
+                "Value": 12.2779314
+            },
+            {
+                "Year": "Jul 16",
+                "Value": 13.52409192
+            },
+            {
+                "Year": "Aug 16",
+                "Value": 26.31658378
+            },
+            {
+                "Year": "Sep 16",
+                "Value": 21.7628085
+            },
+            {
+                "Year": "Oct 16",
+                "Value": 8.716032806
+            },
+            {
+                "Year": "Nov 16",
+                "Value": -5.854067087
+            },
+            {
+                "Year": "Dec 16",
+                "Value": -22.04011404
+            },
+            {
+                "Year": "Jan 17",
+                "Value": -7.391631979
+            },
+            {
+                "Year": "Feb 17",
+                "Value": -0.009837194
+            },
+            {
+                "Year": "Mar 17",
+                "Value": 0.267491534
+            },
+            {
+                "Year": "Apr 17",
+                "Value": 7.336948859
+            },
+            {
+                "Year": "May 17",
+                "Value": 11.95192078
+            },
+            {
+                "Year": "Jun 17",
+                "Value": 4.035108152
+            },
+            {
+                "Year": "Jul 17",
+                "Value": 13.78714273
+            },
+            {
+                "Year": "Aug 17",
+                "Value": 14.72607621
+            },
+            {
+                "Year": "Sep 17",
+                "Value": 9.119153931
+            },
+            {
+                "Year": "Oct 17",
+                "Value": -2.724544447
+            },
+            {
+                "Year": "Nov 17",
+                "Value": 23.48939791
+            },
+            {
+                "Year": "Dec 17",
+                "Value": 41.45072484
+            },
+            {
+                "Year": "Jan 18",
+                "Value": 33.42941354
+            },
+            {
+                "Year": "Feb 18",
+                "Value": 23.77098227
+            },
+            {
+                "Year": "Mar 18",
+                "Value": 18.34781155
+            },
+            {
+                "Year": "Apr 18",
+                "Value": 16.92477909
+            },
+            {
+                "Year": "May 18",
+                "Value": 9.195399587
+            },
+            {
+                "Year": "Jun 18",
+                "Value": 22.2830111
+            },
+            {
+                "Year": "Jul 18",
+                "Value": 8.167329017
+            },
+            {
+                "Year": "Aug 18",
+                "Value": 2.914121537
+            },
+            {
+                "Year": "Sep 18",
+                "Value": 4.12217224
+            },
+            {
+                "Year": "Oct 18",
+                "Value": 17.23496353
+            }]
+        },
+        {
+            "variable": "Domestic air passengers",
+            "lowerrange": 20.19,
+            "upperrange": 16.76,
+            "suffix": "(% YoY)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": 0.83
+            },
+            {
+                "Year": "Feb 14",
+                "Value": 1.68
+            },
+            {
+                "Year": "Mar 14",
+                "Value": 2.66
+            },
+            {
+                "Year": "Apr 14",
+                "Value": 5.24
+            },
+            {
+                "Year": "May 14",
+                "Value": 6.37
+            },
+            {
+                "Year": "Jun 14",
+                "Value": 14.2
+            },
+            {
+                "Year": "Jul 14",
+                "Value": 8.6
+            },
+            {
+                "Year": "Aug 14",
+                "Value": 9.77
+            },
+            {
+                "Year": "Sep 14",
+                "Value": 28.68
+            },
+            {
+                "Year": "Oct 14",
+                "Value": 18.67
+            },
+            {
+                "Year": "Nov 14",
+                "Value": 15.04
+            },
+            {
+                "Year": "Dec 14",
+                "Value": 16.38
+            },
+            {
+                "Year": "Jan 15",
+                "Value": 22.8
+            },
+            {
+                "Year": "Feb 15",
+                "Value": 22.86
+            },
+            {
+                "Year": "Mar 15",
+                "Value": 20.02
+            },
+            {
+                "Year": "Apr 15",
+                "Value": 24.61
+            },
+            {
+                "Year": "May 15",
+                "Value": 19.54
+            },
+            {
+                "Year": "Jun 15",
+                "Value": 17.41
+            },
+            {
+                "Year": "Jul 15",
+                "Value": 30.45
+            },
+            {
+                "Year": "Aug 15",
+                "Value": 19.24
+            },
+            {
+                "Year": "Sep 15",
+                "Value": 15.52
+            },
+            {
+                "Year": "Oct 15",
+                "Value": 20.21
+            },
+            {
+                "Year": "Nov 15",
+                "Value": 26.07
+            },
+            {
+                "Year": "Dec 15",
+                "Value": 21.07
+            },
+            {
+                "Year": "Jan 16",
+                "Value": 22.59
+            },
+            {
+                "Year": "Feb 16",
+                "Value": 24.29
+            },
+            {
+                "Year": "Mar 16",
+                "Value": 25.35
+            },
+            {
+                "Year": "Apr 16",
+                "Value": 20.78
+            },
+            {
+                "Year": "May 16",
+                "Value": 21.51
+            },
+            {
+                "Year": "Jun 16",
+                "Value": 20.78
+            },
+            {
+                "Year": "Jul 16",
+                "Value": 25.6
+            },
+            {
+                "Year": "Aug 16",
+                "Value": 23.97
+            },
+            {
+                "Year": "Sep 16",
+                "Value": 23.52
+            },
+            {
+                "Year": "Oct 16",
+                "Value": 23.28
+            },
+            {
+                "Year": "Nov 16",
+                "Value": 22.66
+            },
+            {
+                "Year": "Dec 16",
+                "Value": 23.99
+            },
+            {
+                "Year": "Jan 17",
+                "Value": 25.3
+            },
+            {
+                "Year": "Feb 17",
+                "Value": 15.76
+            },
+            {
+                "Year": "Mar 17",
+                "Value": 14.96
+            },
+            {
+                "Year": "Apr 17",
+                "Value": 15.24
+            },
+            {
+                "Year": "May 17",
+                "Value": 17.59
+            },
+            {
+                "Year": "Jun 17",
+                "Value": 20.21
+            },
+            {
+                "Year": "Jul 17",
+                "Value": 12.48
+            },
+            {
+                "Year": "Aug 17",
+                "Value": 15.74
+            },
+            {
+                "Year": "Sep 17",
+                "Value": 16.49
+            },
+            {
+                "Year": "Oct 17",
+                "Value": 20.58
+            },
+            {
+                "Year": "Nov 17",
+                "Value": 16.91
+            },
+            {
+                "Year": "Dec 17",
+                "Value": 17.76
+            },
+            {
+                "Year": "Jan 18",
+                "Value": 19.89
+            },
+            {
+                "Year": "Feb 18",
+                "Value": 24.41
+            },
+            {
+                "Year": "Mar 18",
+                "Value": 28.17
+            },
+            {
+                "Year": "Apr 18",
+                "Value": 26.09
+            },
+            {
+                "Year": "May 18",
+                "Value": 16.55
+            },
+            {
+                "Year": "Jun 18",
+                "Value": 18.36
+            },
+            {
+                "Year": "Jul 18",
+                "Value": 22.29
+            },
+            {
+                "Year": "Aug 18",
+                "Value": 17.14
+            },
+            {
+                "Year": "Sep 18",
+                "Value": 18.99
+            },
+            {
+                "Year": "Oct 18",
+                "Value": 13.31
+            }]
+        },
+        {
+            "variable": "PMI manufacturing",
+            "lowerrange": 52.00,
+            "upperrange": 51.41,
+            "suffix": "",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": 51.4
+            },
+            {
+                "Year": "Feb 14",
+                "Value": 52.5
+            },
+            {
+                "Year": "Mar 14",
+                "Value": 51.3
+            },
+            {
+                "Year": "Apr 14",
+                "Value": 51.3
+            },
+            {
+                "Year": "May 14",
+                "Value": 51.4
+            },
+            {
+                "Year": "Jun 14",
+                "Value": 51.5
+            },
+            {
+                "Year": "Jul 14",
+                "Value": 53
+            },
+            {
+                "Year": "Aug 14",
+                "Value": 52.4
+            },
+            {
+                "Year": "Sep 14",
+                "Value": 51
+            },
+            {
+                "Year": "Oct 14",
+                "Value": 51.6
+            },
+            {
+                "Year": "Nov 14",
+                "Value": 53.3
+            },
+            {
+                "Year": "Dec 14",
+                "Value": 54.5
+            },
+            {
+                "Year": "Jan 15",
+                "Value": 52.9
+            },
+            {
+                "Year": "Feb 15",
+                "Value": 51.2
+            },
+            {
+                "Year": "Mar 15",
+                "Value": 52.1
+            },
+            {
+                "Year": "Apr 15",
+                "Value": 51.3
+            },
+            {
+                "Year": "May 15",
+                "Value": 52.6
+            },
+            {
+                "Year": "Jun 15",
+                "Value": 51.3
+            },
+            {
+                "Year": "Jul 15",
+                "Value": 52.7
+            },
+            {
+                "Year": "Aug 15",
+                "Value": 52.3
+            },
+            {
+                "Year": "Sep 15",
+                "Value": 51.2
+            },
+            {
+                "Year": "Oct 15",
+                "Value": 50.7
+            },
+            {
+                "Year": "Nov 15",
+                "Value": 50.3
+            },
+            {
+                "Year": "Dec 15",
+                "Value": 49.1
+            },
+            {
+                "Year": "Jan 16",
+                "Value": 51.1
+            },
+            {
+                "Year": "Feb 16",
+                "Value": 51.1
+            },
+            {
+                "Year": "Mar 16",
+                "Value": 52.4
+            },
+            {
+                "Year": "Apr 16",
+                "Value": 50.5
+            },
+            {
+                "Year": "May 16",
+                "Value": 50.7
+            },
+            {
+                "Year": "Jun 16",
+                "Value": 51.7
+            },
+            {
+                "Year": "Jul 16",
+                "Value": 51.8
+            },
+            {
+                "Year": "Aug 16",
+                "Value": 52.6
+            },
+            {
+                "Year": "Sep 16",
+                "Value": 52.1
+            },
+            {
+                "Year": "Oct 16",
+                "Value": 54.4
+            },
+            {
+                "Year": "Nov 16",
+                "Value": 52.3
+            },
+            {
+                "Year": "Dec 16",
+                "Value": 49.6
+            },
+            {
+                "Year": "Jan 17",
+                "Value": 50.4
+            },
+            {
+                "Year": "Feb 17",
+                "Value": 50.7
+            },
+            {
+                "Year": "Mar 17",
+                "Value": 52.5
+            },
+            {
+                "Year": "Apr 17",
+                "Value": 52.5
+            },
+            {
+                "Year": "May 17",
+                "Value": 51.6
+            },
+            {
+                "Year": "Jun 17",
+                "Value": 50.9
+            },
+            {
+                "Year": "Jul 17",
+                "Value": 47.9
+            },
+            {
+                "Year": "Aug 17",
+                "Value": 51.2
+            },
+            {
+                "Year": "Sep 17",
+                "Value": 51.2
+            },
+            {
+                "Year": "Oct 17",
+                "Value": 50.3
+            },
+            {
+                "Year": "Nov 17",
+                "Value": 52.6
+            },
+            {
+                "Year": "Dec 17",
+                "Value": 54.7
+            },
+            {
+                "Year": "Jan 18",
+                "Value": 52.4
+            },
+            {
+                "Year": "Feb 18",
+                "Value": 52.1
+            },
+            {
+                "Year": "Mar 18",
+                "Value": 51
+            },
+            {
+                "Year": "Apr 18",
+                "Value": 51.6
+            },
+            {
+                "Year": "May 18",
+                "Value": 51.2
+            },
+            {
+                "Year": "Jun 18",
+                "Value": 53.1
+            },
+            {
+                "Year": "Jul 18",
+                "Value": 52.3
+            },
+            {
+                "Year": "Aug 18",
+                "Value": 51.7
+            },
+            {
+                "Year": "Sep 18",
+                "Value": 52.2
+            },
+            {
+                "Year": "Oct 18",
+                "Value": 53.1
+            }]
+        },
+        {
+            "variable": "Core (8-infrastructure sectors) growth",
+            "lowerrange": 4.85,
+            "upperrange": 3.67,
+            "suffix": "(% YoY)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": 2.54
+            },
+            {
+                "Year": "Feb 14",
+                "Value": 4.92
+            },
+            {
+                "Year": "Mar 14",
+                "Value": 2.91
+            },
+            {
+                "Year": "Apr 14",
+                "Value": 4.99
+            },
+            {
+                "Year": "May 14",
+                "Value": 5.18
+            },
+            {
+                "Year": "Jun 14",
+                "Value": 9.64
+            },
+            {
+                "Year": "Jul 14",
+                "Value": 4.16
+            },
+            {
+                "Year": "Aug 14",
+                "Value": 5.56
+            },
+            {
+                "Year": "Sep 14",
+                "Value": 3.4
+            },
+            {
+                "Year": "Oct 14",
+                "Value": 8.85
+            },
+            {
+                "Year": "Nov 14",
+                "Value": 9.28
+            },
+            {
+                "Year": "Dec 14",
+                "Value": 3.32
+            },
+            {
+                "Year": "Jan 15",
+                "Value": 2.93
+            },
+            {
+                "Year": "Feb 15",
+                "Value": 3
+            },
+            {
+                "Year": "Mar 15",
+                "Value": 0.06
+            },
+            {
+                "Year": "Apr 15",
+                "Value": -0.52
+            },
+            {
+                "Year": "May 15",
+                "Value": 2.4
+            },
+            {
+                "Year": "Jun 15",
+                "Value": 1.4
+            },
+            {
+                "Year": "Jul 15",
+                "Value": 3
+            },
+            {
+                "Year": "Aug 15",
+                "Value": 4.04
+            },
+            {
+                "Year": "Sep 15",
+                "Value": 2.42
+            },
+            {
+                "Year": "Oct 15",
+                "Value": 1.21
+            },
+            {
+                "Year": "Nov 15",
+                "Value": 0.21
+            },
+            {
+                "Year": "Dec 15",
+                "Value": 1.82
+            },
+            {
+                "Year": "Jan 16",
+                "Value": 4.21
+            },
+            {
+                "Year": "Feb 16",
+                "Value": 7.69
+            },
+            {
+                "Year": "Mar 16",
+                "Value": 7.67
+            },
+            {
+                "Year": "Apr 16",
+                "Value": 8.71
+            },
+            {
+                "Year": "May 16",
+                "Value": 5.23
+            },
+            {
+                "Year": "Jun 16",
+                "Value": 6.98
+            },
+            {
+                "Year": "Jul 16",
+                "Value": 3.1
+            },
+            {
+                "Year": "Aug 16",
+                "Value": 3.09
+            },
+            {
+                "Year": "Sep 16",
+                "Value": 5.3
+            },
+            {
+                "Year": "Oct 16",
+                "Value": 7.09
+            },
+            {
+                "Year": "Nov 16",
+                "Value": 3.16
+            },
+            {
+                "Year": "Dec 16",
+                "Value": 5.6
+            },
+            {
+                "Year": "Jan 17",
+                "Value": 3.36
+            },
+            {
+                "Year": "Feb 17",
+                "Value": 0.55
+            },
+            {
+                "Year": "Mar 17",
+                "Value": 5.25
+            },
+            {
+                "Year": "Apr 17",
+                "Value": 2.61
+            },
+            {
+                "Year": "May 17",
+                "Value": 3.9
+            },
+            {
+                "Year": "Jun 17",
+                "Value": 0.99
+            },
+            {
+                "Year": "Jul 17",
+                "Value": 2.89
+            },
+            {
+                "Year": "Aug 17",
+                "Value": 4.38
+            },
+            {
+                "Year": "Sep 17",
+                "Value": 4.73
+            },
+            {
+                "Year": "Oct 17",
+                "Value": 5.02
+            },
+            {
+                "Year": "Nov 17",
+                "Value": 6.94
+            },
+            {
+                "Year": "Dec 17",
+                "Value": 3.8
+            },
+            {
+                "Year": "Jan 18",
+                "Value": 6.19
+            },
+            {
+                "Year": "Feb 18",
+                "Value": 5.38
+            },
+            {
+                "Year": "Mar 18",
+                "Value": 4.47
+            },
+            {
+                "Year": "Apr 18",
+                "Value": 4.69
+            },
+            {
+                "Year": "May 18",
+                "Value": 4.09
+            },
+            {
+                "Year": "Jun 18",
+                "Value": 7.76
+            },
+            {
+                "Year": "Jul 18",
+                "Value": 7.3
+            },
+            {
+                "Year": "Aug 18",
+                "Value": 4.72
+            },
+            {
+                "Year": "Sep 18",
+                "Value": 4.28
+            }]
+        },
+        {
+            "variable": "Banks' non-food credit",
+            "lowerrange": 9.87,
+            "upperrange": 8.46,
+            "suffix": "(% YoY)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": 14.25136201
+            },
+            {
+                "Year": "Feb 14",
+                "Value": 13.99954246
+            },
+            {
+                "Year": "Mar 14",
+                "Value": 13.55435796
+            },
+            {
+                "Year": "Apr 14",
+                "Value": 14.22283251
+            },
+            {
+                "Year": "May 14",
+                "Value": 13.02464133
+            },
+            {
+                "Year": "Jun 14",
+                "Value": 12.96014114
+            },
+            {
+                "Year": "Jul 14",
+                "Value": 12.58255897
+            },
+            {
+                "Year": "Aug 14",
+                "Value": 10.24125691
+            },
+            {
+                "Year": "Sep 14",
+                "Value": 8.581704054
+            },
+            {
+                "Year": "Oct 14",
+                "Value": 11.07991008
+            },
+            {
+                "Year": "Nov 14",
+                "Value": 10.50604057
+            },
+            {
+                "Year": "Dec 14",
+                "Value": 9.696833846
+            },
+            {
+                "Year": "Jan 15",
+                "Value": 9.694634259
+            },
+            {
+                "Year": "Feb 15",
+                "Value": 9.365521392
+            },
+            {
+                "Year": "Mar 15",
+                "Value": 8.560308239
+            },
+            {
+                "Year": "Apr 15",
+                "Value": 8.887407748
+            },
+            {
+                "Year": "May 15",
+                "Value": 8.954782441
+            },
+            {
+                "Year": "Jun 15",
+                "Value": 8.394476693
+            },
+            {
+                "Year": "Jul 15",
+                "Value": 8.406757121
+            },
+            {
+                "Year": "Aug 15",
+                "Value": 8.408838747
+            },
+            {
+                "Year": "Sep 15",
+                "Value": 8.635953911
+            },
+            {
+                "Year": "Oct 15",
+                "Value": 8.325241049
+            },
+            {
+                "Year": "Nov 15",
+                "Value": 8.791187141
+            },
+            {
+                "Year": "Dec 15",
+                "Value": 9.299432949
+            },
+            {
+                "Year": "Jan 16",
+                "Value": 9.83280086
+            },
+            {
+                "Year": "Feb 16",
+                "Value": 9.887201524
+            },
+            {
+                "Year": "Mar 16",
+                "Value": 9.061393794
+            },
+            {
+                "Year": "Apr 16",
+                "Value": 8.444203513
+            },
+            {
+                "Year": "May 16",
+                "Value": 8.392905174
+            },
+            {
+                "Year": "Jun 16",
+                "Value": 7.945206021
+            },
+            {
+                "Year": "Jul 16",
+                "Value": 8.333336089
+            },
+            {
+                "Year": "Aug 16",
+                "Value": 8.200330042
+            },
+            {
+                "Year": "Sep 16",
+                "Value": 10.77135884
+            },
+            {
+                "Year": "Oct 16",
+                "Value": 6.670015175
+            },
+            {
+                "Year": "Nov 16",
+                "Value": 4.753231351
+            },
+            {
+                "Year": "Dec 16",
+                "Value": 4.013606722
+            },
+            {
+                "Year": "Jan 17",
+                "Value": 3.510983379
+            },
+            {
+                "Year": "Feb 17",
+                "Value": 3.289248891
+            },
+            {
+                "Year": "Mar 17",
+                "Value": 8.364061603
+            },
+            {
+                "Year": "Apr 17",
+                "Value": 4.538698418
+            },
+            {
+                "Year": "May 17",
+                "Value": 4.083590507
+            },
+            {
+                "Year": "Jun 17",
+                "Value": 4.821277241
+            },
+            {
+                "Year": "Jul 17",
+                "Value": 5.293639444
+            },
+            {
+                "Year": "Aug 17",
+                "Value": 5.497948032
+            },
+            {
+                "Year": "Sep 17",
+                "Value": 6.091788858
+            },
+            {
+                "Year": "Oct 17",
+                "Value": 6.559740069
+            },
+            {
+                "Year": "Nov 17",
+                "Value": 8.847662301
+            },
+            {
+                "Year": "Dec 17",
+                "Value": 10.03692977
+            },
+            {
+                "Year": "Jan 18",
+                "Value": 9.524957801
+            },
+            {
+                "Year": "Feb 18",
+                "Value": 9.754413482
+            },
+            {
+                "Year": "Mar 18",
+                "Value": 8.371750471
+            },
+            {
+                "Year": "Apr 18",
+                "Value": 10.680838
+            },
+            {
+                "Year": "May 18",
+                "Value": 11.12912198
+            },
+            {
+                "Year": "Jun 18",
+                "Value": 11.10353523
+            },
+            {
+                "Year": "Jul 18",
+                "Value": 10.55149654
+            },
+            {
+                "Year": "Aug 18",
+                "Value": 12.42360074
+            },
+            {
+                "Year": "Sep 18",
+                "Value": 11.30582802
+            }]
+        },
+        {
+            "variable": "Rail freight traffic",
+            "lowerrange": 3.82,
+            "upperrange": 2.21,
+            "suffix": "(% YoY)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": 4.103671706
+            },
+            {
+                "Year": "Feb 14",
+                "Value": 3.970816888
+            },
+            {
+                "Year": "Mar 14",
+                "Value": 2.175459998
+            },
+            {
+                "Year": "Apr 14",
+                "Value": 6.118546845
+            },
+            {
+                "Year": "May 14",
+                "Value": 4.038112523
+            },
+            {
+                "Year": "Jun 14",
+                "Value": 2.577987051
+            },
+            {
+                "Year": "Jul 14",
+                "Value": 4.257046746
+            },
+            {
+                "Year": "Aug 14",
+                "Value": 6.038008179
+            },
+            {
+                "Year": "Sep 14",
+                "Value": 2.191845392
+            },
+            {
+                "Year": "Oct 14",
+                "Value": 8.44779385
+            },
+            {
+                "Year": "Nov 14",
+                "Value": 8.468746293
+            },
+            {
+                "Year": "Dec 14",
+                "Value": 3.591579861
+            },
+            {
+                "Year": "Jan 15",
+                "Value": 1.441908714
+            },
+            {
+                "Year": "Feb 15",
+                "Value": 3.117450823
+            },
+            {
+                "Year": "Mar 15",
+                "Value": 1.054621431
+            },
+            {
+                "Year": "Apr 15",
+                "Value": 1.114864865
+            },
+            {
+                "Year": "May 15",
+                "Value": 1.253815962
+            },
+            {
+                "Year": "Jun 15",
+                "Value": 2.857470737
+            },
+            {
+                "Year": "Jul 15",
+                "Value": 1.301735648
+            },
+            {
+                "Year": "Aug 15",
+                "Value": 0.782667877
+            },
+            {
+                "Year": "Sep 15",
+                "Value": 2.340867159
+            },
+            {
+                "Year": "Oct 15",
+                "Value": 4.606590451
+            },
+            {
+                "Year": "Nov 15",
+                "Value": -4.188080919
+            },
+            {
+                "Year": "Dec 15",
+                "Value": -0.890332041
+            },
+            {
+                "Year": "Jan 16",
+                "Value": 0.306779834
+            },
+            {
+                "Year": "Feb 16",
+                "Value": -0.725122713
+            },
+            {
+                "Year": "Mar 16",
+                "Value": -1.171605789
+            },
+            {
+                "Year": "Apr 16",
+                "Value": -3.68637933
+            },
+            {
+                "Year": "May 16",
+                "Value": -0.570690212
+            },
+            {
+                "Year": "Jun 16",
+                "Value": 2.967756332
+            },
+            {
+                "Year": "Jul 16",
+                "Value": -1.878088962
+            },
+            {
+                "Year": "Aug 16",
+                "Value": -3.71412493
+            },
+            {
+                "Year": "Sep 16",
+                "Value": -2.704225352
+            },
+            {
+                "Year": "Oct 16",
+                "Value": -2.635808422
+            },
+            {
+                "Year": "Nov 16",
+                "Value": 5.535265921
+            },
+            {
+                "Year": "Dec 16",
+                "Value": -0.126823082
+            },
+            {
+                "Year": "Jan 17",
+                "Value": 0.336425731
+            },
+            {
+                "Year": "Feb 17",
+                "Value": 3.461063041
+            },
+            {
+                "Year": "Mar 17",
+                "Value": 7.700737199
+            },
+            {
+                "Year": "Apr 17",
+                "Value": 4.613783534
+            },
+            {
+                "Year": "May 17",
+                "Value": 3.920294564
+            },
+            {
+                "Year": "Jun 17",
+                "Value": 2.763029581
+            },
+            {
+                "Year": "Jul 17",
+                "Value": 5.495858518
+            },
+            {
+                "Year": "Aug 17",
+                "Value": 7.738164816
+            },
+            {
+                "Year": "Sep 17",
+                "Value": 5.906195715
+            },
+            {
+                "Year": "Oct 17",
+                "Value": 2.531088368
+            },
+            {
+                "Year": "Nov 17",
+                "Value": 3.082080675
+            },
+            {
+                "Year": "Dec 17",
+                "Value": 6.973544974
+            },
+            {
+                "Year": "Jan 18",
+                "Value": 6.370656371
+            },
+            {
+                "Year": "Feb 18",
+                "Value": 4.094710546
+            },
+            {
+                "Year": "Mar 18",
+                "Value": 3.912681528
+            },
+            {
+                "Year": "Apr 18",
+                "Value": 8.301094285
+            },
+            {
+                "Year": "May 18",
+                "Value": 6.221342226
+            },
+            {
+                "Year": "Jun 18",
+                "Value": 4.871362294
+            },
+            {
+                "Year": "Jul 18",
+                "Value": 4.127320955
+            },
+            {
+                "Year": "Aug 18",
+                "Value": 5.229467289
+            },
+            {
+                "Year": "Sep 18",
+                "Value": 3.674138874
+            },
+            {
+                "Year": "Oct 18",
+                "Value": 9.62756252
+            }]
+        },
+        {
+            "variable": "Import cover",
+            "lowerrange": 10.8,
+            "upperrange": 10.02,
+            "suffix": "(Fx reserves in months)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": 8.0083
+            },
+            {
+                "Year": "Feb 14",
+                "Value": 8.4106
+            },
+            {
+                "Year": "Mar 14",
+                "Value": 8.1859
+            },
+            {
+                "Year": "Apr 14",
+                "Value": 8.428
+            },
+            {
+                "Year": "May 14",
+                "Value": 8.3908
+            },
+            {
+                "Year": "Jun 14",
+                "Value": 8.4396
+            },
+            {
+                "Year": "Jul 14",
+                "Value": 8.4817
+            },
+            {
+                "Year": "Aug 14",
+                "Value": 8.4398
+            },
+            {
+                "Year": "Sep 14",
+                "Value": 8.1871
+            },
+            {
+                "Year": "Oct 14",
+                "Value": 8.2087
+            },
+            {
+                "Year": "Nov 14",
+                "Value": 8.1377
+            },
+            {
+                "Year": "Dec 14",
+                "Value": 8.288
+            },
+            {
+                "Year": "Jan 15",
+                "Value": 10.1622
+            },
+            {
+                "Year": "Feb 15",
+                "Value": 11.0864
+            },
+            {
+                "Year": "Mar 15",
+                "Value": 10.6217
+            },
+            {
+                "Year": "Apr 15",
+                "Value": 10.6094
+            },
+            {
+                "Year": "May 15",
+                "Value": 10.8281
+            },
+            {
+                "Year": "Jun 15",
+                "Value": 10.881
+            },
+            {
+                "Year": "Jul 15",
+                "Value": 10.6534
+            },
+            {
+                "Year": "Aug 15",
+                "Value": 10.5749
+            },
+            {
+                "Year": "Sep 15",
+                "Value": 10.5604
+            },
+            {
+                "Year": "Oct 15",
+                "Value": 10.7353
+            },
+            {
+                "Year": "Nov 15",
+                "Value": 10.7644
+            },
+            {
+                "Year": "Dec 15",
+                "Value": 10.7385
+            },
+            {
+                "Year": "Jan 16",
+                "Value": 12.1594
+            },
+            {
+                "Year": "Feb 16",
+                "Value": 12.3558
+            },
+            {
+                "Year": "Mar 16",
+                "Value": 12.7832
+            },
+            {
+                "Year": "Apr 16",
+                "Value": 13.343
+            },
+            {
+                "Year": "May 16",
+                "Value": 13.1169
+            },
+            {
+                "Year": "Jun 16",
+                "Value": 12.8864
+            },
+            {
+                "Year": "Jul 16",
+                "Value": 12.9582
+            },
+            {
+                "Year": "Aug 16",
+                "Value": 12.9407
+            },
+            {
+                "Year": "Sep 16",
+                "Value": 12.9472
+            },
+            {
+                "Year": "Oct 16",
+                "Value": 12.5276
+            },
+            {
+                "Year": "Nov 16",
+                "Value": 12.3059
+            },
+            {
+                "Year": "Dec 16",
+                "Value": 11.9719
+            },
+            {
+                "Year": "Jan 17",
+                "Value": 11.2072
+            },
+            {
+                "Year": "Feb 17",
+                "Value": 10.9095
+            },
+            {
+                "Year": "Mar 17",
+                "Value": 10.4255
+            },
+            {
+                "Year": "Apr 17",
+                "Value": 10.3292
+            },
+            {
+                "Year": "May 17",
+                "Value": 10.3943
+            },
+            {
+                "Year": "Jun 17",
+                "Value": 10.6037
+            },
+            {
+                "Year": "Jul 17",
+                "Value": 10.8822
+            },
+            {
+                "Year": "Aug 17",
+                "Value": 10.93
+            },
+            {
+                "Year": "Sep 17",
+                "Value": 11.0083
+            },
+            {
+                "Year": "Oct 17",
+                "Value": 10.9475
+            },
+            {
+                "Year": "Nov 17",
+                "Value": 10.9039
+            },
+            {
+                "Year": "Dec 17",
+                "Value": 11.0098
+            },
+            {
+                "Year": "Jan 18",
+                "Value": 10.2695
+            },
+            {
+                "Year": "Feb 18",
+                "Value": 10.7162
+            },
+            {
+                "Year": "Mar 18",
+                "Value": 10.4956
+            },
+            {
+                "Year": "Apr 18",
+                "Value": 10.4489
+            },
+            {
+                "Year": "May 18",
+                "Value": 10.0983
+            },
+            {
+                "Year": "Jun 18",
+                "Value": 9.7961
+            },
+            {
+                "Year": "Jul 18",
+                "Value": 9.6732
+            },
+            {
+                "Year": "Aug 18",
+                "Value": 9.4775
+            },
+            {
+                "Year": "Sep 18",
+                "Value": 9.4946
+            },
+            {
+                "Year": "Oct 18",
+                "Value": 9.2522
+            }]
+        },
+        {
+            "variable": "Rupee vs Dollar",
+            "lowerrange": 0,
+            "upperrange": -0.61,
+            "suffix": "(% MoM)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": -0.420721239
+            },
+            {
+                "Year": "Feb 14",
+                "Value": -0.156925461
+            },
+            {
+                "Year": "Mar 14",
+                "Value": 1.912864137
+            },
+            {
+                "Year": "Apr 14",
+                "Value": 1.081052968
+            },
+            {
+                "Year": "May 14",
+                "Value": 1.724846621
+            },
+            {
+                "Year": "Jun 14",
+                "Value": -0.746703869
+            },
+            {
+                "Year": "Jul 14",
+                "Value": -0.510351062
+            },
+            {
+                "Year": "Aug 14",
+                "Value": -1.331429239
+            },
+            {
+                "Year": "Sep 14",
+                "Value": -0.019274214
+            },
+            {
+                "Year": "Oct 14",
+                "Value": -0.823747868
+            },
+            {
+                "Year": "Nov 14",
+                "Value": -0.568926979
+            },
+            {
+                "Year": "Dec 14",
+                "Value": -1.636907478
+            },
+            {
+                "Year": "Jan 15",
+                "Value": 0.796196355
+            },
+            {
+                "Year": "Feb 15",
+                "Value": 0.325778853
+            },
+            {
+                "Year": "Mar 15",
+                "Value": -0.723605032
+            },
+            {
+                "Year": "Apr 15",
+                "Value": -0.442246159
+            },
+            {
+                "Year": "May 15",
+                "Value": -1.63871481
+            },
+            {
+                "Year": "Jun 15",
+                "Value": -0.078093162
+            },
+            {
+                "Year": "Jul 15",
+                "Value": 0.295710597
+            },
+            {
+                "Year": "Aug 15",
+                "Value": -2.256362315
+            },
+            {
+                "Year": "Sep 15",
+                "Value": -1.719308761
+            },
+            {
+                "Year": "Oct 15",
+                "Value": 1.752367717
+            },
+            {
+                "Year": "Nov 15",
+                "Value": -1.693289787
+            },
+            {
+                "Year": "Dec 15",
+                "Value": -0.652294934
+            },
+            {
+                "Year": "Jan 16",
+                "Value": -1.090570584
+            },
+            {
+                "Year": "Feb 16",
+                "Value": -1.352572455
+            },
+            {
+                "Year": "Mar 16",
+                "Value": 1.840217111
+            },
+            {
+                "Year": "Apr 16",
+                "Value": 0.738718735
+            },
+            {
+                "Year": "May 16",
+                "Value": -0.705327576
+            },
+            {
+                "Year": "Jun 16",
+                "Value": -0.539653749
+            },
+            {
+                "Year": "Jul 16",
+                "Value": 0.156926293
+            },
+            {
+                "Year": "Aug 16",
+                "Value": 0.383952602
+            },
+            {
+                "Year": "Sep 16",
+                "Value": 0.269631319
+            },
+            {
+                "Year": "Oct 16",
+                "Value": 0.016141108
+            },
+            {
+                "Year": "Nov 16",
+                "Value": -1.338524654
+            },
+            {
+                "Year": "Dec 16",
+                "Value": -0.362367363
+            },
+            {
+                "Year": "Jan 17",
+                "Value": -0.337788183
+            },
+            {
+                "Year": "Feb 17",
+                "Value": 1.559371916
+            },
+            {
+                "Year": "Mar 17",
+                "Value": 1.776250594
+            },
+            {
+                "Year": "Apr 17",
+                "Value": 2.053824284
+            },
+            {
+                "Year": "May 17",
+                "Value": 0.09478579
+            },
+            {
+                "Year": "Jun 17",
+                "Value": -0.014890532
+            },
+            {
+                "Year": "Jul 17",
+                "Value": -0.012812078
+            },
+            {
+                "Year": "Aug 17",
+                "Value": 0.769111598
+            },
+            {
+                "Year": "Sep 17",
+                "Value": -0.786433929
+            },
+            {
+                "Year": "Oct 17",
+                "Value": -0.918582004
+            },
+            {
+                "Year": "Nov 17",
+                "Value": 0.308383456
+            },
+            {
+                "Year": "Dec 17",
+                "Value": 0.946391766
+            },
+            {
+                "Year": "Jan 18",
+                "Value": 0.913497286
+            },
+            {
+                "Year": "Feb 18",
+                "Value": -1.247040617
+            },
+            {
+                "Year": "Mar 18",
+                "Value": -0.92202459
+            },
+            {
+                "Year": "Apr 18",
+                "Value": -0.968386048
+            },
+            {
+                "Year": "May 18",
+                "Value": -2.873774378
+            },
+            {
+                "Year": "Jun 18",
+                "Value": -0.345197932
+            },
+            {
+                "Year": "Jul 18",
+                "Value": -1.38185354
+            },
+            {
+                "Year": "Aug 18",
+                "Value": -1.245032336
+            },
+            {
+                "Year": "Sep 18",
+                "Value": -3.830907323
+            },
+            {
+                "Year": "Oct 18",
+                "Value": -1.913974255
+            },
+            {
+                "Year": "Nov 18",
+                "Value": 1.606019692
+            }]
+        },
+        {
+            "variable": "Current A/c balance",
+            "lowerrange": -1.04,
+            "upperrange": -1.44,
+            "suffix": "(as % of GDP)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": -0.236758174
+            },
+            {
+                "Year": "Feb 14",
+                "Value": -0.236758174
+            },
+            {
+                "Year": "Mar 14",
+                "Value": -0.236758174
+            },
+            {
+                "Year": "Apr 14",
+                "Value": -1.539270037
+            },
+            {
+                "Year": "May 14",
+                "Value": -1.539270037
+            },
+            {
+                "Year": "Jun 14",
+                "Value": -1.539270037
+            },
+            {
+                "Year": "Jul 14",
+                "Value": -2.213624486
+            },
+            {
+                "Year": "Aug 14",
+                "Value": -2.213624486
+            },
+            {
+                "Year": "Sep 14",
+                "Value": -2.213624486
+            },
+            {
+                "Year": "Oct 14",
+                "Value": -1.534954105
+            },
+            {
+                "Year": "Nov 14",
+                "Value": -1.534954105
+            },
+            {
+                "Year": "Dec 14",
+                "Value": -1.534954105
+            },
+            {
+                "Year": "Jan 15",
+                "Value": -0.118022509
+            },
+            {
+                "Year": "Feb 15",
+                "Value": -0.118022509
+            },
+            {
+                "Year": "Mar 15",
+                "Value": -0.118022509
+            },
+            {
+                "Year": "Apr 15",
+                "Value": -1.200745683
+            },
+            {
+                "Year": "May 15",
+                "Value": -1.200745683
+            },
+            {
+                "Year": "Jun 15",
+                "Value": -1.200745683
+            },
+            {
+                "Year": "Jul 15",
+                "Value": -1.668229594
+            },
+            {
+                "Year": "Aug 15",
+                "Value": -1.668229594
+            },
+            {
+                "Year": "Sep 15",
+                "Value": -1.668229594
+            },
+            {
+                "Year": "Oct 15",
+                "Value": -1.35557038
+            },
+            {
+                "Year": "Nov 15",
+                "Value": -1.35557038
+            },
+            {
+                "Year": "Dec 15",
+                "Value": -1.35557038
+            },
+            {
+                "Year": "Jan 16",
+                "Value": -0.056992311
+            },
+            {
+                "Year": "Feb 16",
+                "Value": -0.056992311
+            },
+            {
+                "Year": "Mar 16",
+                "Value": -0.056992311
+            },
+            {
+                "Year": "Apr 16",
+                "Value": -0.071684588
+            },
+            {
+                "Year": "May 16",
+                "Value": -0.071684588
+            },
+            {
+                "Year": "Jun 16",
+                "Value": -0.071684588
+            },
+            {
+                "Year": "Jul 16",
+                "Value": -0.618532666
+            },
+            {
+                "Year": "Aug 16",
+                "Value": -0.618532666
+            },
+            {
+                "Year": "Sep 16",
+                "Value": -0.618532666
+            },
+            {
+                "Year": "Oct 16",
+                "Value": -1.406048622
+            },
+            {
+                "Year": "Nov 16",
+                "Value": -1.406048622
+            },
+            {
+                "Year": "Dec 16",
+                "Value": -1.406048622
+            },
+            {
+                "Year": "Jan 17",
+                "Value": -0.544497137
+            },
+            {
+                "Year": "Feb 17",
+                "Value": -0.544497137
+            },
+            {
+                "Year": "Mar 17",
+                "Value": -0.544497137
+            },
+            {
+                "Year": "Apr 17",
+                "Value": -2.481388755
+            },
+            {
+                "Year": "May 17",
+                "Value": -2.481388755
+            },
+            {
+                "Year": "Jun 17",
+                "Value": -2.481388755
+            },
+            {
+                "Year": "Jul 17",
+                "Value": -1.115573691
+            },
+            {
+                "Year": "Aug 17",
+                "Value": -1.115573691
+            },
+            {
+                "Year": "Sep 17",
+                "Value": -1.115573691
+            },
+            {
+                "Year": "Oct 17",
+                "Value": -2.04714529
+            },
+            {
+                "Year": "Nov 17",
+                "Value": -2.04714529
+            },
+            {
+                "Year": "Dec 17",
+                "Value": -2.04714529
+            },
+            {
+                "Year": "Jan 18",
+                "Value": -1.874622834
+            },
+            {
+                "Year": "Feb 18",
+                "Value": -1.874622834
+            },
+            {
+                "Year": "Mar 18",
+                "Value": -1.874622834
+            },
+            {
+                "Year": "Apr 18",
+                "Value": -2.441461757
+            },
+            {
+                "Year": "May 18",
+                "Value": -2.441461757
+            },
+            {
+                "Year": "Jun 18",
+                "Value": -2.441461757
+            }]
+        },
+        {
+            "variable": "Trade balance",
+            "lowerrange": -17.75,
+            "upperrange": -19.67,
+            "suffix": "(as % of total trade)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": -14.95102303
+            },
+            {
+                "Year": "Feb 14",
+                "Value": -14.08413463
+            },
+            {
+                "Year": "Mar 14",
+                "Value": -15.29045884
+            },
+            {
+                "Year": "Apr 14",
+                "Value": -16.21276616
+            },
+            {
+                "Year": "May 14",
+                "Value": -16.4936599
+            },
+            {
+                "Year": "Jun 14",
+                "Value": -19.36902518
+            },
+            {
+                "Year": "Jul 14",
+                "Value": -21.67502794
+            },
+            {
+                "Year": "Aug 14",
+                "Value": -16.59919217
+            },
+            {
+                "Year": "Sep 14",
+                "Value": -20.04453356
+            },
+            {
+                "Year": "Oct 14",
+                "Value": -20.77316859
+            },
+            {
+                "Year": "Nov 14",
+                "Value": -23.46079994
+            },
+            {
+                "Year": "Dec 14",
+                "Value": -14.92794845
+            },
+            {
+                "Year": "Jan 15",
+                "Value": -13.89334077
+            },
+            {
+                "Year": "Feb 15",
+                "Value": -13.29542922
+            },
+            {
+                "Year": "Mar 15",
+                "Value": -19.16243292
+            },
+            {
+                "Year": "Apr 15",
+                "Value": -20.43237221
+            },
+            {
+                "Year": "May 15",
+                "Value": -18.61881876
+            },
+            {
+                "Year": "Jun 15",
+                "Value": -20.0724661
+            },
+            {
+                "Year": "Jul 15",
+                "Value": -21.94485705
+            },
+            {
+                "Year": "Aug 15",
+                "Value": -22.31478432
+            },
+            {
+                "Year": "Sep 15",
+                "Value": -18.85909663
+            },
+            {
+                "Year": "Oct 15",
+                "Value": -18.42464959
+            },
+            {
+                "Year": "Nov 15",
+                "Value": -20.89770135
+            },
+            {
+                "Year": "Dec 15",
+                "Value": -20.29142998
+            },
+            {
+                "Year": "Jan 16",
+                "Value": -15.31498603
+            },
+            {
+                "Year": "Feb 16",
+                "Value": -13.61910031
+            },
+            {
+                "Year": "Mar 16",
+                "Value": -8.75825062
+            },
+            {
+                "Year": "Apr 16",
+                "Value": -10.52415175
+            },
+            {
+                "Year": "May 16",
+                "Value": -11.62581462
+            },
+            {
+                "Year": "Jun 16",
+                "Value": -15.42150457
+            },
+            {
+                "Year": "Jul 16",
+                "Value": -14.99751048
+            },
+            {
+                "Year": "Aug 16",
+                "Value": -15.13968566
+            },
+            {
+                "Year": "Sep 16",
+                "Value": -16.61078097
+            },
+            {
+                "Year": "Oct 16",
+                "Value": -19.24526867
+            },
+            {
+                "Year": "Nov 16",
+                "Value": -25.02545554
+            },
+            {
+                "Year": "Dec 16",
+                "Value": -17.97856435
+            },
+            {
+                "Year": "Jan 17",
+                "Value": -18.13496357
+            },
+            {
+                "Year": "Feb 17",
+                "Value": -16.14536612
+            },
+            {
+                "Year": "Mar 17",
+                "Value": -15.37237709
+            },
+            {
+                "Year": "Apr 17",
+                "Value": -22.49783525
+            },
+            {
+                "Year": "May 17",
+                "Value": -23.03333773
+            },
+            {
+                "Year": "Jun 17",
+                "Value": -23.37778651
+            },
+            {
+                "Year": "Jul 17",
+                "Value": -21.09999681
+            },
+            {
+                "Year": "Aug 17",
+                "Value": -21.39734317
+            },
+            {
+                "Year": "Sep 17",
+                "Value": -14.12235254
+            },
+            {
+                "Year": "Oct 17",
+                "Value": -24.1971539
+            },
+            {
+                "Year": "Nov 17",
+                "Value": -21.36445188
+            },
+            {
+                "Year": "Dec 17",
+                "Value": -21.48567965
+            },
+            {
+                "Year": "Jan 18",
+                "Value": -23.93510581
+            },
+            {
+                "Year": "Feb 18",
+                "Value": -18.93200906
+            },
+            {
+                "Year": "Mar 18",
+                "Value": -18.94466553
+            },
+            {
+                "Year": "Apr 18",
+                "Value": -21.39796087
+            },
+            {
+                "Year": "May 18",
+                "Value": -20.32452575
+            },
+            {
+                "Year": "Jun 18",
+                "Value": -24.0045519
+            },
+            {
+                "Year": "Jul 18",
+                "Value": -25.68148387
+            },
+            {
+                "Year": "Aug 18",
+                "Value": -23.74906299
+            },
+            {
+                "Year": "Sep 18",
+                "Value": -20.09353891
+            },
+            {
+                "Year": "Oct 18",
+                "Value": -24.09968714
+            }]
+        },
+        {
+            "variable": "CPI",
+            "lowerrange": 4.59,
+            "upperrange": 5.51,
+            "suffix": "(% YoY)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": 8.6
+            },
+            {
+                "Year": "Feb 14",
+                "Value": 7.88
+            },
+            {
+                "Year": "Mar 14",
+                "Value": 8.25
+            },
+            {
+                "Year": "Apr 14",
+                "Value": 8.48
+            },
+            {
+                "Year": "May 14",
+                "Value": 8.33
+            },
+            {
+                "Year": "Jun 14",
+                "Value": 6.77
+            },
+            {
+                "Year": "Jul 14",
+                "Value": 7.39
+            },
+            {
+                "Year": "Aug 14",
+                "Value": 7.03
+            },
+            {
+                "Year": "Sep 14",
+                "Value": 5.63
+            },
+            {
+                "Year": "Oct 14",
+                "Value": 4.62
+            },
+            {
+                "Year": "Nov 14",
+                "Value": 3.27
+            },
+            {
+                "Year": "Dec 14",
+                "Value": 4.28
+            },
+            {
+                "Year": "Jan 15",
+                "Value": 5.19
+            },
+            {
+                "Year": "Feb 15",
+                "Value": 5.37
+            },
+            {
+                "Year": "Mar 15",
+                "Value": 5.25
+            },
+            {
+                "Year": "Apr 15",
+                "Value": 4.87
+            },
+            {
+                "Year": "May 15",
+                "Value": 5.01
+            },
+            {
+                "Year": "Jun 15",
+                "Value": 5.4
+            },
+            {
+                "Year": "Jul 15",
+                "Value": 3.69
+            },
+            {
+                "Year": "Aug 15",
+                "Value": 3.74
+            },
+            {
+                "Year": "Sep 15",
+                "Value": 4.41
+            },
+            {
+                "Year": "Oct 15",
+                "Value": 5
+            },
+            {
+                "Year": "Nov 15",
+                "Value": 5.41
+            },
+            {
+                "Year": "Dec 15",
+                "Value": 5.61
+            },
+            {
+                "Year": "Jan 16",
+                "Value": 5.69
+            },
+            {
+                "Year": "Feb 16",
+                "Value": 5.26
+            },
+            {
+                "Year": "Mar 16",
+                "Value": 4.83
+            },
+            {
+                "Year": "Apr 16",
+                "Value": 5.47
+            },
+            {
+                "Year": "May 16",
+                "Value": 5.76
+            },
+            {
+                "Year": "Jun 16",
+                "Value": 5.77
+            },
+            {
+                "Year": "Jul 16",
+                "Value": 6.07
+            },
+            {
+                "Year": "Aug 16",
+                "Value": 5.05
+            },
+            {
+                "Year": "Sep 16",
+                "Value": 4.39
+            },
+            {
+                "Year": "Oct 16",
+                "Value": 4.2
+            },
+            {
+                "Year": "Nov 16",
+                "Value": 3.63
+            },
+            {
+                "Year": "Dec 16",
+                "Value": 3.41
+            },
+            {
+                "Year": "Jan 17",
+                "Value": 3.17
+            },
+            {
+                "Year": "Feb 17",
+                "Value": 3.65
+            },
+            {
+                "Year": "Mar 17",
+                "Value": 3.89
+            },
+            {
+                "Year": "Apr 17",
+                "Value": 2.99
+            },
+            {
+                "Year": "May 17",
+                "Value": 2.18
+            },
+            {
+                "Year": "Jun 17",
+                "Value": 1.46
+            },
+            {
+                "Year": "Jul 17",
+                "Value": 2.36
+            },
+            {
+                "Year": "Aug 17",
+                "Value": 3.28
+            },
+            {
+                "Year": "Sep 17",
+                "Value": 3.28
+            },
+            {
+                "Year": "Oct 17",
+                "Value": 3.58
+            },
+            {
+                "Year": "Nov 17",
+                "Value": 4.88
+            },
+            {
+                "Year": "Dec 17",
+                "Value": 5.21
+            },
+            {
+                "Year": "Jan 18",
+                "Value": 5.07
+            },
+            {
+                "Year": "Feb 18",
+                "Value": 4.44
+            },
+            {
+                "Year": "Mar 18",
+                "Value": 4.28
+            },
+            {
+                "Year": "Apr 18",
+                "Value": 4.58
+            },
+            {
+                "Year": "May 18",
+                "Value": 4.87
+            },
+            {
+                "Year": "Jun 18",
+                "Value": 4.92
+            },
+            {
+                "Year": "Jul 18",
+                "Value": 4.17
+            },
+            {
+                "Year": "Aug 18",
+                "Value": 3.69
+            },
+            {
+                "Year": "Sep 18",
+                "Value": 3.7
+            },
+            {
+                "Year": "Oct 18",
+                "Value": 3.31
+            }]
+        },
+        {
+            "variable": "Core CPI",
+            "lowerrange": 4.80,
+            "upperrange": 5.51,
+            "suffix": "(% YoY)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": 7.83
+            },
+            {
+                "Year": "Feb 14",
+                "Value": 7.83
+            },
+            {
+                "Year": "Mar 14",
+                "Value": 8.02
+            },
+            {
+                "Year": "Apr 14",
+                "Value": 8.2
+            },
+            {
+                "Year": "May 14",
+                "Value": 8.46
+            },
+            {
+                "Year": "Jun 14",
+                "Value": 6.61
+            },
+            {
+                "Year": "Jul 14",
+                "Value": 6.46
+            },
+            {
+                "Year": "Aug 14",
+                "Value": 5.92
+            },
+            {
+                "Year": "Sep 14",
+                "Value": 5.1
+            },
+            {
+                "Year": "Oct 14",
+                "Value": 5.04
+            },
+            {
+                "Year": "Nov 14",
+                "Value": 4.58
+            },
+            {
+                "Year": "Dec 14",
+                "Value": 4.28
+            },
+            {
+                "Year": "Jan 15",
+                "Value": 3.99
+            },
+            {
+                "Year": "Feb 15",
+                "Value": 3.88
+            },
+            {
+                "Year": "Mar 15",
+                "Value": 3.93
+            },
+            {
+                "Year": "Apr 15",
+                "Value": 3.98
+            },
+            {
+                "Year": "May 15",
+                "Value": 4.36
+            },
+            {
+                "Year": "Jun 15",
+                "Value": 4.56
+            },
+            {
+                "Year": "Jul 15",
+                "Value": 4.04
+            },
+            {
+                "Year": "Aug 15",
+                "Value": 3.86
+            },
+            {
+                "Year": "Sep 15",
+                "Value": 4.05
+            },
+            {
+                "Year": "Oct 15",
+                "Value": 4.14
+            },
+            {
+                "Year": "Nov 15",
+                "Value": 4.35
+            },
+            {
+                "Year": "Dec 15",
+                "Value": 4.48
+            },
+            {
+                "Year": "Jan 16",
+                "Value": 4.5
+            },
+            {
+                "Year": "Feb 16",
+                "Value": 4.79
+            },
+            {
+                "Year": "Mar 16",
+                "Value": 4.54
+            },
+            {
+                "Year": "Apr 16",
+                "Value": 4.71
+            },
+            {
+                "Year": "May 16",
+                "Value": 4.49
+            },
+            {
+                "Year": "Jun 16",
+                "Value": 4.39
+            },
+            {
+                "Year": "Jul 16",
+                "Value": 4.52
+            },
+            {
+                "Year": "Aug 16",
+                "Value": 4.59
+            },
+            {
+                "Year": "Sep 16",
+                "Value": 4.77
+            },
+            {
+                "Year": "Oct 16",
+                "Value": 4.86
+            },
+            {
+                "Year": "Nov 16",
+                "Value": 4.9
+            },
+            {
+                "Year": "Dec 16",
+                "Value": 4.83
+            },
+            {
+                "Year": "Jan 17",
+                "Value": 4.95
+            },
+            {
+                "Year": "Feb 17",
+                "Value": 4.75
+            },
+            {
+                "Year": "Mar 17",
+                "Value": 4.83
+            },
+            {
+                "Year": "Apr 17",
+                "Value": 4.44
+            },
+            {
+                "Year": "May 17",
+                "Value": 4.14
+            },
+            {
+                "Year": "Jun 17",
+                "Value": 3.75
+            },
+            {
+                "Year": "Jul 17",
+                "Value": 3.8
+            },
+            {
+                "Year": "Aug 17",
+                "Value": 4.36
+            },
+            {
+                "Year": "Sep 17",
+                "Value": 4.47
+            },
+            {
+                "Year": "Oct 17",
+                "Value": 4.4
+            },
+            {
+                "Year": "Nov 17",
+                "Value": 4.75
+            },
+            {
+                "Year": "Dec 17",
+                "Value": 4.98
+            },
+            {
+                "Year": "Jan 18",
+                "Value": 5
+            },
+            {
+                "Year": "Feb 18",
+                "Value": 5.03
+            },
+            {
+                "Year": "Mar 18",
+                "Value": 5.23
+            },
+            {
+                "Year": "Apr 18",
+                "Value": 5.8
+            },
+            {
+                "Year": "May 18",
+                "Value": 6.12
+            },
+            {
+                "Year": "Jun 18",
+                "Value": 6.29
+            },
+            {
+                "Year": "Jul 18",
+                "Value": 6.29
+            },
+            {
+                "Year": "Aug 18",
+                "Value": 5.95
+            },
+            {
+                "Year": "Sep 18",
+                "Value": 5.82
+            },
+            {
+                "Year": "Oct 18",
+                "Value": 6.2
+            }]
+        },
+        {
+            "variable": "Rural wages",
+            "lowerrange": 6.25,
+            "upperrange": 5.38,
+            "suffix": "(% YoY)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": 10.84
+            },
+            {
+                "Year": "Feb 14",
+                "Value": 10.53
+            },
+            {
+                "Year": "Mar 14",
+                "Value": 9.49
+            },
+            {
+                "Year": "Apr 14",
+                "Value": 9.44
+            },
+            {
+                "Year": "May 14",
+                "Value": 7.92
+            },
+            {
+                "Year": "Jun 14",
+                "Value": 7.72
+            },
+            {
+                "Year": "Jul 14",
+                "Value": 5.55
+            },
+            {
+                "Year": "Aug 14",
+                "Value": 3.6
+            },
+            {
+                "Year": "Sep 14",
+                "Value": 3.22
+            },
+            {
+                "Year": "Oct 14",
+                "Value": 3.26
+            },
+            {
+                "Year": "Nov 14",
+                "Value": 2.93
+            },
+            {
+                "Year": "Dec 14",
+                "Value": 4.58
+            },
+            {
+                "Year": "Jan 15",
+                "Value": 5.49
+            },
+            {
+                "Year": "Feb 15",
+                "Value": 5.21
+            },
+            {
+                "Year": "Mar 15",
+                "Value": 5.56
+            },
+            {
+                "Year": "Apr 15",
+                "Value": 5.13
+            },
+            {
+                "Year": "May 15",
+                "Value": 5.21
+            },
+            {
+                "Year": "Jun 15",
+                "Value": 4.79
+            },
+            {
+                "Year": "Jul 15",
+                "Value": 4.91
+            },
+            {
+                "Year": "Aug 15",
+                "Value": 5.59
+            },
+            {
+                "Year": "Sep 15",
+                "Value": 4.7
+            },
+            {
+                "Year": "Oct 15",
+                "Value": 3.69
+            },
+            {
+                "Year": "Nov 15",
+                "Value": 4.27
+            },
+            {
+                "Year": "Dec 15",
+                "Value": 4.68
+            },
+            {
+                "Year": "Jan 16",
+                "Value": 4.7
+            },
+            {
+                "Year": "Feb 16",
+                "Value": 4.91
+            },
+            {
+                "Year": "Mar 16",
+                "Value": 4.93
+            },
+            {
+                "Year": "Apr 16",
+                "Value": 4.7
+            },
+            {
+                "Year": "May 16",
+                "Value": 5.03
+            },
+            {
+                "Year": "Jun 16",
+                "Value": 5.15
+            },
+            {
+                "Year": "Jul 16",
+                "Value": 4.6
+            },
+            {
+                "Year": "Aug 16",
+                "Value": 4.61
+            },
+            {
+                "Year": "Sep 16",
+                "Value": 4.94
+            },
+            {
+                "Year": "Oct 16",
+                "Value": 6.18
+            },
+            {
+                "Year": "Nov 16",
+                "Value": 6.27
+            },
+            {
+                "Year": "Dec 16",
+                "Value": 6.08
+            },
+            {
+                "Year": "Jan 17",
+                "Value": 6.57
+            },
+            {
+                "Year": "Feb 17",
+                "Value": 6.52
+            },
+            {
+                "Year": "Mar 17",
+                "Value": 6.37
+            },
+            {
+                "Year": "Apr 17",
+                "Value": 6.9
+            },
+            {
+                "Year": "May 17",
+                "Value": 6.75
+            },
+            {
+                "Year": "Jun 17",
+                "Value": 6.29
+            },
+            {
+                "Year": "Jul 17",
+                "Value": 6.75
+            },
+            {
+                "Year": "Aug 17",
+                "Value": 6.31
+            },
+            {
+                "Year": "Sep 17",
+                "Value": 6
+            },
+            {
+                "Year": "Oct 17",
+                "Value": 4.93
+            },
+            {
+                "Year": "Nov 17",
+                "Value": 4.21
+            },
+            {
+                "Year": "Dec 17",
+                "Value": 4.21
+            },
+            {
+                "Year": "Jan 18",
+                "Value": 3.09
+            },
+            {
+                "Year": "Feb 18",
+                "Value": 3.37
+            },
+            {
+                "Year": "Mar 18",
+                "Value": 3.53
+            },
+            {
+                "Year": "Apr 18",
+                "Value": 3.2
+            },
+            {
+                "Year": "May 18",
+                "Value": 3.16
+            },
+            {
+                "Year": "Jun 18",
+                "Value": 3.49
+            },
+            {
+                "Year": "Jul 18",
+                "Value": 2.97
+            },
+            {
+                "Year": "Aug 18",
+                "Value": 3.59
+            }]
+        },
+
+        {
+            "variable": "Job Outlook",
+            "lowerrange": 6.98,
+            "upperrange": 5.94,
+            "suffix": "(net response %)",
+            "values": [
+            {
+                "Year": "Jan 14",
+                "Value": 5.4
+            },
+            {
+                "Year": "Feb 14",
+                "Value": 5.4
+            },
+            {
+                "Year": "Mar 14",
+                "Value": 5.4
+            },
+            {
+                "Year": "Apr 14",
+                "Value": 5.4
+            },
+            {
+                "Year": "May 14",
+                "Value": 5.4
+            },
+            {
+                "Year": "Jun 14",
+                "Value": 5.4
+            },
+            {
+                "Year": "Jul 14",
+                "Value": 6.3
+            },
+            {
+                "Year": "Aug 14",
+                "Value": 6.3
+            },
+            {
+                "Year": "Sep 14",
+                "Value": 6.3
+            },
+            {
+                "Year": "Oct 14",
+                "Value": 5.8
+            },
+            {
+                "Year": "Nov 14",
+                "Value": 5.8
+            },
+            {
+                "Year": "Dec 14",
+                "Value": 5.8
+            },
+            {
+                "Year": "Jan 15",
+                "Value": 8.4
+            },
+            {
+                "Year": "Feb 15",
+                "Value": 8.4
+            },
+            {
+                "Year": "Mar 15",
+                "Value": 8.4
+            },
+            {
+                "Year": "Apr 15",
+                "Value": 7.4
+            },
+            {
+                "Year": "May 15",
+                "Value": 7.4
+            },
+            {
+                "Year": "Jun 15",
+                "Value": 7.4
+            },
+            {
+                "Year": "Jul 15",
+                "Value": 5.9
+            },
+            {
+                "Year": "Aug 15",
+                "Value": 5.9
+            },
+            {
+                "Year": "Sep 15",
+                "Value": 5.9
+            },
+            {
+                "Year": "Oct 15",
+                "Value": 5.8
+            },
+            {
+                "Year": "Nov 15",
+                "Value": 5.8
+            },
+            {
+                "Year": "Dec 15",
+                "Value": 5.8
+            },
+            {
+                "Year": "Jan 16",
+                "Value": 4.1
+            },
+            {
+                "Year": "Feb 16",
+                "Value": 4.1
+            },
+            {
+                "Year": "Mar 16",
+                "Value": 4.1
+            },
+            {
+                "Year": "Apr 16",
+                "Value": 5.3
+            },
+            {
+                "Year": "May 16",
+                "Value": 5.3
+            },
+            {
+                "Year": "Jun 16",
+                "Value": 5.3
+            },
+            {
+                "Year": "Jul 16",
+                "Value": 6.8
+            },
+            {
+                "Year": "Aug 16",
+                "Value": 6.8
+            },
+            {
+                "Year": "Sep 16",
+                "Value": 6.8
+            },
+            {
+                "Year": "Oct 16",
+                "Value": 3.8
+            },
+            {
+                "Year": "Nov 16",
+                "Value": 3.8
+            },
+            {
+                "Year": "Dec 16",
+                "Value": 3.8
+            },
+            {
+                "Year": "Jan 17",
+                "Value": 6.6
+            },
+            {
+                "Year": "Feb 17",
+                "Value": 6.6
+            },
+            {
+                "Year": "Mar 17",
+                "Value": 6.6
+            },
+            {
+                "Year": "Apr 17",
+                "Value": 5.4
+            },
+            {
+                "Year": "May 17",
+                "Value": 5.4
+            },
+            {
+                "Year": "Jun 17",
+                "Value": 5.4
+            },
+            {
+                "Year": "Jul 17",
+                "Value": 7.3
+            },
+            {
+                "Year": "Aug 17",
+                "Value": 7.3
+            },
+            {
+                "Year": "Sep 17",
+                "Value": 7.3
+            },
+            {
+                "Year": "Oct 17",
+                "Value": 8.4
+            },
+            {
+                "Year": "Nov 17",
+                "Value": 8.4
+            },
+            {
+                "Year": "Dec 17",
+                "Value": 8.4
+            },
+            {
+                "Year": "Jan 18",
+                "Value": 9.4
+            },
+            {
+                "Year": "Feb 18",
+                "Value": 9.4
+            },
+            {
+                "Year": "Mar 18",
+                "Value": 9.4
+            },
+            {
+                "Year": "Apr 18",
+                "Value": 10.9
+            },
+            {
+                "Year": "May 18",
+                "Value": 10.9
+            },
+            {
+                "Year": "Jun 18",
+                "Value": 10.9
+            },
+            {
+                "Year": "Jul 18",
+                "Value": 8.4
+            },
+            {
+                "Year": "Aug 18",
+                "Value": 8.4
+            }]
+        }
+    ]
+}

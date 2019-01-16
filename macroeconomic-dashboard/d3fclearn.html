@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<script src="https://unpkg.com/d3@4.6.0"></script>
+<script src="https://unpkg.com/d3fc@12.1.0"></script>
+
+<style>
+  body {
+    font: 12px sans-serif;
+  }
+  .area {
+    fill: #cec6b9;
+  }
+  #small-multiples > div {
+    display: inline-block;
+    width: 240px;
+    height: 185px;
+  }
+  .tooltip .x-axis .tick {
+    display: none;
+  }
+  .x-axis .domain, .x-axis .tick path,
+  .y-axis .domain, .y-axis .tick path {
+    display: none;
+  }
+  .plot-area {
+    overflow: visible !important;
+  }
+  .x-axis {
+    height: 1.5em !important;
+  }
+  .gridline-x {
+    stroke: white;
+  }
+  .point {
+    fill: black;
+  }
+  .point text {
+    text-anchor: middle;
+    transform: translateY(-10px);
+    font-size: 10px;
+    stroke: none;
+  }
+  .bottom-handle {
+    text-anchor: middle;
+    alignment-baseline: hanging;
+    font-size: 10px;
+    transform: translateY(1.5em);
+  }
+  .top-handle {
+    display: none;
+  }
+  .annotation-line line {
+    display: none;
+  }
+</style>
+
+<div id='small-multiples'></div>
+
+<script>
+d3.tsv('data.tsv')
+  .row(function(r) {
+    return {
+      category: r.category,
+      n: Number(r.n),
+      year: Number(r.year)
+    }
+  })
+  .get(function(data) {
+    var nested = d3.nest()
+      .key(function(k) { return k.category; })
+      .entries(data);
+  
+    nested.forEach(function(g) {
+      g.trackball = [];
+    });
+      
+    var yExtent = fc.extentLinear()
+      .accessors([function(d) { return d.n; }])
+      .pad([0, 0.2])
+      .include([0]);
+  
+    var xExtent = fc.extentLinear()
+      .accessors([function(d) { return d.year; }]);
+
+    var area = fc.seriesSvgArea()
+      .crossValue(function(d) { return d.year; })
+      .mainValue(function(d) { return d.n; });
+  
+    var line = fc.seriesSvgLine()
+      .crossValue(function(d) { return d.year; })
+      .mainValue(function(d) { return d.n; });
+  
+    var gridlines = fc.annotationSvgGridline()
+      .xTicks(0)
+      .yTicks(3);
+  
+    var point = fc.seriesSvgPoint()
+      .crossValue(function(d) { return d.year; })
+      .mainValue(function(d) { return d.value; })
+      .size(25)
+      .decorate(function(selection) {
+        selection.enter()
+          .append('text');        
+        selection.select('text')
+          .text(d => d.value)
+      })
+    
+    var line = fc.annotationSvgLine()
+      .orient('vertical')
+      .value(function(d) { return d.year; })
+      .decorate(function(selection) {
+        selection.enter()
+          .select('.bottom-handle')
+          .append('text');        
+        selection.select('.bottom-handle text')
+          .text(d => d.year)
+      })
+     
+  
+    var multi = fc.seriesSvgMulti()
+      .series([area, line, gridlines, line, point])
+      .mapping(function(data, index, series) {
+        switch (series[index]) {
+        case point:            
+        case line:
+          return data.trackball;
+        default:
+          return data.values;
+        }
+      });
+  
+    var xScale = d3.scaleLinear();
+ 
+    // create a chart
+    var chart = fc.chartSvgCartesian(
+        xScale,
+        d3.scaleLinear())
+      .yDomain(yExtent(data))
+      .xDomain(xExtent(data))
+      .xLabel(function(d) { return d.key; })
+      .yTicks(3)
+      .xTicks(2)
+      .xTickFormat(d3.format('0'))
+      .yOrient('left')
+      .plotArea(multi);
+  
+    function render() {
+      var update = d3.select('#small-multiples')
+        .selectAll('div.multiple')
+        .data(nested);
+      update.enter()
+        .append('div')
+        .classed('multiple', true)
+        .merge(update)
+        .call(chart)
+        .classed('tooltip', function(d) { return d.trackball.length; });
+
+      // add the pointer component to the plot-area, re-rendering
+      // each time the event fires.
+      var pointer = fc.pointer()
+        .on('point', function(event) {
+          if (event.length) {
+            // determine the year
+            var year = Math.round(xScale.invert(event[0].x));
+            // add the point to each series
+            nested.forEach(function(group) {
+              var value = group.values.find(function(v) { return v.year === year; });
+              group.trackball = [{
+                year: year,
+                value: value.n
+              }];
+            })
+          } else {
+            nested.forEach(function(g) {
+              g.trackball = [];
+            })
+          }
+          render();
+        });
+
+      d3.selectAll('#small-multiples .plot-area')
+        .call(pointer);  
+    }
+  
+    render();
+  });
+ 
+
+
+</script>

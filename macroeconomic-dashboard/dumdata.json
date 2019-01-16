@@ -1,0 +1,481 @@
+{
+  "period": "November 2018",
+  "data": [
+    {
+      "variable": "Passenger vehicle sales (domestic)",
+      "lowerrange": 6.57,
+      "upperrange": 2.30,
+      "suffix": "(Y-o-y)",
+      "values": [
+  {
+    "Year": "Jan 14",
+    "Value": -5.4
+  },
+  {
+    "Year": "Feb 14",
+    "Value": 1.4
+  },
+  {
+    "Year": "Mar 14",
+    "Value": -5.1
+  },
+  {
+    "Year": "Apr 14",
+    "Value": -10.4
+  },
+  {
+    "Year": "May 14",
+    "Value": 3.1
+  },
+  {
+    "Year": "Jun 14",
+    "Value": 14.8
+  },
+  {
+    "Year": "Jul 14",
+    "Value": 3.5
+  },
+  {
+    "Year": "Aug 14",
+    "Value": 11.1
+  },
+  {
+    "Year": "Sep 14",
+    "Value": -2
+  },
+  {
+    "Year": "Oct 14",
+    "Value": -5
+  },
+  {
+    "Year": "Nov 14",
+    "Value": 9.1
+  },
+  {
+    "Year": "Dec 14",
+    "Value": 13.9
+  },
+  {
+    "Year": "Jan 15",
+    "Value": 2.5
+  },
+  {
+    "Year": "Feb 15",
+    "Value": 6.4
+  },
+  {
+    "Year": "Mar 15",
+    "Value": 2.5
+  },
+  {
+    "Year": "Apr 15",
+    "Value": 18.3
+  },
+  {
+    "Year": "May 15",
+    "Value": 6.7
+  },
+  {
+    "Year": "Jun 15",
+    "Value": 0.8
+  },
+  {
+    "Year": "Jul 15",
+    "Value": 14.6
+  },
+  {
+    "Year": "Aug 15",
+    "Value": 5.8
+  },
+  {
+    "Year": "Sep 15",
+    "Value": 7.7
+  },
+  {
+    "Year": "Oct 15",
+    "Value": 21.6
+  },
+  {
+    "Year": "Nov 15",
+    "Value": 9.4
+  },
+  {
+    "Year": "Dec 15",
+    "Value": 12.1
+  },
+  {
+    "Year": "Jan 16",
+    "Value": -0.1
+  },
+  {
+    "Year": "Feb 16",
+    "Value": -2.9
+  },
+  {
+    "Year": "Mar 16",
+    "Value": 0.6
+  },
+  {
+    "Year": "Apr 16",
+    "Value": 3.1
+  },
+  {
+    "Year": "May 16",
+    "Value": -1.1
+  },
+  {
+    "Year": "Jun 16",
+    "Value": -4.9
+  },
+  {
+    "Year": "Jul 16",
+    "Value": 10.4
+  },
+  {
+    "Year": "Aug 16",
+    "Value": 8.9
+  },
+  {
+    "Year": "Sep 16",
+    "Value": 15.2
+  },
+  {
+    "Year": "Oct 16",
+    "Value": -0.2
+  },
+  {
+    "Year": "Nov 16",
+    "Value": -0.3
+  },
+  {
+    "Year": "Dec 16",
+    "Value": -8.9
+  },
+  {
+    "Year": "Jan 17",
+    "Value": 11.7
+  },
+  {
+    "Year": "Feb 17",
+    "Value": 5.2
+  },
+  {
+    "Year": "Mar 17",
+    "Value": 6.4
+  },
+  {
+    "Year": "Apr 17",
+    "Value": 15.1
+  },
+  {
+    "Year": "May 17",
+    "Value": 5.2
+  },
+  {
+    "Year": "Jun 17",
+    "Value": -11.1
+  },
+  {
+    "Year": "Jul 17",
+    "Value": 8.5
+  },
+  {
+    "Year": "Aug 17",
+    "Value": 11.8
+  },
+  {
+    "Year": "Sep 17",
+    "Value": 6.7
+  },
+  {
+    "Year": "Oct 17",
+    "Value": -4.6
+  },
+  {
+    "Year": "Nov 17",
+    "Value": 5.6
+  },
+  {
+    "Year": "Dec 17",
+    "Value": 1.8
+  },
+  {
+    "Year": "Jan 18",
+    "Value": -1.7
+  },
+  {
+    "Year": "Feb 18",
+    "Value": 2.9
+  },
+  {
+    "Year": "Mar 18",
+    "Value": 2.1
+  },
+  {
+    "Year": "Apr 18",
+    "Value": 6
+  },
+  {
+    "Year": "May 18",
+    "Value": 20.5
+  },
+  {
+    "Year": "Jun 18",
+    "Value": 34.3
+  },
+  {
+    "Year": "Jul 18",
+    "Value": -0.2
+  },
+  {
+    "Year": "Aug 18",
+    "Value": -0.8
+  },
+  {
+    "Year": "Sep 18",
+    "Value": -4.6
+  },
+  {
+    "Year": "Oct 18",
+    "Value": 4.5
+  }
+]
+    },
+{
+      "variable": "Tractor sales (domestic)",
+      "lowerrange": 12.14,
+      "upperrange": 1.30,
+      "suffix": "(Y-o-y)",
+      "values": [
+  {
+    "Year": "Jan 14",
+    "Value": 14.7
+  },
+  {
+    "Year": "Feb 14",
+    "Value": 16.2
+  },
+  {
+    "Year": "Mar 14",
+    "Value": 3.7
+  },
+  {
+    "Year": "Apr 14",
+    "Value": -7.1
+  },
+  {
+    "Year": "May 14",
+    "Value": 0.7
+  },
+  {
+    "Year": "Jun 14",
+    "Value": 7.3
+  },
+  {
+    "Year": "Jul 14",
+    "Value": -5.9
+  },
+  {
+    "Year": "Aug 14",
+    "Value": -4.5
+  },
+  {
+    "Year": "Sep 14",
+    "Value": 7
+  },
+  {
+    "Year": "Oct 14",
+    "Value": -12.3
+  },
+  {
+    "Year": "Nov 14",
+    "Value": -32.3
+  },
+  {
+    "Year": "Dec 14",
+    "Value": -28.9
+  },
+  {
+    "Year": "Jan 15",
+    "Value": -26.7
+  },
+  {
+    "Year": "Feb 15",
+    "Value": -32.8
+  },
+  {
+    "Year": "Mar 15",
+    "Value": -30.4
+  },
+  {
+    "Year": "Apr 15",
+    "Value": -19
+  },
+  {
+    "Year": "May 15",
+    "Value": -18.1
+  },
+  {
+    "Year": "Jun 15",
+    "Value": -13
+  },
+  {
+    "Year": "Jul 15",
+    "Value": -12.5
+  },
+  {
+    "Year": "Aug 15",
+    "Value": -20.9
+  },
+  {
+    "Year": "Sep 15",
+    "Value": -34
+  },
+  {
+    "Year": "Oct 15",
+    "Value": -16.5
+  },
+  {
+    "Year": "Nov 15",
+    "Value": 29.4
+  },
+  {
+    "Year": "Dec 15",
+    "Value": -0.2
+  },
+  {
+    "Year": "Jan 16",
+    "Value": 0.5
+  },
+  {
+    "Year": "Feb 16",
+    "Value": 9.1
+  },
+  {
+    "Year": "Mar 16",
+    "Value": 14.3
+  },
+  {
+    "Year": "Apr 16",
+    "Value": 14.4
+  },
+  {
+    "Year": "May 16",
+    "Value": 15.3
+  },
+  {
+    "Year": "Jun 16",
+    "Value": 14.6
+  },
+  {
+    "Year": "Jul 16",
+    "Value": 8.3
+  },
+  {
+    "Year": "Aug 16",
+    "Value": 16.3
+  },
+  {
+    "Year": "Sep 16",
+    "Value": 49.4
+  },
+  {
+    "Year": "Oct 16",
+    "Value": 44.3
+  },
+  {
+    "Year": "Nov 16",
+    "Value": -13.1
+  },
+  {
+    "Year": "Dec 16",
+    "Value": 7.7
+  },
+  {
+    "Year": "Jan 17",
+    "Value": 5.5
+  },
+  {
+    "Year": "Feb 17",
+    "Value": 7.5
+  },
+  {
+    "Year": "Mar 17",
+    "Value": 24.5
+  },
+  {
+    "Year": "Apr 17",
+    "Value": 19.3
+  },
+  {
+    "Year": "May 17",
+    "Value": 11.7
+  },
+  {
+    "Year": "Jun 17",
+    "Value": -1.7
+  },
+  {
+    "Year": "Jul 17",
+    "Value": 14.4
+  },
+  {
+    "Year": "Aug 17",
+    "Value": 34.5
+  },
+  {
+    "Year": "Sep 17",
+    "Value": 50.3
+  },
+  {
+    "Year": "Oct 17",
+    "Value": -2.7
+  },
+  {
+    "Year": "Nov 17",
+    "Value": 17.3
+  },
+  {
+    "Year": "Dec 17",
+    "Value": 27.7
+  },
+  {
+    "Year": "Jan 18",
+    "Value": 38.1
+  },
+  {
+    "Year": "Feb 18",
+    "Value": 38.6
+  },
+  {
+    "Year": "Mar 18",
+    "Value": 52.2
+  },
+  {
+    "Year": "Apr 18",
+    "Value": 20.4
+  },
+  {
+    "Year": "May 18",
+    "Value": 19.6
+  },
+  {
+    "Year": "Jun 18",
+    "Value": 35.5
+  },
+  {
+    "Year": "Jul 18",
+    "Value": 19.9
+  },
+  {
+    "Year": "Aug 18",
+    "Value": 8.9
+  },
+  {
+    "Year": "Sep 18",
+    "Value": -12.3
+  }
+]
+    }
+  ]
+}
