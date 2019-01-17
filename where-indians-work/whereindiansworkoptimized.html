@@ -213,7 +213,7 @@
     </div>
     <div class="container" id="industry">
         <div class="row">
-            <p class="my-auto"> Select industry </p>
+            <p class="my-auto"> Select sector </p>
         </div>
         <div class="row" style="font-size: 1em;">
             <button class="industry col col-xs-6" id="FARM" onClick="fnindustry('FARM')">FARM</button>
@@ -226,7 +226,7 @@
     </div>
     <div class="container" id="parameter">
         <div class="row">
-            <p class="my-auto"> Choose a demographic </p>
+            <p class="my-auto"> Select a demographic </p>
         </div>
         <div class="row" style="font-size: 1em;">
             <div class="age col-md-3 col-xs-6">
@@ -340,27 +340,27 @@
             d3.selectAll(".details").remove()
 
             if (industry == "FARM") {
-                detailedIndustryButtonKeys = ["Choose a sub-industry", "Cultivators", "Labourers", "Forestry"]
+                detailedIndustryButtonKeys = ["Select a sub-industry", "Cultivators", "Labourers", "Forestry"]
                 d3.select('#specific-notes').text("Farm includes cultivators, labourers and forestry workers.")
             }
             if (industry == "MANUFACTURING") {
-                detailedIndustryButtonKeys = ["Choose a sub-industry", "Manufacturing (Household)", "Manufacturing (Non Household)"]
+                detailedIndustryButtonKeys = ["Select a sub-industry", "Manufacturing (Household)", "Manufacturing (Non Household)"]
                 d3.select('#specific-notes').text("Manufacturing includes workers from household and non-household manufacturing.")
             }
             if (industry == "TRADE") {
-                detailedIndustryButtonKeys = ["Choose a sub-industry", "Trade (Household)", "Trade (Non Household)"]
+                detailedIndustryButtonKeys = ["Select a sub-industry", "Trade (Household)", "Trade (Non Household)"]
                 d3.select('#specific-notes').text("Trade includes workers from household and non-household trade.")
             }
             if (industry == "CONSTRUCTION") {
-                detailedIndustryButtonKeys = ["Choose a sub-industry", "Construction"]
+                detailedIndustryButtonKeys = ["Select a sub-industry", "Construction"]
                 d3.select('#specific-notes').text("")
             }
             if (industry == "SERVICES") {
-                detailedIndustryButtonKeys = ["Choose a sub-industry", "Administration and Defence", "Education and Health", "Finance", "Hospitality", "IT (Household)", "IT (Non Household)", "Other Services (Household)", "Other Services (Non Household)", "Trade (Household)", "Trade (Non Household)", "Transportation", "Utilities"]
+                detailedIndustryButtonKeys = ["Select a sub-industry", "Administration and Defence", "Education and Health", "Finance", "Hospitality", "IT (Household)", "IT (Non Household)", "Other Services (Household)", "Other Services (Non Household)", "Trade (Household)", "Trade (Non Household)", "Transportation", "Utilities"]
                 d3.select('#specific-notes').text("Services includes workers in administration and defence, education and health, finance, hospitality, IT, trade, other services, transportation and utilities.")
             }
             if (industry == "NON_FARM") {
-                detailedIndustryButtonKeys = ["Choose a sub-industry", "Administration and Defence", "Construction", "Education and Health", "Finance", "Hospitality", "IT (Household)", "IT (Non Household)", "Manufacturing (Household)", "Manufacturing (Non Household)", "Mining", "Other Services (Household)", "Other Services (Non Household)", "Trade (Household)", "Trade (Non Household)", "Transportation", "Utilities"]
+                detailedIndustryButtonKeys = ["Select a sub-industry", "Administration and Defence", "Construction", "Education and Health", "Finance", "Hospitality", "IT (Household)", "IT (Non Household)", "Manufacturing (Household)", "Manufacturing (Non Household)", "Mining", "Other Services (Household)", "Other Services (Non Household)", "Trade (Household)", "Trade (Non Household)", "Transportation", "Utilities"]
                 d3.select('#specific-notes').text("Non farm workers include all workers who don't work in farms. ")
             }
 
@@ -385,7 +385,7 @@
 
             function detailedIndustryButtonClick(datapoint) {
                 datapoint = d3.select(this).property('value')
-                if (datapoint != "Choose a sub-industry")
+                if (datapoint != "Select a sub-industry")
                     detailedIndustry = datapoint.toUpperCase();
             }
         }
