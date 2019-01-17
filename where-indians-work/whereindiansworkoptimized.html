@@ -341,27 +341,27 @@
 
             if (industry == "FARM") {
                 detailedIndustryButtonKeys = ["Choose a sub-industry", "Cultivators", "Labourers", "Forestry"]
-                d3.select('#specific-notes').text("Farm industry includes cultivators, labourers and forestry workers.")
+                d3.select('#specific-notes').text("Farm includes cultivators, labourers and forestry workers.")
             }
             if (industry == "MANUFACTURING") {
                 detailedIndustryButtonKeys = ["Choose a sub-industry", "Manufacturing (Household)", "Manufacturing (Non Household)"]
-                d3.select('#specific-notes').text("Manufacturing industry includes workers from household and non-household manufacturing.")
+                d3.select('#specific-notes').text("Manufacturing includes workers from household and non-household manufacturing.")
             }
             if (industry == "TRADE") {
                 detailedIndustryButtonKeys = ["Choose a sub-industry", "Trade (Household)", "Trade (Non Household)"]
-                d3.select('#specific-notes').text("Trade industry includes workers from household and non-household trade.")
+                d3.select('#specific-notes').text("Trade includes workers from household and non-household trade.")
             }
             if (industry == "CONSTRUCTION") {
                 detailedIndustryButtonKeys = ["Choose a sub-industry", "Construction"]
-                d3.select('#specific-notes').text("Construction industry includes construction workers.")
+                d3.select('#specific-notes').text("")
             }
             if (industry == "SERVICES") {
                 detailedIndustryButtonKeys = ["Choose a sub-industry", "Administration and Defence", "Education and Health", "Finance", "Hospitality", "IT (Household)", "IT (Non Household)", "Other Services (Household)", "Other Services (Non Household)", "Trade (Household)", "Trade (Non Household)", "Transportation", "Utilities"]
-                d3.select('#specific-notes').text("Service industry includes workers in administration and defence, education and health, finance, hospitality, IT, trade, other services, transportation and utilities.")
+                d3.select('#specific-notes').text("Services includes workers in administration and defence, education and health, finance, hospitality, IT, trade, other services, transportation and utilities.")
             }
             if (industry == "NON_FARM") {
                 detailedIndustryButtonKeys = ["Choose a sub-industry", "Administration and Defence", "Construction", "Education and Health", "Finance", "Hospitality", "IT (Household)", "IT (Non Household)", "Manufacturing (Household)", "Manufacturing (Non Household)", "Mining", "Other Services (Household)", "Other Services (Non Household)", "Trade (Household)", "Trade (Non Household)", "Transportation", "Utilities"]
-                d3.select('#specific-notes').text("Non farm workers include all workers who work in industries excluding farm workers.")
+                d3.select('#specific-notes').text("Non farm workers include all workers who don't work in farms. ")
             }
 
             var select = d3.select('#dIndustry')
@@ -530,8 +530,8 @@
                 fauxindustry = industry
             }
 
-            legendtitle = "% of " + fauxgender + denominator.toLowerCase() + " in " + fauxindustry.toLowerCase() + " industry"
-            tooltiptitle =  "% of " + fauxgender + denominator.toLowerCase() + " here work in " + fauxindustry.toLowerCase() + " industry"
+            legendtitle = "% of " + fauxgender + denominator.toLowerCase() + " in " + fauxindustry.toLowerCase() + ""
+            tooltiptitle =  "% of " + fauxgender + denominator.toLowerCase() + " here works in " + fauxindustry.toLowerCase() + ""
             MapFunction(data, title)
 
 
@@ -570,8 +570,8 @@
 
                                 if (industry != "none" && detailedIndustry == "none") {
                                     title = data + worker + industry + age + denominator + gender
-                                    legendtitle = "% of " + fauxgender + denominator.toLowerCase() + " in " + fauxindustry.toLowerCase() + " industry"
-                                    tooltiptitle = "% of " + fauxgender + denominator.toLowerCase() + " here work in " + fauxindustry.toLowerCase() + " industry"
+                                    legendtitle = "% of " + fauxgender + denominator.toLowerCase() + " in " + fauxindustry.toLowerCase() + ""
+                                    tooltiptitle = "% of " + fauxgender + denominator.toLowerCase() + " here works in " + fauxindustry.toLowerCase() + ""
 
                                 }
                                 if (industry != "none" && detailedIndustry != "none") {
@@ -585,7 +585,7 @@
                                         fauxpreposition = "in"
                                     }
                                     legendtitle = "% of " + fauxgender + denominator.toLowerCase() +" "+ fauxpreposition + " " + detailedIndustry.toLowerCase()
-                                    tooltiptitle = "% of " + fauxgender + " "+ denominator.toLowerCase() +" here work "+ fauxpreposition + " " + detailedIndustry.toLowerCase()
+                                    tooltiptitle = "% of " + fauxgender + " "+ denominator.toLowerCase() +" here works "+ fauxpreposition + " " + detailedIndustry.toLowerCase()
                                 }
 
                             }
@@ -599,8 +599,8 @@
                                 d3.selectAll("#industry").attr("hidden", null)
 
                                 title = data + worker + industry + age + denominator + gender
-                                legendtitle = "% pts change in " + fauxgender + " workers in " + industry.toLowerCase() + " industry";
-                                tooltiptitle = "% pts change in " + fauxgender + " workers in " + industry.toLowerCase() + " industry from 2001";
+                                legendtitle = "% pts change in " + fauxgender + " workers in " + industry.toLowerCase() + "";
+                                tooltiptitle = "% pts change in " + fauxgender + " workers in " + industry.toLowerCase() + "  from 2001";
                             }
 
                             if (data == "LARGESTEMPLOYER") {
@@ -654,8 +654,6 @@
                             //     .append("text").text(": ")
                             //     .append("text").text(function(d) { return d[2] })
                             //     .append("text").text("%");
-
-                            console.log(list[0][2])
 
                             if (list[0][2] == "0.00") {
                                 d3.select("#tabulardata").remove();
@@ -711,7 +709,7 @@
 
                 }
                 if (data == "LARGESTEMPLOYER") {
-                    d3.select('#specific-notes').text("Largest employer in a district is the industry that employers the most workers.")
+                    d3.select('#specific-notes').text("Largest employer in a district is the sector that employers the most workers.")
 
                     d3.selectAll(".legendQuant").attr("hidden", null);
                     d3.selectAll(".legendQuant").remove();
