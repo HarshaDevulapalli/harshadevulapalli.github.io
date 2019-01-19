@@ -78,7 +78,6 @@ text,
 
         function multiple(Variable) {
 
-            console.log(Variable)
             var svg = d3.select(this);
             data = Variable.values
             data.forEach(function(d) {
@@ -95,6 +94,11 @@ text,
             buffer = (d3.max(data, function(d) { return +d.Value; }) - d3.min(data, function(d) { return +d.Value; })) / 10
 
             y.domain([d3.min(data, function(d) { return +d.Value; }) - buffer, d3.max(data, function(d) { return +d.Value; }) + buffer]);
+
+            console.log(Variable.variable)
+
+            if (Variable.variable)
+
 
             if (data[data.length - 1]['Value'] < Variable.lowerrange) {
                 svg.append("rect")
@@ -120,6 +124,12 @@ text,
 
                 var arrow = "◀ ▶"
             }
+
+            svg.append("text")
+                .attr("x", 5)
+                .attr("y", -5)
+                .style("font-size", "20px")
+                .text(Variable.variable + " " + Variable.suffix + arrow);
 
 
             svg.append("g")
@@ -170,17 +180,10 @@ text,
 
             // Add the Y Axis
 
-
             svg.append("g")
                 .call(d3.axisLeft(y).ticks(5).tickSize(-width))
                 .style("font-size", "15px");
 
-
-            svg.append("text")
-                .attr("x", (20))
-                .attr("y", 30)
-                .style("font-size", "20px")
-                .text(Variable.variable + arrow);
 
         }
 
@@ -194,7 +197,7 @@ text,
             tooltip
                 .style("display", null) // this removes the display none setting from it
                 .html("<p>" + months[d.Year.getUTCMonth()] + " " + d.Year.getFullYear() +
-                    "<br> <b>" + d.Value + "</b></p>");
+                    "<br> <b>" + d.Value.toFixed(2) + "</b></p>");
         }
 
         function mousemoveFunc(d) {
