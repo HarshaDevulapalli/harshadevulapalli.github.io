@@ -340,6 +340,8 @@
 
     function ready(error, TotalData2011, MainData2011, MarginalData2011, TotalData2001, MainData2001, MarginalData2001, IndiaDistricts, IndiaStates) {
         if (error) throw error;
+
+        console.log(TotalData2011)
         var allStates = svg.append("g")
             .selectAll("path")
             .data(topojson.feature(IndiaStates, IndiaStates.objects.india).features)
@@ -1255,37 +1257,40 @@
                 d3.select("#b" + district_variable_count).transition().duration(1000).style("fill", colourState);
             })
 
-            function UrbanAggCalculator(city) {
-                lengthofids = city.length
-                var numerator = 0
-                var denominator = 0
-                for (item = 0; item < (lengthofids); item++) {
-                    id_no = city[item]
-                    numerator = numerator + (districtDatabyDistrict[id_no - 1].value['numerator'])
-                    denominator = denominator + (districtDatabyDistrict[id_no - 1].value['denominator'])
-                }
-                percentage_n = (numerator * 100) / (denominator)
-                return percentage_n.toFixed(2);
-            }
-            city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
-            var sorted = []
-            for (var district in districtData) {
-                sorted.push([district, districtData[district]])
-            }
-            sorted.sort(function(a, b) {
-                return b[1] - a[1]
-            })
-            var top10list = []
-            var count = 0
-            while (count < 10) {
-                id = sorted[count][0]
-                district_name = districtDatabyDistrict[id - 1].value['district_name'].substring(11)
-                state_name = districtDatabyDistrict[id - 1].value['state_name']
-                district_percentage = sorted[count][1]
-                top10list.push([district_name, state_name, district_percentage, sorted[count][0]])
-                d3.select("#b" + sorted[count][0]).transition().duration(1000).style("fill", "#7F4C94");
-                count = count + 1
-            }
+            console.log(districtDatabyDistrict)
+
+            // function UrbanAggCalculator(city) {
+            //     lengthofids = city.length
+            //     var numerator = 0
+            //     var denominator = 0
+            //     for (item = 0; item < (lengthofids); item++) {
+            //         id_no = city[item]
+            //         console.log(city)
+            //         numerator = numerator + (districtDatabyDistrict[id_no - 1].value['numerator'])
+            //         denominator = denominator + (districtDatabyDistrict[id_no - 1].value['denominator'])
+            //     }
+            //     percentage_n = (numerator * 100) / (denominator)
+            //     return percentage_n.toFixed(2);
+            // }
+            // city_array = [UrbanAggCalculator(Hyderabad), UrbanAggCalculator(Bangalore), UrbanAggCalculator(Chennai), UrbanAggCalculator(Kolkata), UrbanAggCalculator(Mumbai), UrbanAggCalculator(Delhi)]
+            // var sorted = []
+            // for (var district in districtData) {
+            //     sorted.push([district, districtData[district]])
+            // }
+            // sorted.sort(function(a, b) {
+            //     return b[1] - a[1]
+            // })
+            // var top10list = []
+            // var count = 0
+            // while (count < 10) {
+            //     id = sorted[count][0]
+            //     district_name = districtDatabyDistrict[id - 1].value['district_name'].substring(11)
+            //     state_name = districtDatabyDistrict[id - 1].value['state_name']
+            //     district_percentage = sorted[count][1]
+            //     top10list.push([district_name, state_name, district_percentage, sorted[count][0]])
+            //     d3.select("#b" + sorted[count][0]).transition().duration(1000).style("fill", "#7F4C94");
+            //     count = count + 1
+            // }
             d3.select("#top10listheader").text(" TOP 10 DISTRICTS ")
             d3.select('#top10list')
                 .selectAll('.item')
@@ -1383,7 +1388,7 @@
             // console.log(top10list)
            
             drawLegendandTooltip(colourScale, districtData, "yes", title)
-            Annotate(city_array);
+            // Annotate(city_array);
         }
 
         function LabelNames(values) {
