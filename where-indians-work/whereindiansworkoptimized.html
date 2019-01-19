@@ -454,8 +454,8 @@
 
 
         d3.queue()
-            .defer(d3.json, "india_districts_2.json")
-            .defer(d3.json, "india_2.json")
+            .defer(d3.json, "india_districts.json")
+            .defer(d3.json, "india.json")
             .await(ready);
 
         function ready(error, IndiaDistricts, IndiaStates) {
@@ -621,7 +621,7 @@
             function MapFunction(data, title) {
 
                 if (data == "WORKERSBYINDUSTRY") {
-                    d3.json(title + ".json", function(error, districtData) {
+                    d3.json("data/WORKERSBYINDUSTRY/"+title + ".json", function(error, districtData) {
 
                         if (error) throw error;
 
@@ -637,7 +637,7 @@
                             d3.select("#b" + geog_count).transition().duration(1000).style("fill", colourState);
 
                         })
-                        d3.json(title + "top10.json", function(error, list) {
+                        d3.json("data/WORKERSBYINDUSTRY/"+title + "top10.json", function(error, list) {
                             if (error) throw error;
 
                             d3.select("#top10listheader").text(" TOP 10 DISTRICTS ")
@@ -670,7 +670,7 @@
                                 d3.select("#b" + d[3]).transition().duration(10).style("fill", "#bd3884");
                             });
 
-                            d3.csv(title + "city.txt", function(error, city) {
+                            d3.csv("data/WORKERSBYINDUSTRY/"+title + "city.txt", function(error, city) {
                                 if (error) throw error;
                                 Annotate(city.columns,"no")
                             })
@@ -687,7 +687,7 @@
                 if (data == "CHANGESINCE2001") {
                      d3.select('#specific-notes').text("All changes calculated in percentage points.")
 
-                    d3.json(title + ".json", function(error, districtData) {
+                    d3.json("data/CHANGESINCE2001/"+title + ".json", function(error, districtData) {
                         list_of_districts = Object.keys(districtData)
                         var items = Object.values(districtData)
                         var colourScale = d3.scaleQuantile().domain(items).range(["#D71920", "#E2694D", "#A2B86F", "#81A53E"]);
@@ -702,7 +702,7 @@
                     })
 
 
-                    d3.csv(title + "city.txt", function(error, city) {
+                    d3.csv("data/CHANGESINCE2001/"+title + "city.txt", function(error, city) {
                         Annotate(city.columns,"yes")
                     })
 
@@ -745,7 +745,7 @@
                     ]);
 
 
-                    d3.json(title, function(error, districtData) {
+                    d3.json("data/LARGESTEMPLOYER/"+title, function(error, districtData) {
                         list_of_districts = Object.keys(districtData)
                         var items = Object.values(districtData)
                         list_of_districts.forEach(function(d) {
