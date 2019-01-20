@@ -530,8 +530,8 @@
                 fauxindustry = industry
             }
 
-            legendtitle = "% of " + fauxgender + denominator.toLowerCase() + " in " + fauxindustry.toLowerCase() + ""
-            tooltiptitle =  "% of " + fauxgender + denominator.toLowerCase() + " here works in " + fauxindustry.toLowerCase() + ""
+            legendtitle = "% of total "  + denominator.toLowerCase() + " in " + fauxindustry.toLowerCase() + " in demographic"
+            tooltiptitle =  "% of total " + denominator.toLowerCase() + " here that works in " + fauxindustry.toLowerCase() + " belongs to this demographic."
             MapFunction(data, title)
 
 
@@ -570,8 +570,8 @@
 
                                 if (industry != "none" && detailedIndustry == "none") {
                                     title = data + worker + industry + age + denominator + gender
-                                    legendtitle = "% of " + fauxgender + denominator.toLowerCase() + " in " + fauxindustry.toLowerCase() + ""
-                                    tooltiptitle = "% of " + fauxgender + denominator.toLowerCase() + " here works in " + fauxindustry.toLowerCase() + ""
+                                    legendtitle = "% of " +  denominator.toLowerCase() + " in " + fauxindustry.toLowerCase() + " in demographic"
+                                    tooltiptitle = "% of " + denominator.toLowerCase() + " here that works in " + fauxindustry.toLowerCase() + " belongs to this demographic."
 
                                 }
                                 if (industry != "none" && detailedIndustry != "none") {
@@ -584,8 +584,8 @@
                                     } else {
                                         fauxpreposition = "in"
                                     }
-                                    legendtitle = "% of " + fauxgender + denominator.toLowerCase() +" "+ fauxpreposition + " " + detailedIndustry.toLowerCase()
-                                    tooltiptitle = "% of " + fauxgender + " "+ denominator.toLowerCase() +" here works "+ fauxpreposition + " " + detailedIndustry.toLowerCase()
+                                    legendtitle = "% of " + denominator.toLowerCase() +" "+ fauxpreposition + " " + detailedIndustry.toLowerCase() + " in demographic"
+                                    tooltiptitle = "% of " +  "total"+ denominator.toLowerCase() +" here that works "+ fauxpreposition + " " + detailedIndustry.toLowerCase() + " belongs to this demographic."
                                 }
 
                             }
@@ -815,7 +815,7 @@
                             .style("left", d3.event.pageX - 50 + "px")
                             .style("top", d3.event.pageY - 120 + "px")
                             .style("display", "inline-block")
-                            .html("<font size='4'>" + d.properties.DISTRICT + "</font>, <font size='2.75'>" + d.properties.ST_NM + "</font><br><font size='3.25'>" + districtData[+d.properties.censuscode - 1].value['percentage'] + tooltiptitle + ". <br><font size='2.75'>Number of Workers: " + districtData[+d.properties.censuscode - 1].value['numerator'] + " || Total "+ toTitleCase(denominator) + ": " + districtData[+d.properties.censuscode - 1].value['denominator'] + " people");
+                            .html("<font size='4'>" + d.properties.DISTRICT + "</font>, <font size='2.75'>" + d.properties.ST_NM + "</font><br><font size='3.25'>" + districtData[+d.properties.censuscode - 1].value['percentage'] + tooltiptitle + "<br><font size='2.75'>Number of Workers: " + districtData[+d.properties.censuscode - 1].value['numerator'] + " || Total "+ toTitleCase(denominator) + ": " + districtData[+d.properties.censuscode - 1].value['denominator'] + " people");
 
                     }
 
@@ -863,7 +863,7 @@
                             .style("left", d3.event.pageX - 50 + "px")
                             .style("top", d3.event.pageY - 85 + "px")
                             .style("display", "inline-block")
-                            .html("<font size='4'>" + d.properties.DISTRICT + "</font>, <font size='2.75'>" + d.properties.ST_NM + "</font><br><font size='3.25'>" + districtData[+d.properties.censuscode].toFixed(2) + " % points </font>");
+                            .html("<font size='4'>" + d.properties.DISTRICT + "</font>, <font size='2.75'>" + d.properties.ST_NM + "</font><br><font size='3.25'>" + districtData[+d.properties.censuscode].toFixed(2) + tooltiptitle+"</font>");
 
                     }
 
