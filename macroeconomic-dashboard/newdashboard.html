@@ -1,99 +1,239 @@
 <head>
-  <meta charset="utf-8">
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
-
-  <style>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <style>
     body {
-       font-family: "Fira Sans Extra Condensed", sans-serif;
-    font-weight: 400 font-size: 2.4em;
-      color: #696969;
+        font-family: "Lato", sans-serif;
+        font-weight: 400 font-size: 2.4em;
+        color: #000000;
+    }
+
+    path {
+        stroke: #FAA74B;
+        stroke-width: 3px;
+        fill: none;
+    }
+
+    h1 {
+        font-weight: 900;
+
+    }
+
+    .slider {
+        width: 80%;
     }
 
     table {
-    border-collapse: collapse;
-    width: 80%;
+        border-collapse: collapse;
+        width: 100%;
+        border: none;
     }
 
-    td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+    td,
+    th {
+        text-align: left;
+        padding: 8px;
+    }
 
-    .ticks, .label {
-      font-size: 20px;
+    td {
+        font-weight: 700;
+        font-size: 1em;
+    }
+
+    th {
+        font-weight: 300;
+        font-size: 0.75em;
+    }
+
+    .ticks,
+    .label {
+        font-size: 20px;
     }
 
     .label {
-      font-weight: 600;
+        font-weight: 600;
     }
 
     .track,
     .track-inset,
     .track-overlay {
-      stroke-linecap: round;
+        stroke-linecap: round;
     }
 
     .track {
-      stroke: #000;
-      stroke-opacity: 0.3;
-      stroke-width: 10px;
+        stroke: #000;
+        stroke-opacity: 0.3;
+        stroke-width: 10px;
     }
 
     .track-inset {
-      stroke: #ddd;
-      stroke-width: 8px;
+        stroke: #ddd;
+        stroke-width: 8px;
     }
 
     .track-overlay {
-      pointer-events: stroke;
-      stroke-width: 50px;
-      stroke: transparent;
-      cursor: crosshair;
+        pointer-events: stroke;
+        stroke-width: 50px;
+        stroke: transparent;
+        cursor: crosshair;
     }
 
     .handle {
-      fill: #fff;
-      stroke: #000;
-      stroke-opacity: 0.5;
-      stroke-width: 1.25px;
+        fill: #fff;
+        stroke: #000;
+        stroke-opacity: 0.5;
+        stroke-width: 1.25px;
     }
-  </style>
+    </style>
 </head>
 
 <body>
-  <h1 align="center"> MINT MACRO TRACKER </h2>
+    <div class="container">
+        <h1 align="center"> MINT MACRO TRACKER </h2>
 <div id="slider" align="center"></div>
-<table align="center">
+<h4>Consumer Economy</h4>
+<table align="center" cellspacing="0" cellpadding="0">
   <tr>
-    <th>Parameter</th>
+    <th>Indicator</th>
+    <th></th>
     <th>Value</th>
     <th>Change</th>
   </tr>
   <tr>
-    <td>Passenger vehicle sales</td>
+    <td> <a href="template.html?index=0">Passenger vehicle sales</td></a>
+    <td id="graph0"></td>
     <td id="pvs_value"></td>
     <td id="pvs_change"></td>
   </tr>
     <tr>
-    <td>Tractor sales</td>
+    <td><a href="template.html?index=1">Tractor sales</td></a>
+    <td id="graph1"></td>
     <td id="ts_value"></td>
     <td id="ts_change"></td>
   </tr>
     <tr>
-    <td>2-wheeler sales</td>
-    <td id="2ws_value"></td>
-    <td id="2ws_change"></td>
+    <td><a href="template.html?index=2">2-wheeler sales</td></a>
+    <td id="graph2"></td>
+    <td id="tws_value"></td>
+    <td id="tws_change"></td>
   </tr>
     <tr>
-    <td>Domestic air passengers</td>
+    <td><a href="template.html?index=3">Domestic air passengers</td></a>
+    <td id="graph3"></td>
     <td id="dap_value"></td>
     <td id="dap_change"></td>
   </tr>
 </table>
-
+<h4>Industrial Sector</h4>
+<table align="center" cellspacing="0" cellpadding="0">
+    <tr>
+    <th>Indicator</th>
+    <th></th>
+    <th>Value</th>
+    <th>Change</th>
+  </tr>
+   <tr>
+    <td><a href="template.html?index=4">PMI Manufacturing</td></a>
+    <td id="graph4"></td>
+    <td id="pmi_value"></td>
+    <td id="pmi_change"></td>
+  </tr>
+    <tr>
+    <td><a href="template.html?index=5">Core Growth</td></a>
+    <td id="graph5"></td>
+    <td id="c_value"></td>
+    <td id="c_change"></td>
+  </tr>
+    <tr>
+    <td><a href="template.html?index=6">Banks non-food credit</td></a>
+    <td id="graph6"></td>
+    <td id="bnfc_value"></td>
+    <td id="bnfc_change"></td>
+  </tr>
+    <tr>
+    <td><a href="template.html?index=7">Rail freight traffic</td></a>
+    <td id="graph7"></td>
+    <td id="rf_value"></td>
+    <td id="rf_change"></td>
+  </tr>
+</table>
+<h4>External Sector</h4>
+<table align="center" cellspacing="0" cellpadding="0">
+  <tr>
+    <th>Indicator</th>
+    <th></th>
+    <th>Value</th>
+    <th>Change</th>
+  </tr>
+   <tr>
+    <td><a href="template.html?index=8">Import cover</td></a>
+    <td id="graph8"></td>
+    <td id="ic_value"></td>
+    <td id="ic_change"></td>
+  </tr>
+    <tr>
+    <td><a href="template.html?index=9">Rupee vs Dollar</td></a>
+    <td id="graph9"></td>
+    <td id="rs_value"></td>
+    <td id="rs_change"></td>
+  </tr>
+    <tr>
+    <td><a href="template.html?index=10">Current A/C Balance</td></a>
+    <td id="graph10"></td>
+    <td id="cac_value"></td>
+    <td id="cac_change"></td>
+  </tr>
+    <tr>
+    <td><a href="template.html?index=11">Trade Balance</td></a>
+    <td id="graph11"></td>
+    <td id="tb_value"></td>
+    <td id="tb_change"></td>
+  </tr>
+</table>
+<h4>Ease of Living</h4>
+<table align="center" cellspacing="0" cellpadding="0">
+    <tr>
+    <th>Indicator</th>
+    <th></th>
+    <th>Value</th>
+    <th>Change</th>
+  </tr>
+   <tr>
+    <td><a href="template.html?index=12">CPI</td></a>
+    <td id="graph12"></td>
+    <td id="cpi_value"></td>
+    <td id="cpi_change"></td>
+  </tr>
+    <tr>
+    <td><a href="template.html?index=13">Core CPI</td></a>
+    <td id="graph13"></td>
+    <td id="corecpi_value"></td>
+    <td id="corecpi_change"></td>
+  </tr>
+    <tr>
+    <td><a href="template.html?index=14">Rural Wages </td></a>
+    <td id="graph14"></td>
+    <td id="rw_value"></td>
+    <td id="rw_change"></td>
+  </tr>
+    <tr>
+    <td><a href="template.html?index=15">Job Outlook</td></a>
+    <td id="graph15"></td>
+    <td id="jo_value"></td>
+    <td id="jo_change"></td>
+  </tr>
+</table>
+</div>
 <script>
+
+d3.json("dashboard-rawdata.json", function(error, Data) {
+
 var formatDateIntoYear = d3.timeFormat("%Y");
 var formatDate = d3.timeFormat("%b %Y");
 
@@ -101,7 +241,7 @@ var startDate = new Date("2014-11-01"),
     endDate = new Date("2019-01-01");
 
 var margin = {top:0, right:50, bottom:0, left:50},
-    width = 960 -margin.left - margin.right,
+    width = 500 -margin.left - margin.right,
     height = 150 - margin.top - margin.bottom;
 
 var svg = d3.select("#slider")
@@ -149,23 +289,140 @@ var label = slider.append("text")
     .attr("transform", "translate(0," + (-25) + ")")
 
 
-
 var handle = slider.insert("circle", ".track-overlay")
     .attr("class", "handle")
     .attr("r", 9);
 
+slider.transition() // Gratuitous intro!
+    .duration(750)
+    .tween("hue", function() {
+      var i = d3.interpolate(startDate, endDate);
+      return function(t) { hue(i(t)); };
+    })
+
+
+for(i=0; i < 16; i++){
+  draw(i)
+}
+
+function draw(variable)
+{
+
+ var graph = d3.select("#graph"+variable.toString()).append("svg:svg").attr("width", "150px").attr("height", "30px");
+
+    // create a simple data array that we'll plot with a line (this array represents only the Y values, X will just be the index location)
+
+    var temparray=Data.data[variable].values
+
+  data=[]
+   for (var i=0; i< temparray.length;i++){
+    data.push(temparray[i].Value)
+   }
+
+
+
+  var max_of_array=Math.max.apply(Math,data)
+  var min_of_array=Math.min.apply(Math,data)
+
+
+    // X scale will fit values from 0-10 within pixels 0-100
+    var x = d3.scaleLinear().domain([0, temparray.length]).range([0, 150]);
+    // Y scale will fit values from 0-10 within pixels 0-100
+    var y = d3.scaleLinear().domain([min_of_array, max_of_array]).range([0, 20]);
+
+    // create a line object that represents the SVN line we're creating
+    var line = d3.line()
+      // assign the X function to plot our line as we wish
+      .x(function(d,i) { 
+        return x(i); 
+      })
+      .y(function(d) { 
+        
+        return y(d); 
+      })
+  
+      // display the line by appending an svg:path element with the data line we created above
+      graph.append("svg:path").attr("d", line(data));
+
+}
+
 function hue(h) {
-
-   d3.json("dashboardrawdata.json", function(error, Data) {
+        var monthlyData = new Array();
+        var monthlyArrows = new Array();
         if (error) throw error;
+        for (var key in Data.data){
+          var array=Data.data[key].values
+          var upperrange=Data.data[key].upperrange
+          var lowerrange=Data.data[key].lowerrange
 
-        console.log(Data.data[0].values)
+          arraylength=array.length;
+          chosendate=formatDate(h)
+          for (var i=0; i< arraylength;i++){
+            if(chosendate==(array[i].Year)){
+               monthlyData.push(array[i].Value)
+               if(array[i].Value > upperrange){
+                monthlyArrows.push("🢅")
+               }
+               else if (array[i].Value <  lowerrange){
+                 monthlyArrows.push("🢇")
+               }
+               else
+               {
+                monthlyArrows.push("🢀🢂")
+               }
+            }
+           
+          }
+        }
+
+
   handle.attr("cx", x(h));
   label
     .attr("x", x(h))
     .text(formatDate(h));
-  svg.style("background-color", d3.hsl(h/1000000000, 0.8, 0.8));
-})
+
+  d3.select("#pvs_value").text(monthlyData[0].toFixed(2))
+  d3.select("#pvs_change").text(monthlyArrows[0])
+  d3.select("#ts_value").text(monthlyData[1].toFixed(2))
+  d3.select("#ts_change").text(monthlyArrows[1])
+  d3.select("#tws_value").text(monthlyData[2].toFixed(2))
+  d3.select("#tws_change").text(monthlyArrows[2])
+  d3.select("#dap_value").text(monthlyData[3].toFixed(2))
+  d3.select("#dap_change").text(monthlyArrows[3])
+  d3.select("#pmi_value").text(monthlyData[4].toFixed(2))
+  d3.select("#pmi_change").text(monthlyArrows[4])
+  d3.select("#c_value").text(monthlyData[5].toFixed(2))
+  d3.select("#c_change").text(monthlyArrows[5])
+  d3.select("#bnfc_value").text(monthlyData[6].toFixed(2))
+  d3.select("#bnfc_change").text(monthlyArrows[6])
+  d3.select("#rf_value").text(monthlyData[7].toFixed(2))
+  d3.select("#rf_change").text(monthlyArrows[7])
+  d3.select("#ic_value").text(monthlyData[8].toFixed(2))
+  d3.select("#ic_change").text(monthlyArrows[8])
+  d3.select("#rs_value").text(monthlyData[9].toFixed(2))
+  d3.select("#rs_change").text(monthlyArrows[9])
+  d3.select("#cac_value").text(monthlyData[10].toFixed(2))
+  d3.select("#cac_change").text(monthlyArrows[10])
+  d3.select("#tb_value").text(monthlyData[11].toFixed(2))
+  d3.select("#tb_change").text(monthlyArrows[11])
+  d3.select("#cpi_value").text(monthlyData[12].toFixed(2))
+  d3.select("#cpi_change").text(monthlyArrows[12])
+  d3.select("#corecpi_value").text(monthlyData[13].toFixed(2))
+  d3.select("#corecpi_change").text(monthlyArrows[13])
+  d3.select("#rw_value").text(monthlyData[14].toFixed(2))
+  d3.select("#rw_change").text(monthlyArrows[14])
+  d3.select("#jo_value").text(monthlyData[15].toFixed(2))
+  d3.select("#jo_change").text(monthlyArrows[15])
+
+$("td:contains('🢅')").css("color", "#81A43E");
+$("td:contains('🢇')").css("color", "#D72027");
+$("td:contains('🢀🢂')").css("color", "#737D84");
+
 }
+
+
+
+})
+
 </script>
 </body>

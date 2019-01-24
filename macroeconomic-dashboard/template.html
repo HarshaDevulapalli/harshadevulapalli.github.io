@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+<meta charset="utf-8">
+<style>
+/* set the CSS */
+
+.line {
+    fill: none;
+    stroke: black;
+    stroke-width: 3.5px;
+    stroke-linejoin: round;
+    stroke-linecap: bevel;
+}
+
+text,
+.axis,
+.tooltip,
+a {
+    font-family: "Lato", sans-serif;
+    font-weight: 400 font-size: 2.4em;
+}
+
+.tooltip {
+    position: absolute;
+    z-index: 10;
+}
+
+.tooltip p {
+    background-color: white;
+    border: black 1px solid;
+    padding: 2px;
+}
+</style>
+
+<body>
+    <!-- load the d3.js library -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <div id="container">
+    <a id="back" href="newdashboard.html">Back to the macrotracker</a>
+    <div id="chart"></div>
+
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
+    <script>
+    // set the dimensions and margins of the graph
+    var margin = { top: 30, right: 30, bottom: 30, left: 30 },
+        width = 600 - margin.left - margin.right,
+        height = 500 -
+        margin.top - margin.bottom;
+
+    // parse the date / time
+    var parseTime = d3.timeParse("%b %Y");
+
+    d3.json("dashboardrawdata.json", function(error, Data) {
+
+        if (error) throw error;
+        // set the ranges
+        var x = d3.scaleTime().range([0, width]);
+        var y = d3.scaleLinear().range([height, 0]);
+
+        var index=getQueryVariable("index")
+
+        const values = Data.data[index].values
+        const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
+        const header = Object.keys(values[0])
+        let csv = values.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
+        csv.unshift(header.join(','))
+        csv = csv.join('\r\n')
+
+
+
+        $('#download').click(function() {
+            filename = 'export.csv';
+
+            if (!csv.match(/^data:text\/csv/i)) {
+                csv = 'data:text/csv;charset=utf-8,' + csv;
+            }
+
+            data = encodeURI(csv);
+
+            link = document.createElement('a');
+            link.setAttribute('href', data);
+            link.setAttribute('download', filename);
+            link.click();
+        })
+
+
+        // define the line
+        var valueline = d3.line()
+            .x(function(d) { return x(d.Year); })
+            .y(function(d) { return y(d.Value); });
+
+        // append the svg obgect to the body of the page
+        // appends a 'group' element to 'svg']
+        // moves the 'group' element to the top left margin]
+
+        var svg = d3.select("#chart").selectAll("svg")
+            .data([Data.data[index]])
+            .enter().append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")")
+            .each(multiple);
+
+        var tooltip = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip");
+
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+
+        function multiple(Variable) {
+
+            var svg = d3.select(this);
+            data = Variable.values
+
+
+            data.forEach(function(d) {
+
+                d.Year = parseTime(d.Year);
+                d.Value = +d.Value;
+            });
+
+            var extent = d3.extent(data, function(d) { return d.Year; })
+
+            // Scale the range of the data
+            x.domain(extent);
+
+            buffer = (d3.max(data, function(d) { return +d.Value; }) - d3.min(data, function(d) { return +d.Value; })) / 10
+
+            y.domain([d3.min(data, function(d) { return +d.Value; }) - buffer, d3.max(data, function(d) { return +d.Value; }) + buffer]);
+
+
+            if (data[data.length - 1]['Value'] < Variable.lowerrange) {
+                svg.append("rect")
+                    .attr("width", "90%")
+                    .attr("height", "88%")
+                    .attr("fill", "#F7D0BF");
+
+                var arrow = "▼"
+
+            } else if (data[data.length - 1]['Value'] > Variable.upperrange) {
+                svg.append("rect")
+                    .attr("width", "90%")
+                    .attr("height", "88%")
+                    .attr("fill", "#D6E0BC")
+                    .attr("stroke-width", 0);
+
+                var arrow = "▲"
+            } else {
+                svg.append("rect")
+                    .attr("width", "90%")
+                    .attr("height", "88%")
+                    .attr("fill", "#FFFFFF");
+
+                var arrow = "◀ ▶"
+            }
+
+            svg.append("text")
+                .attr("x", 5)
+                .attr("y", -5)
+                .style("font-size", "20px")
+                .text(Variable.variable + " " + Variable.suffix + arrow + data[data.length - 1]['Value'].toFixed(2));
+
+
+            svg.append("g")
+                .attr("class", "band")
+                .append("rect")
+                .attr("x", 0)
+                .attr("y", y(Variable.upperrange))
+                .attr("height", y(Variable.upperrange) - y(Variable.lowerrange))
+                .attr("width", width)
+                .style("stroke", "#4D7DBF")
+                .style("stroke-width", "2px")
+                .style("fill", "blue")
+                .style("opacity", 0.25);
+
+
+            // Add the valueline path.
+            svg.append("path")
+                .data([data])
+                .attr("class", "line")
+                .attr("d", valueline);
+
+
+
+            var circles = svg.selectAll("circle")
+                .data(data)
+                .enter()
+                .append("circle");
+
+
+            circles.attr("cx", function(d) {
+                    return x((d.Year))
+                })
+                .attr("cy", function(d) {
+                    return y((d.Value))
+                })
+                .attr("r", 3)
+                .style("opacity", 1); // this is optional - if you want visible dots or not!
+
+            circles
+                .on("mouseover", mouseoverFunc)
+                .on("mousemove", mousemoveFunc)
+                .on("mouseout", mouseoutFunc);
+
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x).ticks(5))
+                .style("font-size", "15px");
+
+            // Add the Y Axis
+
+            svg.append("g")
+                .call(d3.axisLeft(y).ticks(5).tickSize(-width))
+                .style("font-size", "15px");
+
+
+        }
+
+        function mouseoverFunc(d) {
+            // Adding a subtle animation to increase the dot size when over it!
+            d3.select(this)
+                .transition()
+                .duration(50)
+                .style("opacity", 1)
+                .attr("r", 7);
+            tooltip
+                .style("display", null) // this removes the display none setting from it
+                .html("<p>" + months[d.Year.getUTCMonth()] + " " + d.Year.getFullYear() +
+                    "<br> <b>" + d.Value.toFixed(2) + "</b></p>");
+        }
+
+        function mousemoveFunc(d) {
+            tooltip
+                .style("top", (d3.event.pageY - 10) + "px")
+                .style("left", (d3.event.pageX + 10) + "px");
+        }
+
+        function mouseoutFunc(d) {
+            // shrink it back down:
+            d3.select(this)
+                .transition()
+                .style("opacity", 0)
+                .attr("r", 3);
+            tooltip.style("display", "none"); // this sets it to invisible!
+        }
+
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) {return pair[1];  }
+            }
+
+
+            return (false);
+        }
+
+        function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+    });
+    </script>
+    <a id="download" href=#>Download as csv</a>
+</body>
