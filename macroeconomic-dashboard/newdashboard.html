@@ -1,5 +1,6 @@
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -15,8 +16,12 @@
         color: #000000;
     }
 
+    a {
+color: #000000;
+}
+
     path {
-        stroke-width: 3px;
+        stroke-width: 2.5px;
         fill: none;
     }
 
@@ -42,15 +47,19 @@
     }
 
     td {
-        font-weight: 700;
-        font-size: 1.2em;
+        font-weight: 600;
+        font-size: 1em;
         text-align: left;
     }
 
-    th {
+    th,span{
         font-weight: 300;
         font-size: 1em;
         color: #727D83;
+    }
+
+    tr:nth-child(even){
+      background-color:#FDDAB4;
     }
 
     .ticks,
@@ -103,151 +112,155 @@
         <br>
         <h5> As of January 2019, 6 indicators are in the green, 4 in red and two are in line with the five year average. </h5>
         <br>
-        <p>Use the slider to see how these indices performed in the past five years.</p>
+        <p align="center" >Use the slider to see how these indices performed in the past five years.</p>
         <div id="slider" align="center"></div>
-        <h5>Consumer Economy</h5>
+        <h5>CONSUMER ECONOMY</h5>
         <table align="center" cellspacing="0" cellpadding="0">
-            <col width="40%">
-            <col width="40%">
+            <col width="60%">
+            <col width="20%">
             <col width="15%">
             <col width="5%">
             <tr>
                 <th>Indicator</th>
-                <th></th>
+                <th>5-year trend</th>
                 <th>Value</th>
                 <th>Change</th>
             </tr>
             <tr>
-                <td> <a href="template.html?index=0">Passenger vehicle sales</td></a>
+                <td> <a href="template.html?index=0">Passenger vehicle sales <span>(%YoY)</span></td></a>
                 <td id="graph0"></td>
                 <td id="pvs_value"></td>
                 <td id="pvs_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=1">Tractor sales</td></a>
+                <td><a href="template.html?index=1">Tractor sales <span>(%YoY)</span></td></a>
                 <td id="graph1"></td>
                 <td id="ts_value"></td>
                 <td id="ts_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=2">2-wheeler sales</td></a>
+                <td><a href="template.html?index=2">2-wheeler sales <span>(%YoY)</span></td></a>
                 <td id="graph2"></td>
                 <td id="tws_value"></td>
                 <td id="tws_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=3">Domestic air passengers</td></a>
+                <td><a href="template.html?index=3">Domestic air passengers <span>(%YoY)</span></td></a>
                 <td id="graph3"></td>
                 <td id="dap_value"></td>
                 <td id="dap_change"></td>
             </tr>
         </table>
-        <h5>Industrial Sector</h5>
+        <br>
+        <h5>INDUSTRIAL SECTOR</h5>
         <table align="center" cellspacing="0" cellpadding="0">
-            <col width="40%">
-            <col width="40%">
+            <col width="60%">
+            <col width="20%">
             <col width="15%">
             <col width="5%">
             <tr>
                 <th>Indicator</th>
-                <th></th>
+                <th>5-year trend</th>
                 <th>Value</th>
                 <th>Change</th>
             </tr>
             <tr>
-                <td><a href="template.html?index=4">PMI Manufacturing</td></a>
+                <td><a href="template.html?index=4">PMI Manufacturing </td></a>
                 <td id="graph4"></td>
                 <td id="pmi_value"></td>
                 <td id="pmi_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=5">Core Growth</td></a>
+                <td><a href="template.html?index=5">Core Growth <span>(%YoY)</span></td></a>
                 <td id="graph5"></td>
                 <td id="c_value"></td>
                 <td id="c_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=6">Banks non-food credit</td></a>
+                <td><a href="template.html?index=6">Banks non-food credit <span>(%YoY)</span></td></a>
                 <td id="graph6"></td>
                 <td id="bnfc_value"></td>
                 <td id="bnfc_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=7">Rail freight traffic</td></a>
+                <td><a href="template.html?index=7">Rail freight traffic <span>(%YoY)</span></td></a>
                 <td id="graph7"></td>
                 <td id="rf_value"></td>
                 <td id="rf_change"></td>
             </tr>
         </table>
-        <h5>External Sector</h5>
+        <br>
+        <h5>EXTERNAL SECTOR</h5>
         <table align="center" cellspacing="0" cellpadding="0">
-            <col width="40%">
-            <col width="40%">
+            <col width="60%">
+            <col width="20%">
             <col width="15%">
             <col width="5%">
             <tr>
                 <th>Indicator</th>
-                <th></th>
+                <th>5-year trend</th>
                 <th>Value</th>
                 <th>Change</th>
             </tr>
             <tr>
-                <td><a href="template.html?index=8">Import cover</td></a>
+                <td><a href="template.html?index=8">Import cover <span>(Fx reserves in months)</span></td></a>
                 <td id="graph8"></td>
                 <td id="ic_value"></td>
                 <td id="ic_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=9">Rupee vs Dollar</td></a>
+                <td><a href="template.html?index=9">Rupee vs Dollar <span>(%MoM)</span></td></a>
                 <td id="graph9"></td>
                 <td id="rs_value"></td>
                 <td id="rs_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=10">Current A/C Balance</td></a>
+                <td><a href="template.html?index=10">Current A/C Balance <span>(as % of GDP)</span></td></a>
                 <td id="graph10"></td>
                 <td id="cac_value"></td>
                 <td id="cac_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=11">Trade Balance</td></a>
+                <td><a href="template.html?index=11">Trade Balance <span>(as % of total trade)</span></td></a>
                 <td id="graph11"></td>
                 <td id="tb_value"></td>
                 <td id="tb_change"></td>
             </tr>
         </table>
-        <h5>Ease of Living</h5>
+        <br>
+        <h5>EASE OF LIVING</h5>
         <table align="center" cellspacing="0" cellpadding="0">
-            <col width="40%">
-            <col width="40%">
+            <col width="60%">
+            <col width="20%">
             <col width="15%">
             <col width="5%">
             <tr>
                 <th>Indicator</th>
-                <th></th>
+                <th>5-year trend</th>
                 <th>Value</th>
                 <th>Change</th>
             </tr>
             <tr>
-                <td><a href="template.html?index=12">CPI</td></a>
+                <td><a href="template.html?index=12">CPI <span>(%YoY)</span>
+                </td></a>
                 <td id="graph12"></td>
                 <td id="cpi_value"></td>
                 <td id="cpi_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=13">Core CPI</td></a>
+                <td><a href="template.html?index=13">Core CPI <span>(%YoY)</span></td></a>
                 <td id="graph13"></td>
                 <td id="corecpi_value"></td>
                 <td id="corecpi_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=14">Rural Wages </td></a>
+                <td><a href="template.html?index=14">Rural Wages <span>(%YoY)</span></td></a>
                 <td id="graph14"></td>
                 <td id="rw_value"></td>
                 <td id="rw_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=15">Job Outlook</td></a>
+                <td><a href="template.html?index=15">Job Outlook <span>(net response %)</span></td></a>
                 <td id="graph15"></td>
                 <td id="jo_value"></td>
                 <td id="jo_change"></td>
@@ -338,7 +351,7 @@
 
         function draw(variable, status) {
 
-            var graph = d3.select("#graph" + variable.toString()).append("svg:svg").attr("width", "200px").attr("height", "30px");
+            var graph = d3.select("#graph" + variable.toString()).append("svg:svg").attr("width", "100px").attr("height", "30px");
 
             var temparray = Data.data[variable].values
 
@@ -356,7 +369,7 @@
 
 
             // X scale will fit values from 0-10 within pixels 0-100
-            var x = d3.scaleLinear().domain([0, temparray.length]).range([0, 200]);
+            var x = d3.scaleLinear().domain([0, temparray.length]).range([0, 100]);
             // Y scale will fit values from 0-10 within pixels 0-100
             var y = d3.scaleLinear().domain([min_of_array, max_of_array]).range([30, 0]);
 
