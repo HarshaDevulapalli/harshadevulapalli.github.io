@@ -3088,7 +3088,7 @@
         {
             "variable": "Core CPI",
             "upperrange": 4.80,
-            "lowerrange": 5.51,
+            "lowerrange": 5.38,
             "suffix": "(% YoY)",
             "values": [
             {
