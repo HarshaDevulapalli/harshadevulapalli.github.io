@@ -113,6 +113,7 @@ a {
 
         function multiple(Variable) {
 
+
             var svg = d3.select(this);
             data = Variable.values
 
@@ -132,6 +133,42 @@ a {
 
             y.domain([d3.min(data, function(d) { return +d.Value; }) - buffer, d3.max(data, function(d) { return +d.Value; }) + buffer]);
 
+            if(index==12 || index==13){
+
+
+                var chartheight= y(Variable.upperrange) - y(Variable.lowerrange)
+
+            if (data[data.length - 1]['Value'] < Variable.upperrange) {
+                svg.append("rect")
+                    .attr("width", "90%")
+                    .attr("height", "88%")
+                    .attr("fill", "#D6E0BC");
+
+                var arrow = "▲"
+
+            } else if (data[data.length - 1]['Value'] > Variable.lowerrange) {
+                svg.append("rect")
+                    .attr("width", "90%")
+                    .attr("height", "88%")
+                    .attr("fill", "#F7D0BF")
+                    .attr("stroke-width", 0);
+
+                var arrow = "▼"
+            } else {
+                svg.append("rect")
+                    .attr("width", "90%")
+                    .attr("height", "88%")
+                    .attr("fill", "#FFFFFF");
+
+                var arrow = "◀ ▶"
+            }
+
+
+            }
+
+            else{
+
+                 var chartheight= y(Variable.lowerrange) - y(Variable.upperrange)
 
             if (data[data.length - 1]['Value'] < Variable.lowerrange) {
                 svg.append("rect")
@@ -158,21 +195,20 @@ a {
                 var arrow = "◀ ▶"
             }
 
+            }
+
             svg.append("text")
                 .attr("x", 5)
                 .attr("y", -5)
                 .style("font-size", "20px")
                 .text(Variable.variable + " " + Variable.suffix + arrow + data[data.length - 1]['Value'].toFixed(2));
 
-
-            console.log(Variable.upperrange)
-
             svg.append("g")
                 .attr("class", "band")
                 .append("rect")
                 .attr("x", 0)
                 .attr("y", y(Variable.upperrange))
-                .attr("height", y(Variable.lowerrange) - y(Variable.upperrange))
+                .attr("height",chartheight)
                 .attr("width", width)
                 .style("stroke", "#4D7DBF")
                 .style("stroke-width", "2px")

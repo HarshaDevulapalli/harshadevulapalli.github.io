@@ -17,8 +17,8 @@
     }
 
     a {
-color: #000000;
-}
+        color: #000000;
+    }
 
     path {
         stroke-width: 2.5px;
@@ -31,7 +31,7 @@ color: #000000;
     }
 
     .slider {
-        width: 80%;
+        width: 100%;
     }
 
     table {
@@ -48,18 +48,19 @@ color: #000000;
 
     td {
         font-weight: 600;
-        font-size: 1em;
+        font-size: 0.95em;
         text-align: left;
     }
 
-    th,span{
+    th,
+    span {
         font-weight: 300;
         font-size: 1em;
         color: #727D83;
     }
 
-    tr:nth-child(even){
-      background-color:#FDDAB4;
+    tr:nth-child(even) {
+        background-color: #FDDAB4;
     }
 
     .ticks,
@@ -112,7 +113,7 @@ color: #000000;
         <br>
         <h5> As of January 2019, 6 indicators are in the green, 4 in red and two are in line with the five year average. </h5>
         <br>
-        <p align="center" >Use the slider to see how these indices performed in the past five years.</p>
+        <p align="center">Use the slider to see how these indices performed in the past five years.</p>
         <div id="slider" align="center"></div>
         <h5>CONSUMER ECONOMY</h5>
         <table align="center" cellspacing="0" cellpadding="0">
@@ -268,16 +269,17 @@ color: #000000;
         </table>
     </div>
     <script>
+
     d3.json("dashboard-rawdata.json", function(error, Data) {
 
         var formatDateIntoYear = d3.timeFormat("%Y");
         var formatDate = d3.timeFormat("%b %Y");
 
-        var startDate = new Date("2014-01-01"),
+        var startDate = new Date("2013-12-31"),
             endDate = new Date("2019-01-01");
 
-        var margin = { top: 0, right: 60, bottom: 0, left: 60 },
-            width = 500 - margin.left - margin.right,
+        var margin = { top: 0, right: 50, bottom: 0, left: 50 },
+            width = 375 - margin.left - margin.right,
             height = 100 - margin.top - margin.bottom;
 
         var svg = d3.select("#slider")
@@ -338,18 +340,16 @@ color: #000000;
 
 
         for (i = 0; i < 16; i++) {
-
             if (i == 12 || i == 13) {
-
-
-                draw(i, "reverse")
+                drawReverse(i)
             } else {
-                draw(i, "regular")
+                draw(i)
             }
 
         }
 
-        function draw(variable, status) {
+        function draw(variable) {
+
 
             var graph = d3.select("#graph" + variable.toString()).append("svg:svg").attr("width", "100px").attr("height", "30px");
 
@@ -371,9 +371,10 @@ color: #000000;
             // X scale will fit values from 0-10 within pixels 0-100
             var x = d3.scaleLinear().domain([0, temparray.length]).range([0, 100]);
             // Y scale will fit values from 0-10 within pixels 0-100
-            var y = d3.scaleLinear().domain([min_of_array, max_of_array]).range([30, 0]);
+              var y = d3.scaleLinear().domain([min_of_array, max_of_array]).range([30, 0]);  
 
-            // create a line object that represents the SVN line we're creating
+
+           
             var line = d3.line()
                 .x(function(d, i) {
                     return x(i);
@@ -383,19 +384,9 @@ color: #000000;
                 })
                 .curve(d3.curveCardinal)
 
+            var upperrangeper = ((upperrange) / 30) * 100
+            var lowerrangeper = ((lowerrange) / 30) * 100
 
-            if (status == "regular") {
-                var colorRange = ['#D72027', '#FAA74B', '#FAA74B', '#81A43E']
-            } else if (status == "reverse") {
-                var colorRange = ['#81A43E', '#FAA74B', '#FAA74B', '#D72027']
-            }
-
-
-
-
-
-
-            var color = d3.scaleLinear().range(colorRange).domain([min_of_array, lowerrange, upperrange, max_of_array]);
 
             var linearGradient = graph.append("defs")
                 .append("linearGradient")
@@ -404,19 +395,10 @@ color: #000000;
                 .attr("x1", 0).attr("y1", y(0))
                 .attr("x2", 0).attr("y2", y(30));
 
-            var extent = max_of_array - min_of_array
-
-            var upperrangeper = (upperrange / 30) * 100
-            var lowerrangeper = (lowerrange / 30) * 100
-
-            console.log(upperrangeper, lowerrangeper)
-
-
-
-
             linearGradient.append("stop")
                 .attr("offset", "0%")
                 .attr("stop-color", "#D72027")
+
 
             linearGradient.append("stop")
                 .attr("offset", lowerrangeper + "%")
@@ -438,11 +420,85 @@ color: #000000;
                 .attr("offset", "100%")
                 .attr("stop-color", "#81A43E");
 
-
-
             graph.append("svg:path").attr("d", line(data)).attr("stroke", "url(#linear-gradient)");
-
         }
+
+        function drawReverse(variable) {
+
+
+            var graph = d3.select("#graph" + variable.toString()).append("svg:svg").attr("width", "100px").attr("height", "30px");
+
+            var temparray = Data.data[variable].values
+
+            data = []
+            for (var i = 0; i < temparray.length; i++) {
+                data.push(temparray[i].Value)
+            }
+
+            var lowerrange = Data.data[variable].lowerrange
+
+            var upperrange = Data.data[variable].upperrange
+
+            var max_of_array = Math.max.apply(Math, data)
+            var min_of_array = Math.min.apply(Math, data)
+
+
+            // X scale will fit values from 0-10 within pixels 0-100
+            var x = d3.scaleLinear().domain([0, temparray.length]).range([0, 100]);
+            // Y scale will fit values from 0-10 within pixels 0-100
+              var y = d3.scaleLinear().domain([min_of_array, max_of_array]).range([30, 0]);  
+
+
+           
+            var line = d3.line()
+                .x(function(d, i) {
+                    return x(i);
+                })
+                .y(function(d) {
+                    return y(d);
+                })
+                .curve(d3.curveCardinal)
+
+            var upperrangeper = ((upperrange) / 30) * 100
+            var lowerrangeper = ((lowerrange) / 30) * 100
+
+
+            var linearGradient2 = graph.append("defs")
+                .append("linearGradient")
+                .attr("id", "linear-gradient2")
+                .attr("gradientUnits", "userSpaceOnUse")
+                .attr("x1", 0).attr("y1", y(0))
+                .attr("x2", 0).attr("y2", y(30));
+
+            linearGradient2.append("stop")
+                .attr("offset", "0%")
+                .attr("stop-color", "#81A43E")
+
+
+            linearGradient2.append("stop")
+                .attr("offset", upperrangeper + "%")
+                .attr("stop-color", "#81A43E")
+
+            linearGradient2.append("stop")
+                .attr("offset", upperrangeper + "%")
+                .attr("stop-color", "#F6921E");
+
+            linearGradient2.append("stop")
+                .attr("offset", lowerrangeper + "%")
+                .attr("stop-color", "#F6921E");
+
+            linearGradient2.append("stop")
+                .attr("offset", lowerrangeper + "%")
+                .attr("stop-color", "#D72027");
+
+            linearGradient2.append("stop")
+                .attr("offset", "100%")
+                .attr("stop-color", "#D72027");
+
+            graph.append("svg:path").attr("d", line(data)).attr("stroke", "url(#linear-gradient2)");
+        }
+
+
 
         function hue(h) {
             var monthlyData = new Array();
