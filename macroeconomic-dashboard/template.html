@@ -20,8 +20,10 @@ body {
 }
 
 h4 {
-    font-weight: 400;
-    font-size: 1.75em;
+    font-weight: 600;
+    font-size: 1.25em;
+    margin-top: 10px !important;
+    margin-bottom: 0px !important;
 
 }
 
@@ -31,6 +33,14 @@ h5 {
 
 }
 
+
+p {
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+
+}
 
 
 
@@ -47,7 +57,7 @@ a {
     z-index: 10;
 }
 
-.tooltip p {
+.tooltip h5 {
     background-color: white;
     border: black 1px solid;
     padding: 2px;
@@ -60,8 +70,9 @@ a {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <div id="container">
         <a id="back" href="newdashboard.html">Back to the macrotracker</a>
-        <h4 id="variablename" align="center"></h4>
-        <h5 id="variablevalue" align="center"><h5>
+        <h4 id="variablename" align="left"></h4>
+        <p class="headings" id="variablevalue" align="left"></p>
+        <p class="headings" id="variablemonth" align="left"></p>
         <div id="chart"></div>
         <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
         <script>
@@ -71,7 +82,7 @@ a {
             height = 500
         margin.top - margin.bottom;
 
-        browserwidth=$(document).width();
+        browserwidth = $(document).width();
         // parse the date / time
         var parseTime = d3.timeParse("%b %Y");
 
@@ -79,7 +90,7 @@ a {
 
             if (error) throw error;
             // set the ranges
-            var x = d3.scaleTime().range([0, browserwidth]);
+            var x = d3.scaleTime().range([0, browserwidth - 100]);
             var y = d3.scaleLinear().range([height, 0]);
 
             var index = getQueryVariable("index")
@@ -166,26 +177,16 @@ a {
                     var chartheight = y(Variable.upperrange) - y(Variable.lowerrange)
 
                     if (data[data.length - 1]['Value'] < Variable.upperrange) {
-                        svg.append("rect")
-                            .attr("width", "100%")
-                            .attr("height", "88%")
-                            .attr("fill", "#D6E0BC");
+
 
                         var arrow = "▲"
 
                     } else if (data[data.length - 1]['Value'] > Variable.lowerrange) {
-                        svg.append("rect")
-                            .attr("width", "100%")
-                            .attr("height", "88%")
-                            .attr("fill", "#F7D0BF")
-                            .attr("stroke-width", 0);
+
 
                         var arrow = "▼"
                     } else {
-                        svg.append("rect")
-                            .attr("width", "100%")
-                            .attr("height", "88%")
-                            .attr("fill", "#FFFFFF");
+
 
                         var arrow = "◀ ▶"
                     }
@@ -196,48 +197,41 @@ a {
                     var chartheight = y(Variable.lowerrange) - y(Variable.upperrange)
 
                     if (data[data.length - 1]['Value'] < Variable.lowerrange) {
-                        svg.append("rect")
-                            .attr("width", "100%")
-                            .attr("height", "88%")
-                            .attr("fill", "#F7D0BF");
+
 
                         var arrow = "▼"
 
                     } else if (data[data.length - 1]['Value'] > Variable.upperrange) {
-                        svg.append("rect")
-                            .attr("width", "100%")
-                            .attr("height", "88%")
-                            .attr("fill", "#D6E0BC")
-                            .attr("stroke-width", 0);
+
 
                         var arrow = "▲"
                     } else {
-                        svg.append("rect")
-                            .attr("width", "100%")
-                            .attr("height", "88%")
-                            .attr("fill", "#FFFFFF");
+
 
                         var arrow = "◀ ▶"
                     }
 
                 }
 
-        
 
-                if(arrow=="▲"){
-                    relative="above"
-                }
-                else if(arrow=="▼"){
-                    relative="below"
-                }
-                else{
-                    relative="in  line"
+
+                if (arrow == "▲") {
+                    relative = "above"
+                } else if (arrow == "▼") {
+                    relative = "below"
+                } else {
+                    relative = "in  line"
                 }
 
+                var formatDate = d3.timeFormat("%B %Y");
 
-                sentence="As of September 2018, this indicator is "+  data[data.length - 1]['Value'].toFixed(2) + ". It is " + relative+ " the five year average."
+                variablevalue = data[data.length - 1]['Value'].toFixed(2)
+                variablemonth = data[data.length - 1]['Year']
+                variabletrend = "It is " + relative + " the five year average."
 
-                d3.select("#variablevalue").text(sentence)
+                d3.select("#variablevalue").text(variablevalue)
+                d3.select("#variablemonth").text(formatDate(variablemonth))
+                d3.select("#variabletrend").text(variabletrend)
 
 
                 svg.append("g")
@@ -246,10 +240,10 @@ a {
                     .attr("x", 0)
                     .attr("y", y(Variable.upperrange))
                     .attr("height", chartheight)
-                    .attr("width", "100%")
-                    .style("stroke", "#4D7DBF")
+                    .attr("width", "92%")
+                    .style("stroke", "#FABD33")
                     .style("stroke-width", "2px")
-                    .style("fill", "blue")
+                    .style("fill", "FABD33")
                     .style("opacity", 0.25);
 
 
@@ -289,7 +283,7 @@ a {
                 // Add the Y Axis
 
                 svg.append("g")
-                    .call(d3.axisLeft(y).ticks(5).tickSize(-browserwidth))
+                    .call(d3.axisLeft(y).ticks(5).tickSize(-browserwidth + 95))
                     .style("font-size", "15px");
 
 
@@ -304,14 +298,14 @@ a {
                     .attr("r", 7);
                 tooltip
                     .style("display", null) // this removes the display none setting from it
-                    .html("<p>" + months[d.Year.getUTCMonth()] + " " + d.Year.getFullYear() +
-                        "<br> <b>" + d.Value.toFixed(2) + "</b></p>");
+                    .html("<h5><b>" + d.Value.toFixed(2) + 
+                        "</b><br>" + months[d.Year.getUTCMonth()] + " " + d.Year.getFullYear()  + "</h5>");
             }
 
             function mousemoveFunc(d) {
                 tooltip
-                    .style("top", (d3.event.pageY - 10) + "px")
-                    .style("left", (d3.event.pageX + 10) + "px");
+                    .style("top", (d3.event.pageY - 100) + "px")
+                    .style("left", (d3.event.pageX + 5) + "px");
             }
 
             function mouseoutFunc(d) {
@@ -349,35 +343,34 @@ a {
             }
 
             function responsivefy(svg) {
-    // get container + svg aspect ratio
-    var container = d3.select(svg.node().parentNode),
-        width = parseInt(svg.style("width")),
-        height = parseInt(svg.style("height")),
-        aspect = width / height;
+                // get container + svg aspect ratio
+                var container = d3.select(svg.node().parentNode),
+                    width = parseInt(svg.style("width")),
+                    height = parseInt(svg.style("height")),
+                    aspect = width / height;
 
-    // add viewBox and preserveAspectRatio properties,
-    // and call resize so that svg resizes on inital page load
-    svg.attr("viewBox", "0 0 " + width + " " + height)
-        .attr("perserveAspectRatio", "xMinYMid")
-        .call(resize);
+                // add viewBox and preserveAspectRatio properties,
+                // and call resize so that svg resizes on inital page load
+                svg.attr("viewBox", "0 0 " + width + " " + height)
+                    .attr("perserveAspectRatio", "xMinYMid")
+                    .call(resize);
 
-    // to register multiple listeners for same event type, 
-    // you need to add namespace, i.e., 'click.foo'
-    // necessary if you call invoke this function for multiple svgs
-    // api docs: https://github.com/mbostock/d3/wiki/Selections#on
-    d3.select(window).on("resize." + container.attr("id"), resize);
+                // to register multiple listeners for same event type, 
+                // you need to add namespace, i.e., 'click.foo'
+                // necessary if you call invoke this function for multiple svgs
+                // api docs: https://github.com/mbostock/d3/wiki/Selections#on
+                d3.select(window).on("resize." + container.attr("id"), resize);
 
-    // get width of container and resize svg to fit it
-    function resize() {
-        var targetWidth = parseInt(container.style("width"));
-        svg.attr("width", targetWidth);
-        svg.attr("height", Math.round(targetWidth / aspect));
-    }
-}
-  
+                // get width of container and resize svg to fit it
+                function resize() {
+                    var targetWidth = parseInt(container.style("width"));
+                    svg.attr("width", targetWidth);
+                    svg.attr("height", Math.round(targetWidth / aspect));
+                }
+            }
+
 
         });
-
-      </script>
+        </script>
         <a id="download" href=#>Download as csv</a>
 </body>

@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
@@ -25,7 +25,7 @@
         fill: none;
     }
 
-    h2 {
+    h4 {
         font-weight: 900;
 
     }
@@ -59,8 +59,34 @@
         color: #727D83;
     }
 
-    tr:nth-child(even) {
-        background-color: #FDDAB4;
+    h5 {
+        font-weight: 900;
+    }
+    .headings{
+        align: left !important;
+        border-bottom: 4px solid orange;
+    }
+
+    p {
+        text-align: center;
+    }
+
+
+    h6 {
+        background-size: auto;
+        font-weight: 300;
+    }
+/*
+    line.track-overlay{
+        stroke: orange;
+        stroke-width: 5px;
+        fill:orange;
+        position:absolute; !important;
+        z-index:-1 !important;
+    }*/
+
+    .index{
+        align-items: center
     }
 
     .ticks,
@@ -75,47 +101,59 @@
     .track,
     .track-inset,
     .track-overlay {
-        stroke-linecap: round;
+        stroke-linecap: square;
+        stroke: orange;
+        stroke-width: orange;
     }
 
     .track {
-        stroke: #000;
+        stroke: orange;
         stroke-opacity: 0.3;
         stroke-width: 10px;
     }
 
     .track-inset {
-        stroke: #ddd;
+        stroke: orange;
         stroke-width: 8px;
     }
 
     .track-overlay {
         pointer-events: stroke;
-        stroke-width: 50px;
+        stroke-width: 10px;
         stroke: transparent;
         cursor: crosshair;
     }
 
     .handle {
-        fill: #fff;
-        stroke: #000;
-        stroke-opacity: 0.5;
-        stroke-width: 1.25px;
+        fill: #ffffff;
+        stroke: orange;
+        stroke-opacity: 1;
+        stroke-width: 3px;
+        position:absolute; !important;
+        z-index:-1 !important;
     }
+
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h2 align="center"> MINT MACRO TRACKER </h2>
         <br>
-        <h4 align="center">A look at 16 high-frequency indicators to gauge India's economic health.</h4>
+        <h4> MINT MACRO TRACKER </h4>
         <br>
-        <h5> As of January 2019, 6 indicators are in the green, 4 in red and two are in line with the five year average. </h5>
+        <h5>A look at 16 high-frequency indicators to gauge India's economic health.</h5>
         <br>
-        <p align="center">Use the slider to see how these indices performed in the past five years.</p>
-        <div id="slider" align="center"></div>
-        <h5>CONSUMER ECONOMY</h5>
+        <h6><i>Use the slider to see how these indices performed in the past five years.</i></h6>
+        <div id="slider"></div>
+        <br>
+        
+        <div class="row">
+            <div class="text-center col-xs-4" align="center"><p><div class="ml-1"> 6 indicators green</div></p>
+             <div class="text-center col-xs-4" align="center"><p><div class="ml-1"> 6 indicators red</div></p>
+              <div class="text-center col-xs-4" align="center"><p><div class="ml-1"> 4 indicators yellow</div></p>
+        </div>
+        <br>
+        <h5 class="headings">CONSUMER ECONOMY</h5>
         <table align="center" cellspacing="0" cellpadding="0">
             <col width="60%">
             <col width="20%">
@@ -153,7 +191,7 @@
             </tr>
         </table>
         <br>
-        <h5>INDUSTRIAL SECTOR</h5>
+        <h5 class="headings">INDUSTRIAL SECTOR</h5>
         <table align="center" cellspacing="0" cellpadding="0">
             <col width="60%">
             <col width="20%">
@@ -166,7 +204,7 @@
                 <th>Change</th>
             </tr>
             <tr>
-                <td><a href="template.html?index=4">PMI Manufacturing </td></a>
+                <td><a href="template.html?index=4">PMI Manufacturing</td></a>
                 <td id="graph4"></td>
                 <td id="pmi_value"></td>
                 <td id="pmi_change"></td>
@@ -191,7 +229,7 @@
             </tr>
         </table>
         <br>
-        <h5>EXTERNAL SECTOR</h5>
+        <h5 class="headings">EXTERNAL SECTOR</h5>
         <table align="center" cellspacing="0" cellpadding="0">
             <col width="60%">
             <col width="20%">
@@ -229,7 +267,7 @@
             </tr>
         </table>
         <br>
-        <h5>EASE OF LIVING</h5>
+        <h5 class="headings">EASE OF LIVING</h5>
         <table align="center" cellspacing="0" cellpadding="0">
             <col width="60%">
             <col width="20%">
@@ -274,6 +312,7 @@
 
         var formatDateIntoYear = d3.timeFormat("%Y");
         var formatDate = d3.timeFormat("%b %Y");
+
 
         var startDate = new Date("2013-12-31"),
             endDate = new Date("2019-01-01");
