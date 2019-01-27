@@ -21,22 +21,28 @@ body {
 
 h4 {
     font-weight: 600;
-    font-size: 1.25em;
+    font-size: 2em;
     margin-top: 10px !important;
     margin-bottom: 0px !important;
 
 }
 
 h5 {
+    font-weight: 600;
+    font-size: 1.1em;
+
+}
+
+h6 {
     font-weight: 400;
-    font-size: 1.25em;
+    font-size: 0.75em;
 
 }
 
 
 p {
     font-weight: 600;
-    font-size: 1.2em;
+    font-size: 1.75em;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
 
@@ -82,7 +88,7 @@ a {
             height = 500
         margin.top - margin.bottom;
 
-        browserwidth = $(document).width();
+        browserwidth = 0.9*$(document).width();
         // parse the date / time
         var parseTime = d3.timeParse("%b %Y");
 
@@ -90,7 +96,7 @@ a {
 
             if (error) throw error;
             // set the ranges
-            var x = d3.scaleTime().range([0, browserwidth - 100]);
+            var x = d3.scaleTime().range([5, browserwidth - 100]);
             var y = d3.scaleLinear().range([height, 0]);
 
             var index = getQueryVariable("index")
@@ -149,7 +155,7 @@ a {
 
             function multiple(Variable) {
 
-                variablename = Variable.variable
+                variablename = Variable.variable + " "+Variable.suffix
                 d3.select("#variablename").text(variablename)
 
                 var svg = d3.select(this);
@@ -240,7 +246,7 @@ a {
                     .attr("x", 0)
                     .attr("y", y(Variable.upperrange))
                     .attr("height", chartheight)
-                    .attr("width", "92%")
+                    .attr("width", 0.9*browserwidth)
                     .style("stroke", "#FABD33")
                     .style("stroke-width", "2px")
                     .style("fill", "FABD33")
