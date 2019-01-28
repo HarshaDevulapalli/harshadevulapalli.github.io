@@ -148,493 +148,507 @@
         <h6><i>Use the slider to see how these indices performed in the past five years.</i></h6>
         <div id="slider"></div>
         <br>
-        <div class="row">
-            <div class="text-center col-xs-4" align="center">
-                <p>
-                    <div class="ml-1" id="greencount"> 6 indicators green</div>
-                </p>
-                <div class="text-center col-xs-4" align="center">
-                    <p>
-                        <div class="ml-1" id="redcount"> 6 indicators red</div>
-                    </p>
-                    <div class="text-center col-xs-4" align="center">
-                        <p>
-                            <div class="ml-1" id="yellowcount"> 4 indicators yellow</div>
-                        </p>
-                    </div>
-                    <br>
-                    <h5 class="headings"> CONSUMER ECONOMY</h5>
-                    <table align="center" cellspacing="0" cellpadding="0">
-                        <col width="60%">
-                        <col width="20%">
-                        <col width="15%">
-                        <col width="5%">
-                        <tr>
-                            <th>Indicator</th>
-                            <th>5-year trend</th>
-                            <th>Value</th>
-                            <th>Change</th>
-                        </tr>
-                        <tr>
-                            <td> <a href="template.html?index=0">Passenger vehicle sales <span>(%YoY)</span></td></a>
-                            <td id="graph0"></td>
-                            <td id="pvs_value"></td>
-                            <td id="pvs_change"></td>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=1">Tractor sales <span>(%YoY)</span></td></a>
-                            <td id="graph1"></td>
-                            <td id="ts_value"></td>
-                            <td id="ts_change"></td>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=2">2-wheeler sales <span>(%YoY)</span></td></a>
-                            <td id="graph2"></td>
-                            <td id="tws_value"></td>
-                            <td id="tws_change"></td>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=3">Domestic air passengers <span>(%YoY)</span></td></a>
-                            <td id="graph3"></td>
-                            <td id="dap_value"></td>
-                            <td id="dap_change"></td>
-                        </tr>
-                    </table>
-                    <br>
-                    <h5 class="headings"> INDUSTRIAL SECTOR</h5>
-                    <table align="center" cellspacing="0" cellpadding="0">
-                        <col width="60%">
-                        <col width="20%">
-                        <col width="15%">
-                        <col width="5%">
-                        <tr>
-                            <th>Indicator</th>
-                            <th>5-year trend</th>
-                            <th>Value</th>
-                            <th>Change</th>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=4">PMI Manufacturing</td></a>
-                            <td id="graph4"></td>
-                            <td id="pmi_value"></td>
-                            <td id="pmi_change"></td>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=5">Core Growth <span>(%YoY)</span></td></a>
-                            <td id="graph5"></td>
-                            <td id="c_value"></td>
-                            <td id="c_change"></td>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=6">Banks non-food credit <span>(%YoY)</span></td></a>
-                            <td id="graph6"></td>
-                            <td id="bnfc_value"></td>
-                            <td id="bnfc_change"></td>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=7">Rail freight traffic <span>(%YoY)</span></td></a>
-                            <td id="graph7"></td>
-                            <td id="rf_value"></td>
-                            <td id="rf_change"></td>
-                        </tr>
-                    </table>
-                    <br>
-                    <h5 class="headings"> EXTERNAL SECTOR</h5>
-                    <table align="center" cellspacing="0" cellpadding="0">
-                        <col width="60%">
-                        <col width="20%">
-                        <col width="15%">
-                        <col width="5%">
-                        <tr>
-                            <th>Indicator</th>
-                            <th>5-year trend</th>
-                            <th>Value</th>
-                            <th>Change</th>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=8">Import cover <span>(Fx reserves in months)</span></td></a>
-                            <td id="graph8"></td>
-                            <td id="ic_value"></td>
-                            <td id="ic_change"></td>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=9">Rupee vs Dollar <span>(%MoM)</span></td></a>
-                            <td id="graph9"></td>
-                            <td id="rs_value"></td>
-                            <td id="rs_change"></td>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=10">Current A/C Balance <span>(as % of GDP)</span></td></a>
-                            <td id="graph10"></td>
-                            <td id="cac_value"></td>
-                            <td id="cac_change"></td>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=11">Trade Balance <span>(as % of total trade)</span></td></a>
-                            <td id="graph11"></td>
-                            <td id="tb_value"></td>
-                            <td id="tb_change"></td>
-                        </tr>
-                    </table>
-                    <br>
-                    <h5 class="headings"> EASE OF LIVING</h5>
-                    <table align="center" cellspacing="0" cellpadding="0">
-                        <col width="60%">
-                        <col width="20%">
-                        <col width="15%">
-                        <col width="5%">
-                        <tr>
-                            <th>Indicator</th>
-                            <th>5-year trend</th>
-                            <th>Value</th>
-                            <th>Change</th>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=12">CPI <span>(%YoY)</span>
+        <p id="counts"></p>
+        <h5 class="headings"> CONSUMER ECONOMY</h5>
+        <table align="center" cellspacing="0" cellpadding="0">
+            <col width="60%">
+            <col width="20%">
+            <col width="15%">
+            <col width="5%">
+            <tr>
+                <th>Indicator</th>
+                <th>5-year trend</th>
+                <th>Value</th>
+                <th>Change</th>
+            </tr>
+            <tr>
+                <td> <a href="template.html?index=0">Passenger vehicle sales <span>(%YoY)</span></td></a>
+                <td id="graph0"></td>
+                <td id="pvs_value"></td>
+                <td id="pvs_change"></td>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=1">Tractor sales <span>(%YoY)</span></td></a>
+                <td id="graph1"></td>
+                <td id="ts_value"></td>
+                <td id="ts_change"></td>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=2">2-wheeler sales <span>(%YoY)</span></td></a>
+                <td id="graph2"></td>
+                <td id="tws_value"></td>
+                <td id="tws_change"></td>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=3">Domestic air passengers <span>(%YoY)</span></td></a>
+                <td id="graph3"></td>
+                <td id="dap_value"></td>
+                <td id="dap_change"></td>
+            </tr>
+        </table>
+        <br>
+        <h5 class="headings"> INDUSTRIAL SECTOR</h5>
+        <table align="center" cellspacing="0" cellpadding="0">
+            <col width="60%">
+            <col width="20%">
+            <col width="15%">
+            <col width="5%">
+            <tr>
+                <th>Indicator</th>
+                <th>5-year trend</th>
+                <th>Value</th>
+                <th>Change</th>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=4">PMI Manufacturing</td></a>
+                <td id="graph4"></td>
+                <td id="pmi_value"></td>
+                <td id="pmi_change"></td>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=5">Core Growth <span>(%YoY)</span></td></a>
+                <td id="graph5"></td>
+                <td id="c_value"></td>
+                <td id="c_change"></td>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=6">Banks non-food credit <span>(%YoY)</span></td></a>
+                <td id="graph6"></td>
+                <td id="bnfc_value"></td>
+                <td id="bnfc_change"></td>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=7">Rail freight traffic <span>(%YoY)</span></td></a>
+                <td id="graph7"></td>
+                <td id="rf_value"></td>
+                <td id="rf_change"></td>
+            </tr>
+        </table>
+        <br>
+        <h5 class="headings"> EXTERNAL SECTOR</h5>
+        <table align="center" cellspacing="0" cellpadding="0">
+            <col width="60%">
+            <col width="20%">
+            <col width="15%">
+            <col width="5%">
+            <tr>
+                <th>Indicator</th>
+                <th>5-year trend</th>
+                <th>Value</th>
+                <th>Change</th>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=8">Import cover <span>(Fx reserves in months)</span></td></a>
+                <td id="graph8"></td>
+                <td id="ic_value"></td>
+                <td id="ic_change"></td>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=9">Rupee vs Dollar <span>(%MoM)</span></td></a>
+                <td id="graph9"></td>
+                <td id="rs_value"></td>
+                <td id="rs_change"></td>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=10">Current A/C Balance <span>(as % of GDP)</span></td></a>
+                <td id="graph10"></td>
+                <td id="cac_value"></td>
+                <td id="cac_change"></td>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=11">Trade Balance <span>(as % of total trade)</span></td></a>
+                <td id="graph11"></td>
+                <td id="tb_value"></td>
+                <td id="tb_change"></td>
+            </tr>
+        </table>
+        <br>
+        <h5 class="headings"> EASE OF LIVING</h5>
+        <table align="center" cellspacing="0" cellpadding="0">
+            <col width="60%">
+            <col width="20%">
+            <col width="15%">
+            <col width="5%">
+            <tr>
+                <th>Indicator</th>
+                <th>5-year trend</th>
+                <th>Value</th>
+                <th>Change</th>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=12">CPI <span>(%YoY)</span>
                 </td></a>
-                            <td id="graph12"></td>
-                            <td id="cpi_value"></td>
-                            <td id="cpi_change"></td>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=13">Core CPI <span>(%YoY)</span></td></a>
-                            <td id="graph13"></td>
-                            <td id="corecpi_value"></td>
-                            <td id="corecpi_change"></td>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=14">Rural Wages <span>(%YoY)</span></td></a>
-                            <td id="graph14"></td>
-                            <td id="rw_value"></td>
-                            <td id="rw_change"></td>
-                        </tr>
-                        <tr>
-                            <td><a href="template.html?index=15">Job Outlook <span>(net response %)</span></td></a>
-                            <td id="graph15"></td>
-                            <td id="jo_value"></td>
-                            <td id="jo_change"></td>
-                        </tr>
-                    </table>
-                </div>
-                <script>
-                d3.json("dashboard-rawdata.json", function(error, Data) {
-
-                    var formatDateIntoYear = d3.timeFormat("%Y");
-                    var formatDate = d3.timeFormat("%b %Y");
-
-
-                    var startDate = new Date("2013-12-31"),
-                        endDate = new Date("2019-01-01");
-
-                    var margin = { top: 0, right: 50, bottom: 0, left: 50 },
-                        width = 375 - margin.left - margin.right,
-                        height = 100 - margin.top - margin.bottom;
-
-                    var svg = d3.select("#slider")
-                        .append("svg")
-                        .attr("width", width + margin.left + margin.right)
-                        .attr("height", height);
-
-                    var x = d3.scaleTime()
-                        .domain([startDate, endDate])
-                        .range([0, width])
-                        .clamp(true);
-
-                    var slider = svg.append("g")
-                        .attr("class", "slider")
-                        .attr("transform", "translate(" + margin.left + "," + height / 2 + ")");
-
-                    slider.append("line")
-                        .attr("class", "track")
-                        .attr("x1", x.range()[0])
-                        .attr("x2", x.range()[1])
-                        .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-                        .attr("class", "track-inset")
-                        .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-                        .attr("class", "track-overlay")
-                        .call(d3.drag()
-                            .on("start.interrupt", function() { slider.interrupt(); })
-                            .on("start drag", function() { hue(x.invert(d3.event.x)); }));
-
-                    slider.insert("g", ".track-overlay")
-                        .attr("class", "ticks")
-                        .attr("transform", "translate(0," + 18 + ")")
-                        .selectAll("text")
-                        .data(x.ticks(6))
-                        .enter()
-                        .append("text")
-                        .attr("x", x)
-                        .attr("y", 10)
-                        .attr("text-anchor", "middle")
-                        .text(function(d) { return formatDateIntoYear(d); });
-
-                    var label = slider.append("text")
-                        .attr("class", "label")
-                        .attr("text-anchor", "middle")
-                        .text(formatDate(startDate))
-                        .attr("transform", "translate(0," + (-25) + ")")
-
-
-                    var handle = slider.insert("circle", ".track-overlay")
-                        .attr("class", "handle")
-                        .attr("r", 9);
-
-                    slider.transition() // Gratuitous intro!
-                        .duration(750)
-                        .tween("hue", function() {
-                            var i = d3.interpolate(startDate, endDate);
-                            return function(t) { hue(i(t)); };
-                        })
-
-
-                    for (i = 0; i < 16; i++) {
-                        if (i == 12 || i == 13) {
-                            drawReverse(i)
-                        } else {
-                            draw(i)
-                        }
+                <td id="graph12"></td>
+                <td id="cpi_value"></td>
+                <td id="cpi_change"></td>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=13">Core CPI <span>(%YoY)</span></td></a>
+                <td id="graph13"></td>
+                <td id="corecpi_value"></td>
+                <td id="corecpi_change"></td>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=14">Rural Wages <span>(%YoY)</span></td></a>
+                <td id="graph14"></td>
+                <td id="rw_value"></td>
+                <td id="rw_change"></td>
+            </tr>
+            <tr>
+                <td><a href="template.html?index=15">Job Outlook <span>(net response %)</span></td></a>
+                <td id="graph15"></td>
+                <td id="jo_value"></td>
+                <td id="jo_change"></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+    d3.json("dashboard-rawdata.json", function(error, Data) {
+
+        var formatDateIntoYear = d3.timeFormat("%Y");
+        var formatDate = d3.timeFormat("%b %Y");
+
+
+        var startDate = new Date("2013-12-31"),
+            endDate = new Date("2019-01-01");
+
+        var margin = { top: 0, right: 50, bottom: 0, left: 50 },
+            width = 375 - margin.left - margin.right,
+            height = 100 - margin.top - margin.bottom;
+
+        var svg = d3.select("#slider")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height);
+
+        var x = d3.scaleTime()
+            .domain([startDate, endDate])
+            .range([0, width])
+            .clamp(true);
+
+        var slider = svg.append("g")
+            .attr("class", "slider")
+            .attr("transform", "translate(" + margin.left + "," + height / 2 + ")");
+
+        slider.append("line")
+            .attr("class", "track")
+            .attr("x1", x.range()[0])
+            .attr("x2", x.range()[1])
+            .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+            .attr("class", "track-inset")
+            .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+            .attr("class", "track-overlay")
+            .call(d3.drag()
+                .on("start.interrupt", function() { slider.interrupt(); })
+                .on("start drag", function() { hue(x.invert(d3.event.x)); }));
+
+        slider.insert("g", ".track-overlay")
+            .attr("class", "ticks")
+            .attr("transform", "translate(0," + 18 + ")")
+            .selectAll("text")
+            .data(x.ticks(6))
+            .enter()
+            .append("text")
+            .attr("x", x)
+            .attr("y", 10)
+            .attr("text-anchor", "middle")
+            .text(function(d) { return formatDateIntoYear(d); });
+
+        var label = slider.append("text")
+            .attr("class", "label")
+            .attr("text-anchor", "middle")
+            .text(formatDate(startDate))
+            .attr("transform", "translate(0," + (-25) + ")")
+
+
+        var handle = slider.insert("circle", ".track-overlay")
+            .attr("class", "handle")
+            .attr("r", 9);
+
+        slider.transition() // Gratuitous intro!
+            .duration(750)
+            .tween("hue", function() {
+                var i = d3.interpolate(startDate, endDate);
+                return function(t) { hue(i(t)); };
+            })
+
+
+        for (i = 0; i < 16; i++) {
+            if (i == 12 || i == 13) {
+                drawReverse(i)
+            } else {
+                draw(i)
+            }
 
-                    }
+        }
 
-                    function draw(variable) {
+        function draw(variable) {
 
 
-                        var graph = d3.select("#graph" + variable.toString()).append("svg:svg").attr("width", "100px").attr("height", "30px");
+            var graph = d3.select("#graph" + variable.toString()).append("svg:svg").attr("width", "100px").attr("height", "30px");
 
-                        var temparray = Data.data[variable].values
+            var temparray = Data.data[variable].values
 
-                        data = []
-                        for (var i = 0; i < temparray.length; i++) {
-                            data.push(temparray[i].Value)
-                        }
+            data = []
+            for (var i = 0; i < temparray.length; i++) {
+                data.push(temparray[i].Value)
+            }
 
-                        var lowerrange = Data.data[variable].lowerrange
+            var lowerrange = Data.data[variable].lowerrange
 
-                        var upperrange = Data.data[variable].upperrange
+            var upperrange = Data.data[variable].upperrange
 
-                        var max_of_array = Math.max.apply(Math, data)
-                        var min_of_array = Math.min.apply(Math, data)
+            var max_of_array = Math.max.apply(Math, data)
+            var min_of_array = Math.min.apply(Math, data)
 
 
-                        // X scale will fit values from 0-10 within pixels 0-100
-                        var x = d3.scaleLinear().domain([0, temparray.length]).range([0, 100]);
-                        // Y scale will fit values from 0-10 within pixels 0-100
-                        var y = d3.scaleLinear().domain([min_of_array, max_of_array]).range([30, 0]);
+            // X scale will fit values from 0-10 within pixels 0-100
+            var x = d3.scaleLinear().domain([0, temparray.length]).range([0, 100]);
+            // Y scale will fit values from 0-10 within pixels 0-100
+            var y = d3.scaleLinear().domain([min_of_array, max_of_array]).range([30, 0]);
 
 
 
-                        var line = d3.line()
-                            .x(function(d, i) {
-                                return x(i);
-                            })
-                            .y(function(d) {
-                                return y(d);
-                            })
-                            .curve(d3.curveCardinal)
-
-                        var upperrangeper = ((upperrange) / 30) * 100
-                        var lowerrangeper = ((lowerrange) / 30) * 100
-
-
-                        var linearGradient = graph.append("defs")
-                            .append("linearGradient")
-                            .attr("id", "linear-gradient")
-                            .attr("gradientUnits", "userSpaceOnUse")
-                            .attr("x1", 0).attr("y1", y(0))
-                            .attr("x2", 0).attr("y2", y(30));
-
-                        linearGradient.append("stop")
-                            .attr("offset", "0%")
-                            .attr("stop-color", "#D72027")
-
-
-                        linearGradient.append("stop")
-                            .attr("offset", lowerrangeper + "%")
-                            .attr("stop-color", "#D72027")
-
-                        linearGradient.append("stop")
-                            .attr("offset", lowerrangeper + "%")
-                            .attr("stop-color", "#F6921E");
-
-                        linearGradient.append("stop")
-                            .attr("offset", upperrangeper + "%")
-                            .attr("stop-color", "#F6921E");
-
-                        linearGradient.append("stop")
-                            .attr("offset", upperrangeper + "%")
-                            .attr("stop-color", "#81A43E");
-
-                        linearGradient.append("stop")
-                            .attr("offset", "100%")
-                            .attr("stop-color", "#81A43E");
-
-                        graph.append("svg:path").attr("d", line(data)).attr("stroke", "url(#linear-gradient)");
-                    }
-
-                    function drawReverse(variable) {
-
-
-                        var graph = d3.select("#graph" + variable.toString()).append("svg:svg").attr("width", "100px").attr("height", "30px");
-
-                        var temparray = Data.data[variable].values
-
-                        data = []
-                        for (var i = 0; i < temparray.length; i++) {
-                            data.push(temparray[i].Value)
-                        }
-
-                        var lowerrange = Data.data[variable].lowerrange
-
-                        var upperrange = Data.data[variable].upperrange
-
-                        var max_of_array = Math.max.apply(Math, data)
-                        var min_of_array = Math.min.apply(Math, data)
-
-
-                        // X scale will fit values from 0-10 within pixels 0-100
-                        var x = d3.scaleLinear().domain([0, temparray.length]).range([0, 100]);
-                        // Y scale will fit values from 0-10 within pixels 0-100
-                        var y = d3.scaleLinear().domain([min_of_array, max_of_array]).range([30, 0]);
-
-
-
-                        var line = d3.line()
-                            .x(function(d, i) {
-                                return x(i);
-                            })
-                            .y(function(d) {
-                                return y(d);
-                            })
-                            .curve(d3.curveCardinal)
-
-                        var upperrangeper = ((upperrange) / 30) * 100
-                        var lowerrangeper = ((lowerrange) / 30) * 100
-
-
-                        var linearGradient2 = graph.append("defs")
-                            .append("linearGradient")
-                            .attr("id", "linear-gradient2")
-                            .attr("gradientUnits", "userSpaceOnUse")
-                            .attr("x1", 0).attr("y1", y(0))
-                            .attr("x2", 0).attr("y2", y(30));
-
-                        linearGradient2.append("stop")
-                            .attr("offset", "0%")
-                            .attr("stop-color", "#81A43E")
-
-
-                        linearGradient2.append("stop")
-                            .attr("offset", upperrangeper + "%")
-                            .attr("stop-color", "#81A43E")
-
-                        linearGradient2.append("stop")
-                            .attr("offset", upperrangeper + "%")
-                            .attr("stop-color", "#F6921E");
-
-                        linearGradient2.append("stop")
-                            .attr("offset", lowerrangeper + "%")
-                            .attr("stop-color", "#F6921E");
-
-                        linearGradient2.append("stop")
-                            .attr("offset", lowerrangeper + "%")
-                            .attr("stop-color", "#D72027");
-
-                        linearGradient2.append("stop")
-                            .attr("offset", "100%")
-                            .attr("stop-color", "#D72027");
-
-                        graph.append("svg:path").attr("d", line(data)).attr("stroke", "url(#linear-gradient2)");
-                    }
-
-
-
-                    function hue(h) {
-                        var monthlyData = new Array();
-                        var monthlyArrows = new Array();
-                        if (error) throw error;
-                        for (var key in Data.data) {
-                            var array = Data.data[key].values
-                            var upperrange = Data.data[key].upperrange
-                            var lowerrange = Data.data[key].lowerrange
-
-                            arraylength = array.length;
-                            chosendate = formatDate(h)
-                            for (var i = 0; i < arraylength; i++) {
-                                if (chosendate == (array[i].Year)) {
-                                    monthlyData.push(array[i].Value)
-                                    if (array[i].Value > upperrange) {
-                                        monthlyArrows.push("🢅")
-                                    } else if (array[i].Value < lowerrange) {
-                                        monthlyArrows.push("🢇")
-                                    } else {
-                                        monthlyArrows.push("🢀🢂")
-                                    }
-                                }
-
-                            }
-                        }
-
-
-                        handle.attr("cx", x(h));
-                        label
-                            .attr("x", x(h))
-                            .text(formatDate(h));
-
-                        d3.select("#pvs_value").text(monthlyData[0].toFixed(2))
-                        d3.select("#pvs_change").text(monthlyArrows[0])
-                        d3.select("#ts_value").text(monthlyData[1].toFixed(2))
-                        d3.select("#ts_change").text(monthlyArrows[1])
-                        d3.select("#tws_value").text(monthlyData[2].toFixed(2))
-                        d3.select("#tws_change").text(monthlyArrows[2])
-                        d3.select("#dap_value").text(monthlyData[3].toFixed(2))
-                        d3.select("#dap_change").text(monthlyArrows[3])
-                        d3.select("#pmi_value").text(monthlyData[4].toFixed(2))
-                        d3.select("#pmi_change").text(monthlyArrows[4])
-                        d3.select("#c_value").text(monthlyData[5].toFixed(2))
-                        d3.select("#c_change").text(monthlyArrows[5])
-                        d3.select("#bnfc_value").text(monthlyData[6].toFixed(2))
-                        d3.select("#bnfc_change").text(monthlyArrows[6])
-                        d3.select("#rf_value").text(monthlyData[7].toFixed(2))
-                        d3.select("#rf_change").text(monthlyArrows[7])
-                        d3.select("#ic_value").text(monthlyData[8].toFixed(2))
-                        d3.select("#ic_change").text(monthlyArrows[8])
-                        d3.select("#rs_value").text(monthlyData[9].toFixed(2))
-                        d3.select("#rs_change").text(monthlyArrows[9])
-                        d3.select("#cac_value").text(monthlyData[10].toFixed(2))
-                        d3.select("#cac_change").text(monthlyArrows[10])
-                        d3.select("#tb_value").text(monthlyData[11].toFixed(2))
-                        d3.select("#tb_change").text(monthlyArrows[11])
-                        d3.select("#cpi_value").text(monthlyData[12].toFixed(2))
-                        d3.select("#cpi_change").text(monthlyArrows[12])
-                        d3.select("#corecpi_value").text(monthlyData[13].toFixed(2))
-                        d3.select("#corecpi_change").text(monthlyArrows[13])
-                        d3.select("#rw_value").text(monthlyData[14].toFixed(2))
-                        d3.select("#rw_change").text(monthlyArrows[14])
-                        d3.select("#jo_value").text(monthlyData[15].toFixed(2))
-                        d3.select("#jo_change").text(monthlyArrows[15])
-
-
-                        $("td:contains(🢅)").css("color", "#81A43E");
-                        $("td:contains(🢇)").css("color", "#D72027");
-                        $("td:contains(🢀🢂)").css("color", "#F6921E");
-
-                        $(document).ready(function() {
-                            var positivecount =  $("td:contains(🢅)").length;
-                            var negativecount =  $("td:contains(🢇)").length;
-                            var neutralcount =  $("td:contains(🢀🢂)").length;
-                        
-
-                            d3.select("#greencount").html("<h5><b>"+ positivecount + " </b><br>indicators are in the green.</h5>")
-                            d3.select("#redcount").html("<h5><b>"+negativecount + " </b><br>indicators are in the red.</h5>")
-                            d3.select("#yellowcount").html("<h5><b>"+neutralcount + " </b><br>indicators are in line with their five year averages.</h5>")
-                        });
-
-
-
-
-                    }
-
-
+            var line = d3.line()
+                .x(function(d, i) {
+                    return x(i);
                 })
-                </script>
+                .y(function(d) {
+                    return y(d);
+                })
+                .curve(d3.curveCardinal)
+
+            var upperrangeper = ((upperrange) / 30) * 100
+            var lowerrangeper = ((lowerrange) / 30) * 100
+
+
+            var linearGradient = graph.append("defs")
+                .append("linearGradient")
+                .attr("id", "linear-gradient")
+                .attr("gradientUnits", "userSpaceOnUse")
+                .attr("x1", 0).attr("y1", y(0))
+                .attr("x2", 0).attr("y2", y(30));
+
+            linearGradient.append("stop")
+                .attr("offset", "0%")
+                .attr("stop-color", "#D72027")
+
+
+            linearGradient.append("stop")
+                .attr("offset", lowerrangeper + "%")
+                .attr("stop-color", "#D72027")
+
+            linearGradient.append("stop")
+                .attr("offset", lowerrangeper + "%")
+                .attr("stop-color", "#F6921E");
+
+            linearGradient.append("stop")
+                .attr("offset", upperrangeper + "%")
+                .attr("stop-color", "#F6921E");
+
+            linearGradient.append("stop")
+                .attr("offset", upperrangeper + "%")
+                .attr("stop-color", "#81A43E");
+
+            linearGradient.append("stop")
+                .attr("offset", "100%")
+                .attr("stop-color", "#81A43E");
+
+            graph.append("svg:path").attr("d", line(data)).attr("stroke", "url(#linear-gradient)");
+        }
+
+        function drawReverse(variable) {
+
+
+            var graph = d3.select("#graph" + variable.toString()).append("svg:svg").attr("width", "100px").attr("height", "30px");
+
+            var temparray = Data.data[variable].values
+
+            data = []
+            for (var i = 0; i < temparray.length; i++) {
+                data.push(temparray[i].Value)
+            }
+
+            var lowerrange = Data.data[variable].lowerrange
+
+            var upperrange = Data.data[variable].upperrange
+
+            var max_of_array = Math.max.apply(Math, data)
+            var min_of_array = Math.min.apply(Math, data)
+
+
+            // X scale will fit values from 0-10 within pixels 0-100
+            var x = d3.scaleLinear().domain([0, temparray.length]).range([0, 100]);
+            // Y scale will fit values from 0-10 within pixels 0-100
+            var y = d3.scaleLinear().domain([min_of_array, max_of_array]).range([30, 0]);
+
+
+
+            var line = d3.line()
+                .x(function(d, i) {
+                    return x(i);
+                })
+                .y(function(d) {
+                    return y(d);
+                })
+                .curve(d3.curveCardinal)
+
+            var upperrangeper = ((upperrange) / 30) * 100
+            var lowerrangeper = ((lowerrange) / 30) * 100
+
+
+            var linearGradient2 = graph.append("defs")
+                .append("linearGradient")
+                .attr("id", "linear-gradient2")
+                .attr("gradientUnits", "userSpaceOnUse")
+                .attr("x1", 0).attr("y1", y(0))
+                .attr("x2", 0).attr("y2", y(30));
+
+            linearGradient2.append("stop")
+                .attr("offset", "0%")
+                .attr("stop-color", "#81A43E")
+
+
+            linearGradient2.append("stop")
+                .attr("offset", upperrangeper + "%")
+                .attr("stop-color", "#81A43E")
+
+            linearGradient2.append("stop")
+                .attr("offset", upperrangeper + "%")
+                .attr("stop-color", "#F6921E");
+
+            linearGradient2.append("stop")
+                .attr("offset", lowerrangeper + "%")
+                .attr("stop-color", "#F6921E");
+
+            linearGradient2.append("stop")
+                .attr("offset", lowerrangeper + "%")
+                .attr("stop-color", "#D72027");
+
+            linearGradient2.append("stop")
+                .attr("offset", "100%")
+                .attr("stop-color", "#D72027");
+
+            graph.append("svg:path").attr("d", line(data)).attr("stroke", "url(#linear-gradient2)");
+        }
+
+
+        function Arrowfier(index, value, array, upperrange, lowerrange) {
+
+            if(index==12||index==13){
+                if (value > upperrange) {
+                array.push("🢇")
+            } else if (value < lowerrange) {
+                array.push("🢅")
+            } else {
+                array.push("🢀🢂")
+            }
+            }
+            else{
+                if (value > upperrange) {
+                array.push("🢅")
+            } else if (value < lowerrange) {
+                array.push("🢇")
+            } else {
+                array.push("🢀🢂")
+            }
+            }
+          
+        }
+
+
+
+        function hue(h) {
+            var monthlyData = new Array();
+            var monthlyArrows = new Array();
+            if (error) throw error;
+            var count=0;
+            for (var key in Data.data) {
+                var array = Data.data[key].values
+                var upperrange = Data.data[key].upperrange
+                var lowerrange = Data.data[key].lowerrange
+
+                arraylength = array.length;
+                chosendate = formatDate(h)
+                for (var i = 0; i < arraylength; i++) {
+
+                    if (chosendate == (array[i].Year)) {
+                        monthlyData.push(array[i].Value)
+                        Arrowfier(count,array[i].Value,monthlyArrows,upperrange,lowerrange)
+                    }
+
+                }
+
+                monthlyData.push(array[array.length - 1].Value)
+                Arrowfier(count,array[array.length - 1].Value,monthlyArrows,upperrange,lowerrange)
+
+                count=count+1;
+            }
+
+
+
+
+            handle.attr("cx", x(h));
+            label
+                .attr("x", x(h))
+                .text(formatDate(h));
+
+            d3.select("#pvs_value").text(monthlyData[0].toFixed(2))
+            d3.select("#pvs_change").text(monthlyArrows[0])
+            d3.select("#ts_value").text(monthlyData[1].toFixed(2))
+            d3.select("#ts_change").text(monthlyArrows[1])
+            d3.select("#tws_value").text(monthlyData[2].toFixed(2))
+            d3.select("#tws_change").text(monthlyArrows[2])
+            d3.select("#dap_value").text(monthlyData[3].toFixed(2))
+            d3.select("#dap_change").text(monthlyArrows[3])
+            d3.select("#pmi_value").text(monthlyData[4].toFixed(2))
+            d3.select("#pmi_change").text(monthlyArrows[4])
+            d3.select("#c_value").text(monthlyData[5].toFixed(2))
+            d3.select("#c_change").text(monthlyArrows[5])
+            d3.select("#bnfc_value").text(monthlyData[6].toFixed(2))
+            d3.select("#bnfc_change").text(monthlyArrows[6])
+            d3.select("#rf_value").text(monthlyData[7].toFixed(2))
+            d3.select("#rf_change").text(monthlyArrows[7])
+            d3.select("#ic_value").text(monthlyData[8].toFixed(2))
+            d3.select("#ic_change").text(monthlyArrows[8])
+            d3.select("#rs_value").text(monthlyData[9].toFixed(2))
+            d3.select("#rs_change").text(monthlyArrows[9])
+            d3.select("#cac_value").text(monthlyData[10].toFixed(2))
+            d3.select("#cac_change").text(monthlyArrows[10])
+            d3.select("#tb_value").text(monthlyData[11].toFixed(2))
+            d3.select("#tb_change").text(monthlyArrows[11])
+            d3.select("#cpi_value").text(monthlyData[12].toFixed(2))
+            d3.select("#cpi_change").text(monthlyArrows[12])
+            d3.select("#corecpi_value").text(monthlyData[13].toFixed(2))
+            d3.select("#corecpi_change").text(monthlyArrows[13])
+            d3.select("#rw_value").text(monthlyData[14].toFixed(2))
+            d3.select("#rw_change").text(monthlyArrows[14])
+            d3.select("#jo_value").text(monthlyData[15].toFixed(2))
+            d3.select("#jo_change").text(monthlyArrows[15])
+
+
+            $("td:contains(🢅)").css("color", "#81A43E");
+            $("td:contains(🢇)").css("color", "#D72027");
+            $("td:contains(🢀🢂)").css("color", "#F6921E");
+
+            $(document).ready(function() {
+                var positivecount = $("td:contains(🢅)").length;
+                var negativecount = $("td:contains(🢇)").length;
+                var neutralcount = $("td:contains(🢀🢂)").length;
+
+                d3.select("#counts").html("As of "+ formatDate(h)+" ," +positivecount + " indicators are in the green. "+negativecount+" are in red, "+neutralcount+" are in line.")
+
+                // d3.select("#greencount").html("<h5><b>" + positivecount + " </b><br>indicators are in the green, </h5>")
+                // d3.select("#redcount").html("<h5><b>" + negativecount + " </b><br> are in red and </h5>")
+                // d3.select("#yellowcount").html("<h5><b>" + neutralcount + " </b><br>indicators are in line.</h5>")
+            });
+
+
+
+
+        }
+
+
+    })
+    </script>
 </body>

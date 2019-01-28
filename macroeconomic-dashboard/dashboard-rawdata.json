@@ -3,9 +3,9 @@
     "data": [
         {
             "variable": "Passenger vehicle sales (domestic)",
-            "code":"pvs",
-            "upperrange": 6.57,
-            "lowerrange": 2.30,
+            "code": "pvs",
+            "upperrange": 6.566902543,
+            "lowerrange": 2.302911864,
             "suffix": "(% YoY)",
             "values": [
             {
@@ -239,12 +239,20 @@
             {
                 "Year": "Oct 2018",
                 "Value": 0.626265245
+            },
+            {
+                "Year": "Nov 2018",
+                "Value": -0.767584361
+            },
+            {
+                "Year": "Dec 2018",
+                "Value": 0.316846136
             }]
         },
         {
             "variable": "Tractor sales (domestic)",
-            "upperrange": 12.14,
-            "lowerrange": 1.30,
+            "upperrange": 12.39188759,
+            "lowerrange": 1.59843081,
             "suffix": "(% YoY)",
             "values": [
             {
@@ -474,12 +482,24 @@
             {
                 "Year": "Sep 2018",
                 "Value": -12.25747817
+            },
+            {
+                "Year": "Oct 2018",
+                "Value": 23.16951731
+            },
+            {
+                "Year": "Nov 2018",
+                "Value": 31.1565252
+            },
+            {
+                "Year": "Dec 2018",
+                "Value": 8.928850665
             }]
         },
         {
             "variable": "2-wheeler sales",
-            "upperrange": 11.74,
-            "lowerrange": 6.33,
+            "upperrange": 11.73915997,
+            "lowerrange": 6.330315339,
             "suffix": "(% YoY)",
             "values": [
             {
@@ -713,12 +733,20 @@
             {
                 "Year": "Oct 2018",
                 "Value": 17.23496353
+            },
+            {
+                "Year": "Nov 2018",
+                "Value": 7.146805207
+            },
+            {
+                "Year": "Dec 2018",
+                "Value": -2.218559916
             }]
         },
         {
             "variable": "Domestic air passengers",
-            "upperrange": 20.19,
-            "lowerrange": 16.76,
+            "upperrange": 20.18863461,
+            "lowerrange": 16.76069872,
             "suffix": "(% YoY)",
             "values": [
             {
@@ -952,12 +980,16 @@
             {
                 "Year": "Oct 2018",
                 "Value": 13.31
+            },
+            {
+                "Year": "Nov 2018",
+                "Value": 11.03
             }]
         },
         {
             "variable": "PMI manufacturing",
-            "upperrange": 52.00,
-            "lowerrange": 51.41,
+            "upperrange": 52.000439346,
+            "lowerrange": 51.40893987,
             "suffix": "",
             "values": [
             {
@@ -1191,12 +1223,20 @@
             {
                 "Year": "Oct 2018",
                 "Value": 53.1
+            },
+            {
+                "Year": "Nov 2018",
+                "Value": 54
+            },
+            {
+                "Year": "Dec 2018",
+                "Value": 53.2
             }]
         },
         {
             "variable": "Core (8-infrastructure sectors) growth",
-            "upperrange": 4.85,
-            "lowerrange": 3.67,
+            "upperrange": 4.855298049,
+            "lowerrange": 3.681368617,
             "suffix": "(% YoY)",
             "values": [
             {
@@ -1426,12 +1466,20 @@
             {
                 "Year": "Sep 2018",
                 "Value": 4.28
+            },
+            {
+                "Year": "Oct 2018",
+                "Value": 4.77
+            },
+            {
+                "Year": "Nov 2018",
+                "Value": 3.5
             }]
         },
         {
             "variable": "Banks' non-food credit",
-            "upperrange": 9.87,
-            "lowerrange": 8.46,
+            "upperrange": 9.94359281,
+            "lowerrange": 8.520973077,
             "suffix": "(% YoY)",
             "values": [
             {
@@ -1652,21 +1700,29 @@
             },
             {
                 "Year": "Jul 2018",
-                "Value": 10.55149654
+                "Value": 10.55138059
             },
             {
                 "Year": "Aug 2018",
-                "Value": 12.42360074
+                "Value": 12.42331137
             },
             {
                 "Year": "Sep 2018",
-                "Value": 11.30582802
+                "Value": 11.30710974
+            },
+            {
+                "Year": "Oct 2018",
+                "Value": 13.3767001
+            },
+            {
+                "Year": "Nov 2018",
+                "Value": 13.75493198
             }]
         },
         {
             "variable": "Rail freight traffic",
-            "upperrange": 3.82,
-            "lowerrange": 2.21,
+            "upperrange": 3.822291715,
+            "lowerrange": 2.207665292,
             "suffix": "(% YoY)",
             "values": [
             {
@@ -1900,12 +1956,20 @@
             {
                 "Year": "Oct 2018",
                 "Value": 9.62756252
+            },
+            {
+                "Year": "Nov 2018",
+                "Value": 5.131164743
+            },
+            {
+                "Year": "Dec 2018",
+                "Value": 3.274310021
             }]
         },
         {
             "variable": "Import cover",
-            "upperrange": 10.8,
-            "lowerrange": 10.02,
+            "upperrange": 10.79572721,
+            "lowerrange": 10.01820946,
             "suffix": "(Fx reserves in months)",
             "values": [
             {
@@ -2139,12 +2203,20 @@
             {
                 "Year": "Oct 2018",
                 "Value": 9.2522
+            },
+            {
+                "Year": "Nov 2018",
+                "Value": 9.2751
+            },
+            {
+                "Year": "Dec 2018",
+                "Value": 9.294
             }]
         },
         {
             "variable": "Rupee vs Dollar",
-            "upperrange": 0,
-            "lowerrange": -0.61,
+            "upperrange": 0.00028729802,
+            "lowerrange": -0.6129111205,
             "suffix": "(% MoM)",
             "values": [
             {
@@ -2381,13 +2453,17 @@
             },
             {
                 "Year": "Nov 2018",
-                "Value": 1.606019692
+                "Value": 2.534511455
+            },
+            {
+                "Year": "Dec 2018",
+                "Value": 1.348500356
             }]
         },
         {
             "variable": "Current A/c balance",
-            "upperrange": -1.04,
-            "lowerrange": -1.44,
+            "upperrange": -1.114420099,
+            "lowerrange": -1.547585641,
             "suffix": "(as % of GDP)",
             "values": [
             {
@@ -2596,21 +2672,33 @@
             },
             {
                 "Year": "Apr 2018",
-                "Value": -2.441461757
+                "Value": -2.459069566
             },
             {
                 "Year": "May 2018",
-                "Value": -2.441461757
+                "Value": -2.459069566
             },
             {
                 "Year": "Jun 2018",
-                "Value": -2.441461757
+                "Value": -2.459069566
+            },
+            {
+                "Year": "Jul 2018",
+                "Value": -3.04122726
+            },
+            {
+                "Year": "Aug 2018",
+                "Value": -3.04122726
+            },
+            {
+                "Year": "Sep 2018",
+                "Value": -3.04122726
             }]
         },
         {
             "variable": "Trade balance",
-            "upperrange": -17.75,
-            "lowerrange": -19.67,
+            "upperrange": -17.7468694,
+            "lowerrange": -19.67648217,
             "suffix": "(as % of total trade)",
             "values": [
             {
@@ -2771,19 +2859,19 @@
             },
             {
                 "Year": "Apr 2017",
-                "Value": -22.49783525
+                "Value": -22.48039766
             },
             {
                 "Year": "May 2017",
-                "Value": -23.03333773
+                "Value": -23.0318301
             },
             {
                 "Year": "Jun 2017",
-                "Value": -23.37778651
+                "Value": -23.37757032
             },
             {
                 "Year": "Jul 2017",
-                "Value": -21.09999681
+                "Value": -21.09882292
             },
             {
                 "Year": "Aug 2017",
@@ -2799,57 +2887,65 @@
             },
             {
                 "Year": "Nov 2017",
-                "Value": -21.36445188
+                "Value": -22.30625466
             },
             {
                 "Year": "Dec 2017",
-                "Value": -21.48567965
+                "Value": -20.3227898
             },
             {
                 "Year": "Jan 2018",
-                "Value": -23.93510581
+                "Value": -23.57247922
             },
             {
                 "Year": "Feb 2018",
-                "Value": -18.93200906
+                "Value": -19.11278333
             },
             {
                 "Year": "Mar 2018",
-                "Value": -18.94466553
+                "Value": -18.72294357
             },
             {
                 "Year": "Apr 2018",
-                "Value": -21.39796087
+                "Value": -21.28200883
             },
             {
                 "Year": "May 2018",
-                "Value": -20.32452575
+                "Value": -20.66885603
             },
             {
                 "Year": "Jun 2018",
-                "Value": -24.0045519
+                "Value": -24.50451752
             },
             {
                 "Year": "Jul 2018",
-                "Value": -25.68148387
+                "Value": -25.86418219
             },
             {
                 "Year": "Aug 2018",
-                "Value": -23.74906299
+                "Value": -23.77607842
             },
             {
                 "Year": "Sep 2018",
-                "Value": -20.09353891
+                "Value": -20.07036211
             },
             {
                 "Year": "Oct 2018",
-                "Value": -24.09968714
+                "Value": -24.10312813
+            },
+            {
+                "Year": "Nov 2018",
+                "Value": -24.00052266
+            },
+            {
+                "Year": "Dec 2018",
+                "Value": -19.04110602
             }]
         },
         {
             "variable": "CPI",
-            "upperrange": 4.59,
-            "lowerrange": 5.51,
+            "upperrange": 4.588806644,
+            "lowerrange": 5.511525589,
             "suffix": "(% YoY)",
             "values": [
             {
@@ -3082,13 +3178,21 @@
             },
             {
                 "Year": "Oct 2018",
-                "Value": 3.31
+                "Value": 3.38
+            },
+            {
+                "Year": "Nov 2018",
+                "Value": 2.33
+            },
+            {
+                "Year": "Dec 2018",
+                "Value": 2.19
             }]
         },
         {
             "variable": "Core CPI",
-            "upperrange": 4.80,
-            "lowerrange": 5.38,
+            "upperrange": 4.796907824,
+            "lowerrange": 5.382057694,
             "suffix": "(% YoY)",
             "values": [
             {
@@ -3322,12 +3426,20 @@
             {
                 "Year": "Oct 2018",
                 "Value": 6.2
+            },
+            {
+                "Year": "Nov 2018",
+                "Value": 5.69
+            },
+            {
+                "Year": "Dec 2018",
+                "Value": 5.73
             }]
         },
         {
             "variable": "Rural wages",
-            "upperrange": 6.25,
-            "lowerrange": 5.38,
+            "upperrange": 6.18015533,
+            "lowerrange": 4.96951133,
             "suffix": "(% YoY)",
             "values": [
             {
@@ -3553,13 +3665,21 @@
             {
                 "Year": "Aug 2018",
                 "Value": 3.59
+            },
+            {
+                "Year": "Sep 2018",
+                "Value": 3.48
+            },
+            {
+                "Year": "Oct 2018",
+                "Value": 3.84
             }]
         },
 
         {
             "variable": "Job Outlook",
-            "upperrange": 6.98,
-            "lowerrange": 5.94,
+            "upperrange": 6.98344531,
+            "lowerrange": 5.93858858,
             "suffix": "(net response %)",
             "values": [
             {
@@ -3784,6 +3904,10 @@
             },
             {
                 "Year": "Aug 2018",
+                "Value": 8.4
+            },
+            {
+                "Year": "Sep 2018",
                 "Value": 8.4
             }]
         }
