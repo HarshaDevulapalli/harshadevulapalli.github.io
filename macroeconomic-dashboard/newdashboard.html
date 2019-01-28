@@ -75,7 +75,8 @@
 
     h6 {
         background-size: auto;
-        font-weight: 300;
+        font-weight: 600;
+        font-size: 1.15em;
     }
 
     /*
@@ -143,7 +144,7 @@
         <br>
         <h4> MINT MACRO TRACKER </h4>
         <br>
-        <h5>A look at 16 high-frequency indicators to gauge India's economic health.</h5>
+        <h6>A look at 16 high-frequency indicators to gauge India's economic health.</h6>
         <br>
         <h6><i>Use the slider to see how these indices performed in the past five years.</i></h6>
         <div id="slider"></div>
@@ -535,57 +536,69 @@
 
         function Arrowfier(index, value, array, upperrange, lowerrange) {
 
-            if(index==12||index==13){
+            if (index == 12 || index == 13) {
                 if (value > upperrange) {
-                array.push("🢇")
-            } else if (value < lowerrange) {
-                array.push("🢅")
+                    array.push("🢇")
+                } else if (value < lowerrange) {
+                    array.push("🢅")
+                } else {
+                    array.push("🢀🢂")
+                }
             } else {
-                array.push("🢀🢂")
-            }
-            }
-            else{
                 if (value > upperrange) {
-                array.push("🢅")
-            } else if (value < lowerrange) {
-                array.push("🢇")
-            } else {
-                array.push("🢀🢂")
+                    array.push("🢅")
+                } else if (value < lowerrange) {
+                    array.push("🢇")
+                } else {
+                    array.push("🢀🢂")
+                }
             }
-            }
-          
+
         }
 
 
 
         function hue(h) {
+
             var monthlyData = new Array();
             var monthlyArrows = new Array();
+
+
             if (error) throw error;
-            var count=0;
+            var count = 0;
             for (var key in Data.data) {
                 var array = Data.data[key].values
+                var list_of_dates = new Array();
+                for (var datekey in array) {
+                    list_of_dates.push(array[datekey].Year)
+                }
+
                 var upperrange = Data.data[key].upperrange
                 var lowerrange = Data.data[key].lowerrange
 
                 arraylength = array.length;
                 chosendate = formatDate(h)
-                for (var i = 0; i < arraylength; i++) {
 
-                    if (chosendate == (array[i].Year)) {
-                        monthlyData.push(array[i].Value)
-                        Arrowfier(count,array[i].Value,monthlyArrows,upperrange,lowerrange)
+                if (list_of_dates.includes(chosendate)) {
+                    console.log("I exist in the database")
+                    for (var i = 0; i < arraylength; i++) {
+                        if (chosendate == (array[i].Year)) {
+                            monthlyData.push(array[i].Value)
+                            Arrowfier(count, array[i].Value, monthlyArrows, upperrange, lowerrange)
+                        }
                     }
 
+                } else {
+                    monthlyData.push(array[array.length - 1].Value)
+                    Arrowfier(count,array[array.length - 1].Value,monthlyArrows,upperrange,lowerrange)
+                    
                 }
 
-                monthlyData.push(array[array.length - 1].Value)
-                Arrowfier(count,array[array.length - 1].Value,monthlyArrows,upperrange,lowerrange)
-
-                count=count+1;
+                    count=count+1;
+    
             }
 
-
+            console.log(monthlyData)
 
 
             handle.attr("cx", x(h));
@@ -636,7 +649,7 @@
                 var negativecount = $("td:contains(🢇)").length;
                 var neutralcount = $("td:contains(🢀🢂)").length;
 
-                d3.select("#counts").html("As of "+ formatDate(h)+" ," +positivecount + " indicators are in the green. "+negativecount+" are in red, "+neutralcount+" are in line.")
+                d3.select("#counts").html("<h6>In " + formatDate(h) + " , " + positivecount + " indicators are in the green, " + negativecount + " are in red, " + neutralcount + " are in line.</h6>")
 
                 // d3.select("#greencount").html("<h5><b>" + positivecount + " </b><br>indicators are in the green, </h5>")
                 // d3.select("#redcount").html("<h5><b>" + negativecount + " </b><br> are in red and </h5>")
