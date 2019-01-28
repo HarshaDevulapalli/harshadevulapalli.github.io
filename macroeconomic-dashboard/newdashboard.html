@@ -69,9 +69,9 @@
         border-bottom: 4px solid #F6921E;
     }
 
-    p {
+ /*   p {
         text-align: center;
-    }
+    }*/
 
 
     h6 {
@@ -150,7 +150,8 @@
         <h6><i>Use the slider to see how these indices performed in the past five years.</i></h6>
         <div id="slider" align="center"></div>
         <br>
-        <p id="counts"></p>
+        <h6 id="counts"></h6>
+        <br>
         <h5 class="headings"> CONSUMER ECONOMY</h5>
         <table align="center" cellspacing="0" cellpadding="0">
             <col width="60%">
@@ -240,7 +241,7 @@
                 <th>Change</th>
             </tr>
             <tr>
-                <td><a href="template.html?index=8">Import cover <span>(Fx reserves in months)</span></td></a>
+                <td><a href="template.html?index=8">Import cover <span>(FX reserves in months)</span></td></a>
                 <td id="graph8"></td>
                 <td id="ic_value"></td>
                 <td id="ic_change"></td>
@@ -303,6 +304,8 @@
                 <td id="jo_change"></td>
             </tr>
         </table>
+        <br>
+        <p align="left"> All data as of 28th January 2018. </p>
     </div>
     <script>
     d3.json("dashboard-rawdata.json", function(error, Data) {
@@ -311,8 +314,8 @@
         var formatDate = d3.timeFormat("%b %Y");
 
 
-        var startDate = new Date("2013-12-31"),
-            endDate = new Date("2019-01-01");
+        var startDate = new Date("2014-01-01"),
+            endDate = new Date("2018-12-31");
 
         var margin = { top: 0, right: 50, bottom: 0, left: 50 },
             width = 375 - margin.left - margin.right,
@@ -344,11 +347,17 @@
                 .on("start.interrupt", function() { slider.interrupt(); })
                 .on("start drag", function() { hue(x.invert(d3.event.x)); }));
 
+
+        myticks=x.ticks();
+        myticks.push(new Date(2014,0,1))
+        myticks.push(new Date(2019,0,1))
+      
+
         slider.insert("g", ".track-overlay")
             .attr("class", "ticks")
             .attr("transform", "translate(0," + 18 + ")")
             .selectAll("text")
-            .data(x.ticks(6))
+            .data(myticks)
             .enter()
             .append("text")
             .attr("x", x)
@@ -646,11 +655,9 @@
                 var negativecount = $("td:contains(🢇)").length;
                 var neutralcount = $("td:contains(🢀🢂)").length;
 
-                d3.select("#counts").html("<h6>In " + formatDate(h) + " , " + positivecount + " indicators are in the green, " + negativecount + " are in red, " + neutralcount + " are in line.</h6>")
+                d3.select("#counts").html("In " + formatDate(h) +", " +positivecount + ", indicators were in the green, " + negativecount + " were in red, " + neutralcount + " were in line.")
 
-                // d3.select("#greencount").html("<h5><b>" + positivecount + " </b><br>indicators are in the green, </h5>")
-                // d3.select("#redcount").html("<h5><b>" + negativecount + " </b><br> are in red and </h5>")
-                // d3.select("#yellowcount").html("<h5><b>" + neutralcount + " </b><br>indicators are in line.</h5>")
+
             });
 
 
