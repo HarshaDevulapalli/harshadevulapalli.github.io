@@ -32,6 +32,7 @@
 
     .slider {
         width: 100%;
+        align-self: center;
     }
 
     table {
@@ -147,7 +148,7 @@
         <h6>A look at 16 high-frequency indicators to gauge India's economic health.</h6>
         <br>
         <h6><i>Use the slider to see how these indices performed in the past five years.</i></h6>
-        <div id="slider"></div>
+        <div id="slider" align="center"></div>
         <br>
         <p id="counts"></p>
         <h5 class="headings"> CONSUMER ECONOMY</h5>
@@ -580,7 +581,6 @@
                 chosendate = formatDate(h)
 
                 if (list_of_dates.includes(chosendate)) {
-                    console.log("I exist in the database")
                     for (var i = 0; i < arraylength; i++) {
                         if (chosendate == (array[i].Year)) {
                             monthlyData.push(array[i].Value)
@@ -597,9 +597,6 @@
                     count=count+1;
     
             }
-
-            console.log(monthlyData)
-
 
             handle.attr("cx", x(h));
             label
