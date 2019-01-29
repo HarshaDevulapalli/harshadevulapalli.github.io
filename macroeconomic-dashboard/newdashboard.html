@@ -25,6 +25,7 @@
 
     a {
         color: #000000;
+        text-decoration: underline;
     }
 
     path {
@@ -81,7 +82,7 @@
     }*/
 
 
-    h6 {
+    h6,span {
         background-size: auto;
         font-weight: 600;
         font-size: 1.15em;
@@ -152,12 +153,12 @@
         <br>
         <h4> MINT MACRO TRACKER </h4>
         <br>
-        <h6>A look at 16 high-frequency indicators to gauge India's economic health.</h6>
+        <h6>A comprehensive overview of 16 high-frequency indicators to track India's economic health.</h6>
         <br>
         <h6><i>Use the slider to see how these indices performed in the past five years.</i></h6>
         <div id="slider" align="center"></div>
         <br>
-        <h6 id="counts"></h6>
+        <h6 id="counts">In <span id="selectmonth" style="color:black"></span> , <span id="negativecount" style="color:#D72027"></span> indicators are in red, <span id="positivecount" style="color:#81A43E"> </span> are in green and <span id="neutralcount" style="color:#F6921E"> </span> are in line.</h6>
         <br>
         <h5 class="headings"> CONSUMER ECONOMY</h5>
         <table align="center" cellspacing="0" cellpadding="0">
@@ -168,36 +169,36 @@
             <tr>
                 <th>Indicator</th>
                 <th>5-year trend</th>
-                <th>Latest value</th>
+                <th>Value</th>
                 <th>Change</th>
             </tr>
             <tr>
-                <td> <a href="template.html?index=0">Passenger vehicle sales <span>(%YoY)</span></td></a>
-                <td id="graph0"></td>
+                <td> <a href="template.html?index=0">Passenger vehicle sales <span>(YoY %)</span></td></a>
+                <td><a href="template.html?index=0" alt= "Click here for more details" title="Click here for more details" ><object id="graph0"></object></a></td>
                 <td id="pvs_value"></td>
                 <td id="pvs_change" align="center"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=1">Tractor sales <span>(%YoY)</span></td></a>
-                <td id="graph1"></td>
+                <td><a href="template.html?index=1">Tractor sales <span>(YoY %)</span></td></a>
+                <td><a href="template.html?index=1" alt= "Click here for more details" title="Click here for more details" ><object id="graph1"></object></a></td>
                 <td id="ts_value"></td>
                 <td id="ts_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=2">2-wheeler sales <span>(%YoY)</span></td></a>
-                <td id="graph2"></td>
+                <td><a href="template.html?index=2">2-wheeler sales <span>(YoY %)</span></td></a>
+                <td><a href="template.html?index=2" alt= "Click here for more details" title="Click here for more details" ><object id="graph2"></object></a></td>
                 <td id="tws_value"></td>
                 <td id="tws_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=3">Domestic air passengers <span>(%YoY)</span></td></a>
-                <td id="graph3"></td>
+                <td><a href="template.html?index=3">Domestic air passengers <span>(YoY %)</span></td></a>
+                <td><a href="template.html?index=3" alt= "Click here for more details" title="Click here for more details" ><object id="graph3"></object></a></td>
                 <td id="dap_value"></td>
                 <td id="dap_change"></td>
             </tr>
         </table>
         <br>
-        <h5 class="headings"> INDUSTRIAL SECTOR</h5>
+        <h5 class="headings">INDUSTRIAL SECTOR</h5>
         <table align="center" cellspacing="0" cellpadding="0">
             <col width="60%">
             <col width="20%">
@@ -206,30 +207,30 @@
             <tr>
                 <th>Indicator</th>
                 <th>5-year trend</th>
-                <th>Latest value</th>
+                <th>Value</th>
                 <th>Change</th>
             </tr>
             <tr>
                 <td><a href="template.html?index=4">PMI Manufacturing</td></a>
-                <td id="graph4"></td>
+                <td><a href="template.html?index=4" alt= "Click here for more details" title="Click here for more details" ><object id="graph4"></object></a></td>
                 <td id="pmi_value"></td>
                 <td id="pmi_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=5">Core Growth <span>(%YoY)</span></td></a>
-                <td id="graph5"></td>
+                <td><a href="template.html?index=5">Core Growth <span>(YoY %)</span></td></a>
+                <td><a href="template.html?index=5" alt= "Click here for more details" title="Click here for more details" ><object id="graph5"></object></a></td>
                 <td id="c_value"></td>
                 <td id="c_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=6">Banks non-food credit <span>(%YoY)</span></td></a>
-                <td id="graph6"></td>
+                <td><a href="template.html?index=6">Banks non-food credit <span>(YoY %)</span></td></a>
+                <td><a href="template.html?index=6" alt= "Click here for more details" title="Click here for more details" ><object id="graph6"></object></a></td>
                 <td id="bnfc_value"></td>
                 <td id="bnfc_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=7">Rail freight traffic <span>(%YoY)</span></td></a>
-                <td id="graph7"></td>
+                <td><a href="template.html?index=7">Rail freight traffic <span>(YoY %)</span></td></a>
+                <td><a href="template.html?index=7" alt= "Click here for more details" title="Click here for more details" ><object id="graph7"></object></a></td>
                 <td id="rf_value"></td>
                 <td id="rf_change"></td>
             </tr>
@@ -244,30 +245,30 @@
             <tr>
                 <th>Indicator</th>
                 <th>5-year trend</th>
-                <th>Latest value</th>
+                <th>Value</th>
                 <th>Change</th>
             </tr>
             <tr>
                 <td><a href="template.html?index=8">Import cover <span>(FX reserves in months)</span></td></a>
-                <td id="graph8"></td>
+                <td><a href="template.html?index=8" alt= "Click here for more details" title="Click here for more details" ><object id="graph8"></object></a></td>
                 <td id="ic_value"></td>
                 <td id="ic_change"></td>
             </tr>
             <tr>
                 <td><a href="template.html?index=9">Rupee vs Dollar <span>(%MoM)</span></td></a>
-                <td id="graph9"></td>
+                <td><a href="template.html?index=9" alt= "Click here for more details" title="Click here for more details" ><object id="graph9"></object></a></td>
                 <td id="rs_value"></td>
                 <td id="rs_change"></td>
             </tr>
             <tr>
                 <td><a href="template.html?index=10">Current A/C Balance <span>(as % of GDP)</span></td></a>
-                <td id="graph10"></td>
+                <td><a href="template.html?index=10" alt= "Click here for more details" title="Click here for more details" ><object id="graph10"></object></a></td>
                 <td id="cac_value"></td>
                 <td id="cac_change"></td>
             </tr>
             <tr>
                 <td><a href="template.html?index=11">Trade Balance <span>(as % of total trade)</span></td></a>
-                <td id="graph11"></td>
+                <td><a href="template.html?index=11" alt= "Click here for more details" title="Click here for more details" ><object id="graph11"></object></a></td>
                 <td id="tb_value"></td>
                 <td id="tb_change"></td>
             </tr>
@@ -282,31 +283,31 @@
             <tr>
                 <th>Indicator</th>
                 <th>5-year trend</th>
-                <th>Latest value</th>
+                <th>Value</th>
                 <th>Change</th>
             </tr>
             <tr>
-                <td><a href="template.html?index=12">CPI <span>(%YoY)</span>
+                <td><a href="template.html?index=12">CPI <span>(YoY %)</span>
                 </td></a>
-                <td id="graph12"></td>
+                <td><a href="template.html?index=12" alt= "Click here for more details" title="Click here for more details" ><object id="graph12"></object></a></td>
                 <td id="cpi_value"></td>
                 <td id="cpi_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=13">Core CPI <span>(%YoY)</span></td></a>
-                <td id="graph13"></td>
+                <td><a href="template.html?index=13">Core CPI <span>(YoY %)</span></td></a>
+                <td><a href="template.html?index=13" alt= "Click here for more details" title="Click here for more details" ><object id="graph13"></object></a></td>
                 <td id="corecpi_value"></td>
                 <td id="corecpi_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=14">Rural Wages <span>(%YoY)</span></td></a>
-                <td id="graph14"></td>
+                <td><a href="template.html?index=14">Rural Wages <span>(YoY %)</span></td></a>
+                <td><a href="template.html?index=14" alt= "Click here for more details" title="Click here for more details" ><object id="graph14"></object></a></td>
                 <td id="rw_value"></td>
                 <td id="rw_change"></td>
             </tr>
             <tr>
                 <td><a href="template.html?index=15">Job Outlook <span>(net response %)</span></td></a>
-                <td id="graph15"></td>
+                <td><a href="template.html?index=15" alt= "Click here for more details" title="Click here for more details" ><object id="graph15"></object></a></td>
                 <td id="jo_value"></td>
                 <td id="jo_change"></td>
             </tr>
@@ -358,7 +359,6 @@
 
         myticks = x.ticks();
         myticks.push(new Date(2014, 0, 1))
-        myticks.push(new Date(2019, 0, 1))
 
 
         slider.insert("g", ".track-overlay")
@@ -662,8 +662,11 @@
                 var positivecount = $("td:contains(▲)").length;
                 var negativecount = $("td:contains(▼)").length;
                 var neutralcount = $("td:contains(◀▶)").length;
-
-                d3.select("#counts").html("In " + formatDate(h) + ", " + positivecount + ", indicators performed better than their 5 year average, " + negativecount + " were worse and " + neutralcount + " were in line.")
+                   d3.select("#selectmonth").html(formatDate(h))
+                   d3.select("#negativecount").html(negativecount)
+                   d3.select("#positivecount").html(positivecount)
+                   d3.select("#neutralcount").html(neutralcount)
+                // d3.select("#counts").html("In " + formatDate(h) + ", " + negativecount + " indicators are in red, " + positivecount + " in green and " + neutralcount + " were in line.")
 
 
             });

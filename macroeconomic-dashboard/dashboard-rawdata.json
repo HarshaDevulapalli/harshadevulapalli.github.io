@@ -4,11 +4,11 @@
         {
             "variable": "Passenger vehicle sales (domestic)",
             "code": "pvs",
-            "description":"This indicator reflects the (YoY%) growth in the domestic sales of passenger cars and vans. Data for the preceding month is released in the second week of every month.",
+            "description":"This indicator reflects the (YoY %) growth in the domestic sales of passenger cars and vans. Data for the preceding month is released in the second week of every month.",
             "source": "CMIE, SIAM",
             "upperrange": 6.566902543,
             "lowerrange": 2.302911864,
-            "suffix": "(% YoY)",
+            "suffix": "(YoY %)",
             "values": [
             {
                 "Year": "Jan 2014",
@@ -253,11 +253,11 @@
         },
         {
             "variable": "Tractor sales (domestic)",
-            "description":"This indicator reflects the (YoY%) growth in the domestic sales of tractors. Data for the preceding month is released in the second week of every month.",
+            "description":"This indicator reflects the (YoY %) growth in the domestic sales of tractors. Data for the preceding month is released in the second week of every month.",
             "source":" CMIE, Tractor Manufacturers Association",
             "upperrange": 12.39188759,
             "lowerrange": 1.59843081,
-            "suffix": "(% YoY)",
+            "suffix": "(YoY %)",
             "values": [
             {
                 "Year": "Jan 2014",
@@ -502,11 +502,11 @@
         },
         {
             "variable": "2-wheeler sales",
-            "description":"This indicator reflects the (YoY%) growth in the domestic sales of two-wheelers. The data for the preceding month is released in the second week of every month.",
+            "description":"This indicator reflects the (YoY %) growth in the domestic sales of two-wheelers. The data for the preceding month is released in the second week of every month.",
             "source": "CMIE, SIAM" ,
             "upperrange": 11.73915997,
             "lowerrange": 6.330315339,
-            "suffix": "(% YoY)",
+            "suffix": "(YoY %)",
             "values": [
             {
                 "Year": "Jan 2014",
@@ -751,11 +751,11 @@
         },
         {
             "variable": "Domestic air passengers",
-            "description":"This indicator reflects the (YoY%) growth in the total number of passengers flying domestic scheduled airlines. ",
+            "description":"This indicator reflects the (YoY %) growth in the total number of passengers flying domestic scheduled airlines. ",
             "source":"CMIE, Ministry of Civil Aviation.",
             "upperrange": 20.18863461,
             "lowerrange": 16.76069872,
-            "suffix": "(% YoY)",
+            "suffix": "(YoY %)",
             "values": [
             {
                 "Year": "Jan 2014",
@@ -1245,11 +1245,11 @@
         },
         {
             "variable": "Core (8-infrastructure sectors) growth",
-            "description":"This indicator reflects the (YoY%) growth in the index of eight core infrastructure industries. The eight industries are --Electricity , steel, refinery products, crude oil, coal, cement, natural gas and fertilizers. The index for the previous month is released on the last working day of every month. The Eight Core Industries comprise 40.27 per cent of the weight of items included in the Index of Industrial Production (IIP).",
+            "description":"This indicator reflects the (YoY %) growth in the index of eight core infrastructure industries. The eight industries are --Electricity , steel, refinery products, crude oil, coal, cement, natural gas and fertilizers. The index for the previous month is released on the last working day of every month. The Eight Core Industries comprise 40.27 per cent of the weight of items included in the Index of Industrial Production (IIP).",
             "source":"Bloomberg, Ministry of Commerce and Industry",
             "upperrange": 4.855298049,
             "lowerrange": 3.681368617,
-            "suffix": "(% YoY)",
+            "suffix": "(YoY %)",
             "values": [
             {
                 "Year": "Jan 2014",
@@ -1494,7 +1494,7 @@
             "source":"Bloomberg, RBI",
             "upperrange": 9.94359281,
             "lowerrange": 8.520973077,
-            "suffix": "(% YoY)",
+            "suffix": "(YoY %)",
             "values": [
             {
                 "Year": "Jan 2014",
@@ -1739,7 +1739,7 @@
             "source":"CMIE, Ministry of Railways",
             "upperrange": 3.822291715,
             "lowerrange": 2.207665292,
-            "suffix": "(% YoY)",
+            "suffix": "(YoY %)",
             "values": [
             {
                 "Year": "Jan 2014",
@@ -2972,7 +2972,7 @@
             "source":"Bloomberg, MOSPI",
             "upperrange": 4.588806644,
             "lowerrange": 5.511525589,
-            "suffix": "(% YoY)",
+            "suffix": "(YoY %)",
             "values": [
             {
                 "Year": "Jan 2014",
@@ -3221,7 +3221,7 @@
             "source":"Bloomberg",
             "upperrange": 4.796907824,
             "lowerrange": 5.382057694,
-            "suffix": "(% YoY)",
+            "suffix": "(YoY %)",
             "values": [
             {
                 "Year": "Jan 2014",
@@ -3466,11 +3466,11 @@
         },
         {
             "variable": "Rural wages",
-            "description":"This indicator reflects the (%YoY) growth in the average wage rate for men engaged as rural labourers in agricultural and non-agricultural activities. ",
+            "description":"This indicator reflects the (YoY %) growth in the average wage rate for men engaged as rural labourers in agricultural and non-agricultural activities. ",
             "source":"CMIE, Ministry of Labour and Employment",
             "upperrange": 6.18015533,
             "lowerrange": 4.96951133,
-            "suffix": "(% YoY)",
+            "suffix": "(YoY %)",
             "values": [
             {
                 "Year": "Jan 2014",
