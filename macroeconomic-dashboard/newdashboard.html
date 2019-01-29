@@ -146,7 +146,7 @@
         z-index: -1 !important;
     }
 
-    #selectmonth{
+    #selectmonth, #negativepreposition, #positivepreposition,#neutralpreposition{
         font-size: 1em;
 
     }
@@ -176,7 +176,7 @@
         <h6><i>Use the slider to see how these indicators performed over the past five years.</i></h6>
         <div id="slider" align="center"></div>
         <br>
-        <h6 id="counts">In <span id="selectmonth" style="color:black"></span> , <span id="negativecount" style="color:#D72027"></span> indicators were in red, <span id="positivecount" style="color:#81A43E"> </span> were in green and <span id="neutralcount" style="color:#F6921E"> </span> were in line.</h6>
+        <h6 id="counts">In <span id="selectmonth" style="color:black"></span> , <span id="negativecount" style="color:#D72027"></span> indicators <span id="negativepreposition" style="color:black"></span> in red, <span id="positivecount" style="color:#81A43E"> </span> <span id="positivepreposition" style="color:black"></span> in green and <span id="neutralcount" style="color:#F6921E"> </span> <span id="neutralpreposition" style="color:black"></span> in line.</h6>
         <br>
         <h5 class="headings"> CONSUMER ECONOMY</h5>
         <table align="center" cellspacing="0" cellpadding="0">
@@ -681,11 +681,26 @@
                 var negativecount = $("td:contains(▼)").length;
                 var neutralcount = $("td:contains(◀▶)").length;
                    d3.select("#selectmonth").html(formatDate(h))
-                   d3.select("#negativecount").html("<b>"+negativecount+"</b>")
-                   d3.select("#positivecount").html(positivecount)
-                   d3.select("#neutralcount").html(neutralcount)
-                // d3.select("#counts").html("In " + formatDate(h) + ", " + negativecount + " indicators are in red, " + positivecount + " in green and " + neutralcount + " were in line.")
+                d3.select("#negativecount").html("<b>"+negativecount+"</b>")
+                d3.select("#positivecount").html("<b>"+positivecount+"<b>")
+                d3.select("#neutralcount").html("<b>"+neutralcount+"<b>")
 
+                function preposition(count){
+                    if(count>1){
+                        return "were"
+                    }
+                    else{
+                        return "was"
+                    }
+                }
+
+                positivepreposition=preposition(positivecount)
+                negativepreposition=preposition(negativecount)
+                neutralpreposition=preposition(neutralcount)
+
+                d3.select("#negativepreposition").html(negativepreposition)
+                d3.select("#positivepreposition").html(positivepreposition)
+                d3.select("#neutralpreposition").html(neutralpreposition)
 
             });
 
