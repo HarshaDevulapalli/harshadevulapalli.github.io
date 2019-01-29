@@ -1,8 +1,14 @@
+<!DOCTYPE html>
 <head>
     <meta charset="utf-8">
+    <script>
+    function resizeIframe(obj) {
+        obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+    }
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js">
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
@@ -69,7 +75,7 @@
         border-bottom: 4px solid #F6921E;
     }
 
- /*   p {
+    /*   p {
         text-align: center;
     }*/
 
@@ -348,10 +354,10 @@
                 .on("start drag", function() { hue(x.invert(d3.event.x)); }));
 
 
-        myticks=x.ticks();
-        myticks.push(new Date(2014,0,1))
-        myticks.push(new Date(2019,0,1))
-      
+        myticks = x.ticks();
+        myticks.push(new Date(2014, 0, 1))
+        myticks.push(new Date(2019, 0, 1))
+
 
         slider.insert("g", ".track-overlay")
             .attr("class", "ticks")
@@ -599,12 +605,12 @@
 
                 } else {
                     monthlyData.push(array[array.length - 1].Value)
-                    Arrowfier(count,array[array.length - 1].Value,monthlyArrows,upperrange,lowerrange)
-                    
+                    Arrowfier(count, array[array.length - 1].Value, monthlyArrows, upperrange, lowerrange)
+
                 }
 
-                    count=count+1;
-    
+                count = count + 1;
+
             }
 
             handle.attr("cx", x(h));
@@ -655,7 +661,7 @@
                 var negativecount = $("td:contains(🢇)").length;
                 var neutralcount = $("td:contains(🢀🢂)").length;
 
-                d3.select("#counts").html("In " + formatDate(h) +", " +positivecount + ", indicators were in the green, " + negativecount + " were in red, " + neutralcount + " were in line.")
+                d3.select("#counts").html("In " + formatDate(h) + ", " + positivecount + ", indicators were in the green, " + negativecount + " were in red, " + neutralcount + " were in line.")
 
 
             });

@@ -1,9 +1,11 @@
 {
-    "period": "November 2018",
+    "period": "January 2018",
     "data": [
         {
             "variable": "Passenger vehicle sales (domestic)",
             "code": "pvs",
+            "description":"This indicator reflects the (YoY%) growth in the domestic sales of passenger cars and vans. Data for the preceding month is released in the second week of every month.",
+            "source": "CMIE, SIAM",
             "upperrange": 6.566902543,
             "lowerrange": 2.302911864,
             "suffix": "(% YoY)",
@@ -251,6 +253,8 @@
         },
         {
             "variable": "Tractor sales (domestic)",
+            "description":"This indicator reflects the (YoY%) growth in the domestic sales of tractors. Data for the preceding month is released in the second week of every month.",
+            "source":" CMIE, Tractor Manufacturers Association",
             "upperrange": 12.39188759,
             "lowerrange": 1.59843081,
             "suffix": "(% YoY)",
@@ -498,6 +502,8 @@
         },
         {
             "variable": "2-wheeler sales",
+            "description":"This indicator reflects the (YoY%) growth in the domestic sales of two-wheelers. The data for the preceding month is released in the second week of every month.",
+            "source": "CMIE, SIAM" ,
             "upperrange": 11.73915997,
             "lowerrange": 6.330315339,
             "suffix": "(% YoY)",
@@ -745,6 +751,8 @@
         },
         {
             "variable": "Domestic air passengers",
+            "description":"This indicator reflects the (YoY%) growth in the total number of passengers flying domestic scheduled airlines. ",
+            "source":"CMIE, Ministry of Civil Aviation.",
             "upperrange": 20.18863461,
             "lowerrange": 16.76069872,
             "suffix": "(% YoY)",
@@ -988,6 +996,8 @@
         },
         {
             "variable": "PMI manufacturing",
+            "description":"This indicator reflects the performance of the manufacturing sector based on a monthly survey of private sector companies. The index for the previous month is released on the first working day of every month. A reading below 50 indicates contraction in manufacturing activity, while a reading above 50 indicates expansion in activity.",
+            "source":"Bloomberg, Markit Economics",
             "upperrange": 52.000439346,
             "lowerrange": 51.40893987,
             "suffix": "",
@@ -1235,6 +1245,8 @@
         },
         {
             "variable": "Core (8-infrastructure sectors) growth",
+            "description":"This indicator reflects the (YoY%) growth in the index of eight core infrastructure industries. The eight industries are --Electricity , steel, refinery products, crude oil, coal, cement, natural gas and fertilizers. The index for the previous month is released on the last working day of every month. The Eight Core Industries comprise 40.27 per cent of the weight of items included in the Index of Industrial Production (IIP).",
+            "source":"Bloomberg, Ministry of Commerce and Industry",
             "upperrange": 4.855298049,
             "lowerrange": 3.681368617,
             "suffix": "(% YoY)",
@@ -1477,7 +1489,9 @@
             }]
         },
         {
-            "variable": "Banks' non-food credit",
+            "variable": "Bank's non-food credit",
+            "description":"This indicator reflects the (%YoY) growth in the outstanding amount of credit to businesses each month, and is released on the last working day of every month.",
+            "source":"Bloomberg, RBI",
             "upperrange": 9.94359281,
             "lowerrange": 8.520973077,
             "suffix": "(% YoY)",
@@ -1721,6 +1735,8 @@
         },
         {
             "variable": "Rail freight traffic",
+            "description":"This indicator reflects the (%YoY) growth in the freight traffic of major commodities (measured in ‘000 tonnes). The data for previous month is released in the second week of every month.",
+            "source":"CMIE, Ministry of Railways",
             "upperrange": 3.822291715,
             "lowerrange": 2.207665292,
             "suffix": "(% YoY)",
@@ -1968,9 +1984,11 @@
         },
         {
             "variable": "Import cover",
+            "description":"This indicator measures the number of months of imports that can be covered with foreign exchange reserves available with the central bank of the country.",
+            "source":"Bloomberg",
             "upperrange": 10.79572721,
             "lowerrange": 10.01820946,
-            "suffix": "(Fx reserves in months)",
+            "suffix": "(FX reserves in months)",
             "values": [
             {
                 "Year": "Jan 2014",
@@ -2215,6 +2233,8 @@
         },
         {
             "variable": "Rupee vs Dollar",
+            "description":"This indicator reflects the month-on-month change in the average daily USD-INR exchange rate.",
+            "source":"Bloomberg",
             "upperrange": 0.00028729802,
             "lowerrange": -0.6129111205,
             "suffix": "(% MoM)",
@@ -2462,6 +2482,8 @@
         },
         {
             "variable": "Current A/c balance",
+            "description":"This indicator reflects India’s current account balance as a percentage of quarterly GDP. The data for every quarter is released with a three month lag.",
+            "source":"Bloomberg, RBI",
             "upperrange": -1.114420099,
             "lowerrange": -1.547585641,
             "suffix": "(as % of GDP)",
@@ -2697,6 +2719,8 @@
         },
         {
             "variable": "Trade balance",
+            "description": "This indicator reflects India’s trade balance as a percentage of India’s total trade. The data on India’s merchandise exports and imports for the previous month is released in the third week of every month." ,
+            "source": " CMIE, Ministry of Commerce and Industry",
             "upperrange": -17.7468694,
             "lowerrange": -19.67648217,
             "suffix": "(as % of total trade)",
@@ -2944,6 +2968,8 @@
         },
         {
             "variable": "CPI",
+            "description":"This indicator reflects India’s retail inflation based on the Consumer Price Index (CPI). The data for the previous month is released on the 12th of every month (or the next working day, if that day is a holiday).",
+            "source":"Bloomberg, MOSPI",
             "upperrange": 4.588806644,
             "lowerrange": 5.511525589,
             "suffix": "(% YoY)",
@@ -3191,6 +3217,8 @@
         },
         {
             "variable": "Core CPI",
+            "description":"This indicator reflects India’s CPI inflation excluding volatile components such as food & beverages; pan, tobacco and alcohol; LPG, kerosene, and other fuels within fuel and light sub-component; and petrol and diesel within transportation and communication category under the miscellaneous sub-component of CPI index. It carries a weight of 47.4% in the CPI basket.",
+            "source":"Bloomberg",
             "upperrange": 4.796907824,
             "lowerrange": 5.382057694,
             "suffix": "(% YoY)",
@@ -3438,6 +3466,8 @@
         },
         {
             "variable": "Rural wages",
+            "description":"This indicator reflects the (%YoY) growth in the average wage rate for men engaged as rural labourers in agricultural and non-agricultural activities. ",
+            "source":"CMIE, Ministry of Labour and Employment",
             "upperrange": 6.18015533,
             "lowerrange": 4.96951133,
             "suffix": "(% YoY)",
@@ -3678,6 +3708,8 @@
 
         {
             "variable": "Job Outlook",
+            "description":"This indicator reflects the ‘net response’ rate in the Reserve Bank of India’s quarterly industrial outlook surveys to the question of job outlook, and measures the difference between optimistic and pessimistic respondents in each round of the survey. The range of values goes from -100 to 100, with higher values indicating greater optimism on jobs.",
+            "source": "CMIE, RBI",
             "upperrange": 6.98344531,
             "lowerrange": 5.93858858,
             "suffix": "(net response %)",

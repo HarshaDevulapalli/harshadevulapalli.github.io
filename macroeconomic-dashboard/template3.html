@@ -1,0 +1,358 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <style>
+    body {
+        font-family: "Lato", sans-serif;
+        font-weight: 400 font-size: 2.4em;
+        color: #000000;
+    }
+
+    a {
+        color: #000000;
+    }
+
+    path {
+        stroke-width: 2.5px;
+        fill: none;
+    }
+
+    h4 {
+        font-weight: 900;
+
+    }
+
+    .slider {
+        width: 100%;
+        align-self: center;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: none;
+    }
+
+    td,
+    th {
+        text-align: left;
+        padding: 8px;
+    }
+
+    td {
+        font-weight: 600;
+        font-size: 0.95em;
+        text-align: left;
+    }
+
+    th,
+    span {
+        font-weight: 300;
+        font-size: 1em;
+        color: #727D83;
+    }
+
+    h5 {
+        font-weight: 900;
+    }
+
+    .headings {
+        text-align: left !important;
+        border-bottom: 4px solid #F6921E;
+    }
+
+    /*   p {
+        text-align: center;
+    }*/
+
+
+    h6 {
+        background-size: auto;
+        font-weight: 600;
+        font-size: 1.15em;
+    }
+
+    /*
+    line.track-overlay{
+        stroke: orange;
+        stroke-width: 5px;
+        fill:orange;
+        position:absolute; !important;
+        z-index:-1 !important;
+    }*/
+
+    .index {
+        align-items: center
+    }
+
+    .ticks,
+    .label {
+        font-size: 17.5px;
+    }
+
+    .label {
+        font-weight: 400;
+    }
+
+    .track,
+    .track-inset,
+    .track-overlay {
+        stroke-linecap: square;
+        stroke: #F6921E;
+        stroke-width: #F6921E;
+    }
+
+    .track {
+        stroke: #F6921E;
+        stroke-opacity: 0.3;
+        stroke-width: 10px;
+    }
+
+    .track-inset {
+        stroke: #F6921E;
+        stroke-width: 8px;
+    }
+
+    .track-overlay {
+        pointer-events: stroke;
+        stroke-width: 10px;
+        stroke: transparent;
+        cursor: crosshair;
+    }
+
+    .handle {
+        fill: #ffffff;
+        stroke: #F6921E;
+        stroke-opacity: 1;
+        stroke-width: 3px;
+        position: absolute;
+         !important;
+        z-index: -1 !important;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        <h4> MINT MACRO TRACKER </h4>
+        <br>
+        <h6>A look at 16 high-frequency indicators to gauge India's economic health.</h6>
+        <br>
+        <h6><i>Use the slider to see how these indices performed in the past five years.</i></h6>
+        <div id="graph" align="center"></div>
+        <br>
+        <p align="left"> All data as of 28th January 2018. </p>
+    </div>
+    <script>
+    d3.json("dashboard-rawdata.json", function(error, Data) {
+
+        var formatDateIntoYear = d3.timeFormat("%Y");
+        var formatDate = d3.timeFormat("%b %Y");
+
+        var margin = { top: 0, right: 50, bottom: 0, left: 50 },
+            width = 375 - margin.left - margin.right,
+            height = 300 - margin.top - margin.bottom;
+
+        // var svg = d3.select("#graph")
+        //     .append("svg")
+        //     .attr("width", width + margin.left + margin.right)
+        //     .attr("height", height);
+
+
+        i=14
+
+        if (i == 12 || i == 13) {
+            drawReverse(i)
+        } else {
+            draw(i)
+        }
+
+
+
+        function draw(variable) {
+
+
+            var graph = d3.select("#graph").append("svg:svg").attr("width", width).attr("height", height);
+
+            var temparray = Data.data[variable].values
+
+            data = []
+            for (var i = 0; i < temparray.length; i++) {
+                data.push(temparray[i].Value)
+            }
+
+            var lowerrange = Data.data[variable].lowerrange
+
+            var upperrange = Data.data[variable].upperrange
+
+            var max_of_array = Math.max.apply(Math, data)
+            var min_of_array = Math.min.apply(Math, data)
+
+
+            // X scale will fit values from 0-10 within pixels 0-100
+            var x = d3.scaleLinear().domain([0, temparray.length]).range([0, width]);
+            // Y scale will fit values from 0-10 within pixels 0-
+            var y = d3.scaleLinear().domain([min_of_array, max_of_array]).range([height/2, 0]);100
+
+
+
+            var line = d3.line()
+                .x(function(d, i) {
+                    return x(i);
+                })
+                .y(function(d) {
+                    return y(d);
+                })
+                .curve(d3.curveCardinal)
+
+            var upperrangeper = ((upperrange) / height) * 100
+            var lowerrangeper = ((lowerrange) / height) * 100
+
+
+            var linearGradient = graph.append("defs")
+                .append("linearGradient")
+                .attr("id", "linear-gradient")
+                .attr("gradientUnits", "userSpaceOnUse")
+                .attr("x1", 0).attr("y1", y(0))
+                .attr("x2", 0).attr("y2", y(height));
+
+            linearGradient.append("stop")
+                .attr("offset", "0%")
+                .attr("stop-color", "#D72027")
+
+
+            linearGradient.append("stop")
+                .attr("offset", lowerrangeper + "%")
+                .attr("stop-color", "#D72027")
+
+            linearGradient.append("stop")
+                .attr("offset", lowerrangeper + "%")
+                .attr("stop-color", "#F6921E");
+
+            linearGradient.append("stop")
+                .attr("offset", upperrangeper + "%")
+                .attr("stop-color", "#F6921E");
+
+            linearGradient.append("stop")
+                .attr("offset", upperrangeper + "%")
+                .attr("stop-color", "#81A43E");
+
+            linearGradient.append("stop")
+                .attr("offset", "100%")
+                .attr("stop-color", "#81A43E");
+
+            graph.append("svg:path").attr("d", line(data)).attr("stroke", "url(#linear-gradient)");
+        }
+
+        function drawReverse(variable) {
+
+
+            var graph = d3.select("#graph" + variable.toString()).append("svg:svg").attr("width", "100px").attr("height", "30px");
+
+            var temparray = Data.data[variable].values
+
+            data = []
+            for (var i = 0; i < temparray.length; i++) {
+                data.push(temparray[i].Value)
+            }
+
+            var lowerrange = Data.data[variable].lowerrange
+
+            var upperrange = Data.data[variable].upperrange
+
+            var max_of_array = Math.max.apply(Math, data)
+            var min_of_array = Math.min.apply(Math, data)
+
+
+            // X scale will fit values from 0-10 within pixels 0-100
+            var x = d3.scaleLinear().domain([0, temparray.length]).range([0, 100]);
+            // Y scale will fit values from 0-10 within pixels 0-100
+            var y = d3.scaleLinear().domain([min_of_array, max_of_array]).range([30, 0]);
+
+
+
+            var line = d3.line()
+                .x(function(d, i) {
+                    return x(i);
+                })
+                .y(function(d) {
+                    return y(d);
+                })
+                .curve(d3.curveCardinal)
+
+            var upperrangeper = ((upperrange) / 30) * 100
+            var lowerrangeper = ((lowerrange) / 30) * 100
+
+
+            var linearGradient2 = graph.append("defs")
+                .append("linearGradient")
+                .attr("id", "linear-gradient2")
+                .attr("gradientUnits", "userSpaceOnUse")
+                .attr("x1", 0).attr("y1", y(0))
+                .attr("x2", 0).attr("y2", y(30));
+
+            linearGradient2.append("stop")
+                .attr("offset", "0%")
+                .attr("stop-color", "#81A43E")
+
+
+            linearGradient2.append("stop")
+                .attr("offset", upperrangeper + "%")
+                .attr("stop-color", "#81A43E")
+
+            linearGradient2.append("stop")
+                .attr("offset", upperrangeper + "%")
+                .attr("stop-color", "#F6921E");
+
+            linearGradient2.append("stop")
+                .attr("offset", lowerrangeper + "%")
+                .attr("stop-color", "#F6921E");
+
+            linearGradient2.append("stop")
+                .attr("offset", lowerrangeper + "%")
+                .attr("stop-color", "#D72027");
+
+            linearGradient2.append("stop")
+                .attr("offset", "100%")
+                .attr("stop-color", "#D72027");
+
+            graph.append("svg:path").attr("d", line(data)).attr("stroke", "url(#linear-gradient2)");
+        }
+
+
+        function Arrowfier(index, value, array, upperrange, lowerrange) {
+
+            if (index == 12 || index == 13) {
+                if (value > upperrange) {
+                    array.push("🢇")
+                } else if (value < lowerrange) {
+                    array.push("🢅")
+                } else {
+                    array.push("🢀🢂")
+                }
+            } else {
+                if (value > upperrange) {
+                    array.push("🢅")
+                } else if (value < lowerrange) {
+                    array.push("🢇")
+                } else {
+                    array.push("🢀🢂")
+                }
+            }
+
+        }
+
+
+
+    })
+    </script>
+</body>

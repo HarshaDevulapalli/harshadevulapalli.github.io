@@ -1,113 +1,125 @@
 <!DOCTYPE html>
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-<meta charset="utf-8">
-<style>
-/* set the CSS */
 
-.line {
-    fill: none;
-    stroke: black;
-    stroke-width: 3.5px;
-    stroke-linejoin: round;
-    stroke-linecap: bevel;
+<head>
+    <script>
+    function resizeIframe(obj) {
+        obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <meta charset="utf-8">
+    <style>
+    /* set the CSS */
+
+    .line {
+        fill: none;
+        stroke: black;
+        stroke-width: 3.5px;
+        stroke-linejoin: round;
+        stroke-linecap: bevel;
+    }
+
+
+    body {
+        font-family: "Lato", sans-serif;
+        font-weight: 400 font-size: 2.4em;
+        color: #000000;
+    }
+
+    body {
+        font-family: "Lato", sans-serif;
+        font-weight: 400 font-size: 2.4em;
+        color: #000000;
+    }
+
+    h2 {
+        font-weight: 900;
+        font-size: 2em;
+
+
+    }
+
+    a {
+        color: #000000;
+    }
+
+    path {
+        stroke-width: 2.5px;
+        fill: none;
+    }
+
+    h4 {
+        font-weight: 900;
+
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: none;
+    }
+
+    td,
+    th {
+        text-align: left;
+        padding: 8px;
+    }
+
+    td {
+        font-weight: 600;
+        font-size: 0.95em;
+        text-align: left;
+    }
+
+    th,
+    span {
+        font-weight: 300;
+        font-size: 1em;
+        color: #727D83;
+    }
+
+    h5 {
+        font-weight: 900;
+    }
+
+    .headings {
+        text-align: left !important;
+        border-bottom: 4px solid #F6921E;
+    }
+
+
+    a,
+    h6,text {
+        background-size: auto;
+        font-weight: 400;
+        font-size: 1.15em;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-block-start:
+    }
+
+
+
+    text,
+    .axis,
+    .tooltip,
+     {
+    font-family: "Lato", sans-serif !important;
+    font-weight: 400 font-size: 2.4em !important;
 }
 
+    .tooltip {
+        position: absolute;
+        z-index: 10;
+    }
 
-body {
-    font-family: "Lato", sans-serif;
-    font-weight: 400 font-size: 2.4em;
-    color: #000000;
-}
-
-body {
-    font-family: "Lato", sans-serif;
-    font-weight: 400 font-size: 2.4em;
-    color: #000000;
-}
-
-h2 {
-    font-weight: 900;
-    font-size: 2em;
-
-
-}
-
-a {
-    color: #000000;
-}
-
-path {
-    stroke-width: 2.5px;
-    fill: none;
-}
-
-h4 {
-    font-weight: 900;
-
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-    border: none;
-}
-
-td,
-th {
-    text-align: left;
-    padding: 8px;
-}
-
-td {
-    font-weight: 600;
-    font-size: 0.95em;
-    text-align: left;
-}
-
-th,
-span {
-    font-weight: 300;
-    font-size: 1em;
-    color: #727D83;
-}
-
-h5 {
-    font-weight: 900;
-}
-
-.headings {
-    text-align: left !important;
-    border-bottom: 4px solid #F6921E;
-}
-
-
-h6 {
-    background-size: auto;
-    font-weight: 600;
-    font-size: 1.15em;
-}
-
-
-
-text,
-.axis,
-.tooltip,
-a {
-    font-family: "Lato", sans-serif;
-    font-weight: 400 font-size: 2.4em;
-}
-
-.tooltip {
-    position: absolute;
-    z-index: 10;
-}
-
-.tooltip h5 {
-    background-color: white;
-    border: black 1px solid;
-    padding: 2px;
-}
-</style>
+    .tooltip h5 {
+        background-color: white;
+        border: black 1px solid;
+        padding: 2px;
+    }
+    </style>
+</head>
 
 <body>
     <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -115,164 +127,140 @@ a {
     <div id="container">
         <a id="back" href="newdashboard.html">Back to the macrotracker</a>
         <h2 id="variablename" align="left" class="headings"></h2>
+        <h6 id="description" align="left"></h6>
         <div id="chart"></div>
-        <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
-        <script>
-        // set the dimensions and margins of the graph
-        var margin = { top: 30, right: 30, bottom: 30, left: 30 },
-            width = "100%",
-            height = 500
-        margin.top - margin.bottom;
+        <h6 class="col-sm-6" id="source"></h6>
+        <a class="col-sm-6" id="download" href=#>Download as csv</a>
+    </div>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
+    <script>
+    // set the dimensions and margins of the graph
+    var margin = { top: 30, right: 30, bottom: 30, left: 30 },
+        width = "100%",
+        height = 400 - margin.top - margin.bottom;
 
-        browserwidth = 0.9 * $(document).width();
-    
-        // parse the date / time
-        var parseTime = d3.timeParse("%b %Y");
+    browserwidth = 0.9 * $(document).width();
 
-        d3.json("dashboard-rawdata.json", function(error, Data) {
+    // parse the date / time
+    var parseTime = d3.timeParse("%b %Y");
 
-            if (error) throw error;
-            // set the ranges
-            var x = d3.scaleTime().range([5, browserwidth - 100]);
-            var y = d3.scaleLinear().range([height, 0]);
+    d3.json("dashboard-rawdata.json", function(error, Data) {
 
-            var index = getQueryVariable("index")
+        if (error) throw error;
+        // set the ranges
+        var x = d3.scaleTime().range([5, browserwidth - 0.1 * browserwidth]);
+        var y = d3.scaleLinear().range([height, 0]);
 
-            const values = Data.data[index].values
-            const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
-            const header = Object.keys(values[0])
-            let csv = values.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
-            csv.unshift(header.join(','))
-            csv = csv.join('\r\n')
+        var index = getQueryVariable("index")
 
-            $('#download').click(function() {
-                filename = 'export.csv';
+        const values = Data.data[index].values
 
-                if (!csv.match(/^data:text\/csv/i)) {
-                    csv = 'data:text/csv;charset=utf-8,' + csv;
-                }
+        console.log(Data.data[index].variable)
+        const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
+        const header = Object.keys(values[0])
+        let csv = values.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
+        csv.unshift(header.join(','))
+        csv = csv.join('\r\n')
 
-                data = encodeURI(csv);
+        $('#download').click(function() {
+            filename = Data.data[index].variable + ' Jan 2014 to Dec 2018.csv';
 
-                link = document.createElement('a');
-                link.setAttribute('href', data);
-                link.setAttribute('download', filename);
-                link.click();
-            })
+            if (!csv.match(/^data:text\/csv/i)) {
+                csv = 'data:text/csv;charset=utf-8,' + csv;
+            }
 
+            data = encodeURI(csv);
 
-            // define the line
-            var valueline = d3.line()
-                .x(function(d) { return x(d.Year); })
-                .y(function(d) { return y(d.Value); });
-
-            var svg = d3.select("#chart").selectAll("svg")
-                .data([Data.data[index]])
-                .enter().append("svg")
-                .attr("width", "100%")
-                .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform",
-                    "translate(" + margin.left + "," + margin.top + ")")
-                .each(multiple)
-                .call(responsivefy);
-
-            var tooltip = d3.select("body")
-                .append("div")
-                .attr("class", "tooltip");
-
-            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            link = document.createElement('a');
+            link.setAttribute('href', data);
+            link.setAttribute('download', filename);
+            link.click();
+        })
 
 
-            function multiple(Variable) {
+        // define the line
+        var valueline = d3.line()
+            .x(function(d) { return x(d.Year); })
+            .y(function(d) { return y(d.Value); })
+            .curve(d3.curveCardinal);
+
+        var svg = d3.select("#chart").selectAll("svg")
+            .data([Data.data[index]])
+            .enter().append("svg")
+            .attr("width", "100%")
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")")
+            .each(multiple);
+
+        var tooltip = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip");
+
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 
-                var svg = d3.select(this);
-                data = Variable.values
+        function multiple(Variable) {
 
 
-                data.forEach(function(d) {
-
-                    d.Year = parseTime(d.Year);
-                    d.Value = +d.Value;
-                });
-
-                var extent = d3.extent(data, function(d) { return d.Year; })
-
-                x.domain(extent);
-
-                buffer = (d3.max(data, function(d) { return +d.Value; }) - d3.min(data, function(d) { return +d.Value; })) / 10
-
-                y.domain([d3.min(data, function(d) { return +d.Value; }) - buffer, d3.max(data, function(d) { return +d.Value; }) + buffer]);
+            var svg = d3.select(this);
+            data = Variable.values
 
 
+            data.forEach(function(d) {
 
-                if (index == 12 || index == 13) {
+                d.Year = parseTime(d.Year);
+                d.Value = +d.Value;
+            });
 
+            var extent = d3.extent(data, function(d) { return d.Year; })
 
-                    var chartheight = y(Variable.upperrange) - y(Variable.lowerrange)
+            x.domain(extent);
 
-                    if (data[data.length - 1]['Value'] < Variable.upperrange) {
+            buffer = (d3.max(data, function(d) { return +d.Value; }) - d3.min(data, function(d) { return +d.Value; })) / 10
 
-
-                        var arrow = "▲"
-
-                    } else if (data[data.length - 1]['Value'] > Variable.lowerrange) {
-
-
-                        var arrow = "▼"
-                    } else {
+            y.domain([d3.min(data, function(d) { return +d.Value; }) - buffer, d3.max(data, function(d) { return +d.Value; }) + buffer]);
 
 
-                        var arrow = "◀ ▶"
-                    }
+
+            if (index == 12 || index == 13) {
 
 
+                var chartheight = y(Variable.upperrange) - y(Variable.lowerrange)
+
+                if (data[data.length - 1]['Value'] < Variable.upperrange) {
+                    var arrow = "🢅"
+                } else if (data[data.length - 1]['Value'] > Variable.lowerrange) {
+                    var arrow = "🢇"
                 } else {
-
-                    var chartheight = y(Variable.lowerrange) - y(Variable.upperrange)
-
-                    if (data[data.length - 1]['Value'] < Variable.lowerrange) {
-
-
-                        var arrow = "▼"
-
-                    } else if (data[data.length - 1]['Value'] > Variable.upperrange) {
-
-
-                        var arrow = "▲"
-                    } else {
-
-
-                        var arrow = "◀ ▶"
-                    }
-
+                    var arrow = "🢀🢂"
                 }
 
+                svg.append("g")
+                    .attr("class", "band")
+                    .append("rect")
+                    .attr("x", 0)
+                    .attr("y", y(Variable.lowerrange))
+                    .attr("height", chartheight)
+                    .attr("width", 0.9 * browserwidth)
+                    .style("stroke", "#A2ACB2")
+                    .style("stroke-width", "2px")
+                    .style("fill", "A2ACB2")
+                    .style("opacity", 0.4);
 
 
-                if (arrow == "▲") {
-                    relative = "above"
-                } else if (arrow == "▼") {
-                    relative = "below"
+            } else {
+
+                var chartheight = y(Variable.lowerrange) - y(Variable.upperrange)
+
+                if (data[data.length - 1]['Value'] < Variable.lowerrange) {
+                    var arrow = "🢇"
+                } else if (data[data.length - 1]['Value'] > Variable.upperrange) {
+                    var arrow = "🢅"
                 } else {
-                    relative = "in  line"
+                    var arrow = "🢀🢂"
                 }
-
-
-                var formatDate = d3.timeFormat("%B %Y");
-
-
-                variablevalue = data[data.length - 1]['Value'].toFixed(2)
-                variablemonth = data[data.length - 1]['Year']
-                variabletrend = "It is " + relative + " the five year average."
-                variablename = Variable.variable + " " + Variable.suffix
-                d3.select("#variablename").html(variablename + " : " + variablevalue + arrow)
-
-
-                d3.select("#variablevalue").text(variablevalue)
-                d3.select("#variabletrend").text(variabletrend)
-
 
                 svg.append("g")
                     .attr("class", "band")
@@ -281,24 +269,70 @@ a {
                     .attr("y", y(Variable.upperrange))
                     .attr("height", chartheight)
                     .attr("width", 0.9 * browserwidth)
-                    .style("stroke", "#FABD33")
+                    .style("stroke", "#A2ACB2")
                     .style("stroke-width", "2px")
-                    .style("fill", "FABD33")
-                    .style("opacity", 0.25);
+                    .style("fill", "A2ACB2")
+                    .style("opacity", 0.4);
 
 
-                // Add the valueline path.
-                svg.append("path")
-                    .data([data])
-                    .attr("class", "line")
-                    .attr("d", valueline);
+            }
+
+
+            var formatDate = d3.timeFormat("%B %Y");
+
+
+            variablevalue = data[data.length - 1]['Value'].toFixed(2)
+            variablemonth = data[data.length - 1]['Year']
+            variablename = Variable.variable + " " + Variable.suffix
+            d3.select("#variablename").html(variablename + " : " + variablevalue + "<span> " + arrow + "</span>")
+            d3.select("#description").html(Variable.description)
+            d3.select("#source").html("Source: " + Variable.source)
+
+            $("span:contains(🢅)").css("color", "#81A43E");
+            $("span:contains(🢇)").css("color", "#D72027");
+            $("span:contains(🢀🢂)").css("color", "#F6921E");
 
 
 
-                var circles = svg.selectAll("circle")
-                    .data(data)
-                    .enter()
-                    .append("circle");
+
+            // Add the valueline path.
+            svg.append("path")
+                .data([data])
+                .attr("class", "line")
+                .attr("d", valueline);
+
+
+
+            var circles = svg.selectAll("circle")
+                .data(data)
+                .enter()
+                .append("circle");
+
+            if (index == 12 || index == 13) {
+
+                circles.attr("cx", function(d) {
+                        return x((d.Year))
+                    })
+                    .attr("cy", function(d) {
+                        return y((d.Value))
+                    })
+                    .attr("r", 4)
+                    .style("fill", function(d) {
+                        if (d.Value > Variable.lowerrange)
+                            return "#D72027";
+                        else if (d.Value < Variable.upperrange) {
+                            return "#81A43E";
+                        } else {
+                            return "#F6921E"
+                        }
+                    })
+                    .style("stroke", "black")
+                    .style("stroke-width", "2px")
+                    .style("opacity", 1); // this is optional - if you want visible dots or not!
+
+
+            } else {
+
 
 
                 circles.attr("cx", function(d) {
@@ -307,110 +341,99 @@ a {
                     .attr("cy", function(d) {
                         return y((d.Value))
                     })
-                    .attr("r", 3)
+                    .attr("r", 4)
+                    .style("fill", function(d) {
+                        if (d.Value > Variable.upperrange)
+                            return "#81A43E";
+                        else if (d.Value < Variable.lowerrange) {
+                            return "#D72027";
+                        } else {
+                            return "#F6921E"
+                        }
+                    })
+                    .style("stroke", "black")
+                    .style("stroke-width", "2px")
                     .style("opacity", 1); // this is optional - if you want visible dots or not!
 
-                circles
-                    .on("mouseover", mouseoverFunc)
-                    .on("mousemove", mousemoveFunc)
-                    .on("mouseout", mouseoutFunc);
-
-                svg.append("g")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(d3.axisBottom(x).ticks(5))
-                    .style("font-size", "15px");
-
-                // Add the Y Axis
-
-                svg.append("g")
-                    .call(d3.axisLeft(y).ticks(5).tickSize(-browserwidth + 95))
-                    .style("font-size", "15px");
-
-
-            }
-
-            function mouseoverFunc(d) {
-                // Adding a subtle animation to increase the dot size when over it!
-                d3.select(this)
-                    .transition()
-                    .duration(50)
-                    .style("opacity", 1)
-                    .attr("r", 7);
-                tooltip
-                    .style("display", null) // this removes the display none setting from it
-                    .html("<h5><b>" + d.Value.toFixed(2) +
-                        "</b><br>" + months[d.Year.getUTCMonth()] + " " + d.Year.getFullYear() + "</h5>");
-            }
-
-            function mousemoveFunc(d) {
-                tooltip
-                    .style("top", (d3.event.pageY - 100) + "px")
-                    .style("left", (d3.event.pageX + 5) + "px");
-            }
-
-            function mouseoutFunc(d) {
-                // shrink it back down:
-                d3.select(this)
-                    .transition()
-                    .style("opacity", 0)
-                    .attr("r", 3);
-                tooltip.style("display", "none"); // this sets it to invisible!
-            }
-
-            function getQueryVariable(variable) {
-                var query = window.location.search.substring(1);
-                var vars = query.split("&");
-                for (var i = 0; i < vars.length; i++) {
-                    var pair = vars[i].split("=");
-                    if (pair[0] == variable) { return pair[1]; }
-                }
-
-
-                return (false);
-            }
-
-            function download(filename, text) {
-                var element = document.createElement('a');
-                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-                element.setAttribute('download', filename);
-
-                element.style.display = 'none';
-                document.body.appendChild(element);
-
-                element.click();
-
-                document.body.removeChild(element);
-            }
-
-            function responsivefy(svg) {
-                // get container + svg aspect ratio
-                var container = d3.select(svg.node().parentNode),
-                    width = parseInt(svg.style("width")),
-                    height = parseInt(svg.style("height")),
-                    aspect = width / height;
-
-                // add viewBox and preserveAspectRatio properties,
-                // and call resize so that svg resizes on inital page load
-                svg.attr("viewBox", "0 0 " + width + " " + height)
-                    .attr("perserveAspectRatio", "xMinYMid")
-                    .call(resize);
-
-                // to register multiple listeners for same event type, 
-                // you need to add namespace, i.e., 'click.foo'
-                // necessary if you call invoke this function for multiple svgs
-                // api docs: https://github.com/mbostock/d3/wiki/Selections#on
-                d3.select(window).on("resize." + container.attr("id"), resize);
-
-                // get width of container and resize svg to fit it
-                function resize() {
-                    var targetWidth = parseInt(container.style("width"));
-                    svg.attr("width", targetWidth);
-                    svg.attr("height", Math.round(targetWidth / aspect));
-                }
             }
 
 
-        });
-        </script>
-        <a id="download" href=#>Download as csv</a>
+
+
+            circles
+                .on("mouseover", mouseoverFunc)
+                .on("mousemove", mousemoveFunc)
+                .on("mouseout", mouseoutFunc);
+
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x).ticks(5))
+                .style("font-size", "15px");
+
+            // Add the Y Axis
+
+            svg.append("g")
+                .call(d3.axisLeft(y).ticks(5).tickSize(-0.9 * browserwidth))
+                .style("font-size", "15px");
+
+
+        }
+
+        function mouseoverFunc(d) {
+            // Adding a subtle animation to increase the dot size when over it!
+            d3.select(this)
+                .transition()
+                .duration(50)
+                .style("opacity", 1)
+                .attr("r", 7);
+            tooltip
+                .style("display", null) // this removes the display none setting from it
+                .html("<h5><b>" + d.Value.toFixed(2) +
+                    "</b><br>" + months[d.Year.getMonth()] + " " + d.Year.getFullYear() + "</h5>");
+        }
+
+        function mousemoveFunc(d) {
+            tooltip
+                .style("top", (d3.event.pageY - 100) + "px")
+                .style("left", (d3.event.pageX - 30) + "px");
+        }
+
+        function mouseoutFunc(d) {
+            // shrink it back down:
+            d3.select(this)
+                .transition()
+                .style("opacity", 1)
+                .attr("r", 3);
+            tooltip.style("display", "none"); // this sets it to invisible!
+        }
+
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) { return pair[1]; }
+            }
+
+
+            return (false);
+        }
+
+        function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+
+
+    });
+    </script>
 </body>
