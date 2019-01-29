@@ -34,7 +34,7 @@
 
     h2 {
         font-weight: 900;
-        font-size: 2em;
+        font-size: 1.75em;
 
 
     }
@@ -130,7 +130,10 @@
         <h6 id="description" align="left"></h6>
         <div id="chart"></div>
         <h6 class="col-sm-6" id="source"></h6>
+        <p align="left" id="average"></p>
         <a class="col-sm-6" id="download" href=#>Download as csv</a>
+        <p align="left"> Interactive built by Sriharsha Devulapalli </p>
+
     </div>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
     <script>
@@ -287,6 +290,8 @@
             d3.select("#variablename").html(variablename + " : " + variablevalue + "<span> " + arrow + "</span>")
             d3.select("#description").html(Variable.description)
             d3.select("#source").html("Source: " + Variable.source)
+            d3.select("#average").html("Red denotes readings worse than the 5-year average band while green denotes better than the average band. The average band (in grey) is constructed as +/- 10% interval around the 5-year mean. Yellow indicates readings in the band. The upper interval is " + Variable.upperrange.toFixed(2)+" and the lower interval is "+ Variable.lowerrange.toFixed(2) +" .The upper and lower bounds are wider for series which show more volatility.")
+
 
             $("span:contains(🢅)").css("color", "#81A43E");
             $("span:contains(🢇)").css("color", "#D72027");

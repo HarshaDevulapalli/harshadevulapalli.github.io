@@ -168,7 +168,7 @@
             <tr>
                 <th>Indicator</th>
                 <th>5-year trend</th>
-                <th>Value</th>
+                <th>Latest value</th>
                 <th>Change</th>
             </tr>
             <tr>
@@ -206,7 +206,7 @@
             <tr>
                 <th>Indicator</th>
                 <th>5-year trend</th>
-                <th>Value</th>
+                <th>Latest value</th>
                 <th>Change</th>
             </tr>
             <tr>
@@ -244,7 +244,7 @@
             <tr>
                 <th>Indicator</th>
                 <th>5-year trend</th>
-                <th>Value</th>
+                <th>Latest value</th>
                 <th>Change</th>
             </tr>
             <tr>
@@ -282,7 +282,7 @@
             <tr>
                 <th>Indicator</th>
                 <th>5-year trend</th>
-                <th>Value</th>
+                <th>Latest value</th>
                 <th>Change</th>
             </tr>
             <tr>
@@ -313,6 +313,7 @@
         </table>
         <br>
         <p align="left"> All data as of 28th January 2018. </p>
+        <p align="left"> Interactive built by Sriharsha Devulapalli </p>
     </div>
     <script>
     d3.json("dashboard-rawdata.json", function(error, Data) {
@@ -662,12 +663,10 @@
                 var negativecount = $("td:contains(🢇)").length;
                 var neutralcount = $("td:contains(🢀🢂)").length;
 
-                d3.select("#counts").html("In " + formatDate(h) + ", " + positivecount + ", indicators were in the green, " + negativecount + " were in red, " + neutralcount + " were in line.")
+                d3.select("#counts").html("In " + formatDate(h) + ", " + positivecount + ", indicators performed better than their 5 year average, " + negativecount + " were worse and " + neutralcount + " were in line.")
 
 
             });
-
-
 
 
         }
