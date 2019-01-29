@@ -22,13 +22,11 @@
 
     body {
         font-family: "Lato", sans-serif;
-        font-weight: 400 font-size: 2.4em;
         color: #000000;
     }
 
     body {
         font-family: "Lato", sans-serif;
-        font-weight: 400 font-size: 2.4em;
         color: #000000;
     }
 
@@ -80,6 +78,8 @@
 
     h5 {
         font-weight: 900;
+        font-size: 1.1em !important;
+
     }
 
     .headings {
@@ -105,8 +105,8 @@
     .tooltip,
      {
     font-family: "Lato", sans-serif !important;
-    font-weight: 400 font-size: 2.4em !important;
-}
+/*    font-weight: 400 font-size: 2.4em !important;
+*/}
 
     .tooltip {
         position: absolute;
@@ -161,8 +161,6 @@
         var index = getQueryVariable("index")
 
         const values = Data.data[index].values
-
-        console.log(Data.data[index].variable)
         const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
         const header = Object.keys(values[0])
         let csv = values.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
@@ -237,11 +235,11 @@
                 var chartheight = y(Variable.upperrange) - y(Variable.lowerrange)
 
                 if (data[data.length - 1]['Value'] < Variable.upperrange) {
-                    var arrow = "🢅"
+                    var arrow = "▲"
                 } else if (data[data.length - 1]['Value'] > Variable.lowerrange) {
-                    var arrow = "🢇"
+                    var arrow = "▼"
                 } else {
-                    var arrow = "🢀🢂"
+                    var arrow = "◀▶"
                 }
 
                 svg.append("g")
@@ -262,11 +260,11 @@
                 var chartheight = y(Variable.lowerrange) - y(Variable.upperrange)
 
                 if (data[data.length - 1]['Value'] < Variable.lowerrange) {
-                    var arrow = "🢇"
+                    var arrow = "▼"
                 } else if (data[data.length - 1]['Value'] > Variable.upperrange) {
-                    var arrow = "🢅"
+                    var arrow = "▲"
                 } else {
-                    var arrow = "🢀🢂"
+                    var arrow = "◀▶"
                 }
 
                 svg.append("g")
@@ -297,9 +295,9 @@
             d3.select("#average").html("Red denotes readings worse than the 5-year average band while green denotes better than the average band. The average band (in grey) is constructed as +/- 10% interval around the 5-year mean. Yellow indicates readings in the band. The upper interval is " + Variable.upperrange.toFixed(2)+" and the lower interval is "+ Variable.lowerrange.toFixed(2) +" .The upper and lower bounds are wider for series which show more volatility.")
 
 
-            $("span:contains(🢅)").css("color", "#81A43E");
-            $("span:contains(🢇)").css("color", "#D72027");
-            $("span:contains(🢀🢂)").css("color", "#F6921E");
+            $("span:contains(▲)").css("color", "#81A43E");
+            $("span:contains(▼)").css("color", "#D72027");
+            $("span:contains(◀▶)").css("color", "#F6921E");
 
 
 
@@ -403,8 +401,8 @@
 
         function mousemoveFunc(d) {
             tooltip
-                .style("top", (d3.event.pageY - 100) + "px")
-                .style("left", (d3.event.pageX - 30) + "px");
+                .style("top", (d3.event.pageY - 125) + "px")
+                .style("left", (d3.event.pageX - 50) + "px");
         }
 
         function mouseoutFunc(d) {
@@ -412,7 +410,7 @@
             d3.select(this)
                 .transition()
                 .style("opacity", 1)
-                .attr("r", 3);
+                .attr("r", 4);
             tooltip.style("display", "none"); // this sets it to invisible!
         }
 

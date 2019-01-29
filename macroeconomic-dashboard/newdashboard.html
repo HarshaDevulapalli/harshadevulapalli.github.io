@@ -175,7 +175,7 @@
                 <td> <a href="template.html?index=0">Passenger vehicle sales <span>(%YoY)</span></td></a>
                 <td id="graph0"></td>
                 <td id="pvs_value"></td>
-                <td id="pvs_change"></td>
+                <td id="pvs_change" align="center"></td>
             </tr>
             <tr>
                 <td><a href="template.html?index=1">Tractor sales <span>(%YoY)</span></td></a>
@@ -556,19 +556,19 @@
 
             if (index == 12 || index == 13) {
                 if (value > upperrange) {
-                    array.push("🢇")
+                    array.push("▼")
                 } else if (value < lowerrange) {
-                    array.push("🢅")
+                    array.push("▲")
                 } else {
-                    array.push("🢀🢂")
+                    array.push("◀▶")
                 }
             } else {
                 if (value > upperrange) {
-                    array.push("🢅")
+                    array.push("▲")
                 } else if (value < lowerrange) {
-                    array.push("🢇")
+                    array.push("▼")
                 } else {
-                    array.push("🢀🢂")
+                    array.push("◀▶")
                 }
             }
 
@@ -654,14 +654,14 @@
             d3.select("#jo_change").text(monthlyArrows[15])
 
 
-            $("td:contains(🢅)").css("color", "#81A43E");
-            $("td:contains(🢇)").css("color", "#D72027");
-            $("td:contains(🢀🢂)").css("color", "#F6921E");
+            $("td:contains(▲)").css("color", "#81A43E");
+            $("td:contains(▼)").css("color", "#D72027");
+            $("td:contains(◀▶)").css("color", "#F6921E");
 
             $(document).ready(function() {
-                var positivecount = $("td:contains(🢅)").length;
-                var negativecount = $("td:contains(🢇)").length;
-                var neutralcount = $("td:contains(🢀🢂)").length;
+                var positivecount = $("td:contains(▲)").length;
+                var negativecount = $("td:contains(▼)").length;
+                var neutralcount = $("td:contains(◀▶)").length;
 
                 d3.select("#counts").html("In " + formatDate(h) + ", " + positivecount + ", indicators performed better than their 5 year average, " + negativecount + " were worse and " + neutralcount + " were in line.")
 
