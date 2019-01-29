@@ -82,7 +82,7 @@
     }*/
 
 
-    h6,span {
+    h6,span, #selectmonth {
         background-size: auto;
         font-weight: 600;
         font-size: 1.15em;
@@ -145,6 +145,24 @@
          !important;
         z-index: -1 !important;
     }
+
+    #selectmonth{
+        font-size: 1em;
+
+    }
+
+    #negativecount{
+        font-size: 1.5em;
+
+    }
+    #positivecount{
+        font-size: 1.5em;
+
+    }
+    #neutralcount{
+        font-size: 1.5em;
+
+    }
     </style>
 </head>
 
@@ -155,7 +173,7 @@
         <br>
         <h6>A comprehensive overview of 16 high-frequency indicators to track India's economic health.</h6>
         <br>
-        <h6><i>Use the slider to see how these indices performed in the past five years.</i></h6>
+        <h6><i>Use the slider to see how these indicators performed over the past five years.</i></h6>
         <div id="slider" align="center"></div>
         <br>
         <h6 id="counts">In <span id="selectmonth" style="color:black"></span> , <span id="negativecount" style="color:#D72027"></span> indicators were in red, <span id="positivecount" style="color:#81A43E"> </span> were in green and <span id="neutralcount" style="color:#F6921E"> </span> were in line.</h6>
@@ -663,7 +681,7 @@
                 var negativecount = $("td:contains(▼)").length;
                 var neutralcount = $("td:contains(◀▶)").length;
                    d3.select("#selectmonth").html(formatDate(h))
-                   d3.select("#negativecount").html(negativecount)
+                   d3.select("#negativecount").html("<b>"+negativecount+"</b>")
                    d3.select("#positivecount").html(positivecount)
                    d3.select("#neutralcount").html(neutralcount)
                 // d3.select("#counts").html("In " + formatDate(h) + ", " + negativecount + " indicators are in red, " + positivecount + " in green and " + neutralcount + " were in line.")
