@@ -7,6 +7,9 @@
     <title>Where Indians Work</title>
     <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,400,600,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700,700i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="https://d3js.org/d3-queue.v2.min.js"></script>
@@ -15,8 +18,10 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
     <style>
     body {
-        font-family: "Fira Sans Extra Condensed", sans-serif;
+        font-family: "Lato", sans-serif;
     }
+
+
 
     p {
         font-weight: 400;
@@ -36,6 +41,7 @@
         font-weight: 600;
         font-size: 1.4em;
         margin: 10px;
+        text-decoration: underline;
 
     }
 
@@ -47,16 +53,19 @@
         float: left;
         font-size: 1em;
         width: auto;
-
+        text-align: left;
     }
 
     .legend span {
         border: 1px solid #ccc;
         float: left;
-        width: 30px;
-        height: 15px;
+        width: 12.5px;
+        height: 12.5px;
+        margin-right: 2.5px;
         display: block;
+        align-self: baseline;
     }
+
 
     /* your colors */
     .legend .AgriculturalLabourers {
@@ -103,6 +112,10 @@
         background-color: #C66E28;
     }
 
+    .label{
+    font-size: 0.8em;
+    }
+
 
     .button {
         overflow: hidden;
@@ -122,18 +135,19 @@
 
 
 
-
-
     button {
-        font-family: "Fira Sans Extra Condensed", sans-serif;
+        font-family: "Lato", sans-serif;
         float: left;
         border: 1px solid #ccc;
         outline: none;
         cursor: pointer;
-        padding: 8px 8px;
+        padding: 6px 6px;
         transition: 0.3s;
-        font-weight: 600;
+        font-weight: 700;
+        font-style: italic;
         font-size: 1em;
+        margin-top: 3px;
+        margin-bottom:3px;
         background-color: #ffffff;
     }
 
@@ -148,19 +162,21 @@
     }
 
     select {
-        font-family: "Fira Sans Extra Condensed", sans-serif;
+        font-family: "Lato", sans-serif;
         background-color: inherit;
         float: left;
         border: 1px solid #ccc;
         outline: none;
         cursor: pointer;
         transition: 0.3s;
-        font-weight: 600;
+        font-weight: 700;
+        font-style: italic;
         font-size: 1em;
         position: absolute;
         display: block;
         padding: 8px 8px;
-
+        margin-bottom: 3px;
+        margin-top: 3px;
     }
 
     .toolTip {
@@ -172,7 +188,7 @@
         border: 1.5px solid #000000;
         padding: 10px;
         text-align: left;
-        font-family: "Fira Sans Extra Condensed", sans-serif;
+        font-family: "Lato", sans-serif;
         font-weight: 600;
         font-size: 0.8em;
         pointer-events: none
@@ -183,12 +199,22 @@
 
     }
 
+    table{
+        width: 100%;
+    }
+
+    tspan{
+        font-size: 1.2em;
+    }
+
     .percentage {
         font-weight: 600;
     }
 
     .annotations {
         pointer-events: none;
+        font-size: 1.1em;
+
     }
     </style>
 </head>
@@ -215,13 +241,13 @@
         <div class="row">
             <p class="my-auto"> Select sector </p>
         </div>
-        <div class="row" style="font-size: 1em;">
-            <button class="industry col col-xs-5" id="FARM" onClick="fnindustry('FARM')">FARM</button>
-            <button class="industry col col-xs-5" id="MANUFACTURING" onClick="fnindustry('MANUFACTURING')">MANUFACTURING</button>
-            <button class="industry col col-xs-5" id="TRADE" onClick="fnindustry('TRADE')">TRADE</button>
-            <button class="industry col col-xs-5" id="CONSTRUCTION" onClick="fnindustry('CONSTRUCTION')">CONSTRUCTION</button>
-            <button class="industry col col-xs-5" id="SERVICES" onClick="fnindustry('SERVICES')">SERVICES</button>
-            <button class="industry col col-xs-5" id="NONFARM" onClick="fnindustry('NON_FARM')">NON FARM</button>
+        <div class="row" style="font-size: 0.8em;">
+            <button class="industry col col-4 col-sm-4" id="FARM" onClick="fnindustry('FARM')">FARM</button>
+            <button class="industry col-4 col-sm-4" id="MANUFACTURING" onClick="fnindustry('MANUFACTURING')">MANUFACTURING</button>
+            <button class="industry col-4 col-sm-4" id="TRADE" onClick="fnindustry('TRADE')">TRADE</button>
+            <button class="industry col-4 col-sm-4" id="CONSTRUCTION" onClick="fnindustry('CONSTRUCTION')">CONSTRUCTION</button>
+            <button class="industry col-4 col-sm-4" id="SERVICES" onClick="fnindustry('SERVICES')">SERVICES</button>
+            <button class="industry col-4 col-sm-4" id="NONFARM" onClick="fnindustry('NON_FARM')">NON FARM</button>
         </div>
     </div>
     <div class="container" id="parameter">
@@ -266,27 +292,38 @@
                 <div id="canvas" align="center"></div>
             </div>
             <div class="col-md-3 xs-12">
-                <ul class="legend" hidden="true">
-                    <li><span class="AgriculturalLabourers"></span> &nbsp; Agricultural Labourers &nbsp;</li>
-                    <li><span class="Cultivators"></span> &nbsp; Cultivators &nbsp;</li>
-                    <li><span class="Manufacturing"></span> &nbsp; Manufacturing &nbsp;</li>
-                    <li><span class="Construction"></span> &nbsp; Construction &nbsp;</li>
-                    <li><span class="Trade"></span> &nbsp; Trade &nbsp;</li>
-                    <li><span class="EducationAndHealth"></span> &nbsp; Education and Health &nbsp;</li>
-                    <li><span class="AdministrationAndDefence"></span> &nbsp; Administration and Defence &nbsp;</li>
-                    <li><span class="Plantation"></span> &nbsp; Plantation etc &nbsp;</li>
-                    <li><span class="Mining"></span> &nbsp; Mining &nbsp;</li>
-                    <li><span class="OtherServices"></span> &nbsp; Other Services &nbsp;</li>
-                    <li><span class="Transportation"></span> &nbsp; Transportation &nbsp;</li>
-                </ul>
-                <div><h4 id="top10listheader"></h4>
-                    <div><h6 id="tabularnote"></h6>
+                <table class="legend" hidden="true">
+                        <tr>
+                        <td><li><span class="AgriculturalLabourers"></span>Agricultural Labourers</li></td>
+                        <td> <li><span class="Cultivators"></span>Cultivators</li></td>
+                        <td><li><span class="Plantation"></span>Plantation</li></td>
+                    </tr>
+                    <tr>
+                        <td><li><span class="Manufacturing"></span>Manufacturing</li></td>
+                        <td><li><span class="Trade"></span>Trade</li></td>
+                        <td><li><span class="Construction"></span>Construction</li></td>     
+                    </tr>
+                    <tr>
+                        <td><li><span class="AdministrationAndDefence"></span>Administration and Defence</li></td>
+                         <td><li><span class="EducationAndHealth"></span>Education and Health</li></td>
+                        <td><li><span class="Mining"></span>Mining</li></td>
+                    </tr>
+                    <tr>
+                        <td><li><span class="OtherServices"></span>Other Services</li></td>
+                        <td><li><span class="Transportation"></span>Transportation</li></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div align="center"><h4 id="top10listheader"></h4>
+                    <div align="center"><h6 id="tabularnote"></h6>
                     </div>
-                    <div id="top10list"></div>
+                    <div id="top10list" align="center"></div>
                 </div>
             </div>
         </div>
+    </div>
         <div class="container">
+            <br>
             <div class="row">
                 <div id="source">
                     <p> Source: Census 2011, Census 2001 </p>
@@ -530,8 +567,8 @@
                 fauxindustry = industry
             }
 
-            legendtitle = "% of total "  + denominator.toLowerCase() + " in " + fauxindustry.toLowerCase() + " in demographic"
-            tooltiptitle =  "% of total " + denominator.toLowerCase() + " here that works in " + fauxindustry.toLowerCase() + " belongs to this demographic."
+            legendtitle = "% of demographic working in " + fauxindustry.toLowerCase()
+            tooltiptitle =  "% of the demographic works in " + fauxindustry.toLowerCase() + "."
             MapFunction(data, title)
 
 
@@ -570,8 +607,8 @@
 
                                 if (industry != "none" && detailedIndustry == "none") {
                                     title = data + worker + industry + age + denominator + gender
-                                    legendtitle = "% of " +  denominator.toLowerCase() + " in " + fauxindustry.toLowerCase() + " in demographic"
-                                    tooltiptitle = "% of " + denominator.toLowerCase() + " here that works in " + fauxindustry.toLowerCase() + " belongs to this demographic."
+                                    legendtitle = "% of demographic working in "+ fauxindustry.toLowerCase()
+                                    tooltiptitle = "% of the demographic works in "+ fauxindustry.toLowerCase() + "."
 
                                 }
                                 if (industry != "none" && detailedIndustry != "none") {
@@ -584,8 +621,8 @@
                                     } else {
                                         fauxpreposition = "in"
                                     }
-                                    legendtitle = "% of " + denominator.toLowerCase() +" "+ fauxpreposition + " " + detailedIndustry.toLowerCase() + " in demographic"
-                                    tooltiptitle = "% of " +  "total"+ denominator.toLowerCase() +" here that works "+ fauxpreposition + " " + detailedIndustry.toLowerCase() + " belongs to this demographic."
+                                    legendtitle = "% of demographic working " + fauxpreposition + " " + detailedIndustry.toLowerCase();
+                                    tooltiptitle = "% of the demographic works " + fauxpreposition + " " + detailedIndustry.toLowerCase(); + "."
                                 }
 
                             }
@@ -786,7 +823,7 @@
 
                 svg.append("g")
                     .attr("class", "legendQuant")
-                    .attr("transform", "translate(500,50)");
+                    .attr("transform", "translate(450,50)");
 
                 var legend = d3.legendColor()
                     .labelFormat(d3.format(".2f"))
@@ -794,14 +831,14 @@
                     .scale(colourScale)
                     .orient("horizontal")
                     .labelWrap(25)
-                    .shapeWidth(30)
+                    .shapeWidth(50)
 
                 svg.select(".legendQuant")
                     .call(legend);
 
                 if (token == "yes") {
-                    var newLabel = d3.selectAll(".legendCells").append("g").attr("class", "cell").attr("transform", "translate(128,0)")
-                    newLabel.append("rect").attr("class", "swatch").attr("height", "15").attr("width", "30").style("fill", "rgb(189,56,132)")
+                    var newLabel = d3.selectAll(".legendCells").append("g").attr("class", "cell").attr("transform", "translate(208,0)")
+                    newLabel.append("rect").attr("class", "swatch").attr("height", "15").attr("width", "50").style("fill", "rgb(189,56,132)")
                     newLabel.append("text").attr("class", "label").attr("transform", "translate(0,33)").style("text-anchor", "left").append("tspan").text("Top 10 districts")
                 }
 
@@ -815,7 +852,7 @@
                             .style("left", d3.event.pageX - 50 + "px")
                             .style("top", d3.event.pageY - 120 + "px")
                             .style("display", "inline-block")
-                            .html("<font size='4'>" + d.properties.DISTRICT + "</font>, <font size='2.75'>" + d.properties.ST_NM + "</font><br><font size='3.25'>" + districtData[+d.properties.censuscode - 1].value['percentage'] + tooltiptitle + "<br><font size='2.75'>Number of Workers: " + districtData[+d.properties.censuscode - 1].value['numerator'] + " || Total "+ toTitleCase(denominator) + ": " + districtData[+d.properties.censuscode - 1].value['denominator'] + " people");
+                            .html("<font size='4'>" + d.properties.DISTRICT + "</font>, <font size='2.75'>" + d.properties.ST_NM + "</font><br><font size='3.25'>" + districtData[+d.properties.censuscode - 1].value['percentage'] + tooltiptitle + "<br><font size='2.75'>Number of Workers: " + districtData[+d.properties.censuscode - 1].value['numerator'] + " <br> Total "+ toTitleCase(denominator) + ": " + districtData[+d.properties.censuscode - 1].value['denominator'] + "");
 
                     }
 
@@ -915,7 +952,7 @@
                             radius: 15
 
                         },
-                        x: 195,
+                        x: 250,
                         y: 490,
                         dy: 75,
                         dx: -75
