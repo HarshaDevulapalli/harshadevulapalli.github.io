@@ -264,17 +264,6 @@
                     <option value='ALLAGEWORKERS'>All Ages</option>
                 </select>
             </div>
-            <div class="denominator col-md-3 col-xs-6">
-                <select class="col" id="denominator" onchange="fndenominator(this)">
-                    <option>Select a denominator</option>
-                    <option value='POPULATION'>Total Population</option>
-                    <option value='LABOUR'>Total Labour Force</option>
-                    <option value='WORKERS'>Total Workers</option>
-                </select>
-            </div>
-            <div class="detailedIndustry col-md-3 col-xs-6" id="detailedIndustry">
-                <select class="col" id="dIndustry"></select>
-            </div>
             <div class="gender col-md-3 col-xs-6">
                 <select class="col" id="gender" onchange="fngender(this)">
                     <option>Select a gender</option>
@@ -282,6 +271,17 @@
                     <option value='MEN'>Men</option>
                     <option value='WOMEN'>Women</option>
                 </select>
+            </div>
+            <div class="denominator col-md-3 col-xs-6">
+                <select class="col" id="denominator" onchange="fndenominator(this)">
+                    <option>Select a group</option>
+                    <option value='POPULATION'>Population</option>
+                    <option value='LABOUR'>Labour Force</option>
+                    <option value='WORKERS'>Workers</option>
+                </select>
+            </div>
+            <div class="detailedIndustry col-md-3 col-xs-6" id="detailedIndustry">
+                <select class="col" id="dIndustry"></select>
             </div>
         </div>
     </div>
@@ -356,8 +356,8 @@
         </div>
         <div class="row">
             <div id="standard-notes">
-                <p>Regular and Seasonal workers refer to Main and Marginal workers of the Census. </p>
-                <p>Population, Labour and Workers refer to Total Population, Total Labour and Total Workers in that particular demographic. Labour is defined as the sum of regular, seasonal workers and non workers who were seeking employment at that particular point in time.</p>
+                <p>Regular and seasonal workers refer to main and marginal workers in the Census. </p>
+                <p>Proportions of workers are calculated according to the groups of Population, Labour and Force. They refer to the population, labour force and workers in that particular demographic. Labour or labour force is defined as the sum of regular, seasonal workers and non workers who were seeking employment at that particular point in time.</p>
                 <p> Delhi-NCR includes the NCT and the adjoining districts of Alwar, Baghpat, Bharatpur, Bhiwani, Bulandshahr, Faridabad, Noida, Ghaziabad, Gurgaon, Jhajjar, Jind, Karnal, Mahendragarh, Meerut, Mewat, Muzaffarnagar, Palwal, Panipat, Rewari, Rohtak and Sonipat. Mumbai-Pune region consists of Mumbai, Mumbai (Suburban), Thane, Raigad and Pune. Kolkata region includes North and South 24 Paraganas, Howrah, Hugli and Nadia. Chennai region includes Chennai, Kancheepuram and Thiruvalluvar. Bengaluru region includes Bengaluru and Bengaluru Rural districts. Hyderabad region includes Hyderabad and Rangareddy districts.</p>
             </div>
         </div>
@@ -684,6 +684,7 @@
         function MapFunction(data, title) {
 
             if (data == "WORKERSBYINDUSTRY") {
+                d3.select('#specific-notes').text("")
                 d3.json("data/WORKERSBYINDUSTRY/" + title + ".json", function(error, districtData) {
 
                     if (error) throw error;
