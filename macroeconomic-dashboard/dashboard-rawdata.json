@@ -3272,7 +3272,7 @@
             "description":"This indicator reflects India’s CPI inflation excluding volatile components such as food & beverages; pan, tobacco and alcohol; LPG, kerosene, and other fuels within fuel and light sub-component; and petrol and diesel within transportation and communication category under the miscellaneous sub-component of CPI index. It carries a weight of 47.4% in the CPI basket.",
             "source":"Bloomberg",
             "upperrange": 4.80896144,
-            "lowerrange": 5.41,
+            "lowerrange": 5.39,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -3517,7 +3517,7 @@
             },
             {
                 "Year": "Jan 2019",
-                "Value": 5.4
+                "Value": 5.36
             }]
         },
         {

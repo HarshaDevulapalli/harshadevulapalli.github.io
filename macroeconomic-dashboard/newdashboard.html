@@ -339,7 +339,7 @@
             </tr>
         </table>
         <br>
-        <p align="left"> All data as of 28th January 2018. </p>
+        <p align="left"> All data as of 27th February 2019. </p>
         <p align="left"> Interactive built by Sriharsha Devulapalli </p>
     </div>
     <script>
@@ -349,7 +349,7 @@
         var formatDate = d3.timeFormat("%b %Y");
 
 
-        var startDate = new Date("2017-12-31"),
+        var startDate = new Date("2014-01-01"),
             endDate = new Date("2019-01-31");
 
         var margin = { top: 0, right: 50, bottom: 0, left: 50 },
@@ -383,7 +383,8 @@
                 .on("start drag", function() { hue(x.invert(d3.event.x)); }));
 
 
-        myticks = x.ticks(1);
+        myticks = x.ticks();
+        myticks.push(new Date(2014, 0, 1))
 
         console.log(x.ticks())
         slider.insert("g", ".track-overlay")
@@ -419,6 +420,7 @@
 
         for (i = 0; i < 16; i++) {
             if (i == 12 || i == 13) {
+                console.log(i)
                 drawReverse(i)
             } else {
                 draw(i)
@@ -513,9 +515,13 @@
                 data.push(temparray[i].Value)
             }
 
+            console.log(data)
+
             var lowerrange = Data.data[variable].lowerrange
 
             var upperrange = Data.data[variable].upperrange
+
+            console.log(lowerrange,upperrange)
 
             var max_of_array = Math.max.apply(Math, data)
             var min_of_array = Math.min.apply(Math, data)
@@ -580,12 +586,12 @@
         function Arrowfier(index, value, array, upperrange, lowerrange) {
 
             if (index == 12 || index == 13) {
-                if (value > upperrange) {
-                    array.push("▼")
+                if ((value > upperrange) &(value < lowerrange)) {
+                    array.push("◀▶")
                 } else if (value < lowerrange) {
                     array.push("▲")
-                } else {
-                    array.push("◀▶")
+                } else if (value > upperrange){
+                    array.push("▼")
                 }
             } else {
                 if (value > upperrange) {
@@ -644,6 +650,7 @@
             label
                 .attr("x", x(h))
                 .text(formatDate(h));
+
 
             d3.select("#pvs_value").text(monthlyData[0].toFixed(2))
             d3.select("#pvs_change").text(monthlyArrows[0])
