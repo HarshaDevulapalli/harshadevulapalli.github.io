@@ -648,6 +648,8 @@
                         }
 
                         if (data == "CHANGESINCE2001") {
+
+
                             d3.selectAll("#detailedIndustry").attr("hidden", true)
                             d3.selectAll("#denominator").attr("hidden", null)
                             d3.select("#top10listheader").text("");
@@ -662,6 +664,8 @@
                             }
 
                             title = data + worker + industry + age + denominator + gender
+
+                            console.log(title)
                             legendtitle = "% pts change in " + fauxgender + " workers in " + fauxindustry.toLowerCase() + "";
                             tooltiptitle = "% pts change in " + fauxgender + " workers in " + fauxindustry.toLowerCase() + "  from 2001";
                         }
