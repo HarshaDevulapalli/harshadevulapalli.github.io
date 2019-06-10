@@ -30,7 +30,7 @@
         fill: #752EFF;
         stroke: black;
         stroke-width: 0.25px;
-        opacity: 0.4;
+        opacity: 0.7;
     </style>
 </head>
 
@@ -39,47 +39,41 @@
         <svg style="width:1500px;height:1500px"></svg>
     </div>
     <script>
-    d3.csv("finaldata.csv", data => overallTeamViz(data));
+    d3.csv("mp-scores-valid.csv", data => overallTeamViz(data));
 
 
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
     var width=viz.clientWidth;
     var height=viz.clientHeight;
-    console.log(width,height)
 
-    var mindate = new Date(2004, 4, 1);
-    var maxdate = new Date(2019, 3, 30)
 
-    var parser = d3.timeParse("%m/%d/%Y")
-
-    console.log(parser("7/3/2004"))
-
-    var xScale = d3.scaleTime().domain([mindate, maxdate]).range([50, 1450])
+    var xScale = d3.scaleTime().domain([0, 1]).range([50, 1450])
 
 
     var x_axis = d3.axisTop()
         .scale(xScale)
-        .ticks(15);
+        .ticks(10);
 
 
     function overallTeamViz(incomingData) {
 
-        console.log(incomingData)
       d3.select("svg")
         .append("g")
         .attr("id", "axes")
         .attr("transform", "translate(50,50)")
         .call(x_axis);
 
-        list_of_words=["Environment","Agriculture","Army","Economy","Development","Employment","Poverty","Terrorism","Corruption","Education","Health","Hinduism","Minorities","Religion"]
+        list_of_words=["BJP","INC","AITC","AIADMK","BJD","SS","TDP","TRS","Others"]
 
         for (i = 0; i < list_of_words.length; i++) { 
-
             drawVariable(list_of_words[i],i)
         }
 
         function drawVariable(variable,count) {
+
+            filteredData=incomingData.filter(function(d){ return d.PartyForm==variable})
+
 
             h = 150+100*count
 
@@ -96,39 +90,35 @@
                 .attr("id", variable)
                 .attr("transform", "translate(50," + h + ")")
                 .selectAll("g")
-                .data(incomingData)
+                .data(filteredData)
                 .enter()
                 .append("g")
                 .attr("class", variable)
-
-          var radiusScale = d3.scaleLinear().domain([0, 300])
-            .range([0, 50])
-
 
             var speech = d3.selectAll("g."+variable);
 
             speech
                 .append("circle")
-                .attr("r", function(d) {
-                    return radiusScale(d[variable]);
-                })
+                .attr("r", 6)
                 .attr("cx", function(d) {
-                    return xScale(parser(d.date));
+                    return xScale((d.FinalScore));
                 })
                 .style("fill",function(d){
-                  if (d.person=="modi"){
-                    return "#db9429"
+                  if (d.Gender=="Male"){
+                    return "#81a43e"
                   }
-                  if (d.person=="mms"){
-                    return "#4286f4"
+                  if (d.Gender=="Female"){
+                    return "#804d96"
                   }
+                 
+
                 })
                 .on('mouseover',function(d){
                   tooltip
                             .style("left", d3.event.pageX - 50 + "px")
                             .style("top", d3.event.pageY - 85 + "px")
                             .style("display", "inline-block")
-                            .html(d.person+" said "+ variable+ " "+Math.round(d[variable])+ " times per 10,000 words in this speech.");
+                            .html(d.MPName+" from"+d.Constituency+" in the state of "+d.State);
                 });
 
 
