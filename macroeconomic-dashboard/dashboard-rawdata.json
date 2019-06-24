@@ -1,13 +1,13 @@
 {
-    "period": "February 2018",
+    "period": "May 2018",
     "data": [
         {
             "variable": "Passenger vehicle sales (domestic)",
             "code": "pvs",
             "description":"This indicator reflects the (YoY %) growth in the domestic sales of passenger cars and vans. Data for the preceding month is released in the second week of every month.",
             "source": "CMIE, SIAM",
-            "upperrange": 6.72141149,
-            "lowerrange": 2.55678343,
+            "upperrange": 6.71250943,
+            "lowerrange": 2.55664553,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -257,14 +257,26 @@
             {
                 "Year": "Feb 2019",
                 "Value": -3.1
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": -5.1
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": -20.8
+            },
+            {
+                "Year": "May 2019",
+                "Value": -26.1
             }]
         },
         {
             "variable": "Tractor sales (domestic)",
             "description":"This indicator reflects the (YoY %) growth in the domestic sales of tractors. Data for the preceding month is released in the second week of every month.",
             "source":" CMIE, Tractor Manufacturers Association",
-            "upperrange": 12.7397375,
-            "lowerrange": 1.83991933,
+            "upperrange": 11.9843123,
+            "lowerrange": 1.00777329,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -514,14 +526,26 @@
             {
                 "Year": "Feb 2019",
                 "Value": -0.5
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": -15.0
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": -13.2
+            },
+            {
+                "Year": "May 2019",
+                "Value": -15.7
             }]
         },
         {
             "variable": "2-wheeler sales",
             "description":"This indicator reflects the (YoY %) growth in the domestic sales of two-wheelers. The data for the preceding month is released in the second week of every month.",
             "source": "CMIE, SIAM" ,
-            "upperrange": 11.7059028,
-            "lowerrange": 6.26687958,
+            "upperrange": 10.758442,
+            "lowerrange": 5.0090061,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -771,14 +795,26 @@
             {
                 "Year": "Feb 2019",
                 "Value": -4.2
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": -17.3
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": -16.3
+            },
+            {
+                "Year": "May 2019",
+                "Value": -6.7
             }]
         },
         {
             "variable": "Domestic air passengers",
             "description":"This indicator reflects the (YoY %) growth in the total number of passengers flying domestic scheduled airlines. ",
             "source":"CMIE, Ministry of Civil Aviation.",
-            "upperrange": 20.0435187,
-            "lowerrange": 16.7688146,
+            "upperrange": 20.1184995,
+            "lowerrange": 17.0095005,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -1024,14 +1060,26 @@
             {
                 "Year": "Jan 2019",
                 "Value": 8.9
+            },
+            {
+                "Year": "Feb 2019",
+                "Value": 5.6
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": 0.1
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": -4.4
             }]
         },
         {
             "variable": "PMI manufacturing",
             "description":"This indicator reflects the performance of the manufacturing sector based on a monthly survey of private sector companies. The index for the previous month is released on the first working day of every month. A reading below 50 indicates contraction in manufacturing activity, while a reading above 50 indicates expansion in activity.",
             "source":"Bloomberg, Markit Economics",
-            "upperrange": 52.1582568,
-            "lowerrange": 51.5524575,
+            "upperrange": 52.3328877,
+            "lowerrange": 51.6897538,
             "suffix": "",
             "values": [
             {
@@ -1281,14 +1329,26 @@
             {
                 "Year": "Feb 2019",
                 "Value": 54.3
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": 52.6
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": 51.8
+            },
+            {
+                "Year": "May 2019",
+                "Value": 52.7
             }]
         },
         {
             "variable": "Core (8-infrastructure sectors) growth",
             "description":"This indicator reflects the (YoY %) growth in the index of eight core infrastructure industries. The eight industries are --Electricity , steel, refinery products, crude oil, coal, cement, natural gas and fertilizers. The index for the previous month is released on the last working day of every month. The Eight Core Industries comprise 40.27 per cent of the weight of items included in the Index of Industrial Production (IIP).",
             "source":"Bloomberg, Ministry of Commerce and Industry",
-            "upperrange": 4.88853676,
-            "lowerrange": 3.73646324,
+            "upperrange": 4.85658125,
+            "lowerrange": 3.68808542,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -1525,23 +1585,35 @@
             },
             {
                 "Year": "Nov 2018",
-                "Value": 3.4
+                "Value": 3.3
             },
             {
                 "Year": "Dec 2018",
-                "Value": 2.6
+                "Value": 2.1
             },
             {
                 "Year": "Jan 2019",
-                "Value": 1.8
+                "Value": 1.5
+            },
+            {
+                "Year": "Feb 2019",
+                "Value": 2.2
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": 4.9
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": 2.6
             }]
         },
         {
             "variable": "Bank's non-food credit",
             "description":"This indicator reflects the (%YoY) growth in the outstanding amount of credit to businesses each month, and is released on the last working day of every month.",
             "source":"Bloomberg, RBI",
-            "upperrange": 9.90857496,
-            "lowerrange": 8.50540705,
+            "upperrange": 9.9182118,
+            "lowerrange": 8.40447505,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -1787,14 +1859,26 @@
             {
                 "Year": "Jan 2019",
                 "Value": 13.1
+            },
+            {
+                "Year": "Feb 2019",
+                "Value": 13.2
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": 12.3
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": 11.9
             }]
         },
         {
             "variable": "Rail freight traffic",
             "description":"This indicator reflects the (%YoY) growth in the freight traffic of major commodities (measured in ‘000 tonnes). The data for previous month is released in the second week of every month.",
             "source":"CMIE, Ministry of Railways",
-            "upperrange": 3.8372411,
-            "lowerrange": 2.21933072,
+            "upperrange": 3.90188364,
+            "lowerrange": 2.26898841,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -2044,14 +2128,26 @@
             {
                 "Year": "Feb 2019",
                 "Value": 4.3
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": 6.6
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": 3.2
+            },
+            {
+                "Year": "May 2019",
+                "Value": 2.9
             }]
         },
         {
             "variable": "Import cover",
             "description":"This indicator measures the number of months of imports that can be covered with foreign exchange reserves available with the central bank of the country.",
             "source":"Bloomberg",
-            "upperrange": 10.8247971,
-            "lowerrange": 10.0854662,
+            "upperrange": 10.8962068,
+            "lowerrange": 10.2017499,
             "suffix": "(FX reserves in months)",
             "values": [
             {
@@ -2301,14 +2397,26 @@
             {
                 "Year": "Feb 2019",
                 "Value": 10.3
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": 10.2
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": 10.3
+            },
+            {
+                "Year": "May 2019",
+                "Value": 10.2
             }]
         },
         {
             "variable": "Rupee vs Dollar",
             "description":"This indicator reflects the month-on-month change in the average daily USD-INR exchange rate.",
             "source":"Bloomberg",
-            "upperrange": 0.08630376,
-            "lowerrange": -0.5497395,
+            "upperrange": 0.09796678,
+            "lowerrange": -0.5471762,
             "suffix": "(% MoM)",
             "values": [
             {
@@ -2558,14 +2666,26 @@
             {
                 "Year": "Feb 2019",
                 "Value": -0.7
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": 2.4
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": 0.1
+            },
+            {
+                "Year": "May 2019",
+                "Value": -0.6
             }]
         },
         {
             "variable": "Current A/c balance",
             "description":"This indicator reflects India’s current account balance as a percentage of quarterly GDP. The data for every quarter is released with a three month lag.",
             "source":"Bloomberg, RBI",
-            "upperrange": -1.117096,
-            "lowerrange": -1.5474831,
+            "upperrange": -1.234047,
+            "lowerrange": -1.6605779,
             "suffix": "(as % of GDP)",
             "values": [
             {
@@ -2795,14 +2915,26 @@
             {
                 "Year": "Sep 2018",
                 "Value": -3.04122726
+            },
+            {
+                "Year": "Oct 2018",
+                "Value": -2.5
+            },
+            {
+                "Year": "Nov 2018",
+                "Value": -2.5
+            },
+            {
+                "Year": "Dec 2018",
+                "Value": -2.5
             }]
         },
         {
             "variable": "Trade balance",
             "description": "This indicator reflects India’s trade balance as a percentage of India’s total trade. The data on India’s merchandise exports and imports for the previous month is released in the third week of every month." ,
             "source": " CMIE, Ministry of Commerce and Industry",
-            "upperrange": -17.911258,
-            "lowerrange": -19.857288,
+            "upperrange": -18.032489,
+            "lowerrange": -19.969037,
             "suffix": "(as % of total trade)",
             "values": [
             {
@@ -3052,14 +3184,26 @@
             {
                 "Year": "Feb 2019",
                 "Value": -15.2
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": -14.3
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": -22.7
+            },
+            {
+                "Year": "May 2019",
+                "Value": -20.4
             }]
         },
         {
             "variable": "CPI",
             "description":"This indicator reflects India’s retail inflation based on the Consumer Price Index (CPI). The data for the previous month is released on the 12th of every month (or the next working day, if that day is a holiday).",
             "source":"Bloomberg, MOSPI",
-            "upperrange": 4.37439254,
-            "lowerrange": 5.1749408,
+            "upperrange": 4.12008581,
+            "lowerrange": 4.85158085,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -3309,14 +3453,26 @@
             {
                 "Year": "Feb 2019",
                 "Value": 2.6
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": 2.9
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": 3.0
+            },
+            {
+                "Year": "May 2019",
+                "Value": 3.1
             }]
         },
         {
             "variable": "Core CPI",
             "description":"This indicator reflects India’s CPI inflation excluding volatile components such as food & beverages; pan, tobacco and alcohol; LPG, kerosene, and other fuels within fuel and light sub-component; and petrol and diesel within transportation and communication category under the miscellaneous sub-component of CPI index. It carries a weight of 47.4% in the CPI basket.",
             "source":"Bloomberg",
-            "upperrange": 4.82020769,
-            "lowerrange": 5.39779231,
+            "upperrange": 4.73510989,
+            "lowerrange": 5.21555678,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -3566,14 +3722,26 @@
             {
                 "Year": "Feb 2019",
                 "Value": 5.3
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": 5.0
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": 4.6
+            },
+            {
+                "Year": "May 2019",
+                "Value": 4.2
             }]
         },
         {
             "variable": "Rural wages",
             "description":"This indicator reflects the (YoY %) growth in the average wage rate for men engaged as rural labourers in agricultural and non-agricultural activities. ",
             "source":"CMIE, Ministry of Labour and Employment",
-            "upperrange": 5.680975,
-            "lowerrange": 4.784692,
+            "upperrange": 5.260499,
+            "lowerrange": 4.575834,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -3815,6 +3983,22 @@
             {
                 "Year": "Dec 2018",
                 "Value": 3.8
+            },
+            {
+                "Year": "Jan 2019",
+                "Value": 4.0
+            },
+            {
+                "Year": "Feb 2019",
+                "Value": 4.0
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": 4.0
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": 3.9
             }]
         },
 
@@ -3822,8 +4006,8 @@
             "variable": "Job Outlook",
             "description":"This indicator reflects the ‘net response’ rate in the Reserve Bank of India’s quarterly industrial outlook surveys to the question of job outlook, and measures the difference between optimistic and pessimistic respondents in each round of the survey. The range of values goes from -100 to 100, with higher values indicating greater optimism on jobs.",
             "source": "CMIE, RBI",
-            "upperrange": 7.268459,
-            "lowerrange": 6.351541,
+            "upperrange": 7.50875,
+            "lowerrange": 6.55125,
             "suffix": "(net response %)",
             "values": [
             {
@@ -4065,6 +4249,18 @@
             {
                 "Year": "Dec 2018",
                 "Value": 9.4
+            },
+            {
+                "Year": "Jan 2019",
+                "Value": 9.8
+            },
+            {
+                "Year": "Feb 2019",
+                "Value": 9.8
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": 9.8
             }]
         }
     ]
