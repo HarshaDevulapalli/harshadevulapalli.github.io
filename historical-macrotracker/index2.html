@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700i,900,900i&display=swap" rel="stylesheet">
+<style>
+    .bar--positive {
+    fill: #F6921E;
+}
+
+.bar--negative {
+    fill: #727D83;
+}
+
+body,button {
+    font-family: 'Lato', sans-serif;
+    max-width: 600px;
+}
+
+
+
+/*.axis text {
+  font: 14px sans-serif;
+  font-family: 'Lato', sans-serif;
+}
+*/
+text {
+    font: 15px sans-serif;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+  text-align: center;
+}
+
+.year {
+    font: 30px sans-serif;
+    font-weight: 700;
+}
+
+button{
+    background:white;
+    stroke: none;
+    font: 18px sans-serif;
+
+}
+
+h5{
+    font-weight: 300;
+    font: 12px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+</style>
+
+<body>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <div id="space"></div>
+    <script>
+        var margin = { top: 30, right: 60, bottom: 30, left: 60 },
+        width = 550 - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom;
+
+    var svg = d3.select("#space").append("svg")
+        .attr("class", "chart")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    yearlabel = d3.selectAll("svg.chart")
+        .append("text")
+        .attr("class", "year")
+        .attr("x", width / 3)
+        .attr("y", height / 4)
+
+    function type(d) {
+        d.value = +d.value;
+        return d;
+    }
+
+
+    var x = d3.scale.linear()
+        .range([0, width]);
+
+    var y = d3.scale.ordinal()
+        .rangeRoundBands([0, height], 0.3);
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .tickSize(0)
+        .tickPadding(6);
+
+
+    A = ["1970-71", "1971-72", "1972-73", "1973-74", "1974-75", "1975-76", "1976-77", "1977-78", "1978-79", "1979-80", "1980-81", "1981-82", "1982-83", "1983-84", "1984-85", "1985-86", "1986-87", "1987-88", "1988-89", "1989-90", "1990-91", "1991-92", "1992-93", "1993-94", "1994-95", "1995-96", "1996-97", "1997-98", "1998-99", "1999-00", "2000-01", "2001-02", "2002-03", "2003-04", "2004-05", "2005-06", "2006-07", "2007-08", "2008-09", "2009-10", "2010-11", "2011-12", "2012-13", "2013-14", "2014-15", "2015-16", "2016-17", "2017-18", "2018-19"]
+
+    count = 0
+
+    var inter = setInterval(function() {
+        updateData();
+
+        if (count == A.length) {
+            clearInterval(inter);
+        }
+
+    }, 2000)
+
+
+
+
+    function RepeatButton(){
+        count = 0
+
+    var inter = setInterval(function() {
+        updateData();
+
+        if (count == A.length) {
+            clearInterval(inter);
+        }
+
+    }, 2000)
+    }
+
+
+    function updateData() {
+        {
+            year = A[count]
+            yearlabel.text(year)
+
+            d3.csv("data.csv", type, function(error, data) {
+
+
+                x.domain(d3.extent(data, function(d) { return d.value; })).nice();
+                y.domain(data.map(function(d) { return d.name; }));
+
+                filteredData = data.filter(function(d) { return d.year == year })
+
+                svg.selectAll(".bar").remove();
+                svg.selectAll(".label").remove();
+                svg.selectAll(".y.axis").remove();
+
+                svg.selectAll(".bar")
+                    .data(filteredData)
+                    .enter().append("rect")
+                    .attr("class", function(d) { return "bar bar--" + (d.value < 0 ? "negative" : "positive"); })
+                    .attr("x", function(d) { return x(Math.min(0, d.value)); })
+                    .attr("y", function(d) { return y(d.name)+30; })
+                    .attr("width", function(d) { return Math.abs(x(d.value) - x(0)); })
+                    .attr("height", 30);
+
+                svg.selectAll(".label")
+                    .data(filteredData)
+                    .enter().append("text")
+                    .attr("class", "label")
+                    .attr("x", function(d) {
+                        if (d.value > 0) {
+                            return Math.abs(x(d.value) + 5);
+                        }
+                        if (d.value < 0) {
+                            console.log("Negative value")
+                            return (x(d.value)-35);
+                        }
+
+                    })
+                    .attr("y", function(d) { return y(d.name) + 50; })
+                    .text(function(d) { return d.value; })
+                    .style('fill', 'black');
+
+
+                svg.append("g")
+                    .attr("class", "y axis")
+                    .attr("transform", "translate(" + x(0) + ",0)")
+                    .call(yAxis);
+
+                svg.selectAll(".domain").remove();
+
+
+
+            })
+
+
+
+            count = count + 1
+        }
+
+          d3.select("h5").html("1.Gross Fiscal deficit as a percentage of GDP <br> 2. Growth rates are based on GDP at market price. The growth figures from 1951-52 to 2013-14 are based on the 2004-05 series; the figures from 2014-15 to 2018-19 are based on the 2011-12 series <br> 3. Inflation rates from 1951-52 to 1960-61 are based on the Wholesale Price Index; Inflation rates for years after that are based on the Consumer Price Index for Industrial Workers")
+
+    }
+
+
+
+
+    </script>
+    <button type="button" onclick="RepeatButton()">Repeat 🔁</button>
+    <h5></h5>
+</body>
