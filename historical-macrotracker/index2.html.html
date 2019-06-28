@@ -13,7 +13,7 @@
     body,text,
 #slider-time {
     font-family: 'Lato', sans-serif;
-    max-width: 450px;
+    max-width: 600px;
 }
 
 h5,
@@ -69,6 +69,8 @@ button{
 }
 
 </style>
+
+
 <div class="container">
     <div class="sharethis-inline-share-buttons"></div>
     <div><br></div>
@@ -79,7 +81,7 @@ button{
         </div>
         <div class="col-6 float-right">
             <p align="right">
-                <button type="button" id="Play" onclick="PlayPauseButton()">PAUSE</button>
+                <button type="button" onclick="RepeatButton()">REPLAY</button>
             </p>
         </div>
     </div>
@@ -99,14 +101,13 @@ button{
         </div>
     </div>
     <div id="notes">
-        <br>
         <p> Notes </p>
         <p>1. Gross Fiscal Deficit as a percentage of GDP <br> 2. Growth rates are based on GDP at market prices. The growth figures from 1983-84 to 2013-14 are based on the 2004-05 series; the figures from 2014-15 to 2018-19 are based on the 2011-12 series <br> 3. Inflation numbers are based on spliced WPI series (base year 2011-12)</p>
     </div>
 </div>
 <script>
 var margin = { top: 10, right: 10, bottom: 10, left: 0 },
-    width = 400 - margin.left - margin.right,
+    width = 450 - margin.left - margin.right,
     height = 45 - margin.top - margin.bottom;
 
 // Time
@@ -119,13 +120,14 @@ var sliderTime = d3
     .min(d3.min(dataTime))
     .max(d3.max(dataTime))
     .step(1000 * 60 * 60 * 24 * 365)
-    .width(325)
+    .width(400)
     .tickFormat(d3.timeFormat('%Y'))
     .ticks(10)
     // .tickValues(dataTime)
     .default(new Date(1983, 7, 13))
     .on('onchange', val => {
         d3.select('p#value-time').text(d3.timeFormat('%Y')(val) + "-" + (val.getFullYear() + 1));
+        console.log("Change Change")
         Draw(val.getFullYear())
 
     });
@@ -133,103 +135,56 @@ var sliderTime = d3
 var gTime = d3
     .select('div#slider-time')
     .append('svg')
-    .attr('width', 400)
+    .attr('width', 500)
     .attr('height', 100)
     .append('g')
-    .attr('transform', 'translate(20,20)');
+    .attr('transform', 'translate(30,30)');
 gTime.call(sliderTime);
 
 year = sliderTime.value().getFullYear()
 
 d3.select('p#value-time').text(d3.timeFormat('%Y')(sliderTime.value()) + "-" + (year + 1));
 
-
 count = 0
 base_year = 1983
 
+var inter = setInterval(function() {
+    updateData();
+
+    if (count == 35) {
+        clearInterval(inter);
+    }
+
+}, 1000)
 
 function updateData() {
-    current_year = base_year + count
     sliderTime.value(new Date(base_year + count, 7, 13))
     count = count + 1
 }
 
-playpausebuttoncount = 0
 
-function IntervalTimer(callback, interval) {
-    var timerId, startTime, remaining = 0;
-    var state = 0; //  0 = idle, 1 = running, 2 = paused, 3= resumed
+function RepeatButton() {
 
-    this.pause = function() {
-        if (state != 1) return;
+    d3.selectAll(".gfd-chart").remove();
+    d3.selectAll(".gdp-chart").remove();
+    d3.selectAll(".inflation-chart").remove();
+    // d3.selectAll(".bar").remove();
 
-        remaining = interval - (new Date() - startTime);
-        window.clearInterval(timerId);
-        state = 2;
-    };
+    count = 0
+    base_year = 1983
 
-    this.resume = function() {
-        if (state != 2) return;
+    var inter = setInterval(function() {
+        updateData();
 
-        state = 3;
-        window.setTimeout(this.timeoutCallback, remaining);
-    };
-
-    this.timeoutCallback = function() {
-        if (state != 3) return;
-
-        callback();
-
-        startTime = new Date();
-        timerId = window.setInterval(callback, interval);
-        state = 1;
-    };
-
-    startTime = new Date();
-    timerId = window.setInterval(callback, interval);
-    state = 1;
-}
-
-oncemoreplease="no"
-
-
-
-var timer = new IntervalTimer(function() {
-    updateData();
-    if (sliderTime.value().getFullYear() == "2017") {
-        timer.pause();
-    }
-
-}, 1000);
-
-
-
-function PlayPauseButton() {
-    playpausebuttoncount=playpausebuttoncount+1;
-    if (playpausebuttoncount % 2 != 0) {
-        d3.selectAll("#Play").text("PLAY")
-        timer.pause();
-        if(sliderTime.value().getFullYear() == "2017"){
-            oncemoreplease="yes"
-            d3.selectAll("#Play").text("PLAY")
+        if (count == 35) {
+            clearInterval(inter);
         }
 
-    } else {
-        d3.selectAll("#Play").text("PAUSE")
-        timer.resume();
-    }
-
-// d3.selectAll(".gfd-chart"chart).remove();
-// d3.selectAll(".gdp-").remove();
-// d3.selectAll(".inflation-chart").remove();
-// d3.selectAll(".bar").remove();
-
+    }, 1000)
 }
-
 
 function Draw(year) {
 
-    // count = 1983 - year
     //GFD
 
     d3.csv('gfd.csv').then(function(gfddata) {
