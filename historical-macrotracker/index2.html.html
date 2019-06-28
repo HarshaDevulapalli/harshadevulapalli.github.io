@@ -111,7 +111,7 @@ var margin = { top: 10, right: 10, bottom: 10, left: 0 },
     height = 45 - margin.top - margin.bottom;
 
 // Time
-var dataTime = d3.range(0, 35).map(function(d) {
+var dataTime = d3.range(0, 36).map(function(d) {
     return new Date(1983 + d, 7, 13);
 });
 
@@ -151,7 +151,7 @@ base_year = 1983
 var inter = setInterval(function() {
     updateData();
 
-    if (count == 35) {
+    if (count == 36) {
         clearInterval(inter);
     }
 
@@ -176,7 +176,7 @@ function RepeatButton() {
     var inter = setInterval(function() {
         updateData();
 
-        if (count == 35) {
+        if (count == 36) {
             clearInterval(inter);
         }
 
