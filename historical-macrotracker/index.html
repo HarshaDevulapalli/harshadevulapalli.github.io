@@ -15,7 +15,6 @@
     font-family: 'Lato', sans-serif;
     max-width: 450px;
 }
-
 h5,
 .axis,
 text {
@@ -24,23 +23,19 @@ text {
     font-color: black;
     fill: black;
 }
-
 h6,
 .label {
     font-weight: 400;
     font-weight: bold;
 }
-
 p {
     font-weight: 300;
     font-size: 15px;
 }
-
 #value-time {
     font-weight: 700;
     font-size: 18px;
 }
-
 .fa {
     padding: 2px;
     font-size: 20px;
@@ -48,26 +43,21 @@ p {
     text-align: center;
     text-decoration: none;
 }
-
 .slider{
     cursor: pointer;
 }
-
 .track-inset{
     stroke: #F69320;
 }
-
 .handle{
     fill: #F69320;
 }
-
 button{
     background-color: #F69320;
     color: white;
     border:none;
     cursor: pointer;
 }
-
 </style>
 <div class="container">
     <div class="sharethis-inline-share-buttons"></div>
@@ -79,7 +69,7 @@ button{
         </div>
         <div class="col-6 float-right">
             <p align="right">
-                <button type="button" id="Play" onclick="PlayPauseButton()">PAUSE</button>
+                <button type="button" onclick="RepeatButton()">REPLAY</button>
             </p>
         </div>
     </div>
@@ -99,21 +89,18 @@ button{
         </div>
     </div>
     <div id="notes">
-        <br>
         <p> Notes </p>
-        <p>1. Gross Fiscal Deficit as a percentage of GDP <br> 2. Growth rates are based on GDP at market prices. The growth figures from 1983-84 to 2013-14 are based on the 2004-05 series; the figures from 2014-15 to 2018-19 are based on the 2011-12 series <br> 3. Inflation numbers are based on spliced WPI series (base year 2011-12)</p>
+        <p>1. Gross Fiscal Deficit has been expressed as a percentage of GDP <br> 2. Growth rates are based on GDP at market prices. The growth figures from 1983-84 to 2013-14 are based on the 2004-05 series; the figures from 2014-15 to 2018-19 are based on the 2011-12 series <br> 3. Inflation numbers are based on spliced WPI series (base year 2011-12)</p>
     </div>
 </div>
 <script>
 var margin = { top: 10, right: 10, bottom: 10, left: 0 },
     width = 400 - margin.left - margin.right,
     height = 45 - margin.top - margin.bottom;
-
 // Time
-var dataTime = d3.range(0, 35).map(function(d) {
+var dataTime = d3.range(0, 36).map(function(d) {
     return new Date(1983 + d, 7, 13);
 });
-
 var sliderTime = d3
     .sliderBottom()
     .min(d3.min(dataTime))
@@ -127,124 +114,52 @@ var sliderTime = d3
     .on('onchange', val => {
         d3.select('p#value-time').text(d3.timeFormat('%Y')(val) + "-" + (val.getFullYear() + 1));
         Draw(val.getFullYear())
-
     });
-
 var gTime = d3
     .select('div#slider-time')
     .append('svg')
     .attr('width', 400)
     .attr('height', 100)
     .append('g')
-    .attr('transform', 'translate(20,20)');
+    .attr('transform', 'translate(30,30)');
 gTime.call(sliderTime);
-
 year = sliderTime.value().getFullYear()
-
 d3.select('p#value-time').text(d3.timeFormat('%Y')(sliderTime.value()) + "-" + (year + 1));
-
-
 count = 0
 base_year = 1983
-
-
+var inter = setInterval(function() {
+    updateData();
+    if (count == 36) {
+        clearInterval(inter);
+    }
+}, 1000)
 function updateData() {
-    current_year = base_year + count
     sliderTime.value(new Date(base_year + count, 7, 13))
     count = count + 1
 }
-
-playpausebuttoncount = 0
-
-function IntervalTimer(callback, interval) {
-    var timerId, startTime, remaining = 0;
-    var state = 0; //  0 = idle, 1 = running, 2 = paused, 3= resumed
-
-    this.pause = function() {
-        if (state != 1) return;
-
-        remaining = interval - (new Date() - startTime);
-        window.clearInterval(timerId);
-        state = 2;
-    };
-
-    this.resume = function() {
-        if (state != 2) return;
-
-        state = 3;
-        window.setTimeout(this.timeoutCallback, remaining);
-    };
-
-    this.timeoutCallback = function() {
-        if (state != 3) return;
-
-        callback();
-
-        startTime = new Date();
-        timerId = window.setInterval(callback, interval);
-        state = 1;
-    };
-
-    startTime = new Date();
-    timerId = window.setInterval(callback, interval);
-    state = 1;
-}
-
-oncemoreplease="no"
-
-
-
-var timer = new IntervalTimer(function() {
-    updateData();
-    if (sliderTime.value().getFullYear() == "2017") {
-        timer.pause();
-    }
-
-}, 1000);
-
-
-
-function PlayPauseButton() {
-    playpausebuttoncount=playpausebuttoncount+1;
-    if (playpausebuttoncount % 2 != 0) {
-        d3.selectAll("#Play").text("PLAY")
-        timer.pause();
-        if(sliderTime.value().getFullYear() == "2017"){
-            oncemoreplease="yes"
-            d3.selectAll("#Play").text("PLAY")
+function RepeatButton() {
+    d3.selectAll(".gfd-chart").remove();
+    d3.selectAll(".gdp-chart").remove();
+    d3.selectAll(".inflation-chart").remove();
+    // d3.selectAll(".bar").remove();
+    count = 0
+    base_year = 1983
+    var inter = setInterval(function() {
+        updateData();
+        if (count == 36) {
+            clearInterval(inter);
         }
-
-    } else {
-        d3.selectAll("#Play").text("PAUSE")
-        timer.resume();
-    }
-
-// d3.selectAll(".gfd-chart"chart).remove();
-// d3.selectAll(".gdp-").remove();
-// d3.selectAll(".inflation-chart").remove();
-// d3.selectAll(".bar").remove();
-
+    }, 1000)
 }
-
-
 function Draw(year) {
-
-    // count = 1983 - year
     //GFD
-
     d3.csv('gfd.csv').then(function(gfddata) {
-
         minvalue = d3.min(gfddata, function(d) { return d.value; })
         maxvalue = d3.max(gfddata, function(d) { return d.value; })
         filteredGFDData = gfddata.filter(function(d) { return d.year == year })
-
         var x = d3.scaleLinear().range([0, width]);
-
         x.domain([-5, 15])
-
         if (count == 1) {
-
-
             var gfdsvg = d3.select("#gfd-chart").append("svg")
                 .attr("class", "gfd-chart")
                 .attr("width", width + margin.left + margin.right)
@@ -252,8 +167,6 @@ function Draw(year) {
                 .append("g")
                 .attr("transform",
                     "translate(" + 0 + "," + 0 + ")");
-
-
             gfdsvg.selectAll(".bar")
                 .data(filteredGFDData)
                 .enter().append("rect")
@@ -264,7 +177,6 @@ function Draw(year) {
                 .attr("y", 10)
                 .attr("height", 25)
                 .style('fill', '#DE553A');
-
             gfdsvg.selectAll(".label")
                 .data(filteredGFDData)
                 .enter().append("text")
@@ -274,33 +186,19 @@ function Draw(year) {
                 .attr("y", 25)
                 .text(function(d) { return d.value; })
                 .style('fill', 'black');
-
         } else {
-
             d3.select("#gfd").transition().delay(1000).attr("width", function(d) { return x(filteredGFDData[0].value); });
-
             d3.select("#gfd-label").transition().delay(1000).attr("x", function(d) { return x(filteredGFDData[0].value) + 5; }).text(function(d) { return filteredGFDData[0].value; });
-
         }
-
     })
-
     //GDP
-
     d3.csv('gdp.csv').then(function(gdpdata) {
-
         minvalue = d3.min(gdpdata, function(d) { return d.value; })
         maxvalue = d3.max(gdpdata, function(d) { return d.value; })
         filteredGDPData = gdpdata.filter(function(d) { return d.year == year })
-
         var x = d3.scaleLinear().range([0, width]);
-
-
         x.domain([-5, 15])
-
         if (count == 1) {
-
-
             var gdpsvg = d3.select("#gdp-chart").append("svg")
                 .attr("class", "gdp-chart")
                 .attr("width", width + margin.left + margin.right)
@@ -308,8 +206,6 @@ function Draw(year) {
                 .append("g")
                 .attr("transform",
                     "translate(" + 0 + "," + 0 + ")");
-
-
             gdpsvg.selectAll(".bar")
                 .data(filteredGDPData)
                 .enter().append("rect")
@@ -320,7 +216,6 @@ function Draw(year) {
                 .attr("y", 10)
                 .attr("height", 25)
                 .style('fill', "#9CB55F");
-
             gdpsvg.selectAll(".label")
                 .data(filteredGDPData)
                 .enter().append("text")
@@ -330,33 +225,19 @@ function Draw(year) {
                 .attr("y", 25)
                 .text(function(d) { return d.value; })
                 .style('fill', 'black');
-
         } else {
-
             d3.select("#gdp").transition().delay(1000).attr("width", function(d) { return x(filteredGDPData[0].value); });
-
             d3.select("#gdp-label").transition().delay(1000).attr("x", function(d) { return x(filteredGDPData[0].value) + 5; }).text(function(d) { return filteredGDPData[0].value; });
-
         }
-
     })
-
     //Inflation
-
     d3.csv('inflation.csv').then(function(inflationdata) {
-
         minvalue = d3.min(inflationdata, function(d) { return d.value; })
         maxvalue = d3.max(inflationdata, function(d) { return d.value; })
         filteredInflationData = inflationdata.filter(function(d) { return d.year == year })
-
         var x = d3.scaleLinear().range([0, width]);
-
-
         x.domain([-5, 15])
-
         if (count == 1) {
-
-
             var inflationsvg = d3.select("#inflation-chart").append("svg")
                 .attr("class", "inflation-chart")
                 .attr("width", width + margin.left + margin.right)
@@ -364,8 +245,6 @@ function Draw(year) {
                 .append("g")
                 .attr("transform",
                     "translate(" + 0 + "," + 0 + ")");
-
-
             inflationsvg.selectAll(".bar")
                 .data(filteredInflationData)
                 .enter().append("rect")
@@ -376,7 +255,6 @@ function Draw(year) {
                 .attr("y", 10)
                 .attr("height", 25)
                 .style('fill', '#6CA1CE');
-
             inflationsvg.selectAll(".label")
                 .data(filteredInflationData)
                 .enter().append("text")
@@ -386,16 +264,10 @@ function Draw(year) {
                 .attr("y", 25)
                 .text(function(d) { return d.value; })
                 .style('fill', 'black');
-
         } else {
-
             d3.select("#inflation").transition().delay(1000).attr("width", function(d) { return x(filteredInflationData[0].value); });
-
             d3.select("#inflation-label").transition().delay(1000).attr("x", function(d) { return x(filteredInflationData[0].value) + 5; }).text(function(d) { return filteredInflationData[0].value; });
-
         }
-
     })
-
 }
 </script>
