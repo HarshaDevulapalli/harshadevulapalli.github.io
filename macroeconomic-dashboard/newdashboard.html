@@ -101,9 +101,12 @@
         align-items: center
     }
 
-    .ticks,
     .label {
         font-size: 17.5px;
+    }
+
+    .ticks {
+        font-size: 10px;
     }
 
     .label {
@@ -181,7 +184,7 @@
         <br>
         <h6>A comprehensive overview of 16 high-frequency indicators to track India's economic health.</h6>
         <br>
-        <h6><i>Use the slider to see how these indicators performed over the past five years.</i></h6>
+        <h6><i>Use the slider to see how these indicators performed over the past one year.</i></h6>
         <div id="slider" align="center"></div>
         <br>
         <h6 id="counts">In <span id="selectmonth" style="color:black"></span> , <span id="negativecount" style="color:#D72027"></span> indicators <span id="negativepreposition" style="color:black"></span> in red, <span id="positivecount" style="color:#81A43E"> </span> <span id="positivepreposition" style="color:black"></span> in green and <span id="neutralcount" style="color:#F6921E"> </span> <span id="neutralpreposition" style="color:black"></span> in line.</h6>
@@ -339,7 +342,7 @@
             </tr>
         </table>
         <br>
-        <p align="left"> All data as of 24th June 2019. </p>
+        <p align="left"> All data as of 30th July 2019. </p>
         <p align="left"> Sriharsha Devulapalli/Mint </p>
     </div>
     <script>
@@ -348,9 +351,11 @@
         var formatDateIntoYear = d3.timeFormat("%Y");
         var formatDate = d3.timeFormat("%b %Y");
 
+        var formatDateIntoMonth = d3.timeFormat("%b")
 
-        var startDate = new Date("2014-01-01"),
-            endDate = new Date("2019-05-31");
+
+        var startDate = new Date("2018-06-07"),
+            endDate = new Date("2019-06-07");
 
         var margin = { top: 0, right: 50, bottom: 0, left: 50 },
             width = 375 - margin.left - margin.right,
@@ -384,9 +389,18 @@
 
 
         myticks = x.ticks();
-        myticks.push(new Date(2014, 0, 1))
+
+        // myticks.push(new Date(2014, 0, 1))
+
+
 
         console.log(x.ticks())
+        abiglistofdates=x.ticks()
+        console.log(formatDateIntoYear(abiglistofdates[0]))
+        console.log((abiglistofdates[1]).getMonth())
+        console.log(formatDateIntoMonth(abiglistofdates[0]))
+
+
         slider.insert("g", ".track-overlay")
             .attr("class", "ticks")
             .attr("transform", "translate(0," + 18 + ")")
@@ -397,7 +411,7 @@
             .attr("x", x)
             .attr("y", 10)
             .attr("text-anchor", "middle")
-            .text(function(d) { return formatDateIntoYear(d); });
+            .text(function(d) { return formatDateIntoMonth(d); });
 
         var label = slider.append("text")
             .attr("class", "label")
@@ -420,7 +434,6 @@
 
         for (i = 0; i < 16; i++) {
             if (i == 12 || i == 13) {
-                console.log(i)
                 drawReverse(i)
             } else {
                 draw(i)
@@ -515,13 +528,11 @@
                 data.push(temparray[i].Value)
             }
 
-            console.log(data)
 
             var lowerrange = Data.data[variable].lowerrange
 
             var upperrange = Data.data[variable].upperrange
 
-            console.log(lowerrange,upperrange)
 
             var max_of_array = Math.max.apply(Math, data)
             var min_of_array = Math.min.apply(Math, data)
