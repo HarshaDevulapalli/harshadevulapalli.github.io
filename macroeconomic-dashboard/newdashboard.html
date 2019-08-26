@@ -342,7 +342,7 @@
             </tr>
         </table>
         <br>
-        <p align="left"> All data as of 30th July 2019. </p>
+        <p align="left"> All data as of 26th August 2019. </p>
         <p align="left"> Sriharsha Devulapalli/Mint </p>
     </div>
     <script>
@@ -354,8 +354,8 @@
         var formatDateIntoMonth = d3.timeFormat("%b")
 
 
-        var startDate = new Date("2018-06-07"),
-            endDate = new Date("2019-06-07");
+        var startDate = new Date("2018-07-01"),
+            endDate = new Date("2019-07-01");
 
         var margin = { top: 0, right: 50, bottom: 0, left: 50 },
             width = 375 - margin.left - margin.right,
@@ -368,8 +368,9 @@
 
         var x = d3.scaleTime()
             .domain([startDate, endDate])
-            .range([0, width])
+            .range([0, width, width/12])
             .clamp(true);
+
 
         var slider = svg.append("g")
             .attr("class", "slider")
@@ -388,30 +389,26 @@
                 .on("start drag", function() { hue(x.invert(d3.event.x)); }));
 
 
-        myticks = x.ticks();
 
-        // myticks.push(new Date(2014, 0, 1))
+        selectticks=[]
+        selectticks.push(new Date(2018, 6, 1))
+        selectticks.push(new Date(2018, 11, 1))
+        selectticks.push(new Date(2019, 6, 1))
 
-
-
-        console.log(x.ticks())
-        abiglistofdates=x.ticks()
-        console.log(formatDateIntoYear(abiglistofdates[0]))
-        console.log((abiglistofdates[1]).getMonth())
-        console.log(formatDateIntoMonth(abiglistofdates[0]))
-
-
+    
         slider.insert("g", ".track-overlay")
             .attr("class", "ticks")
             .attr("transform", "translate(0," + 18 + ")")
             .selectAll("text")
-            .data(myticks)
+            .data(selectticks)
             .enter()
             .append("text")
             .attr("x", x)
             .attr("y", 10)
             .attr("text-anchor", "middle")
             .text(function(d) { return formatDateIntoMonth(d); });
+
+
 
         var label = slider.append("text")
             .attr("class", "label")
