@@ -1,13 +1,13 @@
 {
-    "period": "August 2018",
+    "period": "September 2018",
     "data": [
         {
             "variable": "Passenger vehicle sales (domestic)",
             "code": "pvs",
             "description":"This indicator reflects the (YoY %) growth in the domestic sales of passenger cars and vans. Data for the preceding month is released in the second week of every month.",
             "source": "CMIE, SIAM",
-            "upperrange": 6.36925613,
-            "lowerrange": 1.57887388,
+            "upperrange": 5.86303336,
+            "lowerrange": 0.80535555,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -277,14 +277,18 @@
             {
                 "Year": "Jul 2019",
                 "Value": -36.9
+            },
+            {
+                "Year": "Aug 2019",
+                "Value": -41.6
             }]
         },
         {
             "variable": "Tractor sales (domestic)",
             "description":"This indicator reflects the (YoY %) growth in the domestic sales of tractors. Data for the preceding month is released in the second week of every month.",
             "source":" CMIE, Tractor Manufacturers Association",
-            "upperrange": 11.672144,
-            "lowerrange": 0.57003934,
+            "upperrange": 11.3606517,
+            "lowerrange": 0.18610186,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -554,14 +558,18 @@
             {
                 "Year": "Jul 2019",
                 "Value": -13.1
+            },
+            {
+                "Year": "Aug 2019",
+                "Value": -16.5
             }]
         },
         {
             "variable": "2-wheeler sales",
             "description":"This indicator reflects the (YoY %) growth in the domestic sales of two-wheelers. The data for the preceding month is released in the second week of every month.",
             "source": "CMIE, SIAM" ,
-            "upperrange": 10.059379,
-            "lowerrange": 4.05374203,
+            "upperrange": 9.6992622,
+            "lowerrange": 3.58710049,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -831,14 +839,18 @@
             {
                 "Year": "Jul 2019",
                 "Value": -16.8
+            },
+            {
+                "Year": "Aug 2019",
+                "Value": -22.2
             }]
         },
         {
             "variable": "Domestic air passengers",
             "description":"This indicator reflects the (YoY %) growth in the total number of passengers flying domestic scheduled airlines. ",
             "source":"CMIE, Ministry of Civil Aviation.",
-            "upperrange": 20.0438064,
-            "lowerrange": 16.6435269,
+            "upperrange": 19.9503618,
+            "lowerrange": 16.4706382,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -1104,14 +1116,18 @@
             {
                 "Year": "Jun 2019",
                 "Value": 6.2
+            },
+            {
+                "Year": "Aug 2019",
+                "Value": 1.8
             }]
         },
         {
             "variable": "PMI manufacturing",
             "description":"This indicator reflects the performance of the manufacturing sector based on a monthly survey of private sector companies. The index for the previous month is released on the first working day of every month. A reading below 50 indicates contraction in manufacturing activity, while a reading above 50 indicates expansion in activity.",
             "source":"Bloomberg, Markit Economics",
-            "upperrange": 52.3656387,
-            "lowerrange": 51.7127927,
+            "upperrange": 52.3791629,
+            "lowerrange": 51.7208371,
             "suffix": "",
             "values": [
             {
@@ -1381,14 +1397,18 @@
             {
                 "Year": "Jul 2019",
                 "Value": 52.5
+            },
+            {
+                "Year": "Aug 2019",
+                "Value": 51.4
             }]
         },
         {
             "variable": "Core (8-infrastructure sectors) growth",
             "description":"This indicator reflects the (YoY %) growth in the index of eight core infrastructure industries. The eight industries are --Electricity , steel, refinery products, crude oil, coal, cement, natural gas and fertilizers. The index for the previous month is released on the last working day of every month. The Eight Core Industries comprise 40.27 per cent of the weight of items included in the Index of Industrial Production (IIP).",
             "source":"Bloomberg, Ministry of Commerce and Industry",
-            "upperrange": 4.88333428,
-            "lowerrange": 3.70633238,
+            "upperrange": 4.69617162,
+            "lowerrange": 3.55649505,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -1653,15 +1673,19 @@
             },
             {
                 "Year": "Jun 2019",
-                "Value": 0.2
+                "Value": 0.7
+            },
+            {
+                "Year": "Jul 2019",
+                "Value": 2.1
             }]
         },
         {
             "variable": "Bank's non-food credit",
             "description":"This indicator reflects the (%YoY) growth in the outstanding amount of credit to businesses each month, and is released on the last working day of every month.",
             "source":"Bloomberg, RBI",
-            "upperrange": 9.74637054,
-            "lowerrange": 8.42923644,
+            "upperrange": 9.70557389,
+            "lowerrange": 8.40655209,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -1927,14 +1951,18 @@
             {
                 "Year": "Jun 2019",
                 "Value": 11.1
+            },
+            {
+                "Year": "Jul 2019",
+                "Value": 11.4
             }]
         },
         {
             "variable": "Rail freight traffic",
             "description":"This indicator reflects the (%YoY) growth in the freight traffic of major commodities (measured in ‘000 tonnes). The data for previous month is released in the second week of every month.",
             "source":"CMIE, Ministry of Railways",
-            "upperrange": 3.82619884,
-            "lowerrange": 2.20675813,
+            "upperrange": 3.81666187,
+            "lowerrange": 2.19605024,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -2204,14 +2232,18 @@
             {
                 "Year": "Jul 2019",
                 "Value": 1.6
+            },
+            {
+                "Year": "Aug 2019",
+                "Value": -6.1
             }]
         },
         {
             "variable": "Import cover",
             "description":"This indicator measures the number of months of imports that can be covered with foreign exchange reserves available with the central bank of the country.",
             "source":"Bloomberg",
-            "upperrange": 10.9418938,
-            "lowerrange": 10.2753662,
+            "upperrange": 10.9655535,
+            "lowerrange": 10.313655,
             "suffix": "(FX reserves in months)",
             "values": [
             {
@@ -2460,7 +2492,7 @@
             },
             {
                 "Year": "Feb 2019",
-                "Value": 10.3
+                "Value": 10.32
             },
             {
                 "Year": "Mar 2019",
@@ -2481,14 +2513,18 @@
             {
                 "Year": "Jul 2019",
                 "Value": 10.5
+            },
+            {
+                "Year": "Aug 2019",
+                "Value": 10.5
             }]
         },
         {
             "variable": "Rupee vs Dollar",
             "description":"This indicator reflects the month-on-month change in the average daily USD-INR exchange rate.",
             "source":"Bloomberg",
-            "upperrange": 0.03389702,
-            "lowerrange": -0.5931156,
+            "upperrange": 0.05594405,
+            "lowerrange": -0.5724739,
             "suffix": "(% MoM)",
             "values": [
             {
@@ -2758,14 +2794,18 @@
             {
                 "Year": "Jul 2019",
                 "Value": 1.0
+            },
+            {
+                "Year": "Aug 2019",
+                "Value": -3.5
             }]
         },
         {
             "variable": "Current A/c balance",
             "description":"This indicator reflects India’s current account balance as a percentage of quarterly GDP. The data for every quarter is released with a three month lag.",
             "source":"Bloomberg, RBI",
-            "upperrange": -1.1900688,
-            "lowerrange": -1.6258471,
+            "upperrange": -1.1858802,
+            "lowerrange": -1.6254438,
             "suffix": "(as % of GDP)",
             "values": [
             {
@@ -3025,8 +3065,8 @@
             "variable": "Trade balance",
             "description": "This indicator reflects India’s trade balance as a percentage of India’s total trade. The data on India’s merchandise exports and imports for the previous month is released in the third week of every month." ,
             "source": " CMIE, Ministry of Commerce and Industry",
-            "upperrange": -18.205556,
-            "lowerrange": -20.141942,
+            "upperrange": -18.379632,
+            "lowerrange": -20.397265,
             "suffix": "(as % of total trade)",
             "values": [
             {
@@ -3291,19 +3331,23 @@
             },
             {
                 "Year": "Jun 2019",
-                "Value": -18.4
+                "Value": -23.4
             },
             {
                 "Year": "Jul 2019",
-                "Value": -14.7
+                "Value": -20.3
+            },
+            {
+                "Year": "Aug 2019",
+                "Value": -20.5
             }]
         },
         {
             "variable": "CPI",
             "description":"This indicator reflects India’s retail inflation based on the Consumer Price Index (CPI). The data for the previous month is released on the 12th of every month (or the next working day, if that day is a holiday).",
             "source":"Bloomberg, MOSPI",
-            "upperrange": 3.98427199,
-            "lowerrange": 4.62839468,
+            "upperrange": 3.93279611,
+            "lowerrange": 4.56020389,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -3573,14 +3617,18 @@
             {
                 "Year": "Jul 2019",
                 "Value": 3.2
+            },
+            {
+                "Year": "Aug 2019",
+                "Value": 3.2
             }]
         },
         {
             "variable": "Core CPI",
             "description":"This indicator reflects India’s CPI inflation excluding volatile components such as food & beverages; pan, tobacco and alcohol; LPG, kerosene, and other fuels within fuel and light sub-component; and petrol and diesel within transportation and communication category under the miscellaneous sub-component of CPI index. It carries a weight of 47.4% in the CPI basket.",
             "source":"Bloomberg",
-            "upperrange": 4.66093569,
-            "lowerrange": 5.02706431,
+            "upperrange": 4.62762317,
+            "lowerrange": 4.97771016,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -3849,6 +3897,10 @@
             },
             {
                 "Year": "Jul 2019",
+                "Value": 4.3
+            },
+            {
+                "Year": "Aug 2019",
                 "Value": 4.2
             }]
         },
@@ -3856,8 +3908,8 @@
             "variable": "Rural wages",
             "description":"This indicator reflects the (YoY %) growth in the average wage rate for men engaged as rural labourers in agricultural and non-agricultural activities. ",
             "source":"CMIE, Ministry of Labour and Employment",
-            "upperrange": 5.056448,
-            "lowerrange": 4.469219,
+            "upperrange": 4.979175,
+            "lowerrange": 4.423158,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -4130,8 +4182,8 @@
             "variable": "Job Outlook",
             "description":"This indicator reflects the ‘net response’ rate in the Reserve Bank of India’s quarterly industrial outlook surveys to the question of job outlook, and measures the difference between optimistic and pessimistic respondents in each round of the survey. The range of values goes from -100 to 100, with higher values indicating greater optimism on jobs.",
             "source": "CMIE, RBI",
-            "upperrange": 7.614235,
-            "lowerrange": 6.659099,
+            "upperrange": 7.666407,
+            "lowerrange": 6.713593,
             "suffix": "(net response %)",
             "values": [
             {
