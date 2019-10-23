@@ -1,51 +1,15 @@
 {
-    "period": "September 2018",
+    "period": "October 2018",
     "data": [
         {
             "variable": "Passenger vehicle sales (domestic)",
             "code": "pvs",
-            "description":"This indicator reflects the (YoY %) growth in the domestic sales of passenger cars and vans. Data for the preceding month is released in the second week of every month.",
+            "description": "This indicator reflects the (YoY %) growth in the domestic sales of passenger cars and vans. Data for the preceding month is released in the second week of every month.",
             "source": "CMIE, SIAM",
-            "upperrange": 5.86303336,
-            "lowerrange": 0.80535555,
+            "upperrange": 5.50375337,
+            "lowerrange": -0.1806794,
             "suffix": "(YoY %)",
             "values": [
-            {
-                "Year": "Jan 2014",
-                "Value": -5.361806641
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": 1.391061875
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": -5.083160371
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": -10.40421396
-            },
-            {
-                "Year": "May 2014",
-                "Value": 3.083978575
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": 14.75964018
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": 3.493098853
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": 11.10543394
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": -2.001551145
-            },
             {
                 "Year": "Oct 2014",
                 "Value": -4.974274779
@@ -196,11 +160,11 @@
             },
             {
                 "Year": "Nov 2017",
-                "Value": 5.563094348
+                "Value": 5.584464152
             },
             {
                 "Year": "Dec 2017",
-                "Value": 1.842904758
+                "Value": 1.849983777
             },
             {
                 "Year": "Jan 2018",
@@ -248,85 +212,53 @@
             },
             {
                 "Year": "Dec 2018",
-                "Value": 0.316846136
+                "Value": 0.309873676
             },
             {
                 "Year": "Jan 2019",
-                "Value": -1.1
+                "Value": -1.139124467
             },
             {
                 "Year": "Feb 2019",
-                "Value": -3.1
+                "Value": -3.094194541
             },
             {
                 "Year": "Mar 2019",
-                "Value": -5.1
+                "Value": -5.091784992
             },
             {
                 "Year": "Apr 2019",
-                "Value": -20.8
+                "Value": -20.82391233
             },
             {
                 "Year": "May 2019",
-                "Value": -26.1
+                "Value": -26.12707162
             },
             {
                 "Year": "Jun 2019",
-                "Value": -23.6
+                "Value": -23.63259289
             },
             {
                 "Year": "Jul 2019",
-                "Value": -36.9
+                "Value": -36.86635075
             },
             {
                 "Year": "Aug 2019",
-                "Value": -41.6
+                "Value": -42.76106542
+            },
+            {
+                "Year": "Sep 2019",
+                "Value": -34.18246005
             }]
         },
         {
             "variable": "Tractor sales (domestic)",
-            "description":"This indicator reflects the (YoY %) growth in the domestic sales of tractors. Data for the preceding month is released in the second week of every month.",
-            "source":" CMIE, Tractor Manufacturers Association",
-            "upperrange": 11.3606517,
-            "lowerrange": 0.18610186,
+            "description": "This indicator reflects the (YoY %) growth in the domestic sales of tractors. Data for the preceding month is released in the second week of every month.",
+            "source": " CMIE, Tractor Manufacturers Association",
+            "upperrange": 11.261291,
+            "lowerrange": 0.04514018,
             "suffix": "(YoY %)",
             "values": [
-            {
-                "Year": "Jan 2014",
-                "Value": 14.66042155
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": 16.1871345
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": 3.719638068
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": -7.104912559
-            },
-            {
-                "Year": "May 2014",
-                "Value": 0.676286451
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": 7.250857589
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": -5.927204048
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": -4.511735729
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": 6.992142253
-            },
             {
                 "Year": "Oct 2014",
                 "Value": -12.31756954
@@ -533,362 +465,286 @@
             },
             {
                 "Year": "Jan 2019",
-                "Value": 2.4
+                "Value": 2.427994292
             },
             {
                 "Year": "Feb 2019",
-                "Value": -0.5
+                "Value": -0.51666074
             },
             {
                 "Year": "Mar 2019",
-                "Value": -15.0
+                "Value": -14.97127731
             },
             {
                 "Year": "Apr 2019",
-                "Value": -13.2
+                "Value": -13.23651766
             },
             {
                 "Year": "May 2019",
-                "Value": -15.7
+                "Value": -15.68917723
             },
             {
                 "Year": "Jun 2019",
-                "Value": -13.6
+                "Value": -13.6120348
             },
             {
                 "Year": "Jul 2019",
-                "Value": -13.1
+                "Value": -13.13687742
             },
             {
                 "Year": "Aug 2019",
-                "Value": -16.5
+                "Value": -16.53525569
+            },
+            {
+                "Year": "Sep 2019",
+                "Value": -4.710650754
             }]
         },
         {
-            "variable": "2-wheeler sales",
-            "description":"This indicator reflects the (YoY %) growth in the domestic sales of two-wheelers. The data for the preceding month is released in the second week of every month.",
-            "source": "CMIE, SIAM" ,
-            "upperrange": 9.6992622,
-            "lowerrange": 3.58710049,
+            "variable": "Broadband subscriber base",
+            "description": "This indicator reflects the (YoY %) growth in internet subscriber base.",
+            "source": "CMIE",
+            "upperrange": 60.6135207,
+            "lowerrange": 53.3446936,
             "suffix": "(YoY %)",
             "values": [
             {
-                "Year": "Jan 2014",
-                "Value": 8.87
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": 9.7
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": 21.18
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": 10.37
-            },
-            {
-                "Year": "May 2014",
-                "Value": 15.93
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": 13.11
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": 14.72
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": 19.22
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": 22.73
-            },
-            {
-                "Year": "Oct 2014",
-                "Value": -3.610059501
-            },
-            {
-                "Year": "Nov 2014",
-                "Value": 4.887108668
-            },
-            {
                 "Year": "Dec 2014",
-                "Value": 3.555342037
+                "Value": 55.33
             },
             {
                 "Year": "Jan 2015",
-                "Value": 1.065254749
+                "Value": 66.06
             },
             {
                 "Year": "Feb 2015",
-                "Value": -0.988164483
+                "Value": 67.88
             },
             {
                 "Year": "Mar 2015",
-                "Value": -0.844242947
+                "Value": 62.97
             },
             {
                 "Year": "Apr 2015",
-                "Value": -0.164988213
+                "Value": 63.2
             },
             {
                 "Year": "May 2015",
-                "Value": -1.246946458
+                "Value": 60.66
             },
             {
                 "Year": "Jun 2015",
-                "Value": 3.54910154
+                "Value": 58.14
             },
             {
                 "Year": "Jul 2015",
-                "Value": 0.135751763
+                "Value": 60.03
             },
             {
                 "Year": "Aug 2015",
-                "Value": -2.984602075
+                "Value": 57.91
             },
             {
                 "Year": "Sep 2015",
-                "Value": -1.06230143
+                "Value": 59.62
             },
             {
                 "Year": "Oct 2015",
-                "Value": 13.31260878
+                "Value": 58.09
             },
             {
                 "Year": "Nov 2015",
-                "Value": 1.46899497
+                "Value": 59.92
             },
             {
                 "Year": "Dec 2015",
-                "Value": -3.097327506
+                "Value": 59.24
             },
             {
                 "Year": "Jan 2016",
-                "Value": 2.629908393
+                "Value": 48.27
             },
             {
                 "Year": "Feb 2016",
-                "Value": 12.7551561
+                "Value": 48.78
             },
             {
                 "Year": "Mar 2016",
-                "Value": 10.92259278
+                "Value": 50.96
             },
             {
                 "Year": "Apr 2016",
-                "Value": 21.23077784
+                "Value": 49.95
             },
             {
                 "Year": "May 2016",
-                "Value": 9.659731531
+                "Value": 52.21
             },
             {
                 "Year": "Jun 2016",
-                "Value": 12.2779314
+                "Value": 46.81
             },
             {
                 "Year": "Jul 2016",
-                "Value": 13.52409192
+                "Value": 47.33
             },
             {
                 "Year": "Aug 2016",
-                "Value": 26.31658378
+                "Value": 46.34
             },
             {
                 "Year": "Sep 2016",
-                "Value": 21.7628085
+                "Value": 59.08
             },
             {
                 "Year": "Oct 2016",
-                "Value": 8.716032806
+                "Value": 74.43
             },
             {
                 "Year": "Nov 2016",
-                "Value": -5.854067087
+                "Value": 65.99
             },
             {
                 "Year": "Dec 2016",
-                "Value": -22.04011404
+                "Value": 72.92
             },
             {
                 "Year": "Jan 2017",
-                "Value": -7.391631979
+                "Value": 81.12
             },
             {
                 "Year": "Feb 2017",
-                "Value": -0.009837194
+                "Value": 80.38
             },
             {
                 "Year": "Mar 2017",
-                "Value": 0.267491534
+                "Value": 84.65
             },
             {
                 "Year": "Apr 2017",
-                "Value": 7.336948859
+                "Value": 83.02
             },
             {
                 "Year": "May 2017",
-                "Value": 11.95192078
+                "Value": 82.53
             },
             {
                 "Year": "Jun 2017",
-                "Value": 4.035108152
+                "Value": 88.26
             },
             {
                 "Year": "Jul 2017",
-                "Value": 13.78714273
+                "Value": 86.19
             },
             {
                 "Year": "Aug 2017",
-                "Value": 14.72607621
+                "Value": 84.31
             },
             {
                 "Year": "Sep 2017",
-                "Value": 9.119153931
+                "Value": 68.95
             },
             {
                 "Year": "Oct 2017",
-                "Value": -2.724544447
+                "Value": 55.74
             },
             {
                 "Year": "Nov 2017",
-                "Value": 23.48939791
+                "Value": 60.68
             },
             {
                 "Year": "Dec 2017",
-                "Value": 41.45072484
+                "Value": 53.7
             },
             {
                 "Year": "Jan 2018",
-                "Value": 33.42941354
+                "Value": 49
             },
             {
                 "Year": "Feb 2018",
-                "Value": 23.77098227
+                "Value": 50.04
             },
             {
                 "Year": "Mar 2018",
-                "Value": 18.34781155
+                "Value": 49.21
             },
             {
                 "Year": "Apr 2018",
-                "Value": 16.92477909
+                "Value": 51.81
             },
             {
                 "Year": "May 2018",
-                "Value": 9.195399587
+                "Value": 48.14
             },
             {
                 "Year": "Jun 2018",
-                "Value": 22.2830111
+                "Value": 48.62
             },
             {
                 "Year": "Jul 2018",
-                "Value": 8.167329017
+                "Value": 48.05
             },
             {
                 "Year": "Aug 2018",
-                "Value": 2.914121537
+                "Value": 46.51
             },
             {
                 "Year": "Sep 2018",
-                "Value": 4.12217224
+                "Value": 48.27
             },
             {
                 "Year": "Oct 2018",
-                "Value": 17.23496353
+                "Value": 45.85
             },
             {
                 "Year": "Nov 2018",
-                "Value": 7.146805207
+                "Value": 45.97
             },
             {
                 "Year": "Dec 2018",
-                "Value": -2.218559916
+                "Value": 42.9
             },
             {
                 "Year": "Jan 2019",
-                "Value": -5.2
+                "Value": 42.83
             },
             {
                 "Year": "Feb 2019",
-                "Value": -4.2
+                "Value": 40.35
             },
             {
                 "Year": "Mar 2019",
-                "Value": -17.3
+                "Value": 36.53
             },
             {
                 "Year": "Apr 2019",
-                "Value": -16.3
+                "Value": 36.25
             },
             {
                 "Year": "May 2019",
-                "Value": -6.7
+                "Value": 34.61
             },
             {
                 "Year": "Jun 2019",
-                "Value": -11.7
+                "Value": 32.98
             },
             {
                 "Year": "Jul 2019",
-                "Value": -16.8
+                "Value": 31.26
             },
             {
                 "Year": "Aug 2019",
-                "Value": -22.2
+                "Value": 32.73
             }]
         },
         {
             "variable": "Domestic air passengers",
-            "description":"This indicator reflects the (YoY %) growth in the total number of passengers flying domestic scheduled airlines. ",
-            "source":"CMIE, Ministry of Civil Aviation.",
-            "upperrange": 19.9503618,
-            "lowerrange": 16.4706382,
+            "description": "This indicator reflects the (YoY %) growth in the total number of passengers flying domestic scheduled airlines. ",
+            "source": "CMIE, Ministry of Civil Aviation.",
+            "upperrange": 19.8896471,
+            "lowerrange": 16.3036862,
             "suffix": "(YoY %)",
             "values": [
-            {
-                "Year": "Jan 2014",
-                "Value": 0.83
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": 1.68
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": 2.66
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": 5.24
-            },
-            {
-                "Year": "May 2014",
-                "Value": 6.37
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": 14.2
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": 8.6
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": 9.77
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": 28.68
-            },
             {
                 "Year": "Oct 2014",
                 "Value": 18.67
@@ -1091,192 +947,160 @@
             },
             {
                 "Year": "Dec 2018",
-                "Value": 12.9
+                "Value": 12.88
             },
             {
                 "Year": "Jan 2019",
-                "Value": 8.9
+                "Value": 8.92
             },
             {
                 "Year": "Feb 2019",
-                "Value": 5.6
+                "Value": 5.61
             },
             {
                 "Year": "Mar 2019",
-                "Value": 0.1
+                "Value": 0.11
             },
             {
                 "Year": "Apr 2019",
-                "Value": -4.4
+                "Value": -4.43
             },
             {
                 "Year": "May 2019",
-                "Value": 2.8
+                "Value": 2.82
             },
             {
                 "Year": "Jun 2019",
-                "Value": 6.2
+                "Value": 6.21
+            },
+            {
+                "Year": "Jul 2019",
+                "Value": 1.77
             },
             {
                 "Year": "Aug 2019",
-                "Value": 1.8
+                "Value": 3.87
             }]
         },
         {
-            "variable": "PMI manufacturing",
-            "description":"This indicator reflects the performance of the manufacturing sector based on a monthly survey of private sector companies. The index for the previous month is released on the first working day of every month. A reading below 50 indicates contraction in manufacturing activity, while a reading above 50 indicates expansion in activity.",
-            "source":"Bloomberg, Markit Economics",
-            "upperrange": 52.3791629,
-            "lowerrange": 51.7208371,
+            "variable": "PMI composite",
+            "description": "The India composite output index is a weighted average of the Manufacturing Output Index and the Services Business Activity Index. Index values above 50 indicate expansion in private sector activity, while index values below 50 indicate contraction. The data for the previous month is released on the third working day of the onging month.",
+            "source": "Bloomberg, Markit Economics",
+            "upperrange": 52.3405451,
+            "lowerrange": 51.4761215,
             "suffix": "",
             "values": [
             {
-                "Year": "Jan 2014",
-                "Value": 51.4
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": 52.5
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": 51.3
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": 51.3
-            },
-            {
-                "Year": "May 2014",
-                "Value": 51.4
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": 51.5
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": 53
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": 52.4
-            },
-            {
-                "Year": "Sep 2014",
+                "Year": "Oct 2014",
                 "Value": 51
             },
             {
-                "Year": "Oct 2014",
-                "Value": 51.6
-            },
-            {
                 "Year": "Nov 2014",
-                "Value": 53.3
+                "Value": 53.6
             },
             {
                 "Year": "Dec 2014",
-                "Value": 54.5
-            },
-            {
-                "Year": "Jan 2015",
                 "Value": 52.9
             },
             {
+                "Year": "Jan 2015",
+                "Value": 53.3
+            },
+            {
                 "Year": "Feb 2015",
-                "Value": 51.2
+                "Value": 53.5
             },
             {
                 "Year": "Mar 2015",
-                "Value": 52.1
+                "Value": 53.2
             },
             {
                 "Year": "Apr 2015",
-                "Value": 51.3
+                "Value": 52.5
             },
             {
                 "Year": "May 2015",
-                "Value": 52.6
-            },
-            {
-                "Year": "Jun 2015",
-                "Value": 51.3
-            },
-            {
-                "Year": "Jul 2015",
-                "Value": 52.7
-            },
-            {
-                "Year": "Aug 2015",
-                "Value": 52.3
-            },
-            {
-                "Year": "Sep 2015",
                 "Value": 51.2
             },
             {
-                "Year": "Oct 2015",
-                "Value": 50.7
+                "Year": "Jun 2015",
+                "Value": 49.2
             },
             {
-                "Year": "Nov 2015",
-                "Value": 50.3
+                "Year": "Jul 2015",
+                "Value": 52
             },
             {
-                "Year": "Dec 2015",
-                "Value": 49.1
-            },
-            {
-                "Year": "Jan 2016",
-                "Value": 51.1
-            },
-            {
-                "Year": "Feb 2016",
-                "Value": 51.1
-            },
-            {
-                "Year": "Mar 2016",
-                "Value": 52.4
-            },
-            {
-                "Year": "Apr 2016",
-                "Value": 50.5
-            },
-            {
-                "Year": "May 2016",
-                "Value": 50.7
-            },
-            {
-                "Year": "Jun 2016",
-                "Value": 51.7
-            },
-            {
-                "Year": "Jul 2016",
-                "Value": 51.8
-            },
-            {
-                "Year": "Aug 2016",
+                "Year": "Aug 2015",
                 "Value": 52.6
             },
             {
+                "Year": "Sep 2015",
+                "Value": 51.5
+            },
+            {
+                "Year": "Oct 2015",
+                "Value": 52.6
+            },
+            {
+                "Year": "Nov 2015",
+                "Value": 50.2
+            },
+            {
+                "Year": "Dec 2015",
+                "Value": 51.6
+            },
+            {
+                "Year": "Jan 2016",
+                "Value": 53.3
+            },
+            {
+                "Year": "Feb 2016",
+                "Value": 51.2
+            },
+            {
+                "Year": "Mar 2016",
+                "Value": 54.3
+            },
+            {
+                "Year": "Apr 2016",
+                "Value": 52.8
+            },
+            {
+                "Year": "May 2016",
+                "Value": 50.9
+            },
+            {
+                "Year": "Jun 2016",
+                "Value": 49.1
+            },
+            {
+                "Year": "Jul 2016",
+                "Value": 51.1
+            },
+            {
+                "Year": "Aug 2016",
+                "Value": 49.1
+            },
+            {
                 "Year": "Sep 2016",
-                "Value": 52.1
+                "Value": 51.1
             },
             {
                 "Year": "Oct 2016",
-                "Value": 54.4
+                "Value": 51.1
             },
             {
                 "Year": "Nov 2016",
-                "Value": 52.3
+                "Value": 49.1
             },
             {
                 "Year": "Dec 2016",
-                "Value": 49.6
+                "Value": 47.6
             },
             {
                 "Year": "Jan 2017",
-                "Value": 50.4
+                "Value": 49.4
             },
             {
                 "Year": "Feb 2017",
@@ -1284,169 +1108,137 @@
             },
             {
                 "Year": "Mar 2017",
-                "Value": 52.5
-            },
-            {
-                "Year": "Apr 2017",
-                "Value": 52.5
-            },
-            {
-                "Year": "May 2017",
-                "Value": 51.6
-            },
-            {
-                "Year": "Jun 2017",
-                "Value": 50.9
-            },
-            {
-                "Year": "Jul 2017",
-                "Value": 47.9
-            },
-            {
-                "Year": "Aug 2017",
-                "Value": 51.2
-            },
-            {
-                "Year": "Sep 2017",
-                "Value": 51.2
-            },
-            {
-                "Year": "Oct 2017",
-                "Value": 50.3
-            },
-            {
-                "Year": "Nov 2017",
-                "Value": 52.6
-            },
-            {
-                "Year": "Dec 2017",
-                "Value": 54.7
-            },
-            {
-                "Year": "Jan 2018",
-                "Value": 52.4
-            },
-            {
-                "Year": "Feb 2018",
-                "Value": 52.1
-            },
-            {
-                "Year": "Mar 2018",
-                "Value": 51
-            },
-            {
-                "Year": "Apr 2018",
-                "Value": 51.6
-            },
-            {
-                "Year": "May 2018",
-                "Value": 51.2
-            },
-            {
-                "Year": "Jun 2018",
-                "Value": 53.1
-            },
-            {
-                "Year": "Jul 2018",
                 "Value": 52.3
             },
             {
-                "Year": "Aug 2018",
-                "Value": 51.7
+                "Year": "Apr 2017",
+                "Value": 51.3
             },
             {
-                "Year": "Sep 2018",
-                "Value": 52.2
-            },
-            {
-                "Year": "Oct 2018",
-                "Value": 53.1
-            },
-            {
-                "Year": "Nov 2018",
-                "Value": 54
-            },
-            {
-                "Year": "Dec 2018",
-                "Value": 53.2
-            },
-            {
-                "Year": "Jan 2019",
-                "Value": 53.9
-            },
-            {
-                "Year": "Feb 2019",
-                "Value": 54.3
-            },
-            {
-                "Year": "Mar 2019",
-                "Value": 52.6
-            },
-            {
-                "Year": "Apr 2019",
-                "Value": 51.8
-            },
-            {
-                "Year": "May 2019",
-                "Value": 52.7
-            },
-            {
-                "Year": "Jun 2019",
-                "Value": 52.1
-            },
-            {
-                "Year": "Jul 2019",
+                "Year": "May 2017",
                 "Value": 52.5
             },
             {
+                "Year": "Jun 2017",
+                "Value": 52.7
+            },
+            {
+                "Year": "Jul 2017",
+                "Value": 46
+            },
+            {
+                "Year": "Aug 2017",
+                "Value": 49
+            },
+            {
+                "Year": "Sep 2017",
+                "Value": 51.1
+            },
+            {
+                "Year": "Oct 2017",
+                "Value": 51.3
+            },
+            {
+                "Year": "Nov 2017",
+                "Value": 50.3
+            },
+            {
+                "Year": "Dec 2017",
+                "Value": 53
+            },
+            {
+                "Year": "Jan 2018",
+                "Value": 52.5
+            },
+            {
+                "Year": "Feb 2018",
+                "Value": 49.7
+            },
+            {
+                "Year": "Mar 2018",
+                "Value": 50.8
+            },
+            {
+                "Year": "Apr 2018",
+                "Value": 51.9
+            },
+            {
+                "Year": "May 2018",
+                "Value": 50.4
+            },
+            {
+                "Year": "Jun 2018",
+                "Value": 53.3
+            },
+            {
+                "Year": "Jul 2018",
+                "Value": 54.1
+            },
+            {
+                "Year": "Aug 2018",
+                "Value": 51.9
+            },
+            {
+                "Year": "Sep 2018",
+                "Value": 51.6
+            },
+            {
+                "Year": "Oct 2018",
+                "Value": 53
+            },
+            {
+                "Year": "Nov 2018",
+                "Value": 54.5
+            },
+            {
+                "Year": "Dec 2018",
+                "Value": 53.6
+            },
+            {
+                "Year": "Jan 2019",
+                "Value": 53.6
+            },
+            {
+                "Year": "Feb 2019",
+                "Value": 53.8
+            },
+            {
+                "Year": "Mar 2019",
+                "Value": 52.7
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": 51.7
+            },
+            {
+                "Year": "May 2019",
+                "Value": 51.7
+            },
+            {
+                "Year": "Jun 2019",
+                "Value": 50.8
+            },
+            {
+                "Year": "Jul 2019",
+                "Value": 53.9
+            },
+            {
                 "Year": "Aug 2019",
-                "Value": 51.4
+                "Value": 52.6
+            },
+            {
+                "Year": "Sep 2019",
+                "Value": 49.8
             }]
         },
         {
             "variable": "Core (8-infrastructure sectors) growth",
-            "description":"This indicator reflects the (YoY %) growth in the index of eight core infrastructure industries. The eight industries are --Electricity , steel, refinery products, crude oil, coal, cement, natural gas and fertilizers. The index for the previous month is released on the last working day of every month. The Eight Core Industries comprise 40.27 per cent of the weight of items included in the Index of Industrial Production (IIP).",
-            "source":"Bloomberg, Ministry of Commerce and Industry",
-            "upperrange": 4.69617162,
-            "lowerrange": 3.55649505,
+            "description": "This indicator reflects the (YoY %) growth in the index of eight core infrastructure industries. The eight industries are --Electricity , steel, refinery products, crude oil, coal, cement, natural gas and fertilizers. The index for the previous month is released on the last working day of every month. The Eight Core Industries comprise 40.27 per cent of the weight of items included in the Index of Industrial Production (IIP).",
+            "source": "Bloomberg, Ministry of Commerce and Industry",
+            "upperrange": 4.66641937,
+            "lowerrange": 3.52291396,
             "suffix": "(YoY %)",
             "values": [
-            {
-                "Year": "Jan 2014",
-                "Value": 2.54
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": 4.92
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": 2.91
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": 4.99
-            },
-            {
-                "Year": "May 2014",
-                "Value": 5.18
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": 9.64
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": 4.16
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": 5.56
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": 3.4
-            },
             {
                 "Year": "Oct 2014",
                 "Value": 8.85
@@ -1629,7 +1421,7 @@
             },
             {
                 "Year": "Jul 2018",
-                "Value": 7.3
+                "Value": 7.31
             },
             {
                 "Year": "Aug 2018",
@@ -1637,96 +1429,64 @@
             },
             {
                 "Year": "Sep 2018",
-                "Value": 4.28
+                "Value": 4.29
             },
             {
                 "Year": "Oct 2018",
-                "Value": 4.77
+                "Value": 4.76
             },
             {
                 "Year": "Nov 2018",
-                "Value": 3.3
+                "Value": 3.33
             },
             {
                 "Year": "Dec 2018",
-                "Value": 2.1
+                "Value": 2.12
             },
             {
                 "Year": "Jan 2019",
-                "Value": 1.5
+                "Value": 1.54
             },
             {
                 "Year": "Feb 2019",
-                "Value": 2.2
+                "Value": 2.23
             },
             {
                 "Year": "Mar 2019",
-                "Value": 4.9
+                "Value": 5.81
             },
             {
                 "Year": "Apr 2019",
-                "Value": 6.3
+                "Value": 5.16
             },
             {
                 "Year": "May 2019",
-                "Value": 4.3
+                "Value": 3.84
             },
             {
                 "Year": "Jun 2019",
-                "Value": 0.7
+                "Value": 0.67
             },
             {
                 "Year": "Jul 2019",
-                "Value": 2.1
+                "Value": 2.69
+            },
+            {
+                "Year": "Aug 2019",
+                "Value": -0.46
             }]
         },
         {
             "variable": "Bank's non-food credit",
-            "description":"This indicator reflects the (%YoY) growth in the outstanding amount of credit to businesses each month, and is released on the last working day of every month.",
-            "source":"Bloomberg, RBI",
-            "upperrange": 9.70557389,
-            "lowerrange": 8.40655209,
+            "description": "This indicator reflects the (%YoY) growth in the outstanding amount of credit to businesses each month, and is released on the last working day of every month.",
+            "source": "Bloomberg, RBI",
+            "upperrange": 9.67978813,
+            "lowerrange": 8.3923168,
             "suffix": "(YoY %)",
             "values": [
             {
-                "Year": "Jan 2014",
-                "Value": 14.25136201
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": 13.99954246
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": 13.55435796
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": 14.22283251
-            },
-            {
-                "Year": "May 2014",
-                "Value": 13.02464133
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": 12.96014114
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": 12.58255897
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": 10.24125691
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": 8.581704054
-            },
-            {
                 "Year": "Oct 2014",
-                "Value": 11.07991008
+                "Value": 11.07991803
             },
             {
                 "Year": "Nov 2014",
@@ -1734,11 +1494,11 @@
             },
             {
                 "Year": "Dec 2014",
-                "Value": 9.696833846
+                "Value": 9.696823449
             },
             {
                 "Year": "Jan 2015",
-                "Value": 9.694634259
+                "Value": 9.694631161
             },
             {
                 "Year": "Feb 2015",
@@ -1746,7 +1506,7 @@
             },
             {
                 "Year": "Mar 2015",
-                "Value": 8.560308239
+                "Value": 8.560310229
             },
             {
                 "Year": "Apr 2015",
@@ -1758,7 +1518,7 @@
             },
             {
                 "Year": "Jun 2015",
-                "Value": 8.394476693
+                "Value": 8.394479402
             },
             {
                 "Year": "Jul 2015",
@@ -1766,15 +1526,15 @@
             },
             {
                 "Year": "Aug 2015",
-                "Value": 8.408838747
+                "Value": 8.408836224
             },
             {
                 "Year": "Sep 2015",
-                "Value": 8.635953911
+                "Value": 8.635948105
             },
             {
                 "Year": "Oct 2015",
-                "Value": 8.325241049
+                "Value": 8.325233302
             },
             {
                 "Year": "Nov 2015",
@@ -1794,7 +1554,7 @@
             },
             {
                 "Year": "Mar 2016",
-                "Value": 9.061393794
+                "Value": 9.061391795
             },
             {
                 "Year": "Apr 2016",
@@ -1818,7 +1578,7 @@
             },
             {
                 "Year": "Sep 2016",
-                "Value": 10.77135884
+                "Value": 10.77135507
             },
             {
                 "Year": "Oct 2016",
@@ -1846,7 +1606,7 @@
             },
             {
                 "Year": "Apr 2017",
-                "Value": 4.538698418
+                "Value": 4.538701776
             },
             {
                 "Year": "May 2017",
@@ -1866,7 +1626,7 @@
             },
             {
                 "Year": "Sep 2017",
-                "Value": 6.091788858
+                "Value": 6.091155958
             },
             {
                 "Year": "Oct 2017",
@@ -1894,7 +1654,7 @@
             },
             {
                 "Year": "Apr 2018",
-                "Value": 10.680838
+                "Value": 10.68083444
             },
             {
                 "Year": "May 2018",
@@ -1918,7 +1678,7 @@
             },
             {
                 "Year": "Oct 2018",
-                "Value": 13.3767001
+                "Value": 13.37617004
             },
             {
                 "Year": "Nov 2018",
@@ -1926,81 +1686,49 @@
             },
             {
                 "Year": "Dec 2018",
-                "Value": 12.8
+                "Value": 12.77569478
             },
             {
                 "Year": "Jan 2019",
-                "Value": 13.1
+                "Value": 13.10687669
             },
             {
                 "Year": "Feb 2019",
-                "Value": 13.2
+                "Value": 13.18362039
             },
             {
                 "Year": "Mar 2019",
-                "Value": 12.3
+                "Value": 12.29114215
             },
             {
                 "Year": "Apr 2019",
-                "Value": 11.9
+                "Value": 11.88117976
             },
             {
                 "Year": "May 2019",
-                "Value": 11.4
+                "Value": 11.43866932
             },
             {
                 "Year": "Jun 2019",
-                "Value": 11.1
+                "Value": 11.05572402
             },
             {
                 "Year": "Jul 2019",
-                "Value": 11.4
+                "Value": 11.38192761
+            },
+            {
+                "Year": "Aug 2019",
+                "Value": 9.806302909
             }]
         },
         {
             "variable": "Rail freight traffic",
-            "description":"This indicator reflects the (%YoY) growth in the freight traffic of major commodities (measured in ‘000 tonnes). The data for previous month is released in the second week of every month.",
-            "source":"CMIE, Ministry of Railways",
-            "upperrange": 3.81666187,
-            "lowerrange": 2.19605024,
+            "description": "This indicator reflects the (%YoY) growth in the freight traffic of major commodities (measured in ‘000 tonnes). The data for previous month is released in the second week of every month.",
+            "source": "CMIE, Ministry of Railways",
+            "upperrange": 3.77302319,
+            "lowerrange": 2.1521315,
             "suffix": "(YoY %)",
             "values": [
-            {
-                "Year": "Jan 2014",
-                "Value": 4.103671706
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": 3.970816888
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": 2.175459998
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": 6.118546845
-            },
-            {
-                "Year": "May 2014",
-                "Value": 4.038112523
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": 2.577987051
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": 4.257046746
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": 6.038008179
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": 2.191845392
-            },
             {
                 "Year": "Oct 2014",
                 "Value": 8.44779385
@@ -2151,15 +1879,15 @@
             },
             {
                 "Year": "Nov 2017",
-                "Value": 3.082080675
+                "Value": 3.060452038
             },
             {
                 "Year": "Dec 2017",
-                "Value": 6.973544974
+                "Value": 6.994708995
             },
             {
                 "Year": "Jan 2018",
-                "Value": 6.370656371
+                "Value": 6.360495834
             },
             {
                 "Year": "Feb 2018",
@@ -2203,85 +1931,53 @@
             },
             {
                 "Year": "Dec 2018",
-                "Value": 3.274310021
+                "Value": 3.253881911
             },
             {
                 "Year": "Jan 2019",
-                "Value": 2.8
+                "Value": 2.75124188
             },
             {
                 "Year": "Feb 2019",
-                "Value": 4.3
+                "Value": 4.340567613
             },
             {
                 "Year": "Mar 2019",
-                "Value": 6.6
+                "Value": 6.587146163
             },
             {
                 "Year": "Apr 2019",
-                "Value": 3.2
+                "Value": 3.174117167
             },
             {
                 "Year": "May 2019",
-                "Value": 2.8
+                "Value": 2.845089767
             },
             {
                 "Year": "Jun 2019",
-                "Value": 2.0
+                "Value": 1.970641464
             },
             {
                 "Year": "Jul 2019",
-                "Value": 1.6
+                "Value": 1.630324027
             },
             {
                 "Year": "Aug 2019",
-                "Value": -6.1
+                "Value": -6.114032374
+            },
+            {
+                "Year": "Sep 2019",
+                "Value": -6.602679042
             }]
         },
         {
             "variable": "Import cover",
-            "description":"This indicator measures the number of months of imports that can be covered with foreign exchange reserves available with the central bank of the country.",
-            "source":"Bloomberg",
-            "upperrange": 10.9655535,
-            "lowerrange": 10.313655,
+            "description": "This indicator measures the number of months of imports that can be covered with foreign exchange reserves available with the central bank of the country.",
+            "source": "Bloomberg",
+            "upperrange": 10.9898749,
+            "lowerrange": 10.3527184,
             "suffix": "(FX reserves in months)",
             "values": [
-            {
-                "Year": "Jan 2014",
-                "Value": 8.0083
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": 8.4106
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": 8.1859
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": 8.428
-            },
-            {
-                "Year": "May 2014",
-                "Value": 8.3908
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": 8.4396
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": 8.4817
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": 8.4398
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": 8.1871
-            },
             {
                 "Year": "Oct 2014",
                 "Value": 8.2087
@@ -2432,137 +2128,105 @@
             },
             {
                 "Year": "Nov 2017",
-                "Value": 10.9039
+                "Value": 10.8672
             },
             {
                 "Year": "Dec 2017",
-                "Value": 11.0098
+                "Value": 10.9733
             },
             {
                 "Year": "Jan 2018",
-                "Value": 10.2695
+                "Value": 10.1693
             },
             {
                 "Year": "Feb 2018",
-                "Value": 10.7162
+                "Value": 10.5917
             },
             {
                 "Year": "Mar 2018",
-                "Value": 10.4956
+                "Value": 10.4145
             },
             {
                 "Year": "Apr 2018",
-                "Value": 10.4489
+                "Value": 10.3879
             },
             {
                 "Year": "May 2018",
-                "Value": 10.0983
+                "Value": 10.0519
             },
             {
                 "Year": "Jun 2018",
-                "Value": 9.7961
+                "Value": 9.759
             },
             {
                 "Year": "Jul 2018",
-                "Value": 9.6732
+                "Value": 9.6224
             },
             {
                 "Year": "Aug 2018",
-                "Value": 9.4775
+                "Value": 9.4205
             },
             {
                 "Year": "Sep 2018",
-                "Value": 9.4946
+                "Value": 9.4219
             },
             {
                 "Year": "Oct 2018",
-                "Value": 9.2522
+                "Value": 9.1887
             },
             {
                 "Year": "Nov 2018",
-                "Value": 9.2751
+                "Value": 9.2172
             },
             {
                 "Year": "Dec 2018",
-                "Value": 9.294
+                "Value": 9.2407
             },
             {
                 "Year": "Jan 2019",
-                "Value": 9.7
+                "Value": 9.6914
             },
             {
                 "Year": "Feb 2019",
-                "Value": 10.32
+                "Value": 10.3225
             },
             {
                 "Year": "Mar 2019",
-                "Value": 10.2
+                "Value": 10.2304
             },
             {
                 "Year": "Apr 2019",
-                "Value": 10.3
+                "Value": 10.3217
             },
             {
                 "Year": "May 2019",
-                "Value": 10.2
+                "Value": 10.1634
             },
             {
                 "Year": "Jun 2019",
-                "Value": 10.4
+                "Value": 10.354
             },
             {
                 "Year": "Jul 2019",
-                "Value": 10.5
+                "Value": 10.4576
             },
             {
                 "Year": "Aug 2019",
-                "Value": 10.5
+                "Value": 10.4801
+            },
+            {
+                "Year": "Sep 2019",
+                "Value": 10.7188
             }]
         },
         {
             "variable": "Rupee vs Dollar",
-            "description":"This indicator reflects the month-on-month change in the average daily USD-INR exchange rate.",
-            "source":"Bloomberg",
-            "upperrange": 0.05594405,
-            "lowerrange": -0.5724739,
+            "description": "This indicator reflects the month-on-month change in the average daily USD-INR exchange rate.",
+            "source": "Bloomberg",
+            "upperrange": 0.08287372,
+            "lowerrange": -0.5502331,
             "suffix": "(% MoM)",
             "values": [
-            {
-                "Year": "Jan 2014",
-                "Value": -0.420721239
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": -0.156925461
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": 1.912864137
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": 1.081052968
-            },
-            {
-                "Year": "May 2014",
-                "Value": 1.724846621
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": -0.746703869
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": -0.510351062
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": -1.331429239
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": -0.019274214
-            },
             {
                 "Year": "Oct 2014",
                 "Value": -0.823747868
@@ -2769,342 +2433,298 @@
             },
             {
                 "Year": "Jan 2019",
-                "Value": 0.0
+                "Value": -0.014613553
             },
             {
                 "Year": "Feb 2019",
-                "Value": -0.7
+                "Value": -0.667151291
             },
             {
                 "Year": "Mar 2019",
-                "Value": 2.4
+                "Value": 2.443771243
             },
             {
                 "Year": "Apr 2019",
-                "Value": 0.1
+                "Value": 0.100903081
             },
             {
                 "Year": "May 2019",
-                "Value": -0.6
+                "Value": -0.595275736
             },
             {
                 "Year": "Jun 2019",
-                "Value": 0.5
+                "Value": 0.533957709
             },
             {
                 "Year": "Jul 2019",
-                "Value": 1.0
+                "Value": 0.964761443
             },
             {
                 "Year": "Aug 2019",
-                "Value": -3.5
+                "Value": -3.469384497
+            },
+            {
+                "Year": "Sep 2019",
+                "Value": -0.28141295
             }]
         },
         {
-            "variable": "Current A/c balance",
-            "description":"This indicator reflects India’s current account balance as a percentage of quarterly GDP. The data for every quarter is released with a three month lag.",
-            "source":"Bloomberg, RBI",
-            "upperrange": -1.1858802,
-            "lowerrange": -1.6254438,
-            "suffix": "(as % of GDP)",
+            "variable": "Labour-intensive exports",
+            "description": "This indicator reflects the year-on-year growth in exports of labor-intensive sectors including tobacco, leather & leather manufactures, gems & jewellery, man-made yarn/fabs/made-ups etc, ready made garments of textiles, jute manufacturing, carpets and handicrafts (exc handmade carpet)",
+            "source": "CMIE",
+            "upperrange": 2.66907983,
+            "lowerrange": -2.5364277,
+            "suffix": "(YoY %)",
             "values": [
             {
-                "Year": "Jan 2014",
-                "Value": -0.236758174
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": -0.236758174
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": -0.236758174
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": -1.539270037
-            },
-            {
-                "Year": "May 2014",
-                "Value": -1.539270037
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": -1.539270037
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": -2.213624486
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": -2.213624486
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": -2.213624486
-            },
-            {
                 "Year": "Oct 2014",
-                "Value": -1.534954105
+                "Value": -1.260369891
             },
             {
                 "Year": "Nov 2014",
-                "Value": -1.534954105
+                "Value": 29.11875787
             },
             {
                 "Year": "Dec 2014",
-                "Value": -1.534954105
+                "Value": 2.200386167
             },
             {
                 "Year": "Jan 2015",
-                "Value": -0.118022509
+                "Value": 0.345101754
             },
             {
                 "Year": "Feb 2015",
-                "Value": -0.118022509
+                "Value": -1.070469959
             },
             {
                 "Year": "Mar 2015",
-                "Value": -0.118022509
+                "Value": -6.971939837
             },
             {
                 "Year": "Apr 2015",
-                "Value": -1.200745683
+                "Value": -4.387221484
             },
             {
                 "Year": "May 2015",
-                "Value": -1.200745683
+                "Value": -5.965184955
             },
             {
                 "Year": "Jun 2015",
-                "Value": -1.200745683
+                "Value": 2.644750971
             },
             {
                 "Year": "Jul 2015",
-                "Value": -1.668229594
+                "Value": 3.10717107
             },
             {
                 "Year": "Aug 2015",
-                "Value": -1.668229594
+                "Value": -2.629929055
             },
             {
                 "Year": "Sep 2015",
-                "Value": -1.668229594
+                "Value": -14.74534196
             },
             {
                 "Year": "Oct 2015",
-                "Value": -1.35557038
+                "Value": -6.722987035
             },
             {
                 "Year": "Nov 2015",
-                "Value": -1.35557038
+                "Value": -16.66449998
             },
             {
                 "Year": "Dec 2015",
-                "Value": -1.35557038
+                "Value": -4.436962215
             },
             {
                 "Year": "Jan 2016",
-                "Value": -0.056992311
+                "Value": -1.493669606
             },
             {
                 "Year": "Feb 2016",
-                "Value": -0.056992311
+                "Value": 5.6478672
             },
             {
                 "Year": "Mar 2016",
-                "Value": -0.056992311
+                "Value": 1.85004713
             },
             {
                 "Year": "Apr 2016",
-                "Value": -0.071684588
+                "Value": 7.837686601
             },
             {
                 "Year": "May 2016",
-                "Value": -0.071684588
+                "Value": 6.71548048
             },
             {
                 "Year": "Jun 2016",
-                "Value": -0.071684588
+                "Value": 4.092635509
             },
             {
                 "Year": "Jul 2016",
-                "Value": -0.618532666
+                "Value": 2.567464033
             },
             {
                 "Year": "Aug 2016",
-                "Value": -0.618532666
+                "Value": 3.780330758
             },
             {
                 "Year": "Sep 2016",
-                "Value": -0.618532666
+                "Value": 14.74538287
             },
             {
                 "Year": "Oct 2016",
-                "Value": -1.406048622
+                "Value": 14.90100155
             },
             {
                 "Year": "Nov 2016",
-                "Value": -1.406048622
+                "Value": -7.753056568
             },
             {
                 "Year": "Dec 2016",
-                "Value": -1.406048622
+                "Value": 13.87018478
             },
             {
                 "Year": "Jan 2017",
-                "Value": -0.544497137
+                "Value": -2.346357242
             },
             {
                 "Year": "Feb 2017",
-                "Value": -0.544497137
+                "Value": 3.782272403
             },
             {
                 "Year": "Mar 2017",
-                "Value": -0.544497137
+                "Value": 13.35351602
             },
             {
                 "Year": "Apr 2017",
-                "Value": -2.481388755
+                "Value": 15.79317387
             },
             {
                 "Year": "May 2017",
-                "Value": -2.481388755
+                "Value": 4.031596066
             },
             {
                 "Year": "Jun 2017",
-                "Value": -2.481388755
+                "Value": -4.629014054
             },
             {
                 "Year": "Jul 2017",
-                "Value": -1.115573691
+                "Value": -16.03505802
             },
             {
                 "Year": "Aug 2017",
-                "Value": -1.115573691
+                "Value": -13.59576796
             },
             {
                 "Year": "Sep 2017",
-                "Value": -1.115573691
+                "Value": 11.88395467
             },
             {
                 "Year": "Oct 2017",
-                "Value": -2.04714529
+                "Value": -24.97051293
             },
             {
                 "Year": "Nov 2017",
-                "Value": -2.04714529
+                "Value": 17.77115437
             },
             {
                 "Year": "Dec 2017",
-                "Value": -2.04714529
+                "Value": 0.744318768
             },
             {
                 "Year": "Jan 2018",
-                "Value": -1.874622834
+                "Value": -0.885033298
             },
             {
                 "Year": "Feb 2018",
-                "Value": -1.874622834
+                "Value": -5.370739136
             },
             {
                 "Year": "Mar 2018",
-                "Value": -1.874622834
+                "Value": -13.11303
             },
             {
                 "Year": "Apr 2018",
-                "Value": -2.459069566
+                "Value": -15.84075402
             },
             {
                 "Year": "May 2018",
-                "Value": -2.459069566
+                "Value": -6.552227251
             },
             {
                 "Year": "Jun 2018",
-                "Value": -2.459069566
+                "Value": -0.291805139
             },
             {
                 "Year": "Jul 2018",
-                "Value": -3.04122726
+                "Value": 12.65642607
             },
             {
                 "Year": "Aug 2018",
-                "Value": -3.04122726
+                "Value": 13.11413454
             },
             {
                 "Year": "Sep 2018",
-                "Value": -3.04122726
+                "Value": -21.86006804
             },
             {
                 "Year": "Oct 2018",
-                "Value": -2.6
+                "Value": 12.25413136
             },
             {
                 "Year": "Nov 2018",
-                "Value": -2.6
+                "Value": -8.215170334
             },
             {
                 "Year": "Dec 2018",
-                "Value": -2.6
+                "Value": -10.15237088
             },
             {
                 "Year": "Jan 2019",
-                "Value": -0.6
+                "Value": 6.747414022
             },
             {
                 "Year": "Feb 2019",
-                "Value": -0.6
+                "Value": 0.488952157
             },
             {
                 "Year": "Mar 2019",
-                "Value": -0.6
+                "Value": 2.744154934
+            },
+            {
+                "Year": "Apr 2019",
+                "Value": -7.954584493
+            },
+            {
+                "Year": "May 2019",
+                "Value": -0.951136744
+            },
+            {
+                "Year": "Jun 2019",
+                "Value": -9.795951549
+            },
+            {
+                "Year": "Jul 2019",
+                "Value": -1.21786435
+            },
+            {
+                "Year": "Aug 2019",
+                "Value": -5.056799198
+            },
+            {
+                "Year": "Sep 2019",
+                "Value": -5.493681207
             }]
         },
         {
             "variable": "Trade balance",
-            "description": "This indicator reflects India’s trade balance as a percentage of India’s total trade. The data on India’s merchandise exports and imports for the previous month is released in the third week of every month." ,
+            "description": "This indicator reflects India’s trade balance as a percentage of India’s total trade. The data on India’s merchandise exports and imports for the previous month is released in the third week of every month.",
             "source": " CMIE, Ministry of Commerce and Industry",
-            "upperrange": -18.379632,
-            "lowerrange": -20.397265,
+            "upperrange": -18.378968,
+            "lowerrange": -20.398816,
             "suffix": "(as % of total trade)",
             "values": [
-            {
-                "Year": "Jan 2014",
-                "Value": -14.95102303
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": -14.08413463
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": -15.29045884
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": -16.21276616
-            },
-            {
-                "Year": "May 2014",
-                "Value": -16.4936599
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": -19.36902518
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": -21.67502794
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": -16.59919217
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": -20.04453356
-            },
             {
                 "Year": "Oct 2014",
                 "Value": -20.77316859
@@ -3275,117 +2895,85 @@
             },
             {
                 "Year": "Apr 2018",
-                "Value": -21.28200883
+                "Value": -21.26555277
             },
             {
                 "Year": "May 2018",
-                "Value": -20.66885603
+                "Value": -20.54882133
             },
             {
                 "Year": "Jun 2018",
-                "Value": -24.50451752
+                "Value": -24.52385022
             },
             {
                 "Year": "Jul 2018",
-                "Value": -25.86418219
+                "Value": -26.56581007
             },
             {
                 "Year": "Aug 2018",
-                "Value": -23.77607842
+                "Value": -24.37169973
             },
             {
                 "Year": "Sep 2018",
-                "Value": -20.07036211
+                "Value": -21.15504874
             },
             {
                 "Year": "Oct 2018",
-                "Value": -24.10312813
+                "Value": -25.23260752
             },
             {
                 "Year": "Nov 2018",
-                "Value": -24.00052266
+                "Value": -25.21783774
             },
             {
                 "Year": "Dec 2018",
-                "Value": -19.04110602
+                "Value": -20.64224104
             },
             {
                 "Year": "Jan 2019",
-                "Value": -21.8
+                "Value": -22.17040557
             },
             {
                 "Year": "Feb 2019",
-                "Value": -15.2
+                "Value": -15.32428484
             },
             {
                 "Year": "Mar 2019",
-                "Value": -14.3
+                "Value": -14.39269552
             },
             {
                 "Year": "Apr 2019",
-                "Value": -22.7
+                "Value": -23.83036788
             },
             {
                 "Year": "May 2019",
-                "Value": -20.4
+                "Value": -21.80153861
             },
             {
                 "Year": "Jun 2019",
-                "Value": -23.4
+                "Value": -24.12145032
             },
             {
                 "Year": "Jul 2019",
-                "Value": -20.3
+                "Value": -20.49977353
             },
             {
                 "Year": "Aug 2019",
-                "Value": -20.5
+                "Value": -20.4464351
+            },
+            {
+                "Year": "Sep 2019",
+                "Value": -17.25386748
             }]
         },
         {
             "variable": "CPI",
-            "description":"This indicator reflects India’s retail inflation based on the Consumer Price Index (CPI). The data for the previous month is released on the 12th of every month (or the next working day, if that day is a holiday).",
-            "source":"Bloomberg, MOSPI",
-            "upperrange": 3.93279611,
-            "lowerrange": 4.56020389,
+            "description": "This indicator reflects India’s retail inflation based on the Consumer Price Index (CPI). The data for the previous month is released on the 12th of every month (or the next working day, if that day is a holiday).",
+            "source": "Bloomberg, MOSPI",
+            "upperrange": 3.87767469,
+            "lowerrange": 4.47399198,
             "suffix": "(YoY %)",
             "values": [
-            {
-                "Year": "Jan 2014",
-                "Value": 8.6
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": 7.88
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": 8.25
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": 8.48
-            },
-            {
-                "Year": "May 2014",
-                "Value": 8.33
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": 6.77
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": 7.39
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": 7.03
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": 5.63
-            },
             {
                 "Year": "Oct 2014",
                 "Value": 4.62
@@ -3588,85 +3176,53 @@
             },
             {
                 "Year": "Dec 2018",
-                "Value": 2.19
+                "Value": 2.11
             },
             {
                 "Year": "Jan 2019",
-                "Value": 2.0
+                "Value": 1.97
             },
             {
                 "Year": "Feb 2019",
-                "Value": 2.6
+                "Value": 2.57
             },
             {
                 "Year": "Mar 2019",
-                "Value": 2.9
+                "Value": 2.86
             },
             {
                 "Year": "Apr 2019",
-                "Value": 3.0
+                "Value": 2.99
             },
             {
                 "Year": "May 2019",
-                "Value": 3.1
+                "Value": 3.05
             },
             {
                 "Year": "Jun 2019",
-                "Value": 3.2
+                "Value": 3.18
             },
             {
                 "Year": "Jul 2019",
-                "Value": 3.2
+                "Value": 3.15
             },
             {
                 "Year": "Aug 2019",
-                "Value": 3.2
+                "Value": 3.28
+            },
+            {
+                "Year": "Sep 2019",
+                "Value": 3.99
             }]
         },
         {
             "variable": "Core CPI",
-            "description":"This indicator reflects India’s CPI inflation excluding volatile components such as food & beverages; pan, tobacco and alcohol; LPG, kerosene, and other fuels within fuel and light sub-component; and petrol and diesel within transportation and communication category under the miscellaneous sub-component of CPI index. It carries a weight of 47.4% in the CPI basket.",
-            "source":"Bloomberg",
-            "upperrange": 4.62762317,
-            "lowerrange": 4.97771016,
+            "description": "This indicator reflects India’s CPI inflation excluding volatile components such as food & beverages; pan, tobacco and alcohol; LPG, kerosene, and other fuels within fuel and light sub-component; and petrol and diesel within transportation and communication category under the miscellaneous sub-component of CPI index. It carries a weight of 47.4% in the CPI basket.",
+            "source": "Bloomberg",
+            "upperrange": 4.5985974,
+            "lowerrange": 4.93306927,
             "suffix": "(YoY %)",
             "values": [
-            {
-                "Year": "Jan 2014",
-                "Value": 7.83
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": 7.83
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": 8.02
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": 8.2
-            },
-            {
-                "Year": "May 2014",
-                "Value": 8.46
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": 6.61
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": 6.46
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": 5.92
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": 5.1
-            },
             {
                 "Year": "Oct 2014",
                 "Value": 5.04
@@ -3869,359 +3425,295 @@
             },
             {
                 "Year": "Dec 2018",
-                "Value": 5.73
+                "Value": 5.66
             },
             {
                 "Year": "Jan 2019",
-                "Value": 5.36
+                "Value": 5.35
             },
             {
                 "Year": "Feb 2019",
-                "Value": 5.3
+                "Value": 5.29
             },
             {
                 "Year": "Mar 2019",
-                "Value": 5.0
+                "Value": 5.02
             },
             {
                 "Year": "Apr 2019",
-                "Value": 4.6
+                "Value": 4.55
             },
             {
                 "Year": "May 2019",
-                "Value": 4.2
+                "Value": 4.23
             },
             {
                 "Year": "Jun 2019",
-                "Value": 4.1
+                "Value": 4.13
             },
             {
                 "Year": "Jul 2019",
-                "Value": 4.3
+                "Value": 4.25
             },
             {
                 "Year": "Aug 2019",
                 "Value": 4.2
+            },
+            {
+                "Year": "Sep 2019",
+                "Value": 3.99
             }]
         },
         {
-            "variable": "Rural wages",
-            "description":"This indicator reflects the (YoY %) growth in the average wage rate for men engaged as rural labourers in agricultural and non-agricultural activities. ",
-            "source":"CMIE, Ministry of Labour and Employment",
-            "upperrange": 4.979175,
-            "lowerrange": 4.423158,
+            "variable": "Real wage growth",
+            "description": "This indicator reflects the (YoY %) growth in real wages. Real wages are computed as nominal rural wage deflated using the CPI rural index.",
+            "source": "CMIE",
+            "upperrange": 0.900973,
+            "lowerrange": -0.07635,
             "suffix": "(YoY %)",
             "values": [
             {
-                "Year": "Jan 2014",
-                "Value": 10.84
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": 10.53
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": 9.49
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": 9.44
-            },
-            {
-                "Year": "May 2014",
-                "Value": 7.92
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": 7.72
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": 5.55
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": 3.6
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": 3.22
-            },
-            {
                 "Year": "Oct 2014",
-                "Value": 3.26
+                "Value": -1.429891074
             },
             {
                 "Year": "Nov 2014",
-                "Value": 2.93
+                "Value": -0.218792695
             },
             {
                 "Year": "Dec 2014",
-                "Value": 4.58
+                "Value": 0.403810338
             },
             {
                 "Year": "Jan 2015",
-                "Value": 5.49
+                "Value": 0.13678165
             },
             {
                 "Year": "Feb 2015",
-                "Value": 5.21
+                "Value": -0.544164513
             },
             {
                 "Year": "Mar 2015",
-                "Value": 5.56
+                "Value": -0.106620011
             },
             {
                 "Year": "Apr 2015",
-                "Value": 5.13
+                "Value": -0.146820625
             },
             {
                 "Year": "May 2015",
-                "Value": 5.21
+                "Value": -0.291800106
             },
             {
                 "Year": "Jun 2015",
-                "Value": 4.79
+                "Value": -1.204473817
             },
             {
                 "Year": "Jul 2015",
-                "Value": 4.91
+                "Value": 0.537430183
             },
             {
                 "Year": "Aug 2015",
-                "Value": 5.59
+                "Value": 1.067569058
             },
             {
                 "Year": "Sep 2015",
-                "Value": 4.7
+                "Value": -0.329828833
             },
             {
                 "Year": "Oct 2015",
-                "Value": 3.69
+                "Value": -1.746707365
             },
             {
                 "Year": "Nov 2015",
-                "Value": 4.27
+                "Value": -1.583492569
             },
             {
                 "Year": "Dec 2015",
-                "Value": 4.68
+                "Value": -1.542266348
             },
             {
                 "Year": "Jan 2016",
-                "Value": 4.7
+                "Value": -1.673898321
             },
             {
                 "Year": "Feb 2016",
-                "Value": 4.91
+                "Value": -1.076826002
             },
             {
                 "Year": "Mar 2016",
-                "Value": 4.93
+                "Value": -0.729290647
             },
             {
                 "Year": "Apr 2016",
-                "Value": 4.7
+                "Value": -1.386685796
             },
             {
                 "Year": "May 2016",
-                "Value": 5.03
+                "Value": -1.342562891
             },
             {
                 "Year": "Jun 2016",
-                "Value": 5.15
+                "Value": -1.070582675
             },
             {
                 "Year": "Jul 2016",
-                "Value": 4.6
+                "Value": -1.93233192
             },
             {
                 "Year": "Aug 2016",
-                "Value": 4.61
+                "Value": -1.187718277
             },
             {
                 "Year": "Sep 2016",
-                "Value": 4.94
+                "Value": -0.097177327
             },
             {
                 "Year": "Oct 2016",
-                "Value": 6.18
+                "Value": 1.341691571
             },
             {
                 "Year": "Nov 2016",
-                "Value": 6.27
+                "Value": 2.052816797
             },
             {
                 "Year": "Dec 2016",
-                "Value": 6.08
+                "Value": 2.163008756
             },
             {
                 "Year": "Jan 2017",
-                "Value": 6.57
+                "Value": 3.10837878
             },
             {
                 "Year": "Feb 2017",
-                "Value": 6.52
+                "Value": 2.745564314
             },
             {
                 "Year": "Mar 2017",
-                "Value": 6.37
+                "Value": 2.525115763
             },
             {
                 "Year": "Apr 2017",
-                "Value": 6.9
+                "Value": 3.767634349
             },
             {
                 "Year": "May 2017",
-                "Value": 6.75
+                "Value": 4.348526579
             },
             {
                 "Year": "Jun 2017",
-                "Value": 6.29
+                "Value": 4.705928153
             },
             {
                 "Year": "Jul 2017",
-                "Value": 6.75
+                "Value": 4.241550308
             },
             {
                 "Year": "Aug 2017",
-                "Value": 6.31
+                "Value": 2.995532747
             },
             {
                 "Year": "Sep 2017",
-                "Value": 6
+                "Value": 2.763937322
             },
             {
                 "Year": "Oct 2017",
-                "Value": 4.93
+                "Value": 1.511462086
             },
             {
                 "Year": "Nov 2017",
-                "Value": 4.21
+                "Value": -0.555209781
             },
             {
                 "Year": "Dec 2017",
-                "Value": 4.21
+                "Value": -1.00849396
             },
             {
                 "Year": "Jan 2018",
-                "Value": 3.09
+                "Value": -2.012744453
             },
             {
                 "Year": "Feb 2018",
-                "Value": 3.37
+                "Value": -1.034692234
             },
             {
                 "Year": "Mar 2018",
-                "Value": 3.53
+                "Value": -0.869329633
             },
             {
                 "Year": "Apr 2018",
-                "Value": 3.2
+                "Value": -1.400032172
             },
             {
                 "Year": "May 2018",
-                "Value": 3.16
+                "Value": -1.637606929
             },
             {
                 "Year": "Jun 2018",
-                "Value": 3.49
+                "Value": -1.37434839
             },
             {
                 "Year": "Jul 2018",
-                "Value": 2.97
+                "Value": -1.100287075
             },
             {
                 "Year": "Aug 2018",
-                "Value": 3.59
+                "Value": 0.170974171
             },
             {
                 "Year": "Sep 2018",
-                "Value": 3.48
+                "Value": 0.205408159
             },
             {
                 "Year": "Oct 2018",
-                "Value": 3.84
+                "Value": 0.994552681
             },
             {
                 "Year": "Nov 2018",
-                "Value": 4.3
+                "Value": 2.517063034
             },
             {
                 "Year": "Dec 2018",
-                "Value": 3.8
+                "Value": 2.226994311
             },
             {
                 "Year": "Jan 2019",
-                "Value": 4.0
+                "Value": 2.755876193
             },
             {
                 "Year": "Feb 2019",
-                "Value": 4.0
+                "Value": 2.135651552
             },
             {
                 "Year": "Mar 2019",
-                "Value": 4.0
+                "Value": 2.147848194
             },
             {
                 "Year": "Apr 2019",
-                "Value": 3.9
+                "Value": 1.965865514
             },
             {
                 "Year": "May 2019",
-                "Value": 4.2
+                "Value": 2.270866735
             },
             {
                 "Year": "Jun 2019",
-                "Value": 4.0
+                "Value": 1.773730828
+            },
+            {
+                "Year": "Jul 2019",
+                "Value": 2.072080241
             }]
         },
 
         {
             "variable": "Job Outlook",
-            "description":"This indicator reflects the ‘net response’ rate in the Reserve Bank of India’s quarterly industrial outlook surveys to the question of job outlook, and measures the difference between optimistic and pessimistic respondents in each round of the survey. The range of values goes from -100 to 100, with higher values indicating greater optimism on jobs.",
+            "description": "This indicator reflects the ‘net response’ rate in the Reserve Bank of India’s quarterly industrial outlook surveys to the question of job outlook, and measures the difference between optimistic and pessimistic respondents in each round of the survey. The range of values goes from -100 to 100, with higher values indicating greater optimism on jobs.",
             "source": "CMIE, RBI",
-            "upperrange": 7.666407,
-            "lowerrange": 6.713593,
+            "upperrange": 7.612716,
+            "lowerrange": 6.527284,
             "suffix": "(net response %)",
             "values": [
-            {
-                "Year": "Jan 2014",
-                "Value": 5.4
-            },
-            {
-                "Year": "Feb 2014",
-                "Value": 5.4
-            },
-            {
-                "Year": "Mar 2014",
-                "Value": 5.4
-            },
-            {
-                "Year": "Apr 2014",
-                "Value": 5.4
-            },
-            {
-                "Year": "May 2014",
-                "Value": 5.4
-            },
-            {
-                "Year": "Jun 2014",
-                "Value": 5.4
-            },
-            {
-                "Year": "Jul 2014",
-                "Value": 6.3
-            },
-            {
-                "Year": "Aug 2014",
-                "Value": 6.3
-            },
-            {
-                "Year": "Sep 2014",
-                "Value": 6.3
-            },
             {
                 "Year": "Oct 2014",
                 "Value": 5.8
@@ -4449,6 +3941,18 @@
             {
                 "Year": "Jun 2019",
                 "Value": 8.6
+            },
+            {
+                "Year": "Jul 2019",
+                "Value": -0.9
+            },
+            {
+                "Year": "Aug 2019",
+                "Value": -0.9
+            },
+            {
+                "Year": "Sep 2019",
+                "Value": -0.9
             }]
         }
     ]
