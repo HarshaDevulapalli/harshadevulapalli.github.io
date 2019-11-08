@@ -7,11 +7,13 @@
  *
  * http://docs.jquery.com/UI
  */
+
 (function( $, undefined ) {
 
 // prevent duplicate loading
 // this is only a problem because we proxy existing functions
 // and we don't want to double proxy them
+
 $.ui = $.ui || {};
 if ( $.ui.version ) {
 	return;
@@ -305,6 +307,7 @@ $.extend( $.ui, {
 });
 
 })( jQuery );
+
 /*!
  * jQuery UI Widget 1.8.5
  *
@@ -314,9 +317,11 @@ $.extend( $.ui, {
  *
  * http://docs.jquery.com/UI/Widget
  */
+
 (function( $, undefined ) {
 
 // jQuery 1.4+
+
 if ( $.cleanData ) {
 	var _cleanData = $.cleanData;
 	$.cleanData = function( elems ) {
@@ -366,6 +371,7 @@ $.widget = function( name, base, prototype ) {
 	};
 
 	var basePrototype = new base();
+
 	// we need to make the options hash a property directly on the new instance
 	// otherwise we'll modify the options hash on the prototype that we're
 	// inheriting from
@@ -374,6 +380,7 @@ $.widget = function( name, base, prototype ) {
 //			basePrototype[ key ] = $.extend( {}, val );
 //		}
 //	});
+
 	basePrototype.options = $.extend( true, {}, basePrototype.options );
 	$[ namespace ][ name ].prototype = $.extend( true, basePrototype, {
 		namespace: namespace,

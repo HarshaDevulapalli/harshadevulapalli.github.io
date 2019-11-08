@@ -83,3 +83,8 @@ h6 {
 #best-city{
   color: orange;
 }
+
+#results {
+  margin: auto;
+  width: 32%;
+}

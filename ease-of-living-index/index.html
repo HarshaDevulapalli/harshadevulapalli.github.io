@@ -1,78 +1,84 @@
 <html>
 <head>
-	<title>Mint Ease of Living Index</title>
+	<title>JS sliders test</title>
 	<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>    
     <script type="text/javascript" src="js/jquery-ui.js"></script>
     <script src="js/main.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/result-light.css" />
-    <!--<link rel="stylesheet" type="text/css" href="css/normalize.css" />-->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />	
 </head>
+
 <body style="width:550px;padding:50px 10px;">
 
     <h1 class="text-center"><span style="color: #F39C12;">Mint</span> Ease of Living Index</h1>
 
-    <h2 class="text-center">The best metros to live in based on 10 parameters.<br>Click here (will add a hyperlink to the series) to read our coverage of this series</h2>
-    
+    <h2 class="text-left">The best metros to live in based on 10 parameters.<br>Click here (will add a hyperlink to the series) to read our coverage of this series</h2>
+
+    <h5 class="text-left">The rankings of the cities are as above if all parameters were given the same weight.Adjust the sliders to see how the rankings would change</h5><br>
+ 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-12 text-center">
-        <h4>City Ranking: <span id="best-city">XYZ</span> is the best city with the following weights. </h4>
+
+    <div class="col-12 text-left" style="solidborder-radius: 50px; border: 1px solid #003f5c; padding: 20px; width: 100px; height: 210px;">
+
+        <h4 class="text-center">City Ranking: <span id="best-city">XYZ</span> is the best city with the following weights. </h4>
       <div id="results">
       </div>
     </div>
+
     <div class="col-12">
       <ul id="sliders">
-        <li>
+        <li data-sliderno=1>
             <div>Commute Speeds</div>
             <div class="slider">10</div>
-            <span id="p1" class="value">11.1</span>
+            <span id="p1" class="value">10</span>
         </li>
-        <li>
+        <li data-sliderno=2>
             <div>Public Transportation Networks </div>
             <div class="slider">10</div>
-            <span id="p2" class="value result" >11.1</span>
+            <span id="p2" class="value result" >10</span>
         </li>
-        <li>
+        <li data-sliderno=3>
             <div>Attractiveness To Migrants</div>
             <div class="slider">10</div>
-            <span id="p3" class="value result">11.1</span>
+            <span id="p3" class="value result">10</span>
         </li>
-        <li>
+        <li data-sliderno=4>
             <div>Levels of Caste Desegregation</div>
             <div class="slider">10</div>
-            <span id="p4" class="value result">11.1</span>
+            <span id="p4" class="value result">10</span>
         </li>
-        <li>
+        <li data-sliderno=5>
             <div>Affordable Housing</div>
             <div class="slider">10</div>
-            <span id="p5" class="value result">11.1</span>
-        </li><li>
+            <span id="p5" class="value result">10</span>
+        </li>
+        <li data-sliderno=6>
             <div>Dine-out Scene </div>
             <div class="slider">10</div>
-            <span id="p6" class="value result">11.1</span>
+            <span id="p6" class="value result">10</span>
         </li>
-        <li>
+        <li data-sliderno=7>
             <div>Access to Public Facilities </div>
             <div class="slider">10</div>
-            <span id="p7" class="value result">11.1</span>
+            <span id="p7" class="value result">10</span>
         </li>
-        <li>
+        <li data-sliderno=8>
             <div>Greenery and Open Spaces</div>
             <div class="slider">10</div>
-            <span id="p8" class="value result">11.1</span>
+            <span id="p8" class="value result">10</span>
         </li>
-        <li>
+        <li data-sliderno=9>
             <div>Air Quality</div>
             <div class="slider">10</div>
-            <span id="p9" class="value result">11.1</span>
+            <span id="p9" class="value result">10</span>
         </li>
-        <li>
+        <li data-sliderno=10>
             <div>Strength Of Municipal Finances</div>
             <div class="slider">10</div>
-            <span id="p9" class="value result">11.1</span>
+            <span id="p10" class="value result">10</span>
         </li>
       </ul>
     </div>
@@ -96,7 +102,8 @@
                           (weightage[city].p6*parseFloat($("#p6").text()))+
                           (weightage[city].p7*parseFloat($("#p7").text()))+
                           (weightage[city].p8*parseFloat($("#p8").text()))+
-                          (weightage[city].p9*parseFloat($("#p9").text())))
+                          (weightage[city].p9*parseFloat($("#p9").text()))+
+                          (weightage[city].p10*parseFloat($("#p10").text())))
                 }
           }
         })
@@ -104,79 +111,87 @@
           return a.data.score-b.data.score
         }).forEach((obj, index)=>{
           var element = document.createElement('div');
-          element.innerText =  (index+1) + " - "+obj.data.name+" : "+obj.data.score;
+          element.innerText =  (index+1) + " - "+obj.data.name+" : "+Math.round( obj.data.score * 1 ) / 10;
           $("#results")[0].appendChild(element)
         })
         bestCitySpan.text(results[0].data.name);
     }
     const weightage = {
         Delhi: {
-            p1: 10,
-            p2: 5,
-            p3: 17,
-            p4: 4,
-            p5: 44,
-            p6: 15,
-            p7: 12,
-            p8: 35,
-            p9: 11
+            p1: 7.0,
+            p2: 4.7,
+            p3: 0.0,
+            p4: 6.3,
+            p5: 0.2,
+            p6: 3.3,
+            p7: 4.8,
+            p8: 10.0,
+            p9: 1.1,
+            p10:1.8
         },
         Mumbai: {
-            p1: 20,
-            p2: 16,
-            p3: 25,
-            p4: 51,
-            p5: 13,
-            p6: 12,
-            p7: 22,
-            p8: 22,
-            p9: 21
+            p1: 1.4,
+            p2: 2.2,
+            p3: 1.8,
+            p4: 10.0,
+            p5: 0.0,
+            p6: 4.7,
+            p7: 1.0,
+            p8: 0.0,
+            p9: 7.9,
+            p10:10.0
         },
         Bangalore: {
-            p1: 45,
-            p2: 22,
-            p3: 22,
-            p4: 21,
-            p5: 11,
-            p6: 44,
-            p7: 26,
-            p8: 11,
-            p9: 31
+            p1: 3.2,
+            p2: 4.8,
+            p3: 5.0,
+            p4: 9.6,
+            p5: 5.3,
+            p6: 7.8,
+            p7: 3.5,
+            p8: 7.3,
+            p9: 8.8,
+            p10:1.5
         },
+
         Chennai: {
-            p1: 5,
-            p2: 11,
-            p3: 11,
-            p4: 6,
-            p5: 21,
-            p6: 12,
-            p7: 21,
-            p8: 17,
-            p9: 19
+            p1: 6.7,
+            p2: 4.6,
+            p3: 6.4,
+            p4: 4.7,
+            p5: 2.0,
+            p6: 5.4,
+            p7: 0.0,
+            p8: 2.4,
+            p9: 7.5,
+            p10:5.0
         },
         Hyderabad: {
-            p1: 10,
-            p2: 17,
-            p3: 9,
-            p4: 9,
-            p5: 3,
-            p6: 11,
-            p7: 2,
-            p8: 15,
-            p9: 2
+            p1: 10.0,
+            p2: 4.3,
+            p3: 10.0,
+            p4: 7.9,
+            p5: 10.0,
+            p6: 3.3,
+            p7: 10.0,
+            p8: 4.9,
+            p9: 7.2,
+            p10:0.0
         },
         Kolkata: {
-            p1: 10,
-            p2: 29,
-            p3: 16,
-            p4: 9,
-            p5: 8,
-            p6: 6,
-            p7: 17,
-            p8: 0,
-            p9: 16
+            p1: 0.0,
+            p2: 3.6,
+            p3: 1.8,
+            p4: 0.0,
+            p5: 3.6,
+            p6: 4.6,
+            p7: 0.0,
+            p8: 9.6,
+            p9: 5.2,
+            p10:5.1
         }
     }
+ 
     // embed parent frame for height of the content
     if (window.parent && window.parent.parent){
       window.parent.parent.postMessage(["resultsFrame", {
@@ -188,9 +203,7 @@
     window.name = "result"
   </script>
 
-   <br>
-
-  <h5 class="text-left">The rankings of the cities are as above if all parameters were given the same weight. Adjust the sliders to see how the rankings would change</h5>
+  <br>
 
   <h6 class="text-left"> NOTE: The <span style="color: #F39C12;">Mint</span> Ease of Living index is constructed on the basis of ten equally weighted indicators are commute speeds (median morning commute speed on arterial roads), public transportation networks (an index based on lengths of rail networks and bus fleet strengths), attractiveness to migrants (proportion of populations that have moved into the city from elsewhere), levels of caste desegregation (as a measure of indicator of how 'fair' the city is), affordable housing (median rent values for a 1 BHK apartment), dine-out scene (an indicator of how diverse (cost, variety and ratings) the most visited restaurants are), access to public facilities (schools and hospitals per person), greenery and open spaces (all identified green spaces using satellite imagery), air quality (average PM 2.5 levels), and strength of municipal finances (average municipal spending per person).A higher score on an indicator means that the city offers a better quality of life than its peers on that parameter.</h6>
 

@@ -1,3 +1,4 @@
+var sliderValues = [10,10,10,10,10,10,10,10,10,10];
 $(document).ready(function () {
 	$(window).load(function(){
 		  
@@ -19,35 +20,54 @@ $(document).ready(function () {
 				animate: 0,
 				slide: function(event, ui) {
 					
-					// Update display to current value
 					$(this).siblings('.value').text(ui.value);
 
-					// Get current total
-					var total = 0;
+					var total = 100;
 
+					var currentSliderNo = parseInt(ui.handle.parentNode.parentNode.dataset.sliderno);
+					var totalValueBeforeThisSlider = 0;
 					sliders.not(this).each(function() {
-						total += $(this).slider("option", "value");
+						var currentValue = $(this).slider("option", "value");
+						var sliderNo = parseInt(this.parentNode.dataset.sliderno);
+						if (sliderNo < currentSliderNo) {
+							totalValueBeforeThisSlider=totalValueBeforeThisSlider+currentValue;
+						}
 					});
+
+					var delta = 100 - (ui.value + totalValueBeforeThisSlider);
 					
-					total += ui.value;
+					if (ui.value + totalValueBeforeThisSlider > 100) {
+						var index = 0;
+						sliders.each(function(){
+							var t = $(this);
+							t.slider('value',window.sliderValues[index]);
+							t.siblings('.value').text(window.sliderValues[index]);
+							index++;
+						});
+						ui.value = window.sliderValues[currentSliderNo-1];
+						return false;
+					} else {
+						var new_value = Math.round( (delta/(10-currentSliderNo)) * 10 ) / 10;
+						sliders.not(this).each(function() {
+							var t = $(this);
+							if (parseInt(this.parentNode.dataset.sliderno) > currentSliderNo){
+								t.slider('value',new_value);
+								t.siblings('.value').text(new_value)
+							}
+						});
 
-					var delta = availableTotal - total;
+						window.sliderValues = [parseFloat($("#p1").text()),
+											   parseFloat($("#p2").text()),
+											   parseFloat($("#p3").text()),
+											   parseFloat($("#p4").text()),
+											   parseFloat($("#p5").text()),
+											   parseFloat($("#p6").text()),
+											   parseFloat($("#p7").text()),
+											   parseFloat($("#p8").text()),
+											   parseFloat($("#p9").text()),
+											   parseFloat($("#p9").text())];
+					}
 					
-					// Update each slider
-					sliders.not(this).each(function() {
-						var t = $(this),
-							value = t.slider("option", "value");
-
-						var new_value = value + (delta/9);
-						
-						if (new_value < 0 || ui.value == 100) 
-							new_value = 0;
-						if (new_value > 100) 
-							new_value = 100;
-
-						t.siblings('.value').text(new_value);
-						t.slider('value', new_value);
-					});
 					calculateResults();
 				}
 			});
