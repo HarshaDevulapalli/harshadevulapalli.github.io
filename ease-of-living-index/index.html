@@ -1,118 +1,264 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<title>JS sliders test</title>
-	<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>    
-    <script type="text/javascript" src="js/jquery-ui.js"></script>
+	<title>Mint Livability Index</title>    
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
     <link rel="stylesheet" type="text/css" href="css/result-light.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />	
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">	
 </head>
 
-<body style="width:550px;padding:50px 10px;">
-
-    <h1 class="text-center"><span style="color: #F39C12;">Mint</span> Ease of Living Index</h1>
-
-    <h2 class="text-left">The best metros to live in based on 10 parameters.<br>Click here (will add a hyperlink to the series) to read our coverage of this series</h2>
-
-    <h5 class="text-left">The rankings of the cities are as above if all parameters were given the same weight.Adjust the sliders to see how the rankings would change</h5><br>
- 
+<body>
 <div class="container-fluid">
   <div class="row">
+    <div class="col-12">
+        <h1 class="text-center"><span style="color: #F39C12;">Mint</span> Livability Index</h1>
 
-    <div class="col-12 text-left" style="solidborder-radius: 50px; border: 1px solid #003f5c; padding: 20px; width: 100px; height: 210px;">
+        <h2 class="text-center">A data-backed measure of India's most livable metro cities</h2>
 
-        <h4 class="text-center">City Ranking: <span id="best-city">XYZ</span> is the best city with the following weights. </h4>
-      <div id="results">
-      </div>
+        <h5 class="text-center">The Mint Livability Index is the average of all equally weighted sub-indices*. If you prioritise one of these indices over another, adjust the weights to see how the rankings would change</h5>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+        <div style="height: 90px;border-radius: 10px; border: 1px solid #003f5c; padding: 10px; width: 100%; ">
+
+            <div id="resultsSection">
+                <h4 class="text-center">City Ranking: <span id="best-city">XYZ</span> is the best city with the following weights. </h4>
+                  <div id="results">
+                    <div class="row">
+                        <div id="1City" class="col-4">
+                        </div>
+                        <div id="2City" class="col-4">
+                        </div>
+                        <div id="3City" class="col-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="4City" class="col-4">
+                        </div>
+                        <div id="5City" class="col-4">
+                        </div>
+                        <div id="6City" class="col-4">
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="d-none" id="totalErrorMessage" style="height: 100%">
+                <h8 class="text-center" style="line-height: 68px; font-size: 1em; display: block; color: orange">Total is Greater than 100, please adjust the weights</h8>
+            </div>
+        </div>
     </div>
 
     <div class="col-12">
-      <ul id="sliders">
-        <li data-sliderno=1>
-            <div>Commute Speeds</div>
-            <div class="slider">10</div>
-            <span id="p1" class="value">10</span>
-        </li>
-        <li data-sliderno=2>
-            <div>Public Transportation Networks </div>
-            <div class="slider">10</div>
-            <span id="p2" class="value result" >10</span>
-        </li>
-        <li data-sliderno=3>
-            <div>Attractiveness To Migrants</div>
-            <div class="slider">10</div>
-            <span id="p3" class="value result">10</span>
-        </li>
-        <li data-sliderno=4>
-            <div>Levels of Caste Desegregation</div>
-            <div class="slider">10</div>
-            <span id="p4" class="value result">10</span>
-        </li>
-        <li data-sliderno=5>
-            <div>Affordable Housing</div>
-            <div class="slider">10</div>
-            <span id="p5" class="value result">10</span>
-        </li>
-        <li data-sliderno=6>
-            <div>Dine-out Scene </div>
-            <div class="slider">10</div>
-            <span id="p6" class="value result">10</span>
-        </li>
-        <li data-sliderno=7>
-            <div>Access to Public Facilities </div>
-            <div class="slider">10</div>
-            <span id="p7" class="value result">10</span>
-        </li>
-        <li data-sliderno=8>
-            <div>Greenery and Open Spaces</div>
-            <div class="slider">10</div>
-            <span id="p8" class="value result">10</span>
-        </li>
-        <li data-sliderno=9>
-            <div>Air Quality</div>
-            <div class="slider">10</div>
-            <span id="p9" class="value result">10</span>
-        </li>
-        <li data-sliderno=10>
-            <div>Strength Of Municipal Finances</div>
-            <div class="slider">10</div>
-            <span id="p10" class="value result">10</span>
-        </li>
-      </ul>
+        <span>A more detailed analysis of how the cities fared in <a href="#" id="highestParameter" style="color: #F39C12;"> Commute Speed </a>, read our story on it.</span>
+        <span id="values-display" class="text-right" style="position: relative;
+    right: 1rem;float: right;"></span>
+    <div>
+
+    <div class="col-12">
+
+      <div id="sliders" class="row">
+        <div class="col-6">
+            <div style="margin-bottom: 2px">
+                <label data-toggle="tooltip" title="Median morning commute speed on arterial roads" style="margin: 0">Commute Speeds</label>
+                <input type="number" style="width: 100%" value="0" id="p1" class="value"></input>
+            </div>
+            <div style="margin-bottom: 2px">
+                <label data-toggle="tooltip" title="An index based on lengths of rail networks and bus fleet strengths" style="margin: 0"> Public Transport </label>
+                <input type="number" style="width: 100%" value="0" id="p2" class="value result" ></input>
+            </div>
+            <div style="margin-bottom: 2px">
+                <label data-toggle="tooltip" title="Proportion of populations that have moved into the city from elsewhere" style="margin: 0">Migrant Flow </label>
+                <input type="number" style="width: 100%" value="0" id="p3" class="value result"></input>
+            </div>
+            <div style="margin-bottom: 2px">
+                <label data-toggle="tooltip" title="As a measure of indicator of how 'fair' the city is" style="margin: 0"> Diversity</label>
+                <input type="number" style="width: 100%" value="0" id="p4" class="value result"></input>
+            </div>
+            <div style="margin-bottom: 2px">
+                <label data-toggle="tooltip" title="Median rent values for a 1 BHK apartment" style="margin: 0">Affordable Housing</label>
+                <input type="number" style="width: 100%" value="0" id="p5" class="value result"></input>
+            </div>
+        </div>
+        <div class="col-6">
+            <div style="margin-bottom: 2px">
+                <label data-toggle="tooltip" title="An indicator of how diverse (cost, variety and ratings)the most visited restaurants are" style="margin: 0">Dine out </label>
+                <input type="number" style="width: 100%" value="0" id="p6" class="value result"></input>
+            </div>
+            <div style="margin-bottom: 2px">
+                <label data-toggle="tooltip" title="Schools and hospitals per person" style="margin: 0">Access to Social Infra </label>
+                <input type="number" style="width: 100%" value="0" id="p7" class="value result"></input>
+            </div>
+            <div style="margin-bottom: 2px">
+                <label data-toggle="tooltip" title="All identified green spaces using satellite imagery" style="margin: 0">Greenery </label>
+                <input type="number" style="width: 100%" value="0" id="p8" class="value result"></input>
+            </div>
+            <div style="margin-bottom: 2px">
+                <label data-toggle="tooltip" title="Average PM 2.5 levels" style="margin: 0">Clean Air</label>
+                <input type="number" style="width: 100%" value="0" id="p9" class="value result"></input>
+            </div>
+            <div style="margin-bottom: 2px">
+                <label data-toggle="tooltip" title="Average municipal spending per person" style="margin: 0">Municipal Finances</label>
+                <input type="number" style="width: 100%" value="0" id="p10" class="value result"></input>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12">
+
+      <h6 class="text-left">
+        *The Commute Speed sub-index reflects the median work week speeds across major arterial roads. The Public Transport sub-index reflects rail density, metro density, and bus fleet sizes across cities. The Migrant Flow sub-index reflects the proportion of new migrants (between 2001-11) across cities. The Diversity sub-index is the inverse of a segregation index that measures caste-based residential segregation. The Affordable Housing sub-index reflects the median rental values. The Dineout sub-index reflects cost, variety, and ratings of top-rated restaurants across cities. The Social Infra sub-index reflects the number of schools and health centres per capita. The Greenery sub-index reflects the green cover per capita. The Clean Air sub-index reflects the inverse of the average pollutant (SO2, CO2, PM10 and PM 2.5) values for these cities in 2018. The Municipal Finances sub-index reflects the normalised municipal spending per capita.
+</h6>
+
+      <br>
+
+      <h7>Interactive by: Pooja Dantewadia/Mint</h7>
+
     </div>
   </div>
 </div>
 
 <script>
+    var linkForParam = {
+        p1: {
+            text: "Commute Speeds",
+            link: "https://www.livemint.com/news/india/the-slowest-roads-in-urban-india-1567955358892.html"
+        },
+        p2: {
+            text: "Public Transportation Networks",
+            link: "https://www.livemint.com/news/india/what-data-tells-us-about-urban-life-in-india-1567964137612.html"
+        },
+        p3: {
+            text: "Attractiveness To Migrants",
+            link: "www.google.com"
+        },
+        p4: {
+            text: "Levels of Caste Desegregation",
+            link: "www.google.com"
+        },
+        p5: {
+            text: "Affordable Housing",
+            link: "www.google.com"
+        },
+        p6: {
+            text: "Dine-out Scene",
+            link: "www.google.com"
+        },
+        p7: {
+            text: "Access to Public Facilities",
+            link: "www.google.com"
+        },
+        p8: {
+            text: "Greenery and Open Spaces",
+            link: "www.google.com"
+        },
+        p9: {
+            text: "Air Quality",
+            link: "www.google.com"
+        },
+        p10: {
+            text: "Strength Of Municipal Finances",
+            link: "www.google.com"
+        }
+    }
+    var hasUserStartedInput = false;
+    $(".value").change(function(){
+        window.hasUserStartedInput = true;
+        calculateResults()
+    });
+    $(".value").keyup(function(){
+        window.hasUserStartedInput = true;
+        calculateResults()
+    })
     function calculateResults() {
-        $("#results").html(null);
+        var displayString = 0;
+        var highestValuesParameter = ['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10'].map((function(id){
+            return {
+                id: id,
+                value: isNaN(parseInt($("#"+id).val())) ? 0 : parseInt($("#"+id).val())
+            }
+        })).sort(function(a,b){
+            return a.value - b.value
+        }).pop();
+        ['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10'].forEach(function(el,index){
+            displayString = displayString + parseInt($("#"+el).val() || 0);
+        });
+        $("#highestParameter").text(linkForParam[highestValuesParameter.id].text);
+        $("#highestParameter").attr("href",linkForParam[highestValuesParameter.id].link);
+        console.log(highestValuesParameter)
+        $("#values-display").text("Total:"+displayString);
+        if (displayString > 100) {
+            $("#results #1City").html(null);
+            $("#results #2City").html(null);
+            $("#results #3City").html(null);
+            $("#results #4City").html(null);
+            $("#results #5City").html(null);
+            $("#results #6City").html(null);
+            $("#totalErrorMessage").removeClass('d-none');
+            $("#resultsSection").addClass('d-none');
+            return;
+        }
+        $("#totalErrorMessage").addClass('d-none');
+        $("#resultsSection").removeClass('d-none');
         var bestCitySpan = $("#best-city");
         var cities = Object.keys(weightage); 
         var results = cities.map((city)=>{
-            return {
-                data: {
-                  name: city,
-                  score: ((weightage[city].p1*parseFloat($("#p1").text()))+
-                          (weightage[city].p2*parseFloat($("#p2").text()))+
-                          (weightage[city].p3*parseFloat($("#p3").text()))+
-                          (weightage[city].p4*parseFloat($("#p4").text()))+
-                          (weightage[city].p5*parseFloat($("#p5").text()))+
-                          (weightage[city].p6*parseFloat($("#p6").text()))+
-                          (weightage[city].p7*parseFloat($("#p7").text()))+
-                          (weightage[city].p8*parseFloat($("#p8").text()))+
-                          (weightage[city].p9*parseFloat($("#p9").text()))+
-                          (weightage[city].p10*parseFloat($("#p10").text())))
+            var obj = {};
+            if (hasUserStartedInput){
+                obj = {
+                    data: {
+                      name: city,
+                      score: ((weightage[city].p1*$("#p1").val())+
+                              (weightage[city].p2*$("#p2").val())+
+                              (weightage[city].p3*$("#p3").val())+
+                              (weightage[city].p4*$("#p4").val())+
+                              (weightage[city].p5*$("#p5").val())+
+                              (weightage[city].p6*$("#p6").val())+
+                              (weightage[city].p7*$("#p7").val())+
+                              (weightage[city].p8*$("#p8").val())+
+                              (weightage[city].p9*$("#p9").val())+
+                              (weightage[city].p10*$("#p10").val()))
+                    }
                 }
-          }
+            } else {
+                obj = {
+                    data: {
+                        name: city,
+                        score: (weightage[city].p1 +
+                                weightage[city].p2 +
+                                weightage[city].p3 +
+                                weightage[city].p4 +
+                                weightage[city].p5 +
+                                weightage[city].p6 +
+                                weightage[city].p7 +
+                                weightage[city].p8 +
+                                weightage[city].p9 +
+                                weightage[city].p10)
+                    }
+                }
+            }
+            return obj
         })
         results.sort((b,a)=>{
           return a.data.score-b.data.score
         }).forEach((obj, index)=>{
-          var element = document.createElement('div');
-          element.innerText =  (index+1) + " - "+obj.data.name+" : "+Math.round( obj.data.score * 1 ) / 10;
-          $("#results")[0].appendChild(element)
+          var element = document.createElement('h4');
+          element.innerText =  (index+1) + " - "+obj.data.name+" : "+Math.round( obj.data.score * 10 ) / 10;
+          $("#results #"+(index+1)+"City").html(element)
         })
         bestCitySpan.text(results[0].data.name);
     }
@@ -192,7 +338,6 @@
         }
     }
  
-    // embed parent frame for height of the content
     if (window.parent && window.parent.parent){
       window.parent.parent.postMessage(["resultsFrame", {
         height: document.body.getBoundingClientRect().height,
@@ -202,10 +347,6 @@
 
     window.name = "result"
   </script>
-
-  <br>
-
-  <h6 class="text-left"> NOTE: The <span style="color: #F39C12;">Mint</span> Ease of Living index is constructed on the basis of ten equally weighted indicators are commute speeds (median morning commute speed on arterial roads), public transportation networks (an index based on lengths of rail networks and bus fleet strengths), attractiveness to migrants (proportion of populations that have moved into the city from elsewhere), levels of caste desegregation (as a measure of indicator of how 'fair' the city is), affordable housing (median rent values for a 1 BHK apartment), dine-out scene (an indicator of how diverse (cost, variety and ratings) the most visited restaurants are), access to public facilities (schools and hospitals per person), greenery and open spaces (all identified green spaces using satellite imagery), air quality (average PM 2.5 levels), and strength of municipal finances (average municipal spending per person).A higher score on an indicator means that the city offers a better quality of life than its peers on that parameter.</h6>
 
 </body>
 </html>
