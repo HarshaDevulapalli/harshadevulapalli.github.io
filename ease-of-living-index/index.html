@@ -6,13 +6,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700,900" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-    
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">	
 </head>
@@ -25,98 +23,93 @@
 
         <h2 class="text-center"> A data-based measure of India's most livable metro cities.</h2>
 
+        <h4>In Mint's index, each aspect is given equal importance through equally-weighted sub-indices*. But if you prioritise one aspect of urban life over another, adjust the weights below to see how the rankings would change. </h4>
     
         <div><img src="cityline.png" style="height: 50%; width: 100%;"></div>
-
 
     </div>
   </div>
 
   <div class="row">
     <div class="col-12">
-        <div style="height: 100px;border-radius: 10px; border: .8px solid #003f5c; padding: 10px; width: 100%; ">
+        <div style="height: 120px;border-radius: 10px; border: 0.6px solid #003f5c; padding: 10px; width: 100%; ">
 
             <div id="resultsSection">
-                <h5 class="text-center"><span id="best-city"></span> is the best city given the weights below. </h5>
+                <h5 class="text-center"><span id="best-city" style="color:#F39C12;"></span> is the best city given the weights below.</h5>
                   <div id="results">
-                    <div class="row" style="font-weight: 300;">
-                        <div id="1City" class="cityTag col-4">
-                        </div>
-                        <div id="2City" class="cityTag col-4">
-                        </div>
-                        <div id="3City" class="cityTag col-4">
-                        </div>
-                    </div>
                     <div class="row">
-                        <div id="4City" class="cityTag col-4">
+                    
+                        <div id="1City" class="cityTag col-6">
                         </div>
-                        <div id="5City" class="cityTag col-4">
+                        <div id="3City" class="cityTag col-6">
                         </div>
-                        <div id="6City" class="cityTag col-4">
+                        <div id="2City" class="cityTag col-6">
                         </div>
-                    </div>
+                        <div id="4City" class="cityTag col-6">
+                        </div>
+                        <div id="6City" class="cityTag col-6">
+                        </div>
+                        <div id="5City" class="cityTag col-6">
+                        </div>
+                  
+                  </div>
                   </div>
             </div>
             <div class="d-none" id="TOTALErrorMessage" style="height: 100%">
-                <h8 class="text-center" style="line-height: 68px; font-size: 1em; display: block; color: orange">TOTAL is greater than 100, please adjust the weights</h8>
+                <h8 class="text-center" style="line-height: 18px; font-size: 1em; display: block; color: orange">TOTAL is greater than 100, please adjust the weights</h8>
             </div>
         </div>
     </div>
 
-    <div class="col-12 mt-3">
-        <span style="font-size: 0.8em; font-weight:300">The Mint Livability Index is a composite measure of 10 aspects of life in a metro. In Mint's index, each aspect is given equal importance through equally-weighted sub-indices*. But if you prioritise one aspect of urban life over another, adjust the weights below to see how the rankings would change. (E.g. if you believe greenery should account for 40% of the livability index in a city, adjust its weight to 40 below. But make sure that all the weights add up to 100)</span>
-
-    </div>
-
     <div class="col-sm-12 mt-3">
-            <span id="values-display" class="text-center" style="background: orange; color: white; padding: 8px; border-radius: 10px; float: right"></span>
+            <span id="values-display" class="text-center" style="background: orange; color: white; padding: 5px; border-radius: 10px; float: right"></span>
     </div>
 
     <div class="col-12">
 
       <div id="sliders" class="row mt-2">
         <div class="col-6">
-            <div style="margin-bottom: 4px">
-                <label data-toggle="tooltip" title="Median morning commute speed on arterial roads" style="margin: 0"><a href="https://www.livemint.com/news/india/the-slowest-roads-in-urban-india-1567955358892.html"  target="_blank" style="color: black; text-decoration: none">Commute Speeds </a></label>
-                <input type="number" style="width: 100%" value="10" id="p1" class="value"></input>
+            <div style="margin-bottom: 3px">
+                <label data-toggle="tooltip" title="Median morning commute speed on arterial roads" style="margin: 0"><a href="https://www.livemint.com/news/india/the-slowest-roads-in-urban-india-1567955358892.html"  target="_blank" style="color: black; text-decoration: none; font-size: 0.9em;">Commute Speeds </a></label>
+                <input type="number" style="width: 100%; font-size: 0.9em;" value="10" id="p1" class="value result"></input>
             </div>
-            <div style="margin-bottom: 4px">
-                <label data-toggle="tooltip" title="Lengths of rail network and bus fleet strength" style="margin: 0"><a href="https://www.livemint.com/news/india/india-s-public-transport-challenge-1568355574941.html"  target="_blank" style="color: black; text-decoration: none"> Public Transport </a></label>
-                <input type="number" style="width: 100%" value="10" id="p2" class="value result" ></input>
+            <div style="margin-bottom: 3px">
+                <label data-toggle="tooltip" title="Lengths of rail network and bus fleet strength" style="margin: 0"><a href="https://www.livemint.com/news/india/india-s-public-transport-challenge-1568355574941.html"  target="_blank" style="color: black; text-decoration: none; font-size: 0.9em;"> Public Transport </a></label>
+                <input type="number" style="width: 100%; font-size: 0.9em;" value="10" id="p2" class="value result" ></input>
             </div>
-            <div style="margin-bottom: 4px">
-                <label data-toggle="tooltip" title="Proportion of population that moved to the city between 2001-11" style="margin: 0"><a href="https://www.livemint.com/news/india/migrant-flows-to-delhi-mumbai-ebbing-1568981492505.html"  target="_blank" style="color: black; text-decoration: none">Migrant Flow </a></label>
-                <input type="number" style="width: 100%" value="10" id="p3" class="value result"></input>
+            <div style="margin-bottom: 3px">
+                <label data-toggle="tooltip" title="Proportion of population that moved to the city between 2001-11" style="margin: 0"><a href="https://www.livemint.com/news/india/migrant-flows-to-delhi-mumbai-ebbing-1568981492505.html"  target="_blank" style="color: black; text-decoration: none; font-size: 0.9em;">Migrant Flow </a></label>
+                <input type="number" style="width: 100%; font-size: 0.9em;" value="10" id="p3" class="value result"></input>
             </div>
-            <div style="margin-bottom: 4px">
-                <label data-toggle="tooltip" title="Measure of how unsegregated a city is on caste-lines" style="margin: 0"><a href="https://www.livemint.com/news/india/the-geography-of-caste-in-urban-india-1569564507580.html"  target="_blank" style="color: black; text-decoration: none"> Diversity</a></label>
-                <input type="number" style="width: 100%" value="10" id="p4" class="value result"></input>
+            <div style="margin-bottom: 3px">
+                <label data-toggle="tooltip" title="Measure of how unsegregated a city is on caste-lines" style="margin: 0"><a href="https://www.livemint.com/news/india/the-geography-of-caste-in-urban-india-1569564507580.html"  target="_blank" style="color: black; text-decoration: none; font-size: 0.9em;"> Diversity</a></label>
+                <input type="number" style="width: 100%; font-size: 0.9em;" value="10" id="p4" class="value result"></input>
             </div>
-            <div style="margin-bottom: 4px">
-                <label data-toggle="tooltip" title="Median rent values for a 1 BHK apartment" style="margin: 0"><a href="https://www.livemint.com/news/india/the-geography-of-rents-in-urban-india-11570174747134.html"target="_blank" style="color: black; text-decoration: none">Affordable Housing</a></label>
-                <input type="number" style="width: 100%" value="10" id="p5" class="value result"></input>
+            <div style="margin-bottom: 3px">
+                <label data-toggle="tooltip" title="Median rent values for a 1 BHK apartment" style="margin: 0"><a href="https://www.livemint.com/news/india/the-geography-of-rents-in-urban-india-11570174747134.html"target="_blank" style="color: black; text-decoration: none; font-size: 0.9em;">Affordable Housing</a></label>
+                <input type="number" style="width: 100%; font-size: 0.9em;" value="10" id="p5" class="value result"></input>
             </div>
         </div>
         <div class="col-6">
-            <div style="margin-bottom: 4px">
-                <label data-toggle="tooltip" title="Composite measure capturing the cost and variety of the most visited restaurants in the city" style="margin: 0"> <a href="https://www.livemint.com/news/india/the-most-popular-dine-out-hubs-in-india-11570968468566.html"  target="_blank" style="color: black; text-decoration: none">Dine out</a></label>
-                <input type="number" style="width: 100%" value="10" id="p6" class="value result"></input>
+            <div style="margin-bottom: 3px">
+                <label data-toggle="tooltip" title="Composite measure capturing the cost and variety of the most visited restaurants in the city" style="margin: 0"> <a href="https://www.livemint.com/news/india/the-most-popular-dine-out-hubs-in-india-11570968468566.html"  target="_blank" style="color: black; text-decoration: none; font-size: 0.9em;">Dine out</a></label>
+                <input type="number" style="width: 100%; font-size: 0.9em;" value="10" id="p6" class="value result"></input>
             </div>
-            <div style="margin-bottom: 4px">
-                <label data-toggle="tooltip" title="Schools and hospitals per person" style="margin: 0"><a href="https://www.livemint.com/news/india/the-state-of-social-infrastructure-in-metros-11571582503597.html"  target="_blank" style="color: black; text-decoration: none">Access to Social Infra </a></label>
-                <input type="number" style="width: 100%" value="10" id="p7" class="value result"></input>
+            <div style="margin-bottom: 3px">
+                <label data-toggle="tooltip" title="Schools and hospitals per person" style="margin: 0"><a href="https://www.livemint.com/news/india/the-state-of-social-infrastructure-in-metros-11571582503597.html"  target="_blank" style="color: black; text-decoration: none; font-size: 0.9em;">Access to Social Infra </a></label>
+                <input type="number" style="width: 100%; font-size: 0.9em;"value="10" id="p7" class="value result"></input>
             </div>
-            <div style="margin-bottom: 4px">
-                <label data-toggle="tooltip" title="Green space area per person " style="margin: 0"><a href="https://www.livemint.com/news/india/which-is-india-s-greenest-metro-11572280645457.html"  target="_blank" style="color: black; text-decoration: none">Greenery </a></label>
-                <input type="number" style="width: 100%" value="10" id="p8" class="value result"></input>
+            <div style="margin-bottom: 3px">
+                <label data-toggle="tooltip" title="Green space area per person " style="margin: 0"><a href="https://www.livemint.com/news/india/which-is-india-s-greenest-metro-11572280645457.html"  target="_blank" style="color: black; text-decoration: none; font-size: 0.9em;">Greenery </a></label>
+                <input type="number" style="width: 100%; font-size: 0.9em;" value="10" id="p8" class="value result"></input>
             </div>
-            <div style="margin-bottom: 4px">
-                <label data-toggle="tooltip" title="Average PM 2.5 levels" style="margin: 0"><a href="http://www.indiaenvironmentportal.org.in/files/file/Increase%20in%20Level%20of%20Particulate%20Matter.pdf"  target="_blank" style="color: black; text-decoration: none">Clean Air</a></label>
-                <input type="number" style="width: 100%" value="10" id="p9" class="value result"></input>
+            <div style="margin-bottom: 3px">
+                <label data-toggle="tooltip" title="Average PM 2.5 levels" style="margin: 0"><a href="http://www.indiaenvironmentportal.org.in/files/file/Increase%20in%20Level%20of%20Particulate%20Matter.pdf"  target="_blank" style="color: black; text-decoration: none; font-size: 0.9em;">Clean Air</a></label>
+                <input type="number" style="width: 100%; font-size: 0.9em;" value="10" id="p9" class="value result"></input>
             </div>
-            <div style="margin-bottom: 4px">
-                <label data-toggle="tooltip" title="Average municipal spending per person" style="margin: 0"><a href="https://www.livemint.com/news/india/which-is-india-s-best-financed-metro-city-11572797317414.html" target="_blank" style="color: black; text-decoration: none">Municipal Finances</a></label>
-                <input type="number" style="width: 100%" value="10" id="p10" class="value result"></input>
+            <div style="margin-bottom: 3px">
+                <label data-toggle="tooltip" title="Average municipal spending per person" style="margin: 0"><a href="https://www.livemint.com/news/india/which-is-india-s-best-financed-metro-city-11572797317414.html" target="_blank" style="color: black; text-decoration: none; font-size: 0.9em;">Municipal Finances</a></label>
+                <input type="number" style="width: 100% ; font-size: 0.9em;" value="10" id="p10" class="value result"></input>
             </div>
         </div>
       </div>
@@ -125,10 +118,9 @@
   <div class="row mt-3">
     <div class="col-12">
 
+      <h6> *To read more about how each sub-index was calculated, click on the sub-index name above. You can read the entire series <a href="https://www.livemint.com/Search/Link/Author/Sriharsha%20Devulapalli" target="_blank" style="color: brown; text-decoration: none;">here</a></h6>
 
-      <h6> *To read more about how each sub-index was calculated, click on the sub-index name above. You can read the entire series <a href="https://www.livemint.com/Search/Link/Author/Sriharsha%20Devulapalli" target="_blank" style="color: brown; text-decoration: none">here</a></h6>
-
-      <h7>Pooja Dantewadia/Mint <br> Illustration by: Jayachandran Nanu/Mint </h7>
+      <h7 style="font-size:0.7em;">Pooja Dantewadia/Mint <br> Illustration by: Jayachandran Nanu/Mint </h7>
 
     </div>
   </div>
@@ -138,7 +130,7 @@
     var linkForParam = {
         p1: {
             text: "Commute Speeds",
-            link: "https://www.livemint.com/news/india/the-slowest-roads-in-urban-india-1567955358892.html"
+            link: "https://www.livemint.com/news/india/what-data-tells-us-about-urban-life-in-india-1567964137612.html"
         },
         p2: {
             text: "Public Transportation Networks",
@@ -349,13 +341,7 @@
     window.name = "result"
   </script>
 
-  <style>
-    @media (max-width: 500px) {
-        .cityTag {
-            font-size: 10px;
-        }
-    }
-  </style>
+  
 
 </body>
 </html>
