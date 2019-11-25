@@ -36,10 +36,10 @@
 
 <body>
     <div id="viz">
-        <svg style="width:1500px;height:1500px"></svg>
+        <svg style="width:400px;height:500px"></svg>
     </div>
     <script>
-    d3.csv("mp-scores-valid.csv", data => overallTeamViz(data));
+    d3.csv("hoods_for_maps.csv", data => overallTeamViz(data));
 
 
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
@@ -48,12 +48,12 @@
     var height=viz.clientHeight;
 
 
-    var xScale = d3.scaleTime().domain([0, 1]).range([50, 1450])
+    var xScale = d3.scaleLinear().domain([3, 35]).range([50, 300])
 
 
     var x_axis = d3.axisTop()
         .scale(xScale)
-        .ticks(10);
+        .ticks(5);
 
 
     function overallTeamViz(incomingData) {
@@ -64,7 +64,7 @@
         .attr("transform", "translate(50,50)")
         .call(x_axis);
 
-        list_of_words=["BJP","INC","AITC","AIADMK","BJD","SS","TDP","TRS","Others"]
+        list_of_words=["Bangalore","Chennai","Delhi","Hyderabad","Kolkata","Mumbai"]
 
         for (i = 0; i < list_of_words.length; i++) { 
             drawVariable(list_of_words[i],i)
@@ -72,10 +72,10 @@
 
         function drawVariable(variable,count) {
 
-            filteredData=incomingData.filter(function(d){ return d.PartyForm==variable})
+            filteredData=incomingData.filter(function(d){ return d.ua==variable})
 
 
-            h = 150+100*count
+            h = 150+50*count
 
 
             d3.select("svg")
@@ -101,24 +101,15 @@
                 .append("circle")
                 .attr("r", 6)
                 .attr("cx", function(d) {
-                    return xScale((d.FinalScore));
+                    return xScale((d.diversity));
                 })
-                .style("fill",function(d){
-                  if (d.Gender=="Male"){
-                    return "#81a43e"
-                  }
-                  if (d.Gender=="Female"){
-                    return "#804d96"
-                  }
-                 
-
-                })
+                .style("fill","#81a43e")
                 .on('mouseover',function(d){
                   tooltip
                             .style("left", d3.event.pageX - 50 + "px")
                             .style("top", d3.event.pageY - 85 + "px")
                             .style("display", "inline-block")
-                            .html(d.MPName+" from"+d.Constituency+" in the state of "+d.State);
+                            .html(d.neighbourhood+" has a diversity of "+d.diversity);
                 });
 
 

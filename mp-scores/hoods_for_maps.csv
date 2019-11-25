@@ -1,0 +1,170 @@
+Row Labels,neighbourhood,lat,long,number,cost_for_two,rating,pricerange,votes,photos,neigh,city,ua,diversity
+"Aerocity, New Delhi",Aerocity,28.5496,77.1212,10,2680,4.4,3.5,8443,15184,Aerocity, New Delhi,Delhi,5
+"UB City, Bangalore",UB City,12.9716,77.5958,11,1854.545455,4.345454545,3.363636364,20059,18923,UB City, Bangalore,Bangalore,10
+"Residency Road, Bangalore",Residency Road,12.97059,77.60193,15,1290,4.326666667,2.733333333,25997,16866,Residency Road, Bangalore,Bangalore,13
+"Sarjapur Road, Bangalore",Sarjapur Road,12.90484,77.7013,22,1259.090909,4.304545455,2.727272727,59071,34607,Sarjapur Road, Bangalore,Bangalore,13
+"Lavelle Road, Bangalore",Lavelle Road,12.97116,77.59567,11,1990.909091,4.3,3.272727273,20526,18648,Lavelle Road, Bangalore,Bangalore,8
+"Bandra Kurla Complex, Mumbai",Bandra Kurla Complex,19.0688,72.8703,29,2148.275862,4.293103448,3.379310345,64051,86458,Bandra Kurla Complex, Mumbai,Mumbai,20
+"Brigade Road, Bangalore",Brigade Road,12.97096,77.60469,14,1275,4.285714286,3.071428571,32196,16198,Brigade Road, Bangalore,Bangalore,10
+"Mahim, Mumbai",Mahim,19.0354,72.8423,11,1122.727273,4.281818182,2.454545455,16298,14992,Mahim, Mumbai,Mumbai,9
+"Science City Area, Kolkata",Science City Area,22.5391,88.3958,12,2475,4.275,3.416666667,17201,24239,Science City Area, Kolkata,Kolkata,7
+"Koramangala 4th Block, Bangalore",Koramangala 4th Block,12.9315,77.63,22,1040.909091,4.272727273,2.454545455,51917,36421,Koramangala 4th Block, Bangalore,Bangalore,13
+"Koramangala 5th Block, Bangalore",Koramangala 5th Block,12.9352,77.62,63,950.7936508,4.26984127,2.365079365,159530,98176,Koramangala 5th Block, Bangalore,Bangalore,21
+"Greater Kailash 1 (GK1), New Delhi",Greater Kailash 1,28.5502,77.2398,26,1144.230769,4.269230769,2.52,28713,29011,Greater Kailash 1 (GK1), New Delhi,Delhi,13
+"Jubilee Hills, Hyderabad",Jubilee Hills,17.4326,78.4071,84,1176.190476,4.267857143,2.65060241,119448,91682,Jubilee Hills, Hyderabad,Hyderabad,23
+"Kalyan Nagar, Bangalore",Kalyan Nagar,13.024,77.6433,19,1086.842105,4.263157895,2.421052632,24201,18309,Kalyan Nagar, Bangalore,Bangalore,11
+"Nehru Place, New Delhi",Nehru Place,28.5503,77.2502,16,1484.375,4.25,3,32158,28833,Nehru Place, New Delhi,Delhi,10
+"Ulsoor, Bangalore",Ulsoor,12.9817,77.6284,10,1325,4.25,2.9,10833,8408,Ulsoor, Bangalore,Bangalore,9
+"Koramangala 7th Block, Bangalore",Koramangala 7th Block,12.9363,77.6128,20,855,4.245,2.25,40488,27196,Koramangala 7th Block, Bangalore,Bangalore,13
+"Malleshwaram, Bangalore",Malleshwaram,13.0055,77.5692,25,906,4.244,2.24,36340,15807,Malleshwaram, Bangalore,Bangalore,9
+"RA Puram, Chennai",RA Puram,13.019,80.2629,10,1055,4.24,2.555555556,7438,5489,RA Puram, Chennai,Chennai,7
+"Church Street, Bangalore",Church Street,12.97499,77.6026,22,1093.181818,4.236363636,2.636363636,44306,30132,Church Street, Bangalore,Bangalore,13
+"Vile Parle East, Mumbai",Vile Parle East,19.0964,72.8564,15,1426.666667,4.226666667,2.733333333,19598,29586,Vile Parle East, Mumbai,Mumbai,8
+"Guindy, Chennai",Guindy,13.0067,80.2206,14,3285.714286,4.221428571,3.785714286,7728,7872,Guindy, Chennai,Chennai,8
+"Rajajinagar, Bangalore",Rajajinagar,12.9982,77.553,15,1316.666667,4.22,2.6,21213,12314,Rajajinagar, Bangalore,Bangalore,9
+"Marathahalli, Bangalore",Marathahalli,12.9569,77.7011,53,1102.830189,4.218867925,2.471698113,118371,55450,Marathahalli, Bangalore,Bangalore,18
+"MG Road, Bangalore",MG Road,12.97471,77.60717,15,1860,4.206666667,3.333333333,27778,16727,MG Road, Bangalore,Bangalore,8
+"Delhi University-GTB Nagar, New Delhi",GTB Nagar,28.6745,77.181,29,741.3793103,4.196551724,2,48208,82044,Delhi University-GTB Nagar, New Delhi,Delhi,9
+"Indiranagar, Bangalore",Indiranagar,12.9784,77.6408,115,1047.043478,4.194782609,2.452173913,229308,155694,Indiranagar, Bangalore,Bangalore,35
+"Alwarpet, Chennai",Alwarpet,13.0335,80.2531,38,1084.210526,4.194736842,2.394736842,20382,26814,Alwarpet, Chennai,Chennai,21
+"Chanakyapuri, New Delhi",Chanakyapuri,28.5972,77.1904,15,2546.666667,4.193333333,3.357142857,18415,19649,Chanakyapuri, New Delhi,Delhi,10
+"Whitefield, Bangalore",Whitefield,12.9698,77.75,68,1221.323529,4.191176471,2.617647059,107837,71403,Whitefield, Bangalore,Bangalore,25
+"Jayanagar, Bangalore",Jayanagar,12.9308,77.5802,45,755.5555556,4.182222222,2.022222222,65267,32682,Jayanagar, Bangalore,Bangalore,19
+"New BEL Road, Bangalore",New BEL Road,13.03023,77.56839,21,838.0952381,4.180952381,2.19047619,32148,19575,New BEL Road, Bangalore,Bangalore,10
+"Veera Desai Area, Mumbai",Veera Desai Area,19.13936,72.82642,21,1597.619048,4.176190476,3.142857143,49849,66385,Veera Desai Area, Mumbai,Mumbai,10
+"Punjabi Bagh, New Delhi",Punjabi Bagh,28.662,77.1242,16,1365.625,4.175,2.8125,18508,27052,Punjabi Bagh, New Delhi,Delhi,5
+"Bannerghatta Road, Bangalore",Bannerghatta Road,12.8393,77.57595,18,1108.333333,4.172222222,2.388888889,27057,14537,Bannerghatta Road, Bangalore,Bangalore,9
+"Banjara Hills, Hyderabad",Banjara Hills,17.4169,78.4387,76,951.3157895,4.159210526,2.223684211,92826,58225,Banjara Hills, Hyderabad,Hyderabad,25
+"Powai, Mumbai",Powai,19.1197,72.9052,48,1342.708333,4.158333333,2.666666667,102468,101487,Powai, Mumbai,Mumbai,19
+"Lower Parel, Mumbai",Lower Parel,18.9977,72.8376,43,1622.093023,4.155813953,3.047619048,84441,101360,Lower Parel, Mumbai,Mumbai,18
+"Basavanagudi, Bangalore",Basavanagudi,12.9406,77.5738,15,386.6666667,4.153333333,1.466666667,21244,8442,Basavanagudi, Bangalore,Bangalore,7
+"Bandra West, Mumbai",Bandra West,19.0596,72.8295,92,1303.804348,4.15326087,2.739130435,177944,173015,Bandra West, Mumbai,Mumbai,29
+"BTM, Bangalore",BTM,12.9166,77.6101,23,730.4347826,4.152173913,1.956521739,31538,13360,BTM, Bangalore,Bangalore,14
+"HSR, Bangalore",HSR,12.9121,77.6446,60,815,4.151666667,2.15,76151,42693,HSR, Bangalore,Bangalore,24
+"Vasant Kunj, New Delhi",Vasant Kunj,28.5293,77.1484,28,1371.428571,4.15,2.777777778,41690,32185,Vasant Kunj, New Delhi,Delhi,12
+"Marol, Mumbai",Marol,19.1173,72.884,18,1252.777778,4.15,2.777777778,36010,40561,Marol, Mumbai,Mumbai,11
+"Chembur, Mumbai",Chembur,19.0522,72.9005,19,1126.315789,4.147368421,2.526315789,25725,23546,Chembur, Mumbai,Mumbai,9
+"Koramangala 6th Block, Bangalore",Koramangala 6th Block,12.9382,77.6228,24,789.5833333,4.145833333,2.166666667,28634,19433,Koramangala 6th Block, Bangalore,Bangalore,15
+"JP Nagar, Bangalore",JP Nagar,12.9063,77.5857,45,950,4.14,2.377777778,70945,38508,JP Nagar, Bangalore,Bangalore,15
+"Satyaniketan, New Delhi",Satyaniketan,28.5876,77.169,13,757.6923077,4.138461538,2,21728,37541,Satyaniketan, New Delhi,Delhi,5
+"Banashankari, Bangalore",Banashankari,12.9255,77.5468,18,697.2222222,4.133333333,2,19963,11590,Banashankari, Bangalore,Bangalore,10
+"Southern Avenue, Kolkata",Southern Avenue,22.51342,88.35378,35,931.4285714,4.131428571,2.428571429,37395,55991,Southern Avenue, Kolkata,Kolkata,14
+"Thane West, Thane",Thane West,19.2445,72.9815,46,1195.652174,4.130434783,2.630434783,68748,89962,Thane West, Thane,Mumbai,20
+"Karkardooma, New Delhi",Karkardooma,28.6529,77.3023,10,580,4.13,1.6,10424,9115,Karkardooma, New Delhi,Delhi,7
+"Khan Market, New Delhi",Khan Market,28.6001,77.227,32,1675,4.128125,3.307692308,44411,43833,Khan Market, New Delhi,Delhi,15
+"Navallur, Chennai",Navallur,12.8459,80.2265,12,716.6666667,4.125,2,9042,1961,Navallur, Chennai,Chennai,9
+"Gopalapuram, Chennai",Gopalapuram,13.0489,80.2586,13,742.3076923,4.123076923,1.923076923,8523,9993,Gopalapuram, Chennai,Chennai,11
+"Royapettah, Chennai",Royapettah,13.054,80.2641,22,747.7272727,4.122727273,1.954545455,15568,10227,Royapettah, Chennai,Chennai,12
+"Teynampet, Chennai",Teynampet,13.0415,80.252,19,1768.421053,4.121052632,3.105263158,10315,14829,Teynampet, Chennai,Chennai,10
+"Juhu, Mumbai",Juhu,19.1075,72.8263,30,1728.333333,4.12,3.066666667,63077,74725,Juhu, Mumbai,Mumbai,15
+"Hitech City, Hyderabad",Hitech City,17.4435,78.3772,56,1195.535714,4.117857143,2.535714286,78985,40580,Hitech City, Hyderabad,Hyderabad,21
+"Fort, Mumbai",Fort,18.9345,72.8371,33,1190.909091,4.112121212,2.606060606,53443,66265,Fort, Mumbai,Mumbai,12
+"Nungambakkam, Chennai",Nungambakkam,13.0569,80.2425,93,1122.043011,4.111827957,2.52173913,62893,49738,Nungambakkam, Chennai,Chennai,30
+"Saket, New Delhi",Saket,28.5221,77.2102,39,1438.461538,4.107692308,2.676470588,58953,62258,Saket, New Delhi,Delhi,14
+"Vashi, Navi Mumbai",Vashi,19.0745,72.9978,28,1282.142857,4.107142857,2.857142857,38098,48327,Vashi, Navi Mumbai,Mumbai,12
+"Andheri West, Mumbai",Andheri West,19.1363,72.8277,84,1086.904762,4.103571429,2.488095238,134175,136538,Andheri West, Mumbai,Mumbai,27
+"Rajouri Garden, New Delhi",Rajouri Garden,28.6417,77.1225,44,1151.136364,4.1,2.5,55655,88660,Rajouri Garden, New Delhi,Delhi,15
+"Camac Street Area, Kolkata",Camac Street Area,22.54629,88.35074,22,997.7272727,4.1,2.5,26708,29983,Camac Street Area, Kolkata,Kolkata,10
+"Bellandur, Bangalore",Bellandur,12.9304,77.6784,13,1030.769231,4.1,2.307692308,18416,8560,Bellandur, Bangalore,Bangalore,6
+"Mahakali, Mumbai",Mahakali,19.13008,72.87099,15,916.6666667,4.093333333,2.266666667,15390,13256,Mahakali, Mumbai,Mumbai,8
+"Janakpuri, New Delhi",Janakpuri,28.6219,77.0878,14,860.7142857,4.092857143,2.071428571,16752,12650,Janakpuri, New Delhi,Delhi,7
+"Prince Anwar Shah Road, Kolkata",Prince Anwar Shah Road,22.50437,88.35122,25,688,4.088,1.84,28184,31679,Prince Anwar Shah Road, Kolkata,Kolkata,15
+"Begumpet, Hyderabad",Begumpet,17.4447,78.4664,24,1293.75,4.083333333,2.583333333,25829,8890,Begumpet, Hyderabad,Hyderabad,10
+"Dwarka, New Delhi",Dwarka,28.5823,77.05,18,747.2222222,4.083333333,2.166666667,15780,8926,Dwarka, New Delhi,Delhi,7
+"SDA, New Delhi",SDA,28.5507,77.2005,12,962.5,4.083333333,2.25,14230,21736,SDA, New Delhi,Delhi,7
+"Abids, Hyderabad",Abids,17.393,78.473,12,579.1666667,4.083333333,1.666666667,12558,2718,Abids, Hyderabad,Hyderabad,6
+"Greater Kailash 2 (GK2), New Delhi",Greater Kailash 2,28.5354,77.242,25,1144,4.08,2.277777778,19041,14200,Greater Kailash 2 (GK2), New Delhi,Delhi,15
+"Mulund West, Mumbai",Mulund West,19.1726,72.9425,14,1082.142857,4.078571429,2.428571429,16503,25169,Mulund West, Mumbai,Mumbai,4
+"T. Nagar, Chennai",T. Nagar,13.0418,80.2341,57,966.6666667,4.073684211,2.263157895,58491,32199,T. Nagar, Chennai,Chennai,21
+"Golpark, Kolkata",Golpark,22.5178,88.3664,11,554.5454545,4.072727273,1.727272727,15854,21106,Golpark, Kolkata,Kolkata,9
+"Ghatkopar West, Mumbai",Ghatkopar West,19.0908,72.9077,11,1463.636364,4.072727273,3.090909091,14948,19461,Ghatkopar West, Mumbai,Mumbai,8
+"Churchgate, Mumbai",Churchgate,18.9322,72.8264,14,1553.571429,4.071428571,2.785714286,28770,19558,Churchgate, Mumbai,Mumbai,12
+"Sector 1 Salt Lake, Kolkata",Sector 1 Salt Lake,22.5911,88.404,21,1026.190476,4.071428571,2.333333333,18521,25166,Sector 1 Salt Lake, Kolkata,Kolkata,12
+"Electronic City, Bangalore",Electronic City,12.844,77.6739,24,825,4.0625,2.083333333,22769,8197,Electronic City, Bangalore,Bangalore,13
+"Borivali West, Mumbai",Borivali West,19.2462,72.8509,31,843.5483871,4.061290323,2.096774194,47337,57670,Borivali West, Mumbai,Mumbai,14
+"Egmore, Chennai",Egmore,13.0732,80.2609,27,827.7777778,4.059259259,1.888888889,13751,7640,Egmore, Chennai,Chennai,16
+"Park Street Area, Kolkata",Park Street Area,22.54872,88.35611,54,1070.37037,4.057407407,2.537037037,94795,88078,Park Street Area, Kolkata,Kolkata,18
+"Besant Nagar, Chennai",Besant Nagar,13.0003,80.2667,30,593.3333333,4.056666667,1.666666667,17687,16207,Besant Nagar, Chennai,Chennai,12
+"Kurla, Mumbai",Kurla,19.0726,72.8845,11,1327.272727,4.054545455,2.818181818,15903,16485,Kurla, Mumbai,Mumbai,8
+"Ballygunge, Kolkata",Ballygunge,22.534,88.3647,50,958,4.048,2.224489796,59328,73897,Ballygunge, Kolkata,Kolkata,18
+"Chakala, Mumbai",Chakala,19.1098,72.8583,14,2078.571429,4.042857143,3.071428571,13961,18250,Chakala, Mumbai,Mumbai,8
+"Somajiguda, Hyderabad",Somajiguda,17.4237,78.4584,12,1212.5,4.041666667,2.333333333,9766,4414,Somajiguda, Hyderabad,Hyderabad,8
+"Anna Nagar East, Chennai",Anna Nagar East,13.092,80.2236,57,613.1578947,4.038596491,1.719298246,35125,30286,Anna Nagar East, Chennai,Chennai,21
+"Malviya Nagar, New Delhi",Malviya Nagar,28.5342,77.2094,16,568.75,4.0375,1.571428571,13033,6492,Malviya Nagar, New Delhi,Delhi,11
+Grand Total,Grand Total,,,6000,991.0316667,4.036766667,2.244823386,7481179,5715461,Grand Total,,,85
+"Dadar Shivaji Park, Mumbai",Dadar Shivaji Park,19.0272,72.8385,11,836.3636364,4.036363636,2.363636364,19674,19619,Dadar Shivaji Park, Mumbai,Mumbai,8
+"Connaught Place, New Delhi",Connaught Place,28.6304,77.2177,113,1343.362832,4.034513274,2.802469136,250337,255300,Connaught Place, New Delhi,Delhi,28
+"Colaba, Mumbai",Colaba,18.9067,72.8147,31,1793.548387,4.032258065,3.193548387,75315,55514,Colaba, Mumbai,Mumbai,13
+"Khar, Mumbai",Khar,19.07,72.8338,25,1440,4.032,2.84,38329,36447,Khar, Mumbai,Mumbai,16
+"Green Park, New Delhi",Green Park,28.5584,77.2029,10,1130,4.03,2.625,10270,7492,Green Park, New Delhi,Delhi,9
+"Goregaon East, Mumbai",Goregaon East,19.1663,72.8526,22,1331.818182,4.027272727,2.636363636,32028,26223,Goregaon East, Mumbai,Mumbai,15
+"Bhawanipur, Kolkata",Bhawanipur,22.5332,88.3459,15,536.6666667,4.026666667,1.733333333,14191,12959,Bhawanipur, Kolkata,Kolkata,10
+"Malad West, Mumbai",Malad West,19.189,72.8355,45,1181.111111,4.024444444,2.590909091,75776,64756,Malad West, Mumbai,Mumbai,15
+"Mylapore, Chennai",Mylapore,13.0368,80.2676,26,678.8461538,4.019230769,1.884615385,17637,13191,Mylapore, Chennai,Chennai,11
+"Kilpauk, Chennai",Kilpauk,13.0823,80.2437,24,529.1666667,4.0125,1.625,11183,8240,Kilpauk, Chennai,Chennai,12
+"Rohini, New Delhi",Rohini,28.7383,77.0822,18,894.4444444,4,1.944444444,14947,6426,Rohini, New Delhi,Delhi,9
+"Hazra, Kolkata",Hazra,22.5228,88.35,12,683.3333333,4,1.833333333,11177,15550,Hazra, Kolkata,Kolkata,7
+"Kamla Nagar, New Delhi",Kamla Nagar,28.6809,77.2046,10,650,4,1.7,9979,5003,Kamla Nagar, New Delhi,Delhi,5
+"Salt Lake, Kolkata",Salt Lake,22.5867,88.4171,93,811.2903226,3.994623656,2.107526882,91248,110284,Salt Lake, Kolkata,Kolkata,23
+"Hauz Khas Village, New Delhi",Hauz Khas Village,28.5534,77.1942,25,1434,3.992,3.153846154,44405,15832,Hauz Khas Village, New Delhi,Delhi,11
+"Kasba, Kolkata",Kasba,22.5195,88.3828,30,778.3333333,3.986666667,1.933333333,27845,31524,Kasba, Kolkata,Kolkata,16
+"Himayath Nagar, Hyderabad",Himayath Nagar,17.4021,78.484,26,482.6923077,3.984615385,1.461538462,23790,4443,Himayath Nagar, Hyderabad,Hyderabad,12
+"Gariahat, Kolkata",Gariahat,22.517,88.3658,18,611.1111111,3.983333333,1.888888889,18357,18096,Gariahat, Kolkata,Kolkata,11
+"Sainikpuri, Secunderabad",Sainikpuri,17.4928,78.5469,12,637.5,3.983333333,1.75,10828,6163,Sainikpuri, Secunderabad,Hyderabad,7
+"Sector 29, Gurgaon",Sector 29,28.4669,77.0665,16,1471.875,3.98125,,18968,,Sector 29, Gurgaon,Delhi,6
+"Vijay Nagar, New Delhi",Vijay Nagar,28.6915,77.2024,15,840,3.98,2.222222222,19742,31098,Vijay Nagar, New Delhi,Delhi,6
+"Vadapalani, Chennai",Vadapalani,13.05,80.2121,22,893.1818182,3.963636364,2.181818182,12422,5647,Vadapalani, Chennai,Chennai,13
+"Mira Road, Mumbai",Mira Road,19.2871,72.8688,11,1009.090909,3.963636364,2.454545455,12317,8104,Mira Road, Mumbai,Mumbai,4
+"Chowpatty, Mumbai",Chowpatty,18.9547,72.8139,10,795,3.96,2,14094,8418,Chowpatty, Mumbai,Mumbai,6
+"Kharghar, Navi Mumbai",Kharghar,19.0473,73.0699,10,840,3.96,2.2,13732,12363,Kharghar, Navi Mumbai,Mumbai,8
+"Ashok Nagar, Chennai",Ashok Nagar,13.0373,80.2123,12,587.5,3.958333333,1.666666667,9379,4563,Ashok Nagar, Chennai,Chennai,10
+"Adyar, Chennai",Adyar,13.0012,80.2565,48,708.3333333,3.954166667,1.9375,37017,28645,Adyar, Chennai,Chennai,20
+"Chinar Park, Kolkata",Chinar Park,22.625,88.4386,23,936.9565217,3.952173913,2.173913043,19237,26966,Chinar Park, Kolkata,Kolkata,11
+"Masab Tank, Hyderabad",Masab Tank,17.4033,78.4529,12,787.5,3.95,2,14368,3059,Masab Tank, Hyderabad,Hyderabad,5
+"Tolichowki, Hyderabad",Tolichowki,17.399,78.4157,20,532.5,3.945,1.6,23775,4108,Tolichowki, Hyderabad,Hyderabad,9
+"Park Circus Area, Kolkata",Park Circus Area,22.53884,88.36054,21,585.7142857,3.942857143,1.80952381,27841,15761,Park Circus Area, Kolkata,Kolkata,9
+"Gachibowli, Hyderabad",Gachibowli,17.4401,78.3489,94,843.0851064,3.941489362,2.106382979,108162,57151,Gachibowli, Hyderabad,Hyderabad,31
+"Bara Bazar, Kolkata",Bara Bazar,22.5817,88.3544,10,415,3.94,1.4,7770,3359,Bara Bazar, Kolkata,Kolkata,3
+"Theatre Road, Kolkata",Theatre Road,22.54561,88.35685,13,1000,3.930769231,2.384615385,7293,5684,Theatre Road, Kolkata,Kolkata,6
+"Janpath, New Delhi",Janpath,28.6278,77.219,11,1790.909091,3.927272727,3,12272,15875,Janpath, New Delhi,Delhi,8
+"Elgin, Kolkata",Elgin,22.54342,88.33909,28,837.5,3.925,2.071428571,29133,31570,Elgin, Kolkata,Kolkata,14
+"Panjagutta, Hyderabad",Panjagutta,17.4245,78.4511,15,476.6666667,3.906666667,1.666666667,18154,2337,Panjagutta, Hyderabad,Hyderabad,9
+"Brookefield, Bangalore",Brookefield,12.9655,77.7185,15,650,3.906666667,1.866666667,17663,8051,Brookefield, Bangalore,Bangalore,9
+"Hindustan Park, Kolkata",Hindustan Park,22.517,88.3634,16,809.375,3.90625,2.3125,13282,16632,Hindustan Park, Kolkata,Kolkata,7
+"Defence Colony, New Delhi",Defence Colony,28.5734,77.2326,23,1041.304348,3.904347826,2.357142857,16068,8128,Defence Colony, New Delhi,Delhi,12
+"Anna Nagar West, Chennai",Anna Nagar West,13.0862,80.2018,27,692.5925926,3.903703704,1.888888889,12521,6620,Anna Nagar West, Chennai,Chennai,16
+"Velachery, Chennai",Velachery,12.9801,80.2184,70,897.1428571,3.902857143,2.2,56163,34889,Velachery, Chennai,Chennai,26
+"Kankurgachi, Kolkata",Kankurgachi,22.5802,88.3906,31,790.3225806,3.887096774,2,27065,26509,Kankurgachi, Kolkata,Kolkata,14
+"New Market Area, Kolkata",New Market Area,22.5601,88.3525,23,919.5652174,3.882608696,2,19893,19369,New Market Area, Kolkata,Kolkata,13
+"Porur, Chennai",Porur,13.0382,80.1565,19,657.8947368,3.873684211,1.789473684,14234,3684,Porur, Chennai,Chennai,9
+"Hatibagan, Kolkata",Hatibagan,22.5975,88.3707,16,450,3.86875,1.5,11204,7672,Hatibagan, Kolkata,Kolkata,10
+"Madhapur, Hyderabad",Madhapur,17.4486,78.3908,57,600.877193,3.863157895,1.696428571,58575,25539,Madhapur, Hyderabad,Hyderabad,24
+"Ramapuram, Chennai",Ramapuram,13.0317,80.1817,11,563.6363636,3.854545455,1.727272727,7124,2167,Ramapuram, Chennai,Chennai,8
+"DLF Cyber City, Gurgaon",DLF Cyber City,28.495,77.0895,27,1444.444444,3.851851852,,37772,,DLF Cyber City, Gurgaon,Delhi,16
+"Mogappair, Chennai",Mogappair,13.0837,80.175,13,503.8461538,3.846153846,1.615384615,5302,2525,Mogappair, Chennai,Chennai,10
+"Thuraipakkam, Chennai",Thuraipakkam,12.9416,80.2362,27,750,3.833333333,2,18377,9092,Thuraipakkam, Chennai,Chennai,16
+"Jadavpur, Kolkata",Jadavpur,22.4955,88.3709,22,506.8181818,3.818181818,1.636363636,18505,15243,Jadavpur, Kolkata,Kolkata,9
+"Behala, Kolkata",Behala,22.5016,88.3209,25,484,3.812,1.52,16853,6767,Behala, Kolkata,Kolkata,10
+"Garia, Kolkata",Garia,22.466,88.3928,11,650,3.809090909,1.909090909,6561,4132,Garia, Kolkata,Kolkata,5
+"Kondapur, Hyderabad",Kondapur,17.4699,78.3578,41,687.804878,3.8,1.853658537,39606,16538,Kondapur, Hyderabad,Hyderabad,14
+"GST Road, Chennai",GST Road,12.88382,80.07981,10,940,3.79,2.2,5486,1456,GST Road, Chennai,Chennai,6
+"New Town, Kolkata",New Town,22.5754,88.4798,15,1210,3.786666667,2.533333333,11762,14783,New Town, Kolkata,Kolkata,8
+"Kothapet, Hyderabad",Kothapet,17.373,78.5476,14,642.8571429,3.785714286,1.785714286,17220,1331,Kothapet, Hyderabad,Hyderabad,7
+"Shibpur, Howrah",Shibpur,22.5713,88.3109,13,634.6153846,3.784615385,1.692307692,7420,3506,Shibpur, Howrah,Kolkata,11
+"Sector 5 Salt Lake, Kolkata",Sector 5 Salt Lake,22.5735,88.4331,11,918.1818182,3.781818182,2.272727273,9782,9357,Sector 5 Salt Lake, Kolkata,Kolkata,8
+"Tollygunge, Kolkata",Tollygunge,22.4986,88.3454,16,503.125,3.78125,1.625,10566,12350,Tollygunge, Kolkata,Kolkata,7
+"Sodepur, Kolkata",Sodepur,22.6982,88.3895,11,422.7272727,3.736363636,1.363636364,5739,2157,Sodepur, Kolkata,Kolkata,9
+"Kukatpally, Hyderabad",Kukatpally,17.4948,78.3996,53,546.2264151,3.728301887,1.622641509,59860,7355,Kukatpally, Hyderabad,Hyderabad,17
+"Sholinganallur, Chennai",Sholinganallur,12.901,80.2279,12,995.8333333,3.716666667,2.416666667,8433,3472,Sholinganallur, Chennai,Chennai,5
+"Perungudi, Chennai",Perungudi,12.9654,80.2461,22,584.0909091,3.695454545,1.636363636,14489,5268,Perungudi, Chennai,Chennai,9
+"Ambattur, Chennai",Ambattur,13.1077,80.1522,10,560,3.69,1.6,3830,622,Ambattur, Chennai,Chennai,5
+"S R Nagar, Hyderabad",S R Nagar,17.4436,78.4458,16,546.875,3.6625,1.6875,20618,556,S R Nagar, Hyderabad,Hyderabad,6
+"Chromepet, Chennai",Chromepet,12.9516,80.1462,12,554.1666667,3.658333333,1.666666667,6104,2068,Chromepet, Chennai,Chennai,9
+"Habsiguda, Hyderabad",Habsiguda,17.4096,78.5441,10,595,3.64,1.8,6718,783,Habsiguda, Hyderabad,Hyderabad,6
+"Vanasthalipuram, Hyderabad",Vanasthalipuram,17.3317,78.5754,10,495,3.64,1.5,6103,149,Vanasthalipuram, Hyderabad,Hyderabad,5
+"Potheri, Chennai",Potheri,12.8259,80.0395,14,464.2857143,3.635714286,1.642857143,6518,508,Potheri, Chennai,Chennai,8
+"Ameerpet, Hyderabad",Ameerpet,17.4375,78.4482,21,497.6190476,3.628571429,1.523809524,21606,1816,Ameerpet, Hyderabad,Hyderabad,8
+"Dilsukhnagar, Hyderabad",Dilsukhnagar,17.3685,78.5316,13,421.5384615,3.607692308,1.307692308,14451,512,Dilsukhnagar, Hyderabad,Hyderabad,8
+"Uppal, Secunderabad",Uppal,17.3984,78.5583,18,527.7777778,3.566666667,1.666666667,29953,754,Uppal, Secunderabad,Hyderabad,8
+"Sector 18, Noida",Sector 18,28.5703,77.3218,16,1146.875,3.5375,,11250,,Sector 18, Noida,Delhi,8
+"Miyapur, Hyderabad",Miyapur,17.5169,78.3428,14,546.4285714,3.485714286,1.571428571,10327,1755,Miyapur, Hyderabad,Hyderabad,6

@@ -334,7 +334,7 @@
                 <td id="corecpi_change"></td>
             </tr>
             <tr>
-                <td><a href="template.html?index=14">Real wage growth <span>(YoY %)</span></td></a>
+                <td><a href="template.html?index=14">Real rural wage growth <span>(YoY %)</span></td></a>
                 <td><a href="template.html?index=14" alt= "Click here for more details" title="Click here for more details" ><object id="graph14"></object></a></td>
                 <td id="rw_value"></td>
                 <td id="rw_change"></td>
@@ -347,7 +347,7 @@
             </tr>
         </table>
         <br>
-        <p align="left"> All data as of 23rd October 2019. </p>
+        <p align="left"> All data as of 25th November 2019. </p>
         <p align="left"> Sriharsha Devulapalli/Mint </p>
     </div>
     <script>
@@ -359,8 +359,8 @@
         var formatDateIntoMonth = d3.timeFormat("%b")
 
 
-        var startDate = new Date("2018-09-01"),
-            endDate = new Date("2019-09-01");
+        var startDate = new Date("2018-10-01"),
+            endDate = new Date("2019-10-01");
 
         var margin = { top: 0, right: 50, bottom: 0, left: 50 },
             width = 375 - margin.left - margin.right,
@@ -396,9 +396,9 @@
 
 
         selectticks=[]
-        selectticks.push(new Date(2018, 8, 1))
+        selectticks.push(new Date(2018, 9, 1))
         selectticks.push(new Date(2018, 11, 1))
-        selectticks.push(new Date(2019, 8, 1))
+        selectticks.push(new Date(2019, 9, 1))
 
     
         slider.insert("g", ".track-overlay")
