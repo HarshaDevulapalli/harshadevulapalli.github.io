@@ -359,8 +359,8 @@
         var formatDateIntoMonth = d3.timeFormat("%b")
 
 
-        var startDate = new Date("2019-01-01"),
-            endDate = new Date("2020-01-01");
+        var startDate = new Date("2018-12-01"),
+            endDate = new Date("2019-12-31");
 
         var margin = { top: 0, right: 50, bottom: 0, left: 50 },
             width = 375 - margin.left - margin.right,
@@ -396,9 +396,9 @@
 
 
         selectticks=[]
-        selectticks.push(new Date(2019, 0, 1))
-        selectticks.push(new Date(2019, 6, 1))
-        selectticks.push(new Date(2020, 0, 1))
+        selectticks.push(new Date(2018, 11, 1))
+        selectticks.push(new Date(2019, 5, 1))
+        selectticks.push(new Date(2019, 11, 1))
 
     
         slider.insert("g", ".track-overlay")
