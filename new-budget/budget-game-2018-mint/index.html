@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"https://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml">
+	<head>
+
+		<!-- favicon -->
+    <link rel="shortcut icon" href="http://www.livemint.com/rw/PortalConfig/LiveMint/static_content/images/v2/livemint_favicon.png">
+
+		<!-- meta -->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>The Union Budget Game: Who wants to be the finance minister? | Livemint</title>
+		
+		<!-- social tags -->
+    <meta property="og:title" content="The Union Budget Game: Who wants to be the finance minister?" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Can you make a better budget than Nirmala Sitharaman? Play this game to find out." />
+    <meta property="og:image:type" content="image/jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@livemint" />
+    <meta name="twitter:title" content="The Union Budget Game: Who wants to be the finance minister?" />
+    <meta name="twitter:description" content="Can you make a better budget than Nirmala Sitharaman? Play this game to find out." />
+
+    <!-- google webfonts -->
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/FontAwesome.otf" />
+    
+		<link rel="stylesheet" href="css/mint.css" />
+
+	</head>
+	<body>
+
+		<div class="navbar">
+				<div class="navbar-share">
+					<a class="facebook-share" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=300');return false;"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+					<a class="twitter-share" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=300');return false;"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+				</div>
+
+		</div>
+		
+    <div class="main">
+      <div style="font-family: 'Fira Sans Extra Condensed', sans-serif" class="titles-wrapper">
+        <h1 class="headline">The Union Budget Game:
+        	<div>Who wants to be the finance minister?</div>
+        </h1>
+      </div>
+      <div id="budget-game">		
+				<div class="budget-intro">
+					<p>In this budget game, you have a chance to play the finance minister. You’ll start by deciding what <span class="color-white background-blue background-pad font-family-sans">cuts</span> are needed. Remember, cutbacks may upset people.</p>
+					<p>After making cuts, you can decide what to <span class="color-white background-green background-pad font-family-sans">spend</span> on and how much. Be careful: too much splurging will increase the <span class="color-white background-red background-pad font-family-sans">fiscal deficit</span>, raising borrowing costs, stoking inflation, and undermining the economy&rsquo;s stability.</p>
+				</div>
+			
+				<div class="budget-scale">
+					<div class="tabs">
+						<div class="tab-section left-tabs">
+							<div class="tab tab-switch tab-cut clickable active color-blue" data-which="cut">Cut</div>
+							<div class="tab tab-switch tab-spend clickable color-green" data-which="spend">Spend</div>
+							<div class="tab tab-switch tab-submit clickable" data-which="submit">Summary</div>
+						</div>
+						<div class="tab-section right-tabs">
+							<div class="tab align-right trigger" data-which="reset">Reset</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="budget-section budget-section-cut show">
+					<!-- <div class="budget-section-title">Cut</div> -->
+					<div class="budget-section-description">
+						<p>Below is a list of programs that policy makers have considered reducing or eliminating. Which ones are you willing to give up?</p>
+					</div>
+					<div class="budget-section-column-label">
+						FY 20-21 allocation
+					</div>
+					<hr />
+					<div class="budget-items budget-items-cut" data-which="cut"></div>
+					<div class="budget-section-switch switch-style color-green" data-which="spend">Choose spending items &raquo;</div>
+				</div>
+
+				<div class="budget-section budget-section-spend hide">
+					<!-- <div class="budget-section-title">Spend</div> -->
+					<div class="budget-section-description">
+						<p>Hopefully, you&rsquo;ve made enough cuts that you can add the programs you think are more important. What would you like to add?</p>
+					</div>
+					<div class="budget-section-column-label">
+						FY 20-21 allocation
+					</div>
+					<hr />
+					<div class="budget-items budget-items-spend" data-which="spend"></div>
+					<div class="budget-section-switch switch-style color-blue" data-which="cut">Choose items to cut &raquo;</div>
+				</div>
+
+				<div class="budget-section budget-section-submit hide">
+					<p class="budget-section-description budget-section-summary">You have not made any changes to the budget. Choose items to <span class="budget-section-switch color-blue" data-which="cut">cut</span> or to <span class="budget-section-switch color-green" data-which="spend">spend on</span>.</p>
+				</div>
+
+				<div class="budget-intro budget-intro-bottom">
+				</div>
+
+				<div class="notes">
+					<p>
+					Notes<br />
+					1. The allocation for judiciary reflects allocation for judicial infrastructure as well as allocation for central schemes relating to legal reforms.<br />
+					2. The allocation for modernization of police relates only to the funds alloted for modernization of police force, and not for other heads of expendture related to policing.<br />
+					3. The budgetary allocation shown here for railways denotes the net budgetary support, and does not include other forms of financing for railways such as through the special fund for railway safety, Rashtriya Rail Sanraksha Kosh.<br />
+					</p>
+					<p>
+					Icons from the Noun Project<br />
+					</p>
+				</div>
+
+<!-- 				<div style="margin-bottom: 40px;">
+					<div style="font-weight: bold; font-size: 1.3em">Related</div>
+					<div><a href="http://www.livemint.com/budget2018">Complete coverage of the 2018-2019 Union Budget from Mint &raquo;</a></div>
+				</div> -->
+			</div>
+		</div>
+
+
+
+  <!--   <div class="footer">
+	 <div class="links">
+        <a href="http://www.livemint.com/Object/483E65M2lsKyJBVJaJtj3M/privacypolicy.html">Privacy Policy</a> |
+        <a href="http://www.livemint.com/Object/E2pEUrWSb5ByMuUfCFHp3M/termsofuse.html">Terms of Use</a> |
+        <a href="http://www.livemint.com/Object/oY1eoxhTWFNTebOv7Pmg3M/mintcode.html">Mint Code</a> |
+        <a href="http://www.livemint.com/Object/6dFbaxSRSDKWk4Rit9Gk3M/rssHome.html">RSS</a> 
+      </div>
+    </div> -->
+
+		<script src="js/mint.js"></script>
+
+	</body>
+</html>
