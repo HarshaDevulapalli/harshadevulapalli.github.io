@@ -4723,7 +4723,7 @@ $(document).ready(function() {
 
 // scripts
 function go() { var t = 692992,
-        e = 229801898.5,
+        e = 22980190,
         a = t / e * 100,
         n = 0,
         i = 0,
