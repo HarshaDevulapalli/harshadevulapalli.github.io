@@ -4722,7 +4722,7 @@ $(document).ready(function() {
     $(".facebook-share").attr("href", h) });
 
 // scripts
-function go() { var t = 6894057,
+function go() { var t = 692992,
         e = 229801898.5,
         a = t / e * 100,
         n = 0,
