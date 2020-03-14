@@ -2626,7 +2626,7 @@
         },
         {
             "variable": "Labour-intensive exports",
-            "description": "This indicator reflects the year-on-year growth in exports of labor-intensive sectors including tobacco, leather & leather manufactures, gems & jewellery, man-made yarn/fabs/made-ups etc, ready made garments of textiles, jute manufacturing, carpets and handicrafts (exc handmade carpet)",
+            "description": "This indicator reflects the year-on-year growth in exports of labour-intensive sectors including tobacco, leather & leather manufactures, gems & jewellery, man-made yarn/fabs/made-ups etc, ready made garments of textiles, jute manufacturing, carpets and handicrafts (exc handmade carpet)",
             "source": "CMIE",
             "upperrange": 1.55369422,
             "lowerrange": -3.2624368,
@@ -2882,7 +2882,7 @@
             },
             {
                 "Year": "Dec 2019",
-                "Value": -3.64813794937043
+                "Value": -3.4240461856923
             },
             {
                 "Year": "Jan 2020",
