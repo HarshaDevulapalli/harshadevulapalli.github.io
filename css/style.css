@@ -5,9 +5,8 @@ a{
 	font-weight: 900;
 	/*text-decoration: none;*/
 	font-family: 'Source Sans Pro', sans-serif;
-	/*text-decoration-color:rgba(255, 0, 118, 1);*/
 	text-decoration: none;
-   /* border-bottom: 2px solid rgba(255, 0, 118, 1);*/
+  object-fit: cover;
 
 }
 
@@ -17,14 +16,11 @@ a{
   
  }
 
-.cross-line{
-	text-decoration: line-through;
-}
 
 .contact-info a{
 	text-decoration: none;
     border-bottom: 0;
-    color: #282828;
+    color: #231f20;
    
 }
 
@@ -42,6 +38,9 @@ body{
 	font-weight: 400;
 }
 
+h1{
+  color:#f9a64a;
+}
 
 .name-wrapper h1 {
     font-size: 2.8em;
@@ -51,6 +50,8 @@ body{
     text-transform: uppercase;
     font-family: 'Source Sans Pro', sans-serif;
 }
+
+
 
 .big-containner{
 	padding-top: 30px;
@@ -85,14 +86,14 @@ body{
  }
 
  .name-container{
- 	border-top: 1px solid #282828;
+ 	border-top: 1px solid #231f20;
  }
 
  .note{
  	margin: 4px;
  	font-size: 12px;
  	display: block;
- 	color: #282828;
+ 	color: #231f20;
  	padding: 0px;
  }
 
@@ -115,13 +116,17 @@ body{
  .img-container{
  	width: 100%;
  	height: auto;
+  background-color: #ffffff;
+  object-fit: contain;
  }
 
  .inner{
  	position: relative;
- 	border: 1px solid #282828;
+ 	border: 1px solid #231f20;
 	border-radius: 3px;
 	transition: all .4s;
+  background-color: #f9a64a;
+
  }
 
 #clip{
@@ -139,6 +144,8 @@ body{
 
 img {
 	width: 100%;
+  max-height:100%;
+  object-fit: contain;
 }
 
 .story:hover{
