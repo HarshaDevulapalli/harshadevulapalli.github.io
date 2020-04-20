@@ -1,13 +1,13 @@
 {
-    "period": "March 2019",
+    "period": "April 2019",
     "data": [
         {
             "variable": "Passenger vehicle sales (domestic)",
             "code": "pvs",
             "description": "This indicator reflects the (YoY %) growth in the domestic sales of passenger cars and vans. Data for the preceding month is released in the second week of every month.",
             "source": "CMIE, SIAM",
-            "upperrange": 3.76869246,
-            "lowerrange": -3.0655219,
+            "upperrange": 3.577023707,
+            "lowerrange": -3.287577827,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -269,14 +269,18 @@
             {
                 "Year": "Feb 2020",
                 "Value": -11.0421659022741
+            },
+            {
+                "Year": "Mar 2020",
+                "Value": -55.0112042702118
             }]
         },
         {
             "variable": "Tractor sales (domestic)",
             "description": "This indicator reflects the (YoY %) growth in the domestic sales of tractors. Data for the preceding month is released in the second week of every month.",
             "source": " CMIE, Tractor Manufacturers Association",
-            "upperrange": 11.6347767,
-            "lowerrange": 0.80263784,
+            "upperrange": 12.05045372,
+            "lowerrange": 1.434979334,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -534,14 +538,18 @@
             {
                 "Year": "Jan 2020",
                 "Value": 4.7605031298444
+            },
+            {
+                "Year": "Feb 2020",
+                "Value": 21.3414634146341
             }]
         },
         {
             "variable": "Broadband subscriber base",
             "description": "This indicator reflects the (YoY %) growth in internet subscriber base.",
             "source": "CMIE",
-            "upperrange": 58.7337881,
-            "lowerrange": 50.7568785,
+            "upperrange": 58.5587748001882,
+            "lowerrange": 50.5483438438796,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -793,8 +801,8 @@
             "variable": "Domestic air passengers",
             "description": "This indicator reflects the (YoY %) growth in the total number of passengers flying domestic scheduled airlines. ",
             "source": "CMIE, Ministry of Civil Aviation.",
-            "upperrange": 18.9932588,
-            "lowerrange": 15.0094079,
+            "upperrange": 18.6967934643469,
+            "lowerrange": 14.6191596323379,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -1048,14 +1056,22 @@
             {
                 "Year": "Dec 2019",
                 "Value": 2.61
+            },
+            {
+                "Year": "Jan 2020",
+                "Value": 2.19859290054365
+            },
+            {
+                "Year": "Feb 2020",
+                "Value": 8.97876464886775
             }]
         },
         {
             "variable": "PMI composite",
             "description": "The India composite output index is a weighted average of the Manufacturing Output Index and the Services Business Activity Index. Index values above 50 indicate expansion in private sector activity, while index values below 50 indicate contraction. The data for the previous month is released on the third working day of the onging month.",
             "source": "Bloomberg, Markit Economics",
-            "upperrange": 52.4696121,
-            "lowerrange": 51.6358425,
+            "upperrange": 52.3803970883071,
+            "lowerrange": 51.4529362450262,
             "suffix": "",
             "values": [
             {
@@ -1317,14 +1333,18 @@
             {
                 "Year": "Feb 2020",
                 "Value": 57.6
+            },
+            {
+                "Year": "Mar 2020",
+                "Value": 50.6
             }]
         },
         {
             "variable": "Core (8-infrastructure sectors) growth",
             "description": "This indicator reflects the (YoY %) growth in the index of eight core infrastructure industries. The eight industries are --Electricity , steel, refinery products, crude oil, coal, cement, natural gas and fertilizers. The index for the previous month is released on the last working day of every month. The Eight Core Industries comprise 40.27 per cent of the weight of items included in the Index of Industrial Production (IIP).",
             "source": "Bloomberg, Ministry of Commerce and Industry",
-            "upperrange": 4.13049319,
-            "lowerrange": 2.75250681,
+            "upperrange": 4.12361152815322,
+            "lowerrange": 2.75372180518011,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -1581,15 +1601,19 @@
             },
             {
                 "Year": "Jan 2020",
-                "Value": 2.18
+                "Value": 1.43
+            },
+            {
+                "Year": "Feb 2020",
+                "Value": 5.48
             }]
         },
         {
             "variable": "Bank's non-food credit",
             "description": "This indicator reflects the (%YoY) growth in the outstanding amount of credit to businesses each month, and is released on the last working day of every month.",
             "source": "Bloomberg, RBI",
-            "upperrange": 9.71554727,
-            "lowerrange": 8.06723524,
+            "upperrange": 9.69500596428884,
+            "lowerrange": 8.04733893828495,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -1848,14 +1872,19 @@
                 "Year": "Jan 2020",
                 "Value": 8.481502785
 
+            },
+            {
+                "Year": "Feb 2020",
+                "Value": 7.32183786689999
+
             }]
         },
         {
             "variable": "Rail freight traffic",
             "description": "This indicator reflects the (%YoY) growth in the freight traffic of major commodities (measured in ‘000 tonnes). The data for previous month is released in the second week of every month.",
             "source": "CMIE, Ministry of Railways",
-            "upperrange": 3.15321857,
-            "lowerrange": 1.28960387,
+            "upperrange": 3.17581467839367,
+            "lowerrange": 1.31253530911903,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -2123,8 +2152,8 @@
             "variable": "Import cover",
             "description": "This indicator measures the number of months of imports that can be covered with foreign exchange reserves available with the central bank of the country.",
             "source": "Bloomberg",
-            "upperrange": 11.1542422,
-            "lowerrange": 10.6279578,
+            "upperrange": 11.1752973798165,
+            "lowerrange": 10.6499859535168,
             "suffix": "(FX reserves in months)",
             "values": [
             {
@@ -2386,14 +2415,18 @@
             {
                 "Year": "Feb 2020",
                 "Value": 12.2464
+            },
+            {
+                "Year": "Mar 2020",
+                "Value": 12.9927
             }]
         },
         {
             "variable": "Rupee vs Dollar",
             "description": "This indicator reflects the month-on-month change in the average daily USD-INR exchange rate.",
             "source": "Bloomberg",
-            "upperrange": 0.11009444,
-            "lowerrange": -0.5484974,
+            "upperrange": 0.0926352661737647,
+            "lowerrange": -0.562598331209229,
             "suffix": "(% MoM)",
             "values": [
             {
@@ -2655,14 +2688,18 @@
             {
                 "Year": "Feb 2020",
                 "Value": -0.288484465
+            },
+            {
+                "Year": "Mar 2020",
+                "Value": -4.11897489423838
             }]
         },
         {
             "variable": "Labour-intensive exports",
             "description": "This indicator reflects the year-on-year growth in exports of labour-intensive sectors including tobacco, leather & leather manufactures, gems & jewellery, man-made yarn/fabs/made-ups etc, ready made garments of textiles, jute manufacturing, carpets and handicrafts (exc handmade carpet)",
             "source": "CMIE",
-            "upperrange": 1.45920793,
-            "lowerrange": -3.3554949,
+            "upperrange": 1.32908077424604,
+            "lowerrange": -3.50681311464807,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -2924,14 +2961,18 @@
             {
                 "Year": "Feb 2020",
                 "Value": -12.70017246
+            },
+            {
+                "Year": "Mar 2020",
+                "Value": -37.2231092371844
             }]
         },
         {
             "variable": "Trade balance",
             "description": "This indicator reflects India’s trade balance as a percentage of India’s total trade. The data on India’s merchandise exports and imports for the previous month is released in the third week of every month.",
             "source": " CMIE, Ministry of Commerce and Industry",
-            "upperrange": -18.403503,
-            "lowerrange": -20.386765,
+            "upperrange": -18.5601606660568,
+            "lowerrange": -20.5206384275904,
             "suffix": "(as % of total trade)",
             "values": [
             {
@@ -3193,14 +3234,18 @@
             {
                 "Year": "Feb 2020",
                 "Value": -15.12048803
+            },
+            {
+                "Year": "Mar 2020",
+                "Value": -18.5619584755999
             }]
         },
         {
             "variable": "CPI",
             "description": "This indicator reflects India’s retail inflation based on the Consumer Price Index (CPI). The data for the previous month is released on the 12th of every month (or the next working day, if that day is a holiday).",
             "source": "Bloomberg, MOSPI",
-            "upperrange": 3.87386989,
-            "lowerrange": 4.47613011,
+            "upperrange": 3.89587563526191,
+            "lowerrange": 4.53412436473809,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -3462,14 +3507,18 @@
             {
                 "Year": "Feb 2020",
                 "Value": 6.58
+            },
+            {
+                "Year": "Mar 2020",
+                "Value": 5.91
             }]
         },
         {
             "variable": "Core CPI",
             "description": "This indicator reflects India’s CPI inflation excluding volatile components such as food & beverages; pan, tobacco and alcohol; LPG, kerosene, and other fuels within fuel and light sub-component; and petrol and diesel within transportation and communication category under the miscellaneous sub-component of CPI index. It carries a weight of 47.4% in the CPI basket.",
             "source": "Bloomberg",
-            "upperrange": 4.48981734,
-            "lowerrange": 4.84184933,
+            "upperrange": 4.493847169,
+            "lowerrange": 4.844486164,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -3731,14 +3780,18 @@
             {
                 "Year": "Feb 2020",
                 "Value": 4.08
+            },
+            {
+                "Year": "Mar 2020",
+                "Value": 4.1
             }]
         },
         {
             "variable": "Real rural wage growth",
             "description": "This indicator reflects the (YoY %) growth in real wages. Real wages are computed as nominal rural wage deflated using the CPI rural index.",
             "source": "CMIE",
-            "upperrange": 0.926378,
-            "lowerrange": -0.04604,
+            "upperrange": 0.880940955,
+            "lowerrange": -0.1263064,
             "suffix": "(YoY %)",
             "values": [
             {
@@ -4003,8 +4056,8 @@
             "variable": "Job Outlook",
             "description": "This indicator reflects the ‘net response’ rate in the Reserve Bank of India’s quarterly industrial outlook surveys to the question of job outlook, and measures the difference between optimistic and pessimistic respondents in each round of the survey. The range of values goes from -100 to 100, with higher values indicating greater optimism on jobs.",
             "source": "CMIE, RBI",
-            "upperrange": 7.25873,
-            "lowerrange": 5.66127,
+            "upperrange": 7.162791034,
+            "lowerrange": 5.5455423,
             "suffix": "(net response %)",
             "values": [
             {
@@ -4258,6 +4311,18 @@
             {
                 "Year": "Dec 2019",
                 "Value": -1.6
+            },
+            {
+                "Year": "Jan 2020",
+                "Value": 2.05
+            },
+            {
+                "Year": "Feb 2020",
+                "Value": 2.05
+            },
+            {
+                "Year": "Mar 2020",
+                "Value": 2.05
             }]
         }
     ]
