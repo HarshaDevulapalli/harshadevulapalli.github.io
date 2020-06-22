@@ -347,7 +347,7 @@
             </tr>
         </table>
         <br>
-        <p align="left"> All data as of 25th May 2020. </p>
+        <p align="left"> All data as of 22nd June 2020. </p>
         <p align="left"> Sriharsha Devulapalli/Mint </p>
     </div>
     <script>
@@ -359,8 +359,8 @@
         var formatDateIntoMonth = d3.timeFormat("%b")
 
 
-        var startDate = new Date("2019-04-15"),
-            endDate = new Date("2020-04-15");
+        var startDate = new Date("2019-05-15"),
+            endDate = new Date("2020-05-15");
 
         var margin = { top: 0, right: 50, bottom: 0, left: 50 },
             width = 375 - margin.left - margin.right,
@@ -396,9 +396,9 @@
 
 
         selectticks=[]
-        selectticks.push(new Date(2019, 3, 1))
-        selectticks.push(new Date(2019, 9, 1))
-        selectticks.push(new Date(2020, 3, 1))
+        selectticks.push(new Date(2019, 4, 1))
+        selectticks.push(new Date(2019, 10, 1))
+        selectticks.push(new Date(2020, 4, 1))
 
     
         slider.insert("g", ".track-overlay")
