@@ -1,9 +1,9 @@
-slug	url	name	pub	skills
-riots	https://www.livemint.com/news/india/the-geography-of-riots-in-india-11583304754521.html	The geography of riots	Mint	wtf
-noise	https://www.livemint.com/news/india/which-is-india-s-noisiest-city-11581527059879.html	India's noisiest metro	Mint	wtf
-airpollution	https://www.livemint.com/news/india/mapped-bad-air-days-across-cities-11577602444140.html	Mapping air quality across India's metros	Mint	wtf
-poverty	https://www.livemint.com/news/india/rural-poverty-has-shot-up-nso-data-shows-11575352445478.html	India's rural poverty has shot up	Mint	wtf
-municipalfinances	https://www.livemint.com/news/india/which-is-india-s-best-financed-metro-city-11572797317414.html	India's best financed metros	Mint	wtf
+slug	url	name	pub	skill
+riots	https://www.livemint.com/news/india/the-geography-of-riots-in-india-11583304754521.html	The geography of riots	Mint	Graphics
+noise	https://www.livemint.com/news/india/which-is-india-s-noisiest-city-11581527059879.html	India's noisiest metro	Mint	"Graphics, Reporting"
+airpollution	https://www.livemint.com/news/india/mapped-bad-air-days-across-cities-11577602444140.html	Mapping air quality across India's metros	Mint	"Graphics, Reporting"
+poverty	https://www.livemint.com/news/india/rural-poverty-has-shot-up-nso-data-shows-11575352445478.html	India's rural poverty has shot up	Mint	Reporting
+municipalfinances	https://www.livemint.com/news/india/which-is-india-s-best-financed-metro-city-11572797317414.html	India's best financed metros	Mint	"Graphics, Reporting"
 greenery	https://www.livemint.com/news/india/which-is-india-s-greenest-metro-11572280645457.html	India's greenest metros	Mint	wtf
 socialinfra	https://www.livemint.com/news/india/the-state-of-social-infrastructure-in-metros-11571582503597.html	The state of social infrastructure in metros	Mint	wtf
 diningout	https://www.livemint.com/news/india/the-most-popular-dine-out-hubs-in-india-11570968468566.html	Most popular dine out hubs in India	Mint	wtf
