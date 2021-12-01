@@ -38,7 +38,7 @@ d3.tsv("data.tsv",function(portfolio) {
 
   nameContainer.append("div")
       .classed("note",true)
-      .html(function(d){return "<span class='name'>" + d.name + "<br></span><span class='skill'>" + d.skill + "<br></span><span class='tools'>" + d.tool})
+      .html(function(d){return "<span class='name'>" + d.name + "<br></span><span class='skill'> Responsibilities: " + d.skill + "<br></span><span class='tools'> Tools: " + d.tool})
 
 
 
